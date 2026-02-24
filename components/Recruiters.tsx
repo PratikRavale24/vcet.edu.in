@@ -158,20 +158,22 @@ const Recruiters: React.FC = () => (
             <p className="text-slate-400 text-sm mt-1">Companies that regularly recruit VCET graduates</p>
           </div>
           {/* Logo grid */}
-          <div className="bg-white px-8 py-8">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+          <div className="bg-white px-8 py-10">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5">
               {recruiters.map((company) => (
                 <div
                   key={company.name}
-                  className="group flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 bg-gray-50 hover:border-brand-gold/40 hover:bg-white hover:shadow-md transition-all duration-300"
+                  className="group flex flex-col items-center justify-center gap-4 p-6 rounded-2xl border-2 border-gray-100 bg-white shadow-sm hover:border-brand-gold hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <img
-                    src={company.logo}
-                    alt={company.name}
-                    className="w-24 h-14 object-contain"
-                    loading="lazy"
-                  />
-                  <span className="text-[11px] font-semibold text-slate-500 text-center tracking-wide group-hover:text-brand-blue transition-colors">
+                  <div className="w-full flex items-center justify-center h-20">
+                    <img
+                      src={company.logo}
+                      alt={company.name}
+                      className="max-w-full max-h-20 w-auto object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span className="text-[12px] font-bold text-slate-600 text-center tracking-wide group-hover:text-brand-blue transition-colors leading-snug">
                     {company.name}
                   </span>
                 </div>
