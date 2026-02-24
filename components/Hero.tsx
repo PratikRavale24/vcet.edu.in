@@ -93,7 +93,7 @@ const Hero: React.FC = () => {
             <div className="hero-anim" style={{animationDelay: '0.1s'}}>
               <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
                 <span className="w-2 h-2 bg-brand-gold rounded-full animate-pulse"></span>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/80">Est. 1994 &bull; NAAC A+ Accredited</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/80">Est. 1994 &bull; NAAC Accredited</span>
               </div>
             </div>
             
