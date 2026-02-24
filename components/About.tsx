@@ -6,7 +6,7 @@ const stats = [
   { icon: Users, target: 5000, suffix: '+', label: 'Students' },
   { icon: BookOpen, target: 300, suffix: '+', label: 'Faculty' },
   { icon: Target, target: 25, suffix: '+', label: 'Years' },
-  { icon: Eye, target: null, suffix: 'A+', label: 'NAAC Grade' },
+  { icon: Eye, target: null, suffix: 'B++', label: 'NAAC Grade' },
 ];
 
 function useCountUp(target: number | null, duration = 1800) {
