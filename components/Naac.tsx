@@ -21,7 +21,7 @@ const Naac: React.FC = () => {
           <div className="flex items-center gap-8">
             <div className="text-center">
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">NAAC Grade</p>
-              <p className="text-5xl font-display font-bold text-brand-blue">A+</p>
+              <p className="text-5xl font-display font-bold text-brand-blue"></p>
             </div>
             <div className="h-14 w-px bg-gray-200"></div>
             <div className="text-center">

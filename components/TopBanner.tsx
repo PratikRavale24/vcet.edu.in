@@ -30,7 +30,7 @@ const TopBanner: React.FC = () => {
           <p className="text-[10px] text-slate-500 mt-0.5">Vasai Road &bull; Estd. 1994</p>
         </div>
         <span className="flex-shrink-0 inline-flex items-center gap-1 bg-brand-gold/15 border border-brand-gold/30 text-brand-navy px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
-          NAAC A+
+          NAAC
         </span>
       </div>
 
@@ -66,7 +66,7 @@ const TopBanner: React.FC = () => {
             <div className="flex flex-wrap items-center justify-center gap-2 mt-3">
               <span className="inline-flex items-center gap-1.5 bg-brand-blue/5 border border-brand-blue/10 text-brand-blue px-3 py-1 rounded text-[11px] font-bold uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
-                NAAC A+ Accredited
+                NAAC Accredited
               </span>
               <span className="inline-flex items-center gap-1.5 bg-brand-gold/10 border border-brand-gold/20 text-brand-navy px-3 py-1 rounded text-[11px] font-bold uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 bg-brand-blue rounded-full"></span>
