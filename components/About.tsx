@@ -4,7 +4,7 @@ import { Target, Eye, Users, BookOpen } from 'lucide-react';
 
 const stats = [
   { icon: Users, target: 5000, suffix: '+', label: 'Students' },
-  { icon: BookOpen, target: 300, suffix: '+', label: 'Faculty' },
+  { icon: BookOpen, target: 200, suffix: '+', label: 'Faculty' },
   { icon: Target, target: 25, suffix: '+', label: 'Years' },
   { icon: Eye, target: null, suffix: 'B++', label: 'NAAC Grade' },
 ];
@@ -73,7 +73,7 @@ const About: React.FC = () => {
               and creating solutions for real-world problems.
             </p>
             <p className="text-slate-500 leading-relaxed text-base">
-              Located in the heart of the tech corridor, our sprawling campus is home to over 5,000 students and 300 faculty members. We combine traditional engineering discipline with modern design thinking, preparing graduates who excel in both innovation and execution.
+              Located in the heart of the tech corridor, our sprawling campus is home to over 5,000 students and 200+ faculty members. We combine traditional engineering discipline with modern design thinking, preparing graduates who excel in both innovation and execution.
             </p>
             
             {/* Image placeholder */}

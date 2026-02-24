@@ -1,5 +1,4 @@
 ﻿import React from "react";
-import { motion } from "framer-motion";
 
 // -- Data ----------------------------------------------------------------------
 const recruiters = [
@@ -15,63 +14,22 @@ const recruiters = [
 interface BentoBoxProps {
   className?: string;
   style?: React.CSSProperties;
-  delay?: number;
   children: React.ReactNode;
 }
-const BentoBox: React.FC<BentoBoxProps> = ({ className = "", style, delay = 0, children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 24 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.55, delay, ease: "easeOut" }}
-    whileHover={{ scale: 1.015 }}
+const BentoBox: React.FC<BentoBoxProps> = ({ className = "", style, children }) => (
+  <div
     style={style}
     className={`rounded-3xl border border-white/10 overflow-hidden flex flex-col ${className}`}
   >
     {children}
-  </motion.div>
-);
-
-// -- Infinite Marquee ----------------------------------------------------------
-const InfiniteMarquee: React.FC<{ items: typeof recruiters }> = ({ items }) => (
-  <div className="relative flex overflow-hidden w-full py-5">
-    <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0f172a] to-transparent z-10 pointer-events-none" />
-    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0f172a] to-transparent z-10 pointer-events-none" />
-    <motion.div
-      className="flex gap-5"
-      style={{ minWidth: "max-content" }}
-      animate={{ x: ["0%", "-50%"] }}
-      transition={{ repeat: Infinity, ease: "linear", duration: 22 }}
-    >
-      {[...items, ...items].map((company, i) => (
-        <div
-          key={i}
-          className="flex-shrink-0 w-44 h-20 rounded-2xl flex items-center justify-center
-                     bg-white/5 border border-white/10 hover:border-brand-gold/40
-                     hover:bg-white/10 transition-all duration-300 cursor-pointer group"
-        >
-          <img
-            src={company.logo}
-            alt={company.name}
-            className="w-32 h-12 object-contain filter grayscale brightness-200 opacity-50
-                       group-hover:grayscale-0 group-hover:opacity-100 group-hover:brightness-100
-                       transition-all duration-400"
-            loading="lazy"
-          />
-        </div>
-      ))}
-    </motion.div>
   </div>
 );
 
-// -- Animated Bar --------------------------------------------------------------
-const Bar: React.FC<{ pct: string; delay?: number }> = ({ pct, delay = 0.5 }) => (
+// -- Accent Bar ----------------------------------------------------------------
+const Bar: React.FC<{ pct: string }> = ({ pct }) => (
   <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden mt-5">
-    <motion.div
-      initial={{ width: 0 }}
-      whileInView={{ width: pct }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.1, delay, ease: "easeOut" }}
+    <div
+      style={{ width: pct }}
       className="h-full rounded-full bg-gradient-to-r from-brand-gold to-yellow-300"
     />
   </div>
@@ -115,18 +73,17 @@ const Recruiters: React.FC = () => (
       {/* Bento Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
 
-        {/* 1 � Hero stat: 500+ */}
+        {/* 1 — Hero stat: Campus Offers */}
         <BentoBox
-          delay={0.1}
           className="md:col-span-2 p-8 justify-between min-h-[220px]"
           style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
         >
           <div>
             <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">
-              Class of 2025 &middot; Placements
+              2024-25 &middot; Placements
             </p>
             <h3 className="text-6xl md:text-7xl font-extrabold text-white leading-none tracking-tight">
-              500+
+              285
             </h3>
             <p className="text-2xl font-medium text-slate-300 mt-2">Campus Offers Made</p>
           </div>
@@ -135,9 +92,8 @@ const Recruiters: React.FC = () => (
           </p>
         </BentoBox>
 
-        {/* 2 � Highest Package */}
+        {/* 2 — Highest Package */}
         <BentoBox
-          delay={0.2}
           className="p-8 justify-between min-h-[220px]"
           style={{ background: "rgba(212,168,67,0.07)" }}
         >
@@ -151,14 +107,13 @@ const Recruiters: React.FC = () => (
             >
               ₹21 LPA
             </h3>
-            <p className="text-slate-400 text-sm mt-2">Best offer &middot; 2025 batch</p>
+            <p className="text-slate-400 text-sm mt-2">Best offer &middot; 2024-25 batch</p>
           </div>
-          <Bar pct="90%" delay={0.5} />
+          <Bar pct="90%" />
         </BentoBox>
 
-        {/* 3 � Placement Rate */}
+        {/* 3 — Placement Rate */}
         <BentoBox
-          delay={0.3}
           className="p-8 justify-between"
           style={{ background: "rgba(255,255,255,0.04)" }}
         >
@@ -169,12 +124,11 @@ const Recruiters: React.FC = () => (
             <h3 className="text-5xl font-extrabold text-white leading-none">95%</h3>
             <p className="text-slate-500 text-sm mt-2">Students placed annually</p>
           </div>
-          <Bar pct="95%" delay={0.6} />
+          <Bar pct="95%" />
         </BentoBox>
 
-        {/* 4 � Average Package */}
+        {/* 4 — Average Package */}
         <BentoBox
-          delay={0.35}
           className="md:col-span-2 p-8 justify-between"
           style={{ background: "rgba(255,255,255,0.04)" }}
         >
@@ -183,26 +137,48 @@ const Recruiters: React.FC = () => (
               Average Package
             </p>
             <h3 className="text-5xl font-extrabold text-white leading-none">
-              ₹12 <span className="text-2xl font-semibold text-slate-400">LPA</span>
+              ₹6 <span className="text-2xl font-semibold text-slate-400">LPA</span>
             </h3>
-            <p className="text-slate-500 text-sm mt-2">Across all streams &middot; 2025 batch</p>
+            <p className="text-slate-500 text-sm mt-2">Across all streams &middot; 2024-25 batch</p>
           </div>
-          <Bar pct="75%" delay={0.65} />
+          <Bar pct="29%" />
         </BentoBox>
 
-        {/* 5 � Marquee full-width */}
-        <BentoBox
-          delay={0.45}
-          className="md:col-span-3 pt-7 pb-3"
-          style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
-        >
-          <div className="px-8 mb-1">
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-              Our Hiring Partners
-            </p>
+        {/* 5 — Hiring Partners static grid */}
+        <div className="md:col-span-3 rounded-3xl overflow-hidden border border-white/10">
+          {/* Header strip */}
+          <div className="bg-white px-8 pt-8 pb-6 border-b border-gray-100">
+            <div className="flex items-center gap-3 mb-1">
+              <div className="w-6 h-px bg-brand-gold" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-gold">
+                Our Hiring Partners
+              </p>
+              <div className="w-6 h-px bg-brand-gold" />
+            </div>
+            <p className="text-slate-400 text-sm mt-1">Companies that regularly recruit VCET graduates</p>
           </div>
-          <InfiniteMarquee items={recruiters} />
-        </BentoBox>
+          {/* Logo grid */}
+          <div className="bg-white px-8 py-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+              {recruiters.map((company) => (
+                <div
+                  key={company.name}
+                  className="group flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 bg-gray-50 hover:border-brand-gold/40 hover:bg-white hover:shadow-md transition-all duration-300"
+                >
+                  <img
+                    src={company.logo}
+                    alt={company.name}
+                    className="w-24 h-14 object-contain"
+                    loading="lazy"
+                  />
+                  <span className="text-[11px] font-semibold text-slate-500 text-center tracking-wide group-hover:text-brand-blue transition-colors">
+                    {company.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>

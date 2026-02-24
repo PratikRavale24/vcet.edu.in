@@ -198,7 +198,7 @@ const Header: React.FC = () => {
             <img 
               src="/Images/VCET%20logo.jpeg" 
               alt="VCET Logo" 
-              className="h-10 md:h-12 w-auto rounded-sm"
+              className="h-14 md:h-16 w-auto rounded-sm"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
             <div className={`hidden sm:block ${scrolled ? '' : 'mix-blend-difference'}`}>
