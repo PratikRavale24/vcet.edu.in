@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X, ArrowUpRight, Search, ChevronDown, ChevronRight } from 'lucide-react';
 
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -30,14 +31,14 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'About Us',
     dropdown: [
-      { label: 'About VCET',              href: 'https://vcet.edu.in/about-us/' },
-      { label: "President's Desk",         href: 'https://vcet.edu.in/presidents-desk/' },
-      { label: "Principal's Desk",         href: 'https://vcet.edu.in/principle-page/' },
-      { label: 'Governing Council',        href: 'https://vcet.edu.in/governing-council/' },
-      { label: 'Organizational Structure', href: 'https://vcet.edu.in/organizational-structure/' },
-      { label: 'Administration',           href: 'https://vcet.edu.in/administration-faculty/' },
-      { label: 'Strategic Plan',           href: 'https://vcet.edu.in/strategic-plan/' },
-      { label: 'Code of Conduct',          href: 'https://vcet.edu.in/code-of-conduct/' },
+      { label: 'About VCET',              href: '/about-us' },
+      { label: "President's Desk",         href: '/presidents-desk' },
+      { label: "Principal's Desk",         href: '/principals-desk' },
+      { label: 'Governing Council',        href: '/governing-council' },
+      { label: 'Organizational Structure', href: '/organizational-structure' },
+      { label: 'Administration',           href: '/administration' },
+      { label: 'Strategic Plan',           href: '/strategic-plan' },
+      { label: 'Code of Conduct',          href: '/code-of-conduct' },
     ],
   },
 
@@ -45,12 +46,12 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Admission',
     dropdown: [
-      { label: 'Courses and Intake',   href: 'https://vcet.edu.in/courses-and-intake/' },
-      { label: 'Fees Structure 25-26', href: 'https://vcet.edu.in/fees-structure-fe-dse-mestructural-engineeringmms/' },
-      { label: 'Scholarships',         href: 'https://vcet.edu.in/scholarships/' },
-      { label: 'Brochure',             href: 'https://vcet.edu.in/brochure/' },
-      { label: 'Documents Required',   href: 'https://vcet.edu.in/documents-required-fedsemestructural-engineeringmms/' },
-      { label: 'Cut Off 24-25',        href: 'https://vcet.edu.in/cut-off/' },
+      { label: 'Courses and Intake',   href: '/courses-and-intake' },
+      { label: 'Fees Structure 25-26', href: '/fees-structure' },
+      { label: 'Scholarships',         href: '/scholarships' },
+      { label: 'Brochure',             href: '/brochure' },
+      { label: 'Documents Required',   href: '/documents-required' },
+      { label: 'Cut Off 24-25',        href: '/cut-off' },
     ],
   },
 
@@ -58,14 +59,14 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Departments',
     dropdown: [
-      { label: 'Computer Engineering',                        href: 'https://vcet.edu.in/computer-engineering/' },
-      { label: 'CS & Engg. (Data Science)',                   href: 'https://vcet.edu.in/computer-science-and-engineering-data-science/' },
-      { label: 'Information Technology',                      href: 'https://vcet.edu.in/information-technology/' },
-      { label: 'AI & Data Science',                           href: 'https://vcet.edu.in/artificial-intelligence-and-data-science/' },
-      { label: 'Mechanical Engineering',                      href: 'https://vcet.edu.in/mechanical-engineering/' },
-      { label: 'Electronics & Telecomm. Engg.',               href: 'https://vcet.edu.in/electronics-and-telecommunication-engineering/' },
-      { label: 'Civil Engineering',                           href: 'https://vcet.edu.in/civil-engineering-2/' },
-      { label: 'First Year Engineering',                      href: 'https://vcet.edu.in/first-year-engineering/' },
+      { label: 'Computer Engineering',                        href: '/computer-engineering' },
+      { label: 'CS & Engg. (Data Science)',                   href: '/cs-data-science' },
+      { label: 'Information Technology',                      href: '/information-technology' },
+      { label: 'AI & Data Science',                           href: '/ai-data-science' },
+      { label: 'Mechanical Engineering',                      href: '/mechanical-engineering' },
+      { label: 'Electronics & Telecomm. Engg.',               href: '/electronics-telecomm' },
+      { label: 'Civil Engineering',                           href: '/civil-engineering' },
+      { label: 'First Year Engineering',                      href: '/first-year-engineering' },
     ],
   },
 
@@ -73,28 +74,28 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Academics',
     dropdown: [
-      { label: "Dean Academic's Desk",       href: 'https://vcet.edu.in/dean-academicss-desk/' },
+      { label: "Dean Academic's Desk",       href: '/dean-academics' },
       {
         label: 'Academic Calendar',
         subItems: [
-          { label: 'EVEN SEM 2025-26 SE TE BE (Tentative)', href: 'https://vcet.edu.in/academic-calendar/' },
-          { label: 'ODD SEM 2025-26 SE TE BE',               href: 'https://vcet.edu.in/academic-calendar/' },
-          { label: 'EVEN SEM 2024-25',                        href: 'https://vcet.edu.in/academic-calendar/' },
-          { label: 'ODD SEM 2024-25 FE ME',                   href: 'https://vcet.edu.in/academic-calendar/' },
-          { label: 'ODD SEM 2024-25 SE TE BE',                href: 'https://vcet.edu.in/academic-calendar/' },
-          { label: 'EVEN SEM 2023-24 SE TE BE',               href: 'https://vcet.edu.in/academic-calendar/' },
-          { label: 'EVEN SEM 2022-23 SE TE BE',               href: 'https://vcet.edu.in/academic-calendar/' },
-          { label: 'FE & ME EVEN SEM 2022-23',                href: 'https://vcet.edu.in/academic-calendar/' },
-          { label: 'FE ODD SEM 2022-23',                       href: 'https://vcet.edu.in/academic-calendar/' },
+          { label: 'EVEN SEM 2025-26 SE TE BE (Tentative)', href: '/academic-calendar' },
+          { label: 'ODD SEM 2025-26 SE TE BE',               href: '/academic-calendar' },
+          { label: 'EVEN SEM 2024-25',                        href: '/academic-calendar' },
+          { label: 'ODD SEM 2024-25 FE ME',                   href: '/academic-calendar' },
+          { label: 'ODD SEM 2024-25 SE TE BE',                href: '/academic-calendar' },
+          { label: 'EVEN SEM 2023-24 SE TE BE',               href: '/academic-calendar' },
+          { label: 'EVEN SEM 2022-23 SE TE BE',               href: '/academic-calendar' },
+          { label: 'FE & ME EVEN SEM 2022-23',                href: '/academic-calendar' },
+          { label: 'FE ODD SEM 2022-23',                       href: '/academic-calendar' },
         ],
       },
-      { label: 'Teaching Learning Process',  href: 'https://vcet.edu.in/teaching-learning-proccess/' },
-      { label: 'Swayam - NPTEL',             href: 'https://vcet.edu.in/swayam-nptel/' },
+      { label: 'Teaching Learning Process',  href: '/teaching-learning' },
+      { label: 'Swayam - NPTEL',             href: '/swayam-nptel' },
       {
         label: 'Honours / Minor Degree Program',
         subItems: [
-          { label: 'Booklet Part 1', href: 'https://vcet.edu.in/honours-minor-degree-program/' },
-          { label: 'Booklet Part 2', href: 'https://vcet.edu.in/honours-minor-degree-program/' },
+          { label: 'Booklet Part 1', href: '/honours-minor' },
+          { label: 'Booklet Part 2', href: '/honours-minor' },
         ],
       },
     ],
@@ -104,17 +105,17 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Research',
     dropdown: [
-      { label: 'Introduction',                          href: 'https://vcet.edu.in/research/' },
-      { label: 'Funded Research',                       href: 'https://vcet.edu.in/funded-research/' },
-      { label: 'Publications (Journals / Conf. / Books)', href: 'https://vcet.edu.in/publications-journals-conference-books-patents/' },
-      { label: 'Parents',                               href: 'https://vcet.edu.in/parents/' },
-      { label: 'Consultancy Projects',                  href: 'https://vcet.edu.in/consultancy-projects/' },
-      { label: 'Research Facility',                     href: 'https://vcet.edu.in/research-facility/' },
-      { label: 'Research Conventions',                  href: 'https://vcet.edu.in/research-conventions/' },
-      { label: 'Research Policy',                       href: 'https://vcet.edu.in/research-policy-2/' },
-      { label: 'IIC',                                   href: 'https://vcet.edu.in/iic/' },
-      { label: 'NIRF',                                  href: 'https://vcet.edu.in/nirf/' },
-      { label: 'Downloads',                             href: 'https://vcet.edu.in/downloads/' },
+      { label: 'Introduction',                          href: '/research' },
+      { label: 'Funded Research',                       href: '/funded-research' },
+      { label: 'Publications (Journals / Conf. / Books)', href: '/publications' },
+      { label: 'Parents',                               href: '/parents' },
+      { label: 'Consultancy Projects',                  href: '/consultancy-projects' },
+      { label: 'Research Facility',                     href: '/research-facility' },
+      { label: 'Research Conventions',                  href: '/research-conventions' },
+      { label: 'Research Policy',                       href: '/research-policy' },
+      { label: 'IIC',                                   href: '/iic' },
+      { label: 'NIRF',                                  href: '/nirf' },
+      { label: 'Downloads',                             href: '/downloads' },
     ],
   },
 
@@ -122,13 +123,13 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Facilities',
     dropdown: [
-      { label: 'Central Computing Facility',     href: 'https://vcet.edu.in/centeral-computing-facility/' },
-      { label: 'Library',                         href: 'https://vcet.edu.in/library/' },
-      { label: 'Counseling Cell',                 href: 'https://vcet.edu.in/counselling-room/' },
-      { label: 'Ladies Common Room',              href: 'https://vcet.edu.in/ladies-common-room/' },
-      { label: 'Sports & Gymkhana',               href: 'https://vcet.edu.in/sports-gymkhana/' },
-      { label: 'Health Facilities',               href: 'https://vcet.edu.in/health-facilities/' },
-      { label: 'Differently-Abled Facilities',    href: 'https://vcet.edu.in/differently-abled-facilities/' },
+      { label: 'Central Computing Facility',     href: '/central-computing' },
+      { label: 'Library',                         href: '/library' },
+      { label: 'Counseling Cell',                 href: '/counseling-cell' },
+      { label: 'Ladies Common Room',              href: '/ladies-common-room' },
+      { label: 'Sports & Gymkhana',               href: '/sports-gymkhana' },
+      { label: 'Health Facilities',               href: '/health-facilities' },
+      { label: 'Differently-Abled Facilities',    href: '/differently-abled' },
     ],
   },
 
@@ -136,24 +137,24 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Student Life',
     dropdown: [
-      { label: 'Career @ VCET',          href: 'https://vcet.edu.in/career-at-vcet/' },
+      { label: 'Career @ VCET',          href: '/career-at-vcet' },
       { label: 'Extra-Curricular',       isGroupLabel: true },
-      { label: "Student's Council",      href: 'https://vcet.edu.in/students-council/' },
-      { label: 'Cultural Committee',     href: 'https://vcet.edu.in/cultural-committee/' },
-      { label: 'Sports Committee',       href: 'https://vcet.edu.in/sports-committee/' },
-      { label: 'Literati',               href: 'https://vcet.edu.in/literati/' },
-      { label: 'NSS',                    href: 'https://vcet.edu.in/nss/' },
-      { label: 'EBSB',                   href: 'https://vcet.edu.in/ebsb/' },
+      { label: "Student's Council",      href: '/students-council' },
+      { label: 'Cultural Committee',     href: '/cultural-committee' },
+      { label: 'Sports Committee',       href: '/sports-committee' },
+      { label: 'Literati',               href: '/literati' },
+      { label: 'NSS',                    href: '/nss' },
+      { label: 'EBSB',                   href: '/ebsb' },
       { label: 'Co-Curricular',          isGroupLabel: true },
-      { label: 'IEEE',                   href: 'https://vcet.edu.in/ieee/' },
-      { label: 'Students Club',          href: 'https://vcet.edu.in/students-club/' },
-      { label: 'CSI',                    href: 'https://vcet.edu.in/csi/' },
-      { label: 'IETE',                   href: 'https://vcet.edu.in/iete/' },
-      { label: 'ISHRAE',                 href: 'https://vcet.edu.in/ishrae/' },
-      { label: 'VMEA',                   href: 'https://vcet.edu.in/vmea/' },
-      { label: 'Hackathon',              href: 'https://vcet.edu.in/hackathon/' },
-      { label: 'NSDC',                   href: 'https://vcet.edu.in/nsdc/' },
-      { label: 'IGBC',                   href: 'https://vcet.edu.in/igbc/' },
+      { label: 'IEEE',                   href: '/ieee' },
+      { label: 'Students Club',          href: '/students-club' },
+      { label: 'CSI',                    href: '/csi' },
+      { label: 'IETE',                   href: '/iete' },
+      { label: 'ISHRAE',                 href: '/ishrae' },
+      { label: 'VMEA',                   href: '/vmea' },
+      { label: 'Hackathon',              href: '/hackathon' },
+      { label: 'NSDC',                   href: '/nsdc' },
+      { label: 'IGBC',                   href: '/igbc' },
     ],
   },
 
@@ -161,20 +162,20 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Committees',
     dropdown: [
-      { label: 'College Development Committee', href: 'https://vcet.edu.in/college-development-committee/' },
-      { label: 'IQAC',                           href: 'https://vcet.edu.in/iqac/' },
+      { label: 'College Development Committee', href: '/college-development-committee' },
+      { label: 'IQAC',                           href: '/iqac' },
       {
         label: 'Statutory Committees',
         subItems: [
-          { label: 'Grievance Redressal Committee', href: 'https://vcet.edu.in/grievance-redressal-committee/' },
-          { label: 'SRGC Committee',                href: 'https://vcet.edu.in/srgc-committee/' },
-          { label: 'Anti Ragging Committee',        href: 'https://vcet.edu.in/anti-ragging-committee/' },
-          { label: 'SC â€“ ST Committee',             href: 'https://vcet.edu.in/sc-st-committee/' },
+          { label: 'Grievance Redressal Committee', href: '/grievance-redressal' },
+          { label: 'SRGC Committee',                href: '/srgc-committee' },
+          { label: 'Anti Ragging Committee',        href: '/anti-ragging' },
+          { label: 'SC â€“ ST Committee',             href: '/sc-st-committee' },
         ],
       },
-      { label: 'Internal Complaint Committee',           href: 'https://vcet.edu.in/internal-complaint-committee/' },
-      { label: 'Equal Opportunity Cell',                 href: 'https://vcet.edu.in/equal-opportunity-cell/' },
-      { label: 'Socio-Economically Disadvantaged Groups Cell', href: 'https://vcet.edu.in/sedg-cell/' },
+      { label: 'Internal Complaint Committee',           href: '/internal-complaint' },
+      { label: 'Equal Opportunity Cell',                 href: '/equal-opportunity' },
+      { label: 'Socio-Economically Disadvantaged Groups Cell', href: '/sedg-cell' },
     ],
   },
 
@@ -183,7 +184,7 @@ const menuGroups: MenuGroup[] = [
     label: 'Alumni & Exam',
     dropdown: [
       { label: 'Alumni Portal', href: 'https://alumni.vcet.edu.in/' },
-      { label: 'Exam Cell',     href: 'https://vcet.edu.in/exam/' },
+      { label: 'Exam Cell',     href: '/exam-cell' },
     ],
   },
 
@@ -191,24 +192,24 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'NAAC',
     dropdown: [
-      { label: 'SSS',                  href: 'https://vcet.edu.in/sss/' },
-      { label: 'SSS Report',           href: 'https://vcet.edu.in/sss-report/' },
-      { label: 'SSR Cycle 1',          href: 'https://vcet.edu.in/ssr-cycle-1/' },
+      { label: 'SSS',                  href: '/sss' },
+      { label: 'SSS Report',           href: '/sss-report' },
+      { label: 'SSR Cycle 1',          href: '/ssr-cycle-1' },
       {
         label: 'SSR Cycle 2',
         subItems: [
-          { label: 'Research Convention', href: 'https://vcet.edu.in/research-conventions/' },
+          { label: 'Research Convention', href: '/ssr-cycle-2' },
         ],
       },
-      { label: 'Best Practices & Institutional Distinctiveness', href: 'https://vcet.edu.in/best-practices-and-institutional-distinctiveness/' },
-      { label: 'NAAC Accreditation Score', href: 'https://vcet.edu.in/naac-accreditation-score/' },
+      { label: 'Best Practices & Institutional Distinctiveness', href: '/best-practices' },
+      { label: 'NAAC Accreditation Score', href: '/naac-score' },
     ],
   },
 
   // 11. CONTACT US
   {
     label: 'Contact',
-    href: 'https://vcet.edu.in/contact-us-2/',
+    href: '/contact-us',
   },
 
   // 12. TRAINING & PLACEMENT
@@ -216,9 +217,9 @@ const menuGroups: MenuGroup[] = [
     label: 'Training & Placemnet',
     dropdown: [
       { label: 'Placement', href: '#placements' },
-      { label: 'Training',  href: 'https://vcet.edu.in/training/' },
-      { label: 'E-CELL',    href: 'https://vcet.edu.in/e-cell/' },
-      { label: 'IIIC',      href: 'https://vcet.edu.in/iiic/' },
+      { label: 'Training',  href: '/training' },
+      { label: 'E-CELL',    href: '/e-cell' },
+      { label: 'IIIC',      href: '/iiic' },
     ],
   },
 ];
@@ -293,18 +294,22 @@ const DesktopDropdownItem: React.FC<DesktopDropdownItemProps> = ({ item, flipSub
               </span>
             </div>
             <div className="h-px bg-gray-100 mx-3 mb-1" />
-            {item.subItems.map((sub) => (
-              <a
-                key={sub.label}
-                href={sub.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 px-4 py-2.5 text-[11.5px] text-slate-600 hover:text-brand-blue hover:bg-brand-blue/5 transition-all duration-150 border-l-2 border-transparent hover:border-brand-gold group"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold/40 flex-shrink-0 group-hover:bg-brand-blue transition-colors duration-150" />
-                {sub.label}
-              </a>
-            ))}
+            {item.subItems.map((sub) => {
+              const isInternal = sub.href.startsWith('/');
+              const cls = "flex items-center gap-2.5 px-4 py-2.5 text-[11.5px] text-slate-600 hover:text-brand-blue hover:bg-brand-blue/5 transition-all duration-150 border-l-2 border-transparent hover:border-brand-gold group";
+              const dot = <span className="w-1.5 h-1.5 rounded-full bg-brand-gold/40 flex-shrink-0 group-hover:bg-brand-blue transition-colors duration-150" />;
+              return isInternal ? (
+                <Link key={sub.label} to={sub.href} className={cls}>
+                  {dot}
+                  {sub.label}
+                </Link>
+              ) : (
+                <a key={sub.label} href={sub.href} target="_blank" rel="noopener noreferrer" className={cls}>
+                  {dot}
+                  {sub.label}
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -312,6 +317,16 @@ const DesktopDropdownItem: React.FC<DesktopDropdownItemProps> = ({ item, flipSub
   }
 
   /* ── Plain link ── */
+  if (item.href?.startsWith('/')) {
+    return (
+      <Link
+        to={item.href}
+        className="block px-4 py-2.5 text-[11.5px] font-semibold text-slate-700 hover:text-brand-blue hover:bg-brand-blue/5 transition-all duration-150 border-l-2 border-transparent hover:border-brand-gold"
+      >
+        {item.label}
+      </Link>
+    );
+  }
   return (
     <a
       href={item.href}
@@ -361,24 +376,47 @@ const MobileAccordionItem: React.FC<MobileAccordionItemProps> = ({ item, onClose
           style={{ maxHeight: open ? `${item.subItems.length * 44}px` : '0px' }}
         >
           <div className="pl-4 border-l border-brand-gold/30 ml-2 space-y-0.5">
-            {item.subItems.map((sub) => (
-              <a
-                key={sub.label}
-                href={sub.href}
-                onClick={onClose}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block py-2 text-[12px] text-white/50 hover:text-brand-gold transition-colors"
-              >
-                {sub.label}
-              </a>
-            ))}
+            {item.subItems.map((sub) => {
+              const isInternal = sub.href.startsWith('/');
+              return isInternal ? (
+                <Link
+                  key={sub.label}
+                  to={sub.href}
+                  onClick={onClose}
+                  className="block py-2 text-[12px] text-white/50 hover:text-brand-gold transition-colors"
+                >
+                  {sub.label}
+                </Link>
+              ) : (
+                <a
+                  key={sub.label}
+                  href={sub.href}
+                  onClick={onClose}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block py-2 text-[12px] text-white/50 hover:text-brand-gold transition-colors"
+                >
+                  {sub.label}
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
     );
   }
 
+  if (item.href?.startsWith('/')) {
+    return (
+      <Link
+        to={item.href}
+        onClick={onClose}
+        className="block py-2.5 text-sm text-white/70 hover:text-brand-gold transition-colors"
+      >
+        {item.label}
+      </Link>
+    );
+  }
   return (
     <a
       href={item.href}
@@ -451,14 +489,14 @@ const Header: React.FC = () => {
       <header className="sticky top-0 w-full z-50 bg-white shadow-[0_2px_16px_rgba(0,0,0,0.08)] border-b border-gray-100">
         <div className="container mx-auto px-3 sm:px-4 h-14 md:h-[4.2rem] flex items-center gap-2">
           {/* Logo */}
-          <a href="#home" className="flex-shrink-0 mr-1">
+          <Link to="/" className="flex-shrink-0 mr-1">
             <img
               src="/Images/VCET%20logo.jpeg"
               alt="VCET Logo"
               className="h-10 md:h-11 w-auto rounded-sm"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
-          </a>
+          </Link>
 
           {/* â”€â”€â”€â”€ Desktop Nav â”€â”€â”€â”€ */}
           <nav className="hidden md:flex items-center flex-1 min-w-0" aria-label="Main navigation">
@@ -510,6 +548,13 @@ const Header: React.FC = () => {
                         </div>
                       </div>
                     </>
+                  ) : group.href?.startsWith('/') ? (
+                    <Link
+                      to={group.href}
+                      className="block px-[2px] md:px-[3px] lg:px-[5px] xl:px-[7px] py-1.5 lg:py-2 text-[6.5px] md:text-[7px] lg:text-[8px] xl:text-[9px] 2xl:text-[10px] font-bold uppercase tracking-wide rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
+                    >
+                      {group.label}
+                    </Link>
                   ) : (
                     <a
                       href={group.href}
@@ -625,6 +670,14 @@ const Header: React.FC = () => {
                       </div>
                     </div>
                   </>
+                ) : group.href?.startsWith('/') ? (
+                  <Link
+                    to={group.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-3.5 text-[15px] font-semibold border-b border-white/8 hover:text-brand-gold transition-colors duration-200"
+                  >
+                    {group.label}
+                  </Link>
                 ) : (
                   <a
                     href={group.href}

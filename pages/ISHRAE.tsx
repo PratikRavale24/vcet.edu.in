@@ -1,0 +1,204 @@
+import React from 'react';
+import PageLayout from '../components/PageLayout';
+import PageBanner from '../components/PageBanner';
+import { Thermometer, Wind, Snowflake, Building2, Users, Award, Presentation, Lightbulb } from 'lucide-react';
+
+const stats = [
+  { icon: Users, value: '80+', label: 'Student Members' },
+  { icon: Award, value: '10+', label: 'Events / Year' },
+  { icon: Presentation, value: '6+', label: 'Workshops' },
+  { icon: Building2, value: '5+', label: 'Industry Visits' },
+];
+
+const activities = [
+  {
+    icon: Thermometer,
+    title: 'HVAC Workshops',
+    description: 'Practical workshops on Heating, Ventilation, and Air Conditioning systems design, installation, and maintenance best practices.',
+  },
+  {
+    icon: Wind,
+    title: 'Air Quality Seminars',
+    description: 'Seminars on indoor air quality, ventilation standards, and the importance of clean air in building design for occupant health.',
+  },
+  {
+    icon: Snowflake,
+    title: 'Refrigeration Technology',
+    description: 'Hands-on sessions covering modern refrigeration technologies, refrigerants, energy efficiency, and sustainable cooling solutions.',
+  },
+  {
+    icon: Building2,
+    title: 'Green Building Practices',
+    description: 'Events promoting sustainable building design, energy-efficient HVAC systems, and environmentally responsible construction practices.',
+  },
+  {
+    icon: Presentation,
+    title: 'Technical Paper Competitions',
+    description: 'Encouraging students to research and present papers on HVAC innovations at ISHRAE national and regional conferences.',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Industry Expert Talks',
+    description: 'Guest lectures by HVAC industry professionals sharing real-world project experiences, career guidance, and emerging trends.',
+  },
+];
+
+const highlights = [
+  {
+    title: 'ISHRAE Student Chapter Award',
+    description: 'Recognized as an active ISHRAE student chapter for consistent participation in national-level HVAC&R events and competitions.',
+  },
+  {
+    title: 'National HVAC Design Competition',
+    description: 'VCET ISHRAE students participated in the national HVAC system design competition, showcasing innovative and energy-efficient solutions.',
+  },
+  {
+    title: 'Industry Collaboration',
+    description: 'Partnerships with leading HVAC companies for site visits, internship opportunities, and collaborative learning experiences.',
+  },
+];
+
+const ISHRAE: React.FC = () => {
+  return (
+    <PageLayout>
+      <PageBanner
+        title="ISHRAE"
+        breadcrumbs={[
+          { label: 'Student Life', href: '/student-life' },
+          { label: 'ISHRAE' },
+        ]}
+      />
+
+      {/* Overview */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="reveal">
+                <div className="bg-brand-light rounded-2xl aspect-[4/3] flex items-center justify-center border border-brand-blue/10">
+                  <span className="text-sm font-semibold text-brand-blue/40 tracking-wide">
+                    ishrae.jpg
+                  </span>
+                </div>
+              </div>
+
+              <div className="reveal" style={{ transitionDelay: '0.1s' }}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-0.5 bg-brand-gold" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">
+                    Cool. Comfort. Sustainability.
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-6">
+                  ISHRAE Student Chapter
+                </h2>
+                <p className="text-slate-500 leading-relaxed mb-4">
+                  The Indian Society of Heating, Refrigerating and Air Conditioning Engineers (ISHRAE)
+                  Student Chapter at VCET provides a unique platform for students interested in
+                  HVAC&R technologies. The chapter bridges academic knowledge with practical industry
+                  applications in the field of building services engineering.
+                </p>
+                <p className="text-slate-500 leading-relaxed">
+                  Through workshops, industry visits, technical competitions, and expert talks, ISHRAE
+                  VCET prepares students for careers in one of the fastest-growing sectors of
+                  mechanical engineering, emphasizing energy efficiency and sustainability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-14 bg-gradient-to-br from-brand-dark via-brand-blue to-brand-navy">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {stats.map((stat, idx) => (
+              <div
+                key={idx}
+                className="reveal text-center p-6"
+                style={{ transitionDelay: `${0.1 * idx}s` }}
+              >
+                <div className="w-12 h-12 mx-auto mb-4 bg-white/10 rounded-xl flex items-center justify-center">
+                  <stat.icon className="w-6 h-6 text-brand-gold" />
+                </div>
+                <div className="text-2xl md:text-3xl font-display font-bold text-white mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-xs uppercase tracking-widest text-white/50 font-semibold">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Activities */}
+      <section className="py-16 md:py-24 bg-brand-light">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto text-center mb-14 reveal">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-4">
+              Our Activities
+            </h2>
+            <p className="text-slate-500 text-lg leading-relaxed">
+              Exploring the science of comfort and sustainability in building environments.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {activities.map((activity, idx) => (
+              <div
+                key={idx}
+                className="reveal group bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-lg p-6 transition-all duration-500 hover:-translate-y-1 hover:border-brand-gold/30"
+                style={{ transitionDelay: `${0.05 * idx}s` }}
+              >
+                <div className="w-12 h-12 bg-brand-light rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-gold/10 transition-colors duration-300">
+                  <activity.icon className="w-6 h-6 text-brand-blue group-hover:text-brand-gold transition-colors duration-300" />
+                </div>
+                <h3 className="text-lg font-display font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors duration-300">
+                  {activity.title}
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{activity.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Highlights */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto text-center mb-14 reveal">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-4">
+              Highlights
+            </h2>
+            <p className="text-slate-500 text-lg leading-relaxed">
+              Achievements and recognitions in the HVAC&R domain.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {highlights.map((item, idx) => (
+              <div
+                key={idx}
+                className="reveal group bg-gradient-to-br from-brand-dark via-brand-blue to-brand-navy rounded-xl p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
+                style={{ transitionDelay: `${0.1 * idx}s` }}
+              >
+                <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-4">
+                  <Thermometer className="w-5 h-5 text-brand-gold" />
+                </div>
+                <h3 className="text-lg font-display font-bold text-white mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-white/60 leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </PageLayout>
+  );
+};
+
+export default ISHRAE;

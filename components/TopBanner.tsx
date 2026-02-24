@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, Bell } from 'lucide-react';
+import { Phone, Mail, Bell, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
 
 const tickerItems = [
   '🎓 Admissions Open 2025–26 — Apply Now for B.E. & M.E. Programs',
@@ -78,16 +78,38 @@ const TopBanner: React.FC = () => {
 
           </div>{/* closes logo+text unit */}
 
-          {/* Quick Contact - Desktop only */}
-          <div className="hidden md:flex flex-col gap-1.5 text-right flex-shrink-0">
-            <a href="tel:+917972019446" className="flex items-center gap-2 text-xs text-slate-500 hover:text-brand-blue transition-colors">
-              <Phone className="w-3.5 h-3.5" />
-              +91 797 201 9446
-            </a>
-            <a href="mailto:vcet_inbox@vcet.edu.in" className="flex items-center gap-2 text-xs text-slate-500 hover:text-brand-blue transition-colors">
-              <Mail className="w-3.5 h-3.5" />
-              vcet_inbox@vcet.edu.in
-            </a>
+          {/* Quick Contact + Social - Desktop only */}
+          <div className="hidden md:flex items-center gap-4 flex-shrink-0">
+            <div className="flex flex-col gap-1.5 text-right">
+              <a href="tel:+917972019446" className="flex items-center gap-2 text-xs text-slate-500 hover:text-brand-blue transition-colors">
+                <Phone className="w-3.5 h-3.5" />
+                +91 797 201 9446
+              </a>
+              <a href="mailto:vcet_inbox@vcet.edu.in" className="flex items-center gap-2 text-xs text-slate-500 hover:text-brand-blue transition-colors">
+                <Mail className="w-3.5 h-3.5" />
+                vcet_inbox@vcet.edu.in
+              </a>
+            </div>
+            <div className="w-px h-8 bg-gray-200" />
+            <div className="flex items-center gap-1.5">
+              {[
+                { icon: Facebook, href: 'https://www.facebook.com/vcet.vasai.50/', label: 'Facebook' },
+                { icon: Instagram, href: 'https://www.instagram.com/official.vcet/', label: 'Instagram' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/school/vcetvasai/', label: 'LinkedIn' },
+                { icon: Youtube, href: 'https://www.youtube.com/channel/UCjBw5a7WU00GwkxaTjF9jqg', label: 'YouTube' },
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-7 h-7 rounded-md flex items-center justify-center text-slate-400 hover:bg-brand-blue hover:text-white transition-all duration-200"
+                >
+                  <social.icon className="w-3.5 h-3.5" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

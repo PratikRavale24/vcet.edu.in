@@ -88,14 +88,16 @@ const Footer: React.FC = () => {
             {/* Social Links */}
             <div className="flex items-center gap-3 mt-6">
               {[
-                { icon: Facebook, href: '#' },
-                { icon: Instagram, href: '#' },
-                { icon: Linkedin, href: '#' },
-                { icon: Youtube, href: '#' },
+                { icon: Facebook, href: 'https://www.facebook.com/vcet.vasai.50/' },
+                { icon: Instagram, href: 'https://www.instagram.com/official.vcet/' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/school/vcetvasai/' },
+                { icon: Youtube, href: 'https://www.youtube.com/channel/UCjBw5a7WU00GwkxaTjF9jqg' },
               ].map((social, idx) => (
                 <a 
                   key={idx} 
-                  href={social.href} 
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-white/30 hover:bg-brand-gold hover:text-brand-dark transition-all duration-300"
                 >
                   <social.icon className="w-4 h-4" />
