@@ -130,7 +130,7 @@ const Hero: React.FC = () => {
                   { value: '30+', label: 'Years' },
                   { value: '5000+', label: 'Students' },
                   { value: '96%', label: 'Placements' },
-                  { value: 'A+', label: 'NAAC' },
+                  { value: 'B++', label: 'NAAC' },
                 ].map((stat, idx) => (
                   <div key={idx} className="text-center group cursor-default">
                     <div className="text-2xl md:text-3xl font-bold text-brand-gold group-hover:scale-110 transition-transform duration-300 inline-block">{stat.value}</div>
