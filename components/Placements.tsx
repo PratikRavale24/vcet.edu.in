@@ -92,7 +92,7 @@ const Placements: React.FC = () => {
         >
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-0.5 bg-brand-gold"></div>
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-gold">Track Record</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-gold"></span>
             <div className="w-8 h-0.5 bg-brand-gold"></div>
           </div>
           <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight bg-gradient-to-br from-amber-200 via-brand-gold to-amber-400 bg-clip-text text-transparent">
