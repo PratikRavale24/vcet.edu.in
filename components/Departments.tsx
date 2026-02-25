@@ -8,31 +8,37 @@ const departments: Card[] = [
     title: 'Computer Science',
     description: 'AI, ML & Data Science',
     src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1600&auto=format&fit=crop',
+    href: '/computer-engineering',
   },
   {
     title: 'Mechanical Eng.',
     description: 'Robotics & Automation',
     src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop',
+    href: '/mechanical-engineering',
   },
   {
     title: 'Electronics & Comm.',
     description: 'IoT & Embedded Systems',
     src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop',
+    href: '/electronics-telecomm',
   },
   {
     title: 'Civil Engineering',
     description: 'Sustainable Infrastructure',
     src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600&auto=format&fit=crop',
+    href: '/civil-engineering',
   },
   {
     title: 'Information Tech',
     description: 'Cloud & Cyber Security',
     src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop',
+    href: '/information-technology',
   },
   {
-    title: 'Electrical Eng.',
-    description: 'Renewable Energy',
+    title: 'AI & Data Science',
+    description: 'Machine Learning & AI',
     src: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1600&auto=format&fit=crop',
+    href: '/ai-data-science',
   },
 ];
 

@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export type Card = {
   title: string;
   src: string;
   description?: string;
   tag?: string;
+  href?: string;
 };
 
 const FocusCard: React.FC<{ card: Card }> = ({ card }) => (
@@ -34,9 +36,18 @@ const FocusCard: React.FC<{ card: Card }> = ({ card }) => (
         </p>
       )}
       {/* 3. Button — fades in on hover */}
-      <button className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 self-start px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest border border-white/40 text-white hover:bg-white hover:text-black transition-colors">
-        View Curriculum
-      </button>
+      {card.href ? (
+        <Link
+          to={card.href}
+          className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 self-start px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest border border-white/40 text-white hover:bg-white hover:text-black"
+        >
+          View Curriculum
+        </Link>
+      ) : (
+        <button className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 self-start px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest border border-white/40 text-white hover:bg-white hover:text-black transition-colors">
+          View Curriculum
+        </button>
+      )}
     </div>
   </div>
 );
