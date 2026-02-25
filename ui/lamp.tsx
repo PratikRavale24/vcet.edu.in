@@ -15,7 +15,7 @@ export const LampContainer = ({
   return (
     <div
       className={cn(
-        "relative flex flex-col items-center justify-center overflow-hidden bg-slate-950 w-full z-0",
+        "relative flex flex-col items-center justify-center overflow-hidden bg-brand-dark w-full z-0",
         className
       )}
     >
@@ -32,8 +32,8 @@ export const LampContainer = ({
           }}
           className="absolute inset-auto right-1/2 h-40 overflow-visible w-[24rem] text-white"
         >
-          <div className="absolute w-full left-0 bg-slate-950 h-28 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
-          <div className="absolute w-32 h-full left-0 bg-slate-950 bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
+          <div className="absolute w-full left-0 bg-brand-dark h-28 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
+          <div className="absolute w-32 h-full left-0 bg-brand-dark bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
         </motion.div>
 
         {/* Right conic beam */}
@@ -47,12 +47,12 @@ export const LampContainer = ({
           }}
           className="absolute inset-auto left-1/2 h-40 w-[24rem] text-white"
         >
-          <div className="absolute w-32 h-full right-0 bg-slate-950 bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
-          <div className="absolute w-full right-0 bg-slate-950 h-28 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
+          <div className="absolute w-32 h-full right-0 bg-brand-dark bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
+          <div className="absolute w-full right-0 bg-brand-dark h-28 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
         </motion.div>
 
         {/* Dark blur layer */}
-        <div className="absolute top-1/2 h-36 w-full translate-y-8 scale-x-150 bg-slate-950 blur-2xl" />
+        <div className="absolute top-1/2 h-36 w-full translate-y-8 scale-x-150 bg-brand-dark blur-2xl" />
         {/* Glow orb */}
         <div className="absolute inset-auto z-50 h-24 w-[20rem] -translate-y-1/2 rounded-full bg-amber-400/40 blur-3xl" />
         {/* Inner bright orb */}
@@ -70,7 +70,7 @@ export const LampContainer = ({
           className="absolute inset-auto z-50 h-0.5 w-[24rem] -translate-y-[5rem] bg-amber-300"
         />
         {/* Dark mask below line */}
-        <div className="absolute inset-auto z-40 h-32 w-full -translate-y-[9rem] bg-slate-950" />
+        <div className="absolute inset-auto z-40 h-32 w-full -translate-y-[9rem] bg-brand-dark" />
       </div>
 
       {/* Content */}

@@ -19,30 +19,52 @@ interface BentoBoxProps {
 const BentoBox: React.FC<BentoBoxProps> = ({ className = "", style, children }) => (
   <div
     style={style}
-    className={`rounded-3xl border border-white/10 overflow-hidden flex flex-col ${className}`}
-  >
+    className={`overflow-hidden flex flex-col ${className}`}
+    >
     {children}
   </div>
 );
 
 // -- Accent Bar ----------------------------------------------------------------
-const Bar: React.FC<{ pct: string }> = ({ pct }) => (
-  <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden mt-5">
+const Bar: React.FC<{ pct: string; gold?: boolean }> = ({ pct, gold }) => (
+  <div className="w-full h-1.5 rounded-full overflow-hidden mt-5" style={{ background: "#DCE7F7" }}>
     <div
-      style={{ width: pct }}
-      className="h-full rounded-full bg-gradient-to-r from-brand-gold to-yellow-300"
+      style={{ width: pct, background: gold ? "#F4B400" : "#1E4DB7" }}
+      className="h-full rounded-full"
     />
   </div>
 );
 
 // -- Main ----------------------------------------------------------------------
 const Recruiters: React.FC = () => (
-  <section className="py-24 bg-brand-dark relative overflow-hidden">
+  <section className="py-24 relative overflow-hidden" style={{ background: "#F8FAFC" }}>
 
     {/* Ambient glows */}
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px]" />
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-300/20 rounded-full blur-[140px]" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px]" />
+    </div>
+
+    {/* Corner decorations */}
+    {/* Top-left */}
+    <div className="absolute top-0 left-0 w-24 h-24 pointer-events-none">
+      <div className="absolute top-6 left-6 w-10 h-10 border-t-2 border-l-2 rounded-tl-sm" style={{ borderColor: "#F4B400" }} />
+      <div className="absolute top-3 left-3 w-5 h-5 border-t border-l" style={{ borderColor: "rgba(11,61,145,0.2)" }} />
+    </div>
+    {/* Top-right */}
+    <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
+      <div className="absolute top-6 right-6 w-10 h-10 border-t-2 border-r-2 rounded-tr-sm" style={{ borderColor: "#F4B400" }} />
+      <div className="absolute top-3 right-3 w-5 h-5 border-t border-r" style={{ borderColor: "rgba(11,61,145,0.2)" }} />
+    </div>
+    {/* Bottom-left */}
+    <div className="absolute bottom-0 left-0 w-24 h-24 pointer-events-none">
+      <div className="absolute bottom-6 left-6 w-10 h-10 border-b-2 border-l-2 rounded-bl-sm" style={{ borderColor: "#F4B400" }} />
+      <div className="absolute bottom-3 left-3 w-5 h-5 border-b border-l" style={{ borderColor: "rgba(11,61,145,0.2)" }} />
+    </div>
+    {/* Bottom-right */}
+    <div className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none">
+      <div className="absolute bottom-6 right-6 w-10 h-10 border-b-2 border-r-2 rounded-br-sm" style={{ borderColor: "#F4B400" }} />
+      <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r" style={{ borderColor: "rgba(11,61,145,0.2)" }} />
     </div>
 
     <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -50,23 +72,23 @@ const Recruiters: React.FC = () => (
       {/* Section Header */}
       <div className="mb-14 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
-          <div className="w-8 h-px bg-brand-gold" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-gold">
+          <div className="w-8 h-px" style={{ background: "#F4B400" }} />
+          <span className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#0B3D91" }}>
             Placement Partners
           </span>
-          <div className="w-8 h-px bg-brand-gold" />
+          <div className="w-8 h-px" style={{ background: "#F4B400" }} />
         </div>
-        <h2 className="text-4xl md:text-5xl font-display font-extrabold text-white leading-tight mb-4">
+        <h2 className="text-4xl md:text-5xl font-display font-extrabold leading-tight mb-4" style={{ color: "#1E293B" }}>
           Where Our{" "}
           <span
             className="text-transparent bg-clip-text"
-            style={{ backgroundImage: "linear-gradient(90deg, #D4A843, #E8C972)" }}
+            style={{ backgroundImage: "linear-gradient(90deg, #0B3D91, #1E4DB7)" }}
           >
             Alumni Thrive
           </span>
         </h2>
-        <p className="text-slate-400 max-w-md mx-auto text-[15px] leading-relaxed">
-          Top-tier companies recruit from our campus every year � trusting VCET graduates to power their teams.
+        <p className="max-w-md mx-auto text-[15px] leading-relaxed" style={{ color: "#64748B" }}>
+          Top-tier companies recruit from our campus every year &mdash; trusting VCET graduates to power their teams.
         </p>
       </div>
 
@@ -76,86 +98,86 @@ const Recruiters: React.FC = () => (
         {/* 1 — Hero stat: Campus Offers */}
         <BentoBox
           className="md:col-span-2 p-8 justify-between min-h-[220px]"
-          style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
+          style={{ background: "#0B3D91" }}
         >
           <div>
-            <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#EAF2FB" }}>
               2024-25 &middot; Placements
             </p>
             <h3 className="text-6xl md:text-7xl font-extrabold text-white leading-none tracking-tight">
               285
             </h3>
-            <p className="text-2xl font-medium text-slate-300 mt-2">Campus Offers Made</p>
+            <p className="text-2xl font-medium mt-2" style={{ color: "#EAF2FB" }}>Campus Offers Made</p>
           </div>
-          <p className="text-slate-400 text-sm leading-relaxed max-w-sm mt-6">
-            Our dedicated placement cell connects every student with industry leaders for interviews and full-time roles.
-          </p>
+          <div className="mt-6 space-y-3">
+            <p className="text-sm leading-relaxed" style={{ color: "rgba(234,242,251,0.7)" }}>
+              Our dedicated placement cell connects every student with industry leaders for interviews and full-time roles.
+            </p>
+            <Bar pct="80%" gold />
+          </div>
         </BentoBox>
 
         {/* 2 — Highest Package */}
         <BentoBox
-          className="p-8 justify-between min-h-[220px]"
-          style={{ background: "rgba(212,168,67,0.07)" }}
+          className="p-8 justify-between min-h-[220px] border"
+          style={{ background: "#EAF2FB", borderColor: "#C7DDEF" }}
         >
           <div>
-            <p className="text-brand-gold/70 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#0B3D91" }}>
               Highest Package
             </p>
-            <h3
-              className="text-5xl font-extrabold text-transparent bg-clip-text leading-none"
-              style={{ backgroundImage: "linear-gradient(135deg, #D4A843, #E8C972)" }}
-            >
+            <h3 className="text-5xl font-extrabold leading-none" style={{ color: "#F4B400" }}>
               ₹21 LPA
             </h3>
-            <p className="text-slate-400 text-sm mt-2">Best offer &middot; 2024-25 batch</p>
+            <p className="text-sm mt-2" style={{ color: "#1E4DB7" }}>Best offer &middot; 2024-25 batch</p>
           </div>
-          <Bar pct="90%" />
+          <Bar pct="90%" gold />
         </BentoBox>
 
         {/* 3 — Placement Rate */}
         <BentoBox
-          className="p-8 justify-between"
-          style={{ background: "rgba(255,255,255,0.04)" }}
+          className="p-8 justify-between border"
+          style={{ background: "#FFFFFF", borderColor: "#E2E8F0" }}
         >
           <div>
-            <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748B" }}>
               Placement Rate
             </p>
-            <h3 className="text-5xl font-extrabold text-white leading-none">95%</h3>
-            <p className="text-slate-500 text-sm mt-2">Students placed annually</p>
+            <h3 className="text-5xl font-extrabold leading-none" style={{ color: "#0B3D91" }}>95%</h3>
+            <p className="text-sm mt-2" style={{ color: "#64748B" }}>Students placed annually</p>
           </div>
           <Bar pct="95%" />
         </BentoBox>
 
         {/* 4 — Average Package */}
         <BentoBox
-          className="md:col-span-2 p-8 justify-between"
-          style={{ background: "rgba(255,255,255,0.04)" }}
+          className="md:col-span-2 p-8 justify-between border"
+          style={{ background: "#FFFFFF", borderColor: "#E2E8F0" }}
         >
           <div>
-            <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748B" }}>
               Average Package
             </p>
-            <h3 className="text-5xl font-extrabold text-white leading-none">
-              ₹6 <span className="text-2xl font-semibold text-slate-400">LPA</span>
+            <h3 className="text-5xl font-extrabold leading-none" style={{ color: "#0B3D91" }}>
+              ₹6 <span className="text-2xl font-semibold" style={{ color: "#64748B" }}>LPA</span>
             </h3>
-            <p className="text-slate-500 text-sm mt-2">Across all streams &middot; 2024-25 batch</p>
+            <p className="text-sm mt-2" style={{ color: "#64748B" }}>Across all streams &middot; 2024-25 batch</p>
           </div>
           <Bar pct="29%" />
         </BentoBox>
 
         {/* 5 — Hiring Partners static grid */}
-        <div className="md:col-span-3 rounded-3xl overflow-hidden border border-white/10">
+        <div className="md:col-span-3 overflow-hidden" style={{ border: "1px solid #E2E8F0" }}>
           {/* Header strip */}
-          <div className="bg-white px-8 pt-8 pb-6 border-b border-gray-100">
+          <div className="px-8 pt-8 pb-6" style={{ background: "#0B3D91" }}>
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-6 h-px bg-brand-gold" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-gold">
+              <div className="w-6 h-px" style={{ background: "#F4B400" }} />
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#EAF2FB" }}>
                 Our Hiring Partners
               </p>
-              <div className="w-6 h-px bg-brand-gold" />
+              <div className="w-6 h-px" style={{ background: "#F4B400" }} />
             </div>
-            <p className="text-slate-400 text-sm mt-1">Companies that regularly recruit VCET graduates</p>
+            <p className="text-sm mt-1" style={{ color: "rgba(234,242,251,0.7)" }}>Companies that regularly recruit VCET graduates</p>
           </div>
           {/* Logo grid */}
           <div className="bg-white px-8 py-10">
@@ -163,7 +185,7 @@ const Recruiters: React.FC = () => (
               {recruiters.map((company) => (
                 <div
                   key={company.name}
-                  className="group flex flex-col items-center justify-center gap-4 p-6 rounded-2xl border-2 border-gray-100 bg-white shadow-sm hover:border-brand-gold hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  className="group flex flex-col items-center justify-center gap-4 p-6 border-2 border-gray-100 bg-white shadow-sm hover:border-brand-gold hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="w-full flex items-center justify-center h-20">
                     <img
