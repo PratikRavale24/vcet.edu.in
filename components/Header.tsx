@@ -508,8 +508,8 @@ const Header: React.FC = () => {
           </Link>
 
           {/* â”€â”€â”€â”€ Desktop Nav â”€â”€â”€â”€ */}
-          <nav className="hidden md:flex items-center flex-1 min-w-0" aria-label="Main navigation">
-            <ul className="flex items-center w-full">
+          <nav className="hidden md:flex items-center flex-1 min-w-0 overflow-x-auto no-scrollbar" aria-label="Main navigation">
+            <ul className="flex items-center">
               {menuGroups.map((group, idx) => (
                 <li key={group.label} className="relative flex-shrink-0">
                   {group.dropdown ? (
@@ -522,7 +522,7 @@ const Header: React.FC = () => {
                         onBlur={scheduleClose}
                         aria-haspopup="true"
                         aria-expanded={activeMenu === group.label}
-                        className={`flex items-center gap-0.5 px-[3px] md:px-[4px] lg:px-[6px] xl:px-[8px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wide rounded-md transition-all duration-200 whitespace-nowrap select-none ${
+                        className={`flex items-center gap-0.5 px-[3px] md:px-[4px] lg:px-[5px] xl:px-[6px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-normal rounded-md transition-all duration-200 whitespace-nowrap select-none ${
                           activeMenu === group.label
                             ? 'bg-brand-blue text-white'
                             : 'text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue'
@@ -560,7 +560,7 @@ const Header: React.FC = () => {
                   ) : group.href?.startsWith('/') ? (
                     <Link
                       to={group.href}
-                      className="block px-[3px] md:px-[4px] lg:px-[6px] xl:px-[8px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wide rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
+                      className="block px-[3px] md:px-[4px] lg:px-[5px] xl:px-[6px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-normal rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
                     >
                       {group.label}
                     </Link>
@@ -569,7 +569,7 @@ const Header: React.FC = () => {
                       href={group.href}
                       target={group.href?.startsWith('http') ? '_blank' : '_self'}
                       rel="noopener noreferrer"
-                      className="block px-[3px] md:px-[4px] lg:px-[6px] xl:px-[8px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wide rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
+                      className="block px-[3px] md:px-[4px] lg:px-[5px] xl:px-[6px] py-1.5 lg:py-2 text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-normal rounded-md transition-all duration-200 whitespace-nowrap text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue"
                     >
                       {group.label}
                     </a>
@@ -580,7 +580,7 @@ const Header: React.FC = () => {
           </nav>
 
           {/* Right actions â€” search + apply */}
-          <div className="hidden md:flex items-center gap-1 ml-auto flex-shrink-0">
+          <div className="hidden md:flex items-center gap-1 flex-shrink-0">
             <div className="w-px h-5 bg-gray-200 mx-1" />
             <button
               onClick={() => setSearchOpen(true)}
