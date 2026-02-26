@@ -441,6 +441,7 @@ const Header: React.FC = () => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const searchInputRef                      = useRef<HTMLInputElement>(null);
   const closeTimer                          = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [dropdownPos, setDropdownPos]       = useState<{ top: number; left: number; right: number; alignRight: boolean }>({ top: 0, left: 0, right: 0, alignRight: false });
 
   /* body scroll lock */
   useEffect(() => {
@@ -461,9 +462,15 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('keydown', handler);
   }, [searchOpen]);
 
-  const openMenu = useCallback((label: string) => {
+  const openMenu = useCallback((label: string, el?: HTMLElement) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setActiveMenu(label);
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      const idx = menuGroups.findIndex(g => g.label === label);
+      const alignRight = idx >= menuGroups.length - 5;
+      setDropdownPos({ top: rect.bottom, left: rect.left, right: window.innerWidth - rect.right, alignRight });
+    }
   }, []);
 
   const scheduleClose = useCallback(() => {
@@ -508,17 +515,15 @@ const Header: React.FC = () => {
           </Link>
 
           {/* â”€â”€â”€â”€ Desktop Nav â”€â”€â”€â”€ */}
-          <nav className="hidden md:flex items-center flex-1 min-w-0" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center flex-1 min-w-0 overflow-hidden" aria-label="Main navigation">
             <ul className="flex items-center">
               {menuGroups.map((group, idx) => (
                 <li key={group.label} className="relative flex-shrink-0">
                   {group.dropdown ? (
-                    <>
-                      {/* Hover trigger button */}
-                      <button
-                        onMouseEnter={() => openMenu(group.label)}
-                        onMouseLeave={scheduleClose}
-                        onFocus={() => openMenu(group.label)}
+                    <button
+                      onMouseEnter={(e) => openMenu(group.label, e.currentTarget)}
+                      onMouseLeave={scheduleClose}
+                      onFocus={(e) => openMenu(group.label, e.currentTarget)}
                         onBlur={scheduleClose}
                         aria-haspopup="true"
                         aria-expanded={activeMenu === group.label}
@@ -536,27 +541,6 @@ const Header: React.FC = () => {
                         />
                       </button>
 
-                      {/* Dropdown panel â€” stays inside viewport */}
-                      <div
-                        onMouseEnter={cancelClose}
-                        onMouseLeave={scheduleClose}
-                        style={{ zIndex: 300 }}
-                        className={`absolute top-full pt-2 ${getDropdownAlign(idx)} transition-all duration-300 ease-[cubic-bezier(0.34,1.18,0.64,1)] origin-top ${
-                          activeMenu === group.label
-                            ? 'opacity-100 scale-y-100 translate-y-0 pointer-events-auto'
-                            : 'opacity-0 scale-y-90 -translate-y-2 pointer-events-none'
-                        }`}
-                      >
-                        <div
-                          className="relative bg-white rounded-xl shadow-2xl border border-gray-100/90 min-w-[230px] max-w-[295px] overflow-y-auto py-2 ring-1 ring-black/5"
-                          style={{ maxHeight: `${getDropdownMaxH(group.dropdown)}px`, zIndex: 2 }}
-                        >
-                          {group.dropdown.map((item) => (
-                            <DesktopDropdownItem key={item.label} item={item} flipSub={shouldFlipSub(idx)} />
-                          ))}
-                        </div>
-                      </div>
-                    </>
                   ) : group.href?.startsWith('/') ? (
                     <Link
                       to={group.href}
@@ -616,6 +600,34 @@ const Header: React.FC = () => {
           </div>
         </div>
       </header>
+
+      {/* Fixed dropdown overlay — rendered outside nav so overflow:hidden doesn't clip it */}
+      {activeMenu && (() => {
+        const group = menuGroups.find(g => g.label === activeMenu);
+        if (!group?.dropdown) return null;
+        const idx = menuGroups.findIndex(g => g.label === activeMenu);
+        return (
+          <div
+            onMouseEnter={cancelClose}
+            onMouseLeave={scheduleClose}
+            style={{
+              position: 'fixed',
+              top: dropdownPos.top + 4,
+              ...(dropdownPos.alignRight ? { right: dropdownPos.right } : { left: dropdownPos.left }),
+              zIndex: 9999,
+            }}
+          >
+            <div
+              className="bg-white rounded-xl shadow-2xl border border-gray-100/90 min-w-[230px] max-w-[295px] overflow-y-auto py-2 ring-1 ring-black/5"
+              style={{ maxHeight: `${getDropdownMaxH(group.dropdown)}px` }}
+            >
+              {group.dropdown.map((item) => (
+                <DesktopDropdownItem key={item.label} item={item} flipSub={shouldFlipSub(idx)} />
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* â”€â”€â”€â”€â”€â”€â”€â”€ MOBILE FULL-SCREEN MENU â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div
