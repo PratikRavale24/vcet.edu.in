@@ -178,6 +178,7 @@ const AdmissionForm: React.FC = () => {
 const Hero: React.FC = () => {
   const [panelOpen, setPanelOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'notices'|'events'>('notices');
+  const [cardOpen, setCardOpen] = useState(false);
   return (
     <section id="home" className="relative h-screen w-full flex items-center overflow-hidden bg-brand-dark text-white -mt-12 pt-12">
 
@@ -194,7 +195,14 @@ const Hero: React.FC = () => {
 
       <div className="relative z-10 h-full w-full flex items-center justify-start px-6 md:px-12">
         {/* Outer wrapper — allows the toggle button to escape overflow-hidden */}
-        <div className="relative">
+        <div
+          className="relative transition-all duration-500 ease-in-out"
+          style={{
+            transform: cardOpen ? 'translateX(0)' : 'translateX(-120%)',
+            opacity: cardOpen ? 1 : 0,
+            pointerEvents: cardOpen ? 'auto' : 'none',
+          }}
+        >
         {/* Single floating card */}
         <div
           className="w-[340px] sm:w-[380px] flex flex-col overflow-hidden border border-white/10 shadow-2xl"
@@ -312,16 +320,49 @@ const Hero: React.FC = () => {
           {/* Arrow toggle — sibling to card, never clipped */}
           <button
             onClick={() => setPanelOpen(o => !o)}
-            className="absolute top-1/2 -translate-y-1/2 -right-5 z-20 w-10 h-14 flex items-center justify-center shadow-xl transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{ background: '#C49535', boxShadow: '0 4px 20px rgba(196,149,53,0.5)' }}
+            className="absolute top-1/2 -translate-y-1/2 -right-[2.1rem] z-20 flex flex-col items-center justify-center gap-1 py-3 px-1.5 rounded-r-lg transition-all duration-300 hover:brightness-110 active:scale-95"
+            style={{
+              background: 'linear-gradient(180deg, #C49535 0%, #a07820 100%)',
+              boxShadow: '4px 0 16px rgba(196,149,53,0.4), inset 0 1px 0 rgba(255,255,255,0.2)',
+              borderLeft: '1px solid rgba(255,255,255,0.15)',
+            }}
             aria-label="Toggle notices panel"
           >
             {panelOpen
-              ? <ChevronLeft className="w-5 h-5 text-white" />
-              : <ChevronRight className="w-5 h-5 text-white" />}
+              ? <ChevronLeft className="w-4 h-4 text-white" />
+              : <ChevronRight className="w-4 h-4 text-white" />}
+            <span
+              className="text-[9px] font-extrabold uppercase tracking-[0.18em] text-white/90"
+              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+            >
+              {panelOpen ? 'Form' : 'Notices'}
+            </span>
           </button>
         </div>
       </div>
+
+      {/* ENQUIRE NOW — vertical tab on left edge */}
+      <button
+        onClick={() => setCardOpen(o => !o)}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center gap-2 py-10 px-3 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
+        style={{
+          background: 'rgba(11, 61, 145, 0.45)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255,255,255,0.15)',
+          borderLeft: 'none',
+          boxShadow: '0 8px 32px rgba(11,61,145,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+          writingMode: 'vertical-rl',
+        }}
+        aria-label="Enquire Now"
+      >
+        <span
+          className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-white"
+          style={{ transform: 'rotate(180deg)' }}
+        >
+          Enquire Now
+        </span>
+      </button>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2">

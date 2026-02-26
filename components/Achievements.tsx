@@ -125,7 +125,7 @@ function ParallaxRow({ items, baseVelocity }: ParallaxRowProps) {
 
 const Achievements: React.FC = () => {
   return (
-    <section className="py-20 md:py-28 bg-brand-light relative overflow-hidden">
+    <section className="py-10 md:py-14 bg-brand-light relative overflow-hidden">
       {/* Decorative blob */}
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-brand-blue/[0.03] rounded-full -translate-y-1/2 -translate-x-1/3 pointer-events-none" />
 

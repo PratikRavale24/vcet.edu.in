@@ -62,7 +62,7 @@ const Testimonials: React.FC = () => {
   const maxIndex = Math.max(0, testimonials.length - itemsPerView);
 
   return (
-    <section className="py-20 md:py-28 bg-brand-light relative overflow-hidden">
+    <section className="py-10 md:py-14 bg-brand-light relative overflow-hidden">
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-blue/[0.03] rounded-full translate-x-1/3 translate-y-1/3"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">

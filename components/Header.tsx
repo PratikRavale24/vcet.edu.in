@@ -436,6 +436,7 @@ const MobileAccordionItem: React.FC<MobileAccordionItemProps> = ({ item, onClose
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen]         = useState(false);
   const [searchOpen, setSearchOpen]         = useState(false);
+  const [searchQuery, setSearchQuery]       = useState('');
   const [activeMenu, setActiveMenu]         = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const searchInputRef                      = useRef<HTMLInputElement>(null);
@@ -450,6 +451,14 @@ const Header: React.FC = () => {
   /* focus search on open */
   useEffect(() => {
     if (searchOpen) setTimeout(() => searchInputRef.current?.focus(), 150);
+    if (!searchOpen) setSearchQuery('');
+  }, [searchOpen]);
+
+  /* ESC key closes search */
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setSearchOpen(false); };
+    if (searchOpen) window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
   }, [searchOpen]);
 
   const openMenu = useCallback((label: string) => {
@@ -737,10 +746,32 @@ const Header: React.FC = () => {
                 ref={searchInputRef}
                 type="text"
                 id="site-search"
-                className="w-full bg-transparent border-b-2 border-white/20 text-2xl md:text-4xl lg:text-5xl font-bold text-white py-4 pr-12 focus:outline-none focus:border-brand-gold transition-colors placeholder:text-white/10"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent border-b-2 border-white/20 text-2xl md:text-4xl lg:text-5xl font-bold text-white py-4 pr-20 focus:outline-none focus:border-brand-gold transition-colors placeholder:text-white/10"
                 placeholder="Search..."
               />
+              {searchQuery ? (
+                <button
+                  onClick={() => { setSearchQuery(''); searchInputRef.current?.focus(); }}
+                  className="absolute right-10 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
+                  aria-label="Clear search"
+                >
+                  <X className="w-5 h-5 text-white/70" />
+                </button>
+              ) : null}
               <Search className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 text-white/20" />
+            </div>
+
+            {/* Cancel / close row */}
+            <div className="flex items-center justify-between mt-5">
+              <p className="text-white/20 text-xs tracking-widest">Press <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white/40 font-mono text-[10px]">ESC</kbd> to close</p>
+              <button
+                onClick={() => setSearchOpen(false)}
+                className="flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/15 text-white/45 text-xs font-semibold uppercase tracking-widest hover:border-white/40 hover:text-white transition-all duration-200"
+              >
+                <X className="w-3.5 h-3.5" /> Cancel
+              </button>
             </div>
             <div className="mt-10">
               <p className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-4">
