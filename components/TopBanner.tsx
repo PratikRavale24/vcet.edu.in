@@ -62,7 +62,7 @@ const TopBanner: React.FC = () => {
               विद्यावर्धिनीचे अभियांत्रिकी आणि तंत्रज्ञान महाविद्यालय, वसई रोड
             </h2>
             <p className="text-[11px] md:text-xs font-medium text-slate-500 mt-2 tracking-wide">
-              Approved by AICTE, DTE Maharashtra &bull; an Autonomous Institute Affiliated to University of Mumbai
+              Approved by AICTE, DTE Maharashtra &bull; An Autonomous Institute Affiliated to University of Mumbai
             </p>
 
           </div>
