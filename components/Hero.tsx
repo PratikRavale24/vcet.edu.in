@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowDown, Send, ChevronDown, ChevronRight, ChevronLeft, Calendar, Bell, X, Image } from 'lucide-react';
 
 const notices = [
@@ -180,24 +180,66 @@ const packageImages = [
   { src: '/Images/Packages/AICTE-Pamphlet_page-0001.jpg', label: 'AICTE Pamphlet' },
 ];
 
+const bannerSlides = [
+  { src: '/Images/Banner/bruse-banner.png', alt: 'Bruse Banner' },
+  { src: '/Images/Banner/yearly-banner.png', alt: 'Yearly Banner' },
+];
+
 const Hero: React.FC = () => {
   const [panelOpen, setPanelOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'notices'|'events'>('notices');
   const [cardOpen, setCardOpen] = useState(false);
   const [packagesOpen, setPackagesOpen] = useState(false);
   const [packageIndex, setPackageIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSlideIndex(i => (i + 1) % bannerSlides.length);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, []);
   return (
     <section id="home" className="relative h-screen w-full flex items-center overflow-hidden bg-brand-dark text-white -mt-12 pt-12">
 
       {/* ── Static Background ──────────────────────────────────────────── */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-
-        {/* Static campus image — no animations, no overlay */}
         <img
           src="/Images/Home%20background/VCET-Home-1-scaled.jpg"
           alt="VCET Campus"
           className="absolute inset-0 w-full h-full object-cover"
         />
+      </div>
+
+      {/* ── Right Banner Slideshow Panel ───────────────────────────────── */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-[40%] max-w-[560px] shadow-2xl rounded-lg overflow-hidden">
+        <div className="relative w-full">
+          {/* Spacer image to set natural aspect ratio */}
+          <img
+            src={bannerSlides[0].src}
+            alt=""
+            className="w-full h-auto block opacity-0 pointer-events-none"
+          />
+          {bannerSlides.map((slide, i) => (
+            <img
+              key={slide.src}
+              src={slide.src}
+              alt={slide.alt}
+              className="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000"
+              style={{ opacity: i === slideIndex ? 1 : 0 }}
+            />
+          ))}
+        </div>
+        {/* Dot indicators */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {bannerSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setSlideIndex(i)}
+              className={`rounded-full transition-all duration-300 ${i === slideIndex ? 'w-5 h-2 bg-white' : 'w-2 h-2 bg-white/50 hover:bg-white/80'}`}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="relative z-10 h-full w-full flex items-center justify-start px-6 md:px-12">
