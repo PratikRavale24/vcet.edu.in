@@ -72,7 +72,7 @@ const TopBanner: React.FC = () => {
           {/* NAAC & NBA Logos */}
           <div className="flex items-center gap-4 flex-shrink-0 mx-auto">
             <img
-              src="/Images/LOGO/nacc-bpp.png"
+              src="/Images/LOGO/NAAC_LOGO.png"
               alt="NAAC B++ Accredited"
               className="h-16 md:h-20 w-auto object-contain drop-shadow-sm"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
