@@ -19,106 +19,109 @@ import Footer from './components/Footer';
 import SplashScreen from './components/SplashScreen';
 
 /* ── Lazy-loaded Pages ── */
-// About Us
-const AboutVCET = lazy(() => import('./pages/AboutVCET'));
-const PresidentsDesk = lazy(() => import('./pages/PresidentsDesk'));
-const PrincipalsDesk = lazy(() => import('./pages/PrincipalsDesk'));
-const GoverningCouncil = lazy(() => import('./pages/GoverningCouncil'));
-const OrganizationalStructure = lazy(() => import('./pages/OrganizationalStructure'));
-const Administration = lazy(() => import('./pages/Administration'));
-const StrategicPlan = lazy(() => import('./pages/StrategicPlan'));
-const CodeOfConduct = lazy(() => import('./pages/CodeOfConduct'));
 
-// Admission
-const CoursesIntake = lazy(() => import('./pages/CoursesIntake'));
-const FeesStructure = lazy(() => import('./pages/FeesStructure'));
-const Scholarships = lazy(() => import('./pages/Scholarships'));
-const Brochure = lazy(() => import('./pages/Brochure'));
-const DocumentsRequired = lazy(() => import('./pages/DocumentsRequired'));
-const CutOff = lazy(() => import('./pages/CutOff'));
+// pages/about
+const AboutVCET = lazy(() => import('./pages/about/AboutVCET'));
+const PresidentsDesk = lazy(() => import('./pages/about/PresidentsDesk'));
+const PrincipalsDesk = lazy(() => import('./pages/about/PrincipalsDesk'));
+const GoverningCouncil = lazy(() => import('./pages/about/GoverningCouncil'));
+const OrganizationalStructure = lazy(() => import('./pages/about/OrganizationalStructure'));
+const Administration = lazy(() => import('./pages/about/Administration'));
+const StrategicPlan = lazy(() => import('./pages/about/StrategicPlan'));
+const CodeOfConduct = lazy(() => import('./pages/about/CodeOfConduct'));
 
-// Departments
-const DeptComputerEngg = lazy(() => import('./pages/DeptComputerEngg'));
-const DeptCSDS = lazy(() => import('./pages/DeptCSDS'));
-const DeptIT = lazy(() => import('./pages/DeptIT'));
-const DeptAIDS = lazy(() => import('./pages/DeptAIDS'));
-const DeptMech = lazy(() => import('./pages/DeptMech'));
-const DeptENTC = lazy(() => import('./pages/DeptENTC'));
-const DeptCivil = lazy(() => import('./pages/DeptCivil'));
-const DeptFE = lazy(() => import('./pages/DeptFE'));
+// pages/admissions
+const CoursesIntake = lazy(() => import('./pages/admissions/CoursesIntake'));
+const FeesStructure = lazy(() => import('./pages/admissions/FeesStructure'));
+const Scholarships = lazy(() => import('./pages/admissions/Scholarships'));
+const Brochure = lazy(() => import('./pages/admissions/Brochure'));
+const DocumentsRequired = lazy(() => import('./pages/admissions/DocumentsRequired'));
+const CutOff = lazy(() => import('./pages/admissions/CutOff'));
 
-// Academics
-const DeanAcademics = lazy(() => import('./pages/DeanAcademics'));
-const AcademicCalendar = lazy(() => import('./pages/AcademicCalendar'));
-const TeachingLearning = lazy(() => import('./pages/TeachingLearning'));
-const SwayamNPTEL = lazy(() => import('./pages/SwayamNPTEL'));
-const HonoursMinor = lazy(() => import('./pages/HonoursMinor'));
+// pages/departments
+const DeptComputerEngg = lazy(() => import('./pages/departments/DeptComputerEngg'));
+const DeptCSDS = lazy(() => import('./pages/departments/DeptCSDS'));
+const DeptIT = lazy(() => import('./pages/departments/DeptIT'));
+const DeptAIDS = lazy(() => import('./pages/departments/DeptAIDS'));
+const DeptMech = lazy(() => import('./pages/departments/DeptMech'));
+const DeptENTC = lazy(() => import('./pages/departments/DeptENTC'));
+const DeptCivil = lazy(() => import('./pages/departments/DeptCivil'));
+const DeptFE = lazy(() => import('./pages/departments/DeptFE'));
 
-// Research
-const ResearchIntro = lazy(() => import('./pages/ResearchIntro'));
-const FundedResearch = lazy(() => import('./pages/FundedResearch'));
-const Publications = lazy(() => import('./pages/Publications'));
-const Parents = lazy(() => import('./pages/Parents'));
-const ConsultancyProjects = lazy(() => import('./pages/ConsultancyProjects'));
-const ResearchFacility = lazy(() => import('./pages/ResearchFacility'));
-const ResearchConventions = lazy(() => import('./pages/ResearchConventions'));
-const ResearchPolicy = lazy(() => import('./pages/ResearchPolicy'));
-const IIC = lazy(() => import('./pages/IIC'));
-const NIRF = lazy(() => import('./pages/NIRF'));
-const Downloads = lazy(() => import('./pages/Downloads'));
+// pages/academics
+const DeanAcademics = lazy(() => import('./pages/academics/DeanAcademics'));
+const AcademicCalendar = lazy(() => import('./pages/academics/AcademicCalendar'));
+const TeachingLearning = lazy(() => import('./pages/academics/TeachingLearning'));
+const SwayamNPTEL = lazy(() => import('./pages/academics/SwayamNPTEL'));
+const HonoursMinor = lazy(() => import('./pages/academics/HonoursMinor'));
+const ExamCell = lazy(() => import('./pages/academics/ExamCell'));
+const Downloads = lazy(() => import('./pages/academics/Downloads'));
 
-// Facilities
-const CentralComputing = lazy(() => import('./pages/CentralComputing'));
-const LibraryPage = lazy(() => import('./pages/Library'));
-const CounselingCell = lazy(() => import('./pages/CounselingCell'));
-const LadiesCommonRoom = lazy(() => import('./pages/LadiesCommonRoom'));
-const SportsGymkhana = lazy(() => import('./pages/SportsGymkhana'));
-const HealthFacilities = lazy(() => import('./pages/HealthFacilities'));
-const DifferentlyAbled = lazy(() => import('./pages/DifferentlyAbled'));
+// pages/research
+const ResearchIntro = lazy(() => import('./pages/research/ResearchIntro'));
+const FundedResearch = lazy(() => import('./pages/research/FundedResearch'));
+const Publications = lazy(() => import('./pages/research/Publications'));
+const ConsultancyProjects = lazy(() => import('./pages/research/ConsultancyProjects'));
+const ResearchFacility = lazy(() => import('./pages/research/ResearchFacility'));
+const ResearchConventions = lazy(() => import('./pages/research/ResearchConventions'));
+const ResearchPolicy = lazy(() => import('./pages/research/ResearchPolicy'));
+const NIRF = lazy(() => import('./pages/research/NIRF'));
 
-// Student Life
-const CareerAtVCET = lazy(() => import('./pages/CareerAtVCET'));
-const StudentsCouncil = lazy(() => import('./pages/StudentsCouncil'));
-const CulturalCommittee = lazy(() => import('./pages/CulturalCommittee'));
-const SportsCommittee = lazy(() => import('./pages/SportsCommittee'));
-const Literati = lazy(() => import('./pages/Literati'));
-const NSS = lazy(() => import('./pages/NSS'));
-const EBSB = lazy(() => import('./pages/EBSB'));
-const IEEE = lazy(() => import('./pages/IEEE'));
-const StudentsClub = lazy(() => import('./pages/StudentsClub'));
-const CSI = lazy(() => import('./pages/CSI'));
-const IETE = lazy(() => import('./pages/IETE'));
-const ISHRAE = lazy(() => import('./pages/ISHRAE'));
-const VMEA = lazy(() => import('./pages/VMEA'));
-const Hackathon = lazy(() => import('./pages/Hackathon'));
-const NSDC = lazy(() => import('./pages/NSDC'));
-const IGBC = lazy(() => import('./pages/IGBC'));
+// pages/facilities
+const CentralComputing = lazy(() => import('./pages/facilities/CentralComputing'));
+const LibraryPage = lazy(() => import('./pages/facilities/Library'));
+const CounselingCell = lazy(() => import('./pages/facilities/CounselingCell'));
+const LadiesCommonRoom = lazy(() => import('./pages/facilities/LadiesCommonRoom'));
+const SportsGymkhana = lazy(() => import('./pages/facilities/SportsGymkhana'));
+const HealthFacilities = lazy(() => import('./pages/facilities/HealthFacilities'));
+const DifferentlyAbled = lazy(() => import('./pages/facilities/DifferentlyAbled'));
 
-// Committees
-const CollegeDevelopmentCommittee = lazy(() => import('./pages/CollegeDevelopmentCommittee'));
-const IQAC = lazy(() => import('./pages/IQAC'));
-const GrievanceRedressal = lazy(() => import('./pages/GrievanceRedressal'));
-const SRGCCommittee = lazy(() => import('./pages/SRGCCommittee'));
-const AntiRagging = lazy(() => import('./pages/AntiRagging'));
-const SCSTCommittee = lazy(() => import('./pages/SCSTCommittee'));
-const InternalComplaint = lazy(() => import('./pages/InternalComplaint'));
-const EqualOpportunity = lazy(() => import('./pages/EqualOpportunity'));
-const SEDGCell = lazy(() => import('./pages/SEDGCell'));
+// pages/student-life
+const CareerAtVCET = lazy(() => import('./pages/student-life/CareerAtVCET'));
+const StudentsCouncil = lazy(() => import('./pages/student-life/StudentsCouncil'));
+const CulturalCommittee = lazy(() => import('./pages/student-life/CulturalCommittee'));
+const SportsCommittee = lazy(() => import('./pages/student-life/SportsCommittee'));
+const Literati = lazy(() => import('./pages/student-life/Literati'));
+const NSS = lazy(() => import('./pages/student-life/NSS'));
+const EBSB = lazy(() => import('./pages/student-life/EBSB'));
+const StudentsClub = lazy(() => import('./pages/student-life/StudentsClub'));
+const Hackathon = lazy(() => import('./pages/student-life/Hackathon'));
+const NSDC = lazy(() => import('./pages/student-life/NSDC'));
+const Training = lazy(() => import('./pages/student-life/Training'));
+const ECell = lazy(() => import('./pages/student-life/ECell'));
+const IIIC = lazy(() => import('./pages/student-life/IIIC'));
+const Parents = lazy(() => import('./pages/student-life/Parents'));
 
-// NAAC
-const SSS = lazy(() => import('./pages/SSS'));
-const SSSReport = lazy(() => import('./pages/SSSReport'));
-const SSRCycle1 = lazy(() => import('./pages/SSRCycle1'));
-const SSRCycle2 = lazy(() => import('./pages/SSRCycle2'));
-const BestPractices = lazy(() => import('./pages/BestPractices'));
-const NAACScore = lazy(() => import('./pages/NAACScore'));
+// pages/clubs
+const IEEE = lazy(() => import('./pages/clubs/IEEE'));
+const CSI = lazy(() => import('./pages/clubs/CSI'));
+const IETE = lazy(() => import('./pages/clubs/IETE'));
+const ISHRAE = lazy(() => import('./pages/clubs/ISHRAE'));
+const VMEA = lazy(() => import('./pages/clubs/VMEA'));
+const IGBC = lazy(() => import('./pages/clubs/IGBC'));
+const IIC = lazy(() => import('./pages/clubs/IIC'));
 
-// Contact & Others
-const ContactUs = lazy(() => import('./pages/ContactUs'));
-const Training = lazy(() => import('./pages/Training'));
-const ECell = lazy(() => import('./pages/ECell'));
-const IIIC = lazy(() => import('./pages/IIIC'));
-const ExamCell = lazy(() => import('./pages/ExamCell'));
+// pages/committees
+const CollegeDevelopmentCommittee = lazy(() => import('./pages/committees/CollegeDevelopmentCommittee'));
+const IQAC = lazy(() => import('./pages/committees/IQAC'));
+const GrievanceRedressal = lazy(() => import('./pages/committees/GrievanceRedressal'));
+const SRGCCommittee = lazy(() => import('./pages/committees/SRGCCommittee'));
+const AntiRagging = lazy(() => import('./pages/committees/AntiRagging'));
+const SCSTCommittee = lazy(() => import('./pages/committees/SCSTCommittee'));
+const InternalComplaint = lazy(() => import('./pages/committees/InternalComplaint'));
+const EqualOpportunity = lazy(() => import('./pages/committees/EqualOpportunity'));
+const SEDGCell = lazy(() => import('./pages/committees/SEDGCell'));
+
+// pages/naac
+const SSS = lazy(() => import('./pages/naac/SSS'));
+const SSSReport = lazy(() => import('./pages/naac/SSSReport'));
+const SSRCycle1 = lazy(() => import('./pages/naac/SSRCycle1'));
+const SSRCycle2 = lazy(() => import('./pages/naac/SSRCycle2'));
+const BestPractices = lazy(() => import('./pages/naac/BestPractices'));
+const NAACScore = lazy(() => import('./pages/naac/NAACScore'));
+
+// pages/contact
+const ContactUs = lazy(() => import('./pages/contact/ContactUs'));
 
 /* ── Loading Spinner ── */
 const PageLoader = () => (
