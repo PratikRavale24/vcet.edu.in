@@ -114,7 +114,7 @@ export default function GoverningCouncil() {
                   <div key={member.id} className="flex items-center gap-5 group">
                     {/* Serial number */}
                     {/* Circular photo */}
-                    <div className="w-16 h-16 shrink-0 rounded-full overflow-hidden border-2 border-transparent group-hover:border-[#fdb813] transition-all duration-300 shadow-sm">
+                    <div className="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-transparent group-hover:border-[#fdb813] transition-all duration-300 shadow-sm">
                       <img
                         src={member.image}
                         alt={member.name}
