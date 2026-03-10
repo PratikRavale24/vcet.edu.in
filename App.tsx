@@ -41,6 +41,7 @@ const CutOff = lazy(() => import('./pages/admissions/CutOff'));
 // pages/departments
 const DeptComputerEngg = lazy(() => import('./pages/departments/DeptComputerEngg'));
 const DeptCSDS = lazy(() => import('./pages/departments/DeptCSDS'));
+const CSDSFacultyProfile = lazy(() => import('./pages/departments/csds/FacultyProfilePage'));
 const DeptIT = lazy(() => import('./pages/departments/DeptIT'));
 const DeptAIDS = lazy(() => import('./pages/departments/DeptAIDS'));
 const DeptMech = lazy(() => import('./pages/departments/DeptMech'));
@@ -205,6 +206,7 @@ function App() {
           {/* Departments */}
           <Route path="/computer-engineering" element={<DeptComputerEngg />} />
           <Route path="/cs-data-science" element={<DeptCSDS />} />
+          <Route path="/cs-data-science/faculty/:slug" element={<CSDSFacultyProfile />} />
           <Route path="/information-technology" element={<DeptIT />} />
           <Route path="/ai-data-science" element={<DeptAIDS />} />
           <Route path="/mechanical-engineering" element={<DeptMech />} />

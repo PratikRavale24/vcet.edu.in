@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PageLayout from '../../components/PageLayout';
 
 const sidebarLinks = [
@@ -280,7 +281,7 @@ const DeptCSDS: React.FC = () => {
                     {/* decorative bottom rule */}
                     <div className="flex items-center gap-4">
                       <div className="h-px flex-1 bg-white/10" />
-                      <span className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-semibold">VCET · CSE Data Science</span>
+                      <span className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-semibold">VCET · CSE(Data Science)</span>
                       <div className="h-px w-12 bg-brand-gold/40" />
                     </div>
                   </div>
@@ -577,6 +578,7 @@ const DeptCSDS: React.FC = () => {
           {activeId === 'faculty' && (() => {
             const faculty = [
               {
+                slug: 'dr-yogesh-pingle',
                 name: 'Dr. Yogesh Pingle',
                 post: 'Deputy HOD & Asst. Prof.',
                 email: 'yogesh.pingle@vcet.edu.in',
@@ -585,6 +587,7 @@ const DeptCSDS: React.FC = () => {
                 color: '#1a4b7c',
               },
               {
+                slug: 'ms-krunali-vartak',
                 name: 'Ms. Krunali Vartak',
                 post: 'Asst. Prof.',
                 email: 'krunalivartak@vcet.edu.in',
@@ -593,6 +596,7 @@ const DeptCSDS: React.FC = () => {
                 color: '#2563a8',
               },
               {
+                slug: 'ms-maya-varghese',
                 name: 'Ms. Maya Varghese',
                 post: 'Asst. Prof.',
                 email: 'maya.varghese@vcet.edu.in',
@@ -601,6 +605,7 @@ const DeptCSDS: React.FC = () => {
                 color: '#1a4b7c',
               },
               {
+                slug: 'ms-janisa-pereira',
                 name: 'Ms. Janisa Pereira',
                 post: 'Asst. Prof.',
                 email: 'janisa.pereira@vcet.edu.in',
@@ -609,6 +614,7 @@ const DeptCSDS: React.FC = () => {
                 color: '#2563a8',
               },
               {
+                slug: 'ms-leena-raut',
                 name: 'Ms. Leena Raut',
                 post: 'Asst. Prof.',
                 email: 'leena.raut@vcet.edu.in',
@@ -617,14 +623,7 @@ const DeptCSDS: React.FC = () => {
                 color: '#1a4b7c',
               },
               {
-                name: 'Ms. Odilia Gonsalves',
-                post: 'Asst. Prof.',
-                email: 'odilia.gonsalves@vcet.edu.in',
-                photo: '/Images/departments/csds/faculty/ms-odilia-gonsalves.jpg',
-                initials: 'OG',
-                color: '#2563a8',
-              },
-              {
+                slug: 'mr-ichhanshu-jaiswal',
                 name: 'Mr. Ichhanshu Jaiswal',
                 post: 'Asst. Prof. (Ph.D pursuing)',
                 email: 'ichhanshu.jaiswal@vcet.edu.in',
@@ -633,14 +632,7 @@ const DeptCSDS: React.FC = () => {
                 color: '#1a4b7c',
               },
               {
-                name: 'Ms. Kranti Gule',
-                post: 'Asst. Prof.',
-                email: 'krantigule@vcet.edu.in',
-                photo: '/Images/departments/csds/faculty/mrs-kranti-gule.jpg',
-                initials: 'KG',
-                color: '#2563a8',
-              },
-              {
+                slug: 'ms-shital-cheke',
                 name: 'Ms. Shital Cheke',
                 post: 'Asst. Prof.',
                 email: 'shitalcheke@vcet.edu.in',
@@ -649,6 +641,7 @@ const DeptCSDS: React.FC = () => {
                 color: '#1a4b7c',
               },
               {
+                slug: 'ms-bhavika-joshi',
                 name: 'Ms. Bhavika Joshi',
                 post: 'Asst. Prof.',
                 email: 'bhavika.joshi@vcet.edu.in',
@@ -687,58 +680,58 @@ const DeptCSDS: React.FC = () => {
                 </div>
 
                 {/* Faculty cards grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-0.5">
-                  {faculty.map((f, idx) => (
-                    <div
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4">
+                  {faculty.map((f) => (
+                    <Link
                       key={f.email}
-                      className={`group relative overflow-hidden h-72 cursor-pointer`}
+                      to={`/cs-data-science/faculty/${f.slug}`}
+                      className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 border-t-[3px] border-b-[3px] border-t-[#1a4b7c] border-b-[#fdb813] flex flex-col items-center px-6 pt-6 pb-5 no-underline"
                     >
-                      {/* Background image or gradient fallback */}
-                      {f.photo ? (
-                        <>
-                          <img
-                            src={f.photo}
-                            alt={f.name}
-                            className="absolute inset-0 w-full h-full object-cover object-top scale-100 group-hover:scale-105 transition-transform duration-700"
-                            onError={(e) => {
-                              const t = e.currentTarget;
-                              t.style.display = 'none';
-                              (t.nextElementSibling as HTMLElement).style.display = 'block';
-                            }}
-                          />
-                          <div
-                            className="absolute inset-0 hidden"
-                            style={{ background: `linear-gradient(135deg, ${f.color} 0%, #3a6fa8 100%)` }}
-                          />
-                        </>
-                      ) : (
-                        <div
-                          className="absolute inset-0"
-                          style={{ background: `linear-gradient(135deg, ${f.color} 0%, #3a6fa8 100%)` }}
+                      {/* Photo with gold badge at bottom-right */}
+                      <div className="relative w-32 h-36 mb-4 shrink-0">
+                        <img
+                          src={f.photo}
+                          alt={f.name}
+                          className="w-full h-full object-cover object-top"
+                          onError={(e) => {
+                            const t = e.currentTarget;
+                            t.style.display = 'none';
+                            (t.nextElementSibling as HTMLElement)!.style.display = 'flex';
+                          }}
                         />
-                      )}
-
-                      {/* Dark gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-
-                      {/* Gold top border on hover */}
-                      <div className="absolute top-0 left-0 h-0.5 w-0 bg-brand-gold group-hover:w-full transition-all duration-500 z-20" />
-
-                      {/* Content — slides up on hover */}
-                      <div className="absolute inset-0 p-5 flex flex-col justify-end translate-y-1 group-hover:translate-y-0 transition-transform duration-500 z-10">
-                        <h3 className="text-sm md:text-base font-bold text-white uppercase tracking-widest leading-tight">{f.name}</h3>
-                        <p className="text-white/60 text-[11px] mt-1 leading-relaxed">{f.post}</p>
-                        {/* Email — fades in on hover */}
-                        <a
-                          href={`mailto:${f.email}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-1.5 text-[10px] text-white/70 hover:text-brand-gold"
+                        {/* Fallback initials */}
+                        <div
+                          className="absolute inset-0 hidden items-center justify-center text-white font-bold text-2xl"
+                          style={{ background: f.color }}
                         >
-                          <i className="ph-fill ph-envelope text-xs" />
-                          <span className="truncate">{f.email}</span>
-                        </a>
+                          {f.initials}
+                        </div>
+                        {/* Gold accent square */}
+                        <div className="absolute bottom-0 right-0 w-5 h-5 bg-[#fdb813]" />
                       </div>
-                    </div>
+
+                      {/* Name */}
+                      <h3 className="text-base font-bold text-[#1a4b7c] text-center leading-snug">
+                        {f.name}
+                      </h3>
+
+                      {/* Designation pill */}
+                      <span className="mt-2 px-3 py-0.5 bg-gray-100 text-gray-500 text-xs rounded font-medium text-center">
+                        {f.post}
+                      </span>
+
+                      {/* Divider */}
+                      <div className="w-10 h-0.5 bg-gray-300 my-3" />
+
+                      {/* Email */}
+                      <a
+                        href={`mailto:${f.email}`}
+                        className="flex items-center gap-2 text-xs text-gray-500 hover:text-[#1a4b7c] transition-colors w-full"
+                      >
+                        <i className="ph-fill ph-envelope text-sm shrink-0 text-gray-400" />
+                        <span className="truncate">{f.email}</span>
+                      </a>
+                    </Link>
                   ))}
                 </div>
 
