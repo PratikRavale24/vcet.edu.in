@@ -83,8 +83,6 @@ const DeptAIDS: React.FC = () => {
         <nav className="absolute top-[52px] left-6 z-20 flex items-center space-x-2 text-sm font-medium text-white/70">
           <a href="/" className="hover:text-brand-gold transition-colors duration-200 flex items-center"><i className="ph ph-house text-base" /></a>
           <i className="ph ph-caret-right text-xs" />
-          <a href="/departments" className="hover:text-brand-gold transition-colors duration-200">Departments</a>
-          <i className="ph ph-caret-right text-xs" />
           <span className="text-brand-gold font-semibold">AI &amp; Data Science</span>
         </nav>
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
