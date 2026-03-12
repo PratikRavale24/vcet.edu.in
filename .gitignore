@@ -1,5 +1,4 @@
-# ── Backend / PHP (not pushing until backend phase) ──
-admin/
+# ── Backend / PHP (separate repo: ivory-26/vcet) ──
 api/
 db/
 uploads/
