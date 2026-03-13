@@ -85,16 +85,11 @@ const DeptCSDS: React.FC = () => {
         <nav className="absolute top-[52px] left-6 z-20 flex items-center space-x-2 text-sm font-medium text-white/70">
           <a href="/" className="hover:text-brand-gold transition-colors duration-200 flex items-center"><i className="ph ph-house text-base" /></a>
           <i className="ph ph-caret-right text-xs" />
-          <a href="/departments" className="hover:text-brand-gold transition-colors duration-200">Departments</a>
-          <i className="ph ph-caret-right text-xs" />
+
           <span className="text-brand-gold font-semibold">Computer Science and Engineering (Data Science)</span>
         </nav>
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <span className="flex-shrink-0 w-10 h-px bg-brand-gold/70" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold whitespace-nowrap">Department of Engineering</span>
-            <span className="flex-shrink-0 w-10 h-px bg-brand-gold/70" />
-          </div>
+
           <h1 className="font-display font-bold text-white leading-[1.08] tracking-tight">
             <span className="block text-4xl md:text-5xl lg:text-6xl">Computer Science and Engineering</span>
             <span className="block text-3xl md:text-4xl lg:text-5xl mt-3 text-brand-gold font-semibold italic">(Data Science)</span>

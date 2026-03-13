@@ -82,7 +82,7 @@ const About: React.FC = () => {
               Located in the heart of the tech corridor, our sprawling campus is home to over 5,000 students and 200+ faculty members. We combine traditional engineering discipline with modern design thinking, preparing graduates who excel in both innovation and execution.
             </p>
             
-            <div className="group relative flex h-[260px] w-full items-center justify-center overflow-hidden rounded-2xl border border-brand-blue/10 bg-brand-light sm:h-[320px] md:h-[360px]">
+            <div className="group relative flex h-[380px] w-full items-center justify-center overflow-hidden rounded-2xl border border-brand-blue/10 bg-brand-light sm:h-[480px] md:h-[520px]">
               <div className="text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-blue/10">
                   <MapPin className="h-8 w-8 text-brand-blue/40" />
@@ -90,23 +90,6 @@ const About: React.FC = () => {
                 <p className="text-sm font-medium text-slate-500">VCET Campus Image Slot</p>
                 <p className="mt-1 text-xs text-slate-400">placeholder-campus.jpg</p>
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-              {[
-                { icon: MapPin, title: 'Prime Location', desc: '2-minute walk from Vasai Road (W).' },
-                { icon: ShieldCheck, title: 'Trusted Institution', desc: 'Established reputation in engineering education.' },
-                { icon: Sparkles, title: 'Future Focused', desc: 'Learning built around modern technology.' },
-              ].map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-xl border border-brand-blue/10 bg-white px-4 py-4 shadow-sm transition-all duration-300 hover:border-brand-blue/25 hover:shadow-md"
-                >
-                  <item.icon className="mb-2 h-4 w-4 text-brand-blue" />
-                  <h3 className="text-sm font-semibold text-brand-navy">{item.title}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-600">{item.desc}</p>
-                </article>
-              ))}
             </div>
           </div>
 
@@ -142,6 +125,23 @@ const About: React.FC = () => {
                 <p className="mb-2 text-4xl font-display font-bold text-white md:text-5xl">25+ Years</p>
                 <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold">Of Academic Excellence</p>
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {[
+                { icon: MapPin, title: 'Prime Location', desc: '2-minute walk from Vasai Road (W).' },
+                { icon: ShieldCheck, title: 'Trusted Institution', desc: 'Established reputation in engineering education.' },
+                { icon: Sparkles, title: 'Future Focused', desc: 'Learning built around modern technology.' },
+              ].map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-xl border border-brand-blue/10 bg-white px-4 py-4 shadow-sm transition-all duration-300 hover:border-brand-blue/25 hover:shadow-md"
+                >
+                  <item.icon className="mb-2 h-4 w-4 text-brand-blue" />
+                  <h3 className="text-sm font-semibold text-brand-navy">{item.title}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600">{item.desc}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>

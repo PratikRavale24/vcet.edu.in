@@ -223,7 +223,7 @@ const MarqueeRow: React.FC<MarqueeRowProps> = ({ items, direction = "left", spee
   return (
     <div
       ref={wrapperRef}
-      className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
+      className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none pt-2"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}

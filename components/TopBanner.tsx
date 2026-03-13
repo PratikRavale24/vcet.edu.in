@@ -129,8 +129,8 @@ const TopBanner: React.FC = () => {
         <div className="flex items-center h-8 overflow-hidden">
           {/* Label */}
           <div className="flex-shrink-0 flex items-center gap-1.5 px-3 bg-brand-gold h-full">
-            <Bell className="w-3 h-3 text-white" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white whitespace-nowrap">Latest News</span>
+            <Bell className="w-3 h-3 text-brand-blue" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-blue whitespace-nowrap">Latest News</span>
           </div>
           {/* Ticker track */}
           <div className="ticker-wrap flex-1 overflow-hidden h-full flex items-center">

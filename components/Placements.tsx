@@ -155,18 +155,18 @@ const Placements: React.FC = () => {
             <div
               ref={scrollRef}
               className="w-full overflow-x-auto pb-2 cursor-grab active:cursor-grabbing select-none"
-              style={{ scrollbarWidth: 'none' }}
+              style={{ scrollbarWidth: 'none', overflowY: 'visible' }}
               onMouseDown={handleMouseDown}
               onMouseLeave={handleMouseLeave}
               onMouseUp={handleMouseUp}
               onMouseMove={handleMouseMove}
             >
-              <div className="relative min-w-max" style={{ height: `${CHART_H + 80}px` }}>
+              <div className="relative min-w-max" style={{ height: `${CHART_H + 120}px` }}>
 
                 {/* Bars row */}
                 <div
                   className="absolute bottom-10 flex items-end gap-5 md:gap-8 px-2 pl-12"
-                  style={{ height: `${CHART_H}px` }}
+                  style={{ height: `${CHART_H}px`, paddingTop: '40px' }}
                 >
                   {/* COVID zone backdrop — spans behind the 3 COVID bars */}
                   {(() => {

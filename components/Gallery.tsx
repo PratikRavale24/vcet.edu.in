@@ -99,9 +99,9 @@ const Gallery: React.FC = () => {
                   alt={item.title}
                   customGrid={isFeatured ? { rows: 6, cols: 8 } : { rows: 4, cols: 6 }}
                   grayscaleAnimation
-                  pixelFadeInDuration={900}
-                  maxAnimationDelay={1100}
-                  colorRevealDelay={1200}
+                  pixelFadeInDuration={500}
+                  maxAnimationDelay={600}
+                  colorRevealDelay={700}
                   animationDelay={idx * STAGGER_MS}
                   className="absolute inset-0"
                 />

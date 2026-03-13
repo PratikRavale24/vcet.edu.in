@@ -396,7 +396,7 @@ const Hero: React.FC = () => {
       {/* ENQUIRE NOW — vertical tab on left edge */}
       <button
         onClick={() => setCardOpen(o => !o)}
-        className="hidden md:flex absolute left-0 top-[38%] -translate-y-1/2 z-20 flex-col items-center justify-center gap-2 py-10 px-3 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
+        className="hidden md:flex absolute left-0 top-[44%] -translate-y-1/2 z-20 flex-col items-center justify-center gap-1 py-4 px-2 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
         style={{
           background: 'rgba(11, 61, 145, 0.45)',
           backdropFilter: 'blur(16px)',
@@ -409,7 +409,7 @@ const Hero: React.FC = () => {
         aria-label="Enquire Now"
       >
         <span
-          className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-white"
+          className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white"
           style={{ transform: 'rotate(180deg)' }}
         >
           Enquire Now
@@ -419,7 +419,7 @@ const Hero: React.FC = () => {
       {/* PACKAGES — vertical tab below ENQUIRE NOW */}
       <button
         onClick={() => { setPackagesOpen(true); setPackageIndex(0); setPkgZoom(1); }}
-        className="hidden md:flex absolute left-0 z-20 flex-col items-center justify-center gap-2 py-10 px-3 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
+        className="hidden md:flex absolute left-0 z-20 flex-col items-center justify-center gap-1 py-4 px-2 shadow-2xl transition-all duration-200 hover:brightness-110 active:scale-95"
         style={{
           background: 'rgba(196, 149, 53, 0.55)',
           backdropFilter: 'blur(16px)',
@@ -428,12 +428,12 @@ const Hero: React.FC = () => {
           borderLeft: 'none',
           boxShadow: '0 8px 32px rgba(196,149,53,0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
           writingMode: 'vertical-rl',
-          top: 'calc(38% + 90px)',
+          top: 'calc(44% + 60px)',
         }}
         aria-label="Packages"
       >
         <span
-          className="text-[12px] font-extrabold uppercase tracking-[0.25em] text-white"
+          className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white"
           style={{ transform: 'rotate(180deg)' }}
         >
           Packages

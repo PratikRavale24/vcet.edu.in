@@ -18,6 +18,7 @@ You are free to redesign layouts, improve UI/UX, and add new features, but the i
 6. [Content Rules](#content-rules)
 7. [Contributing — Git Workflow](#contributing--git-workflow)
 8. [GitHub Rules and Engineering Standards](#github-rules-and-engineering-standards)
+9. [Contributors](#contributors)
 
 ---
 
@@ -51,6 +52,7 @@ vcet.edu.in/
 |
 |-- components/                # Reusable UI components (homepage sections + shared layout)
 |   |-- TopBanner.tsx          # Top bar with logos and contact
+|   |                          # (includes nav dropdown: Departments > MMS)
 |   |-- Header.tsx             # Navigation menu
 |   |-- Hero.tsx               # Hero / banner section
 |   |-- About.tsx              # About stats block
@@ -72,6 +74,12 @@ vcet.edu.in/
 |   |-- SplashScreen.tsx       # Initial splash/loader
 |   |-- DepartmentPage.tsx     # Generic department page template
 |   |-- Admissions.tsx         # Admissions info component
+|   |
+|   |-- mms/                   # ★ MMS-specific shared components
+|       |-- MMSLayout.tsx      # Wrapper for all MMS pages (MMS header + footer)
+|       |-- MMSHeader.tsx      # MMS internal nav bar with own menu & dropdown
+|       |-- MMSHero.tsx        # MMS hero image carousel
+|       |-- MMSEnquirePopup.tsx # Global "Enquire Now" floating button + modal
 |
 |-- pages/                     # All route-level page components (lazy loaded)
 |   |-- about/                 # Institute information
@@ -175,7 +183,50 @@ vcet.edu.in/
 |   |   |-- BestPractices.tsx
 |   |
 |   |-- contact/
-|       |-- ContactUs.tsx
+|   |   |-- ContactUs.tsx
+|   |
+|   |-- mms/                         # ★ MMS (MBA) mini-site — routes under /mms/*
+|       |-- MMSHome.tsx               # /mms — MMS landing page
+|       |
+|       |-- about/                    # /mms/about/*
+|       |   |-- MMSAbout.tsx          # /mms/about (tab: About)
+|       |   |-- MMSPrincipalsDesk.tsx # /mms/about/principals-desk
+|       |   |-- MMSHODsDesk.tsx       # /mms/about/hods-desk
+|       |   |-- MMSFaculty.tsx        # /mms/about/faculty
+|       |   |-- MMSVisionMission.tsx  # /mms/about/vision-mission
+|       |   |-- MMSDAB.tsx            # /mms/about/dab (Departmental Advisory Board)
+|       |   |-- MMSProgramOutcomes.tsx # /mms/about/program-outcomes
+|       |
+|       |-- admission/
+|       |   |-- MMSAdmission.tsx      # /mms/admission
+|       |
+|       |-- experiential-learning/
+|       |   |-- MMSExperientialLearning.tsx  # /mms/experiential-learning
+|       |                                    # tabs: Info, Role Play, Group Discussion,
+|       |                                    #       Entrepreneurial Drive, Financial
+|       |                                    #       Literacy Program, NESCO Bombay
+|       |                                    #       Exhibition Centre, 3D Model Making
+|       |
+|       |-- training-placement/
+|       |   |-- MMSTraining.tsx       # /mms/training-placement/training
+|       |   |                         # tabs: Training, Events, Career Guidance,
+|       |   |                         #       Internship, Gallery
+|       |   |-- MMSPlacement.tsx      # /mms/training-placement/placement
+|       |
+|       |-- students-life/
+|       |   |-- MMSStudentsLife.tsx   # /mms/students-life
+|       |                             # tabs: V-Ecstatic, DLLE, Book Review,
+|       |                             #       Add-on Courses (Power BI / Advance Excel),
+|       |                             #       Industry Expert Session, NSIM Training,
+|       |                             #       Oscillations, IDEATHON 1.0, Rankers
+|       |
+|       |-- facilities/
+|       |   |-- MMSFacilities.tsx     # /mms/facilities
+|       |                             # tabs: Computer Labs, Library, Seminar Hall,
+|       |                             #       Classroom, Gymkhana
+|       |
+|       |-- faqs/
+|           |-- MMSFAQs.tsx           # /mms/faqs (13 Q&A items)
 |
 |-- services/                  # Public API fetch functions (main website, no auth)
 |   |-- api.ts                 # Base fetch client — reads VITE_API_URL env var
@@ -256,6 +307,15 @@ vcet.edu.in/
 |       |-- recriters/
 |       |-- Remarkable Acheivements/
 |       |-- testimonials/
+|       |
+|       |-- mms/               # ★ MMS-specific image assets
+|           |-- logo/          # VCETLOGO.png, VCET.BANNER.png
+|           |-- hero/          # Hero carousel images (gal1–gal5, _MG_0233, _MG_0244, _MG_0252)
+|           |-- internships/   # Summer internship company logos (l2, l7, logo1)
+|           |-- events/        # Events carousel images (e1, e2, e3)
+|           |-- about/         # About page images (img4.jpeg)
+|           |-- facilities/    # Facilities images (cl1, cl2, inf5)
+|           |-- syllabus/      # FY.pdf, SY_syllabus.pdf (downloadable syllabi)
 |
 |-- Images/                    # Source image assets (mirrored to public/Images/)
 |-- uploads/                   # Runtime file uploads from admin panel (not in Git)
@@ -504,4 +564,26 @@ git push origin v1.0.0
 ### 12. The Git log is documentation
 
 Your commit history tells the story of this project. Write commit messages as if the person reading them has no context. A message like `fix stuff` is useless six months later. A message like `fix(hero): remove duplicate IntersectionObserver on remount` tells exactly what broke and where.
+
+---
+
+## Contributors
+
+This project is built by an amazing team of developers committed to creating a website for VCET. Special thanks to:
+
+| # | Contributor | GitHub |
+|---|-------------|--------|
+| 1 | **frag2win** | [@frag2win](https://github.com/frag2win) |
+| 2 | **Sahil2802-coder** | [@Sahil2802-coder](https://github.com/Sahil2802-coder) |
+| 3 | **yashhh-23** | [@yashhh-23](https://github.com/yashhh-23) |
+| 4 | **RedRex101** | [@RedRex101](https://github.com/RedRex101) |
+| 5 | **ivory-26** | [@ivory-26](https://github.com/ivory-26) |
+| 6 | **sawantshreya008** | [@sawantshreya008](https://github.com/sawantshreya008) |
+| 7 | **sumritasawant101-droid** | [@sumritasawant101-droid](https://github.com/sumritasawant101-droid) |
+| 8 | **dakshata2405956201-svg** | [@dakshata2405956201-svg](https://github.com/dakshata2405956201-svg) |
+| 9 | **shweta1909patil-maker** | [@shweta1909patil-maker](https://github.com/shweta1909patil-maker) |
+
+### How to contribute
+
+If you would like to contribute to this project, please follow the guidelines outlined in the [Contributing — Git Workflow](#contributing--git-workflow) and [GitHub Rules and Engineering Standards](#github-rules-and-engineering-standards) sections above. We welcome bug reports, feature suggestions, and pull requests from the community.
 
