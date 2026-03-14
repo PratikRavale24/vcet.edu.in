@@ -6,7 +6,7 @@ const faculty: FacultyData = {
   department: "Information Technology",
   dateOfBirth: "04 October 1967",
   dateOfJoining: "20 July 2021",
-  email: "thaksen.parvat@vcet.edu.in",
+  email: "thaksen.parvat@vcet.edu.in, dean_itinfra@vcet.edu.in",
   experienceYears: "30",
   papersPublished: "19",
   photo: "faculty/it/thaksen-parvat.jpg",
@@ -21,12 +21,12 @@ const faculty: FacultyData = {
     { icon: "fa-server",      label: "Dean IT Infrastructure" },
   ],
   books: [
-    { count: 1, title: "Published Book ÔÇô details to be updated" },
+    { count: 1, title: "Books/IPRs/Patents count: 01 (specific title not provided)" },
   ],
   memberships: [
-    { label: "LMCSI",  fullName: "Life Member ÔÇô CSI" },
-    { label: "LMISTE", fullName: "Life Member ÔÇô ISTE" },
-    { label: "LMIEEE", fullName: "Life Member ÔÇô IEEE" },
+    { label: "LMCSI",  fullName: "Life Member - CSI" },
+    { label: "LMISTE", fullName: "Life Member - ISTE" },
+    { label: "LMIEEE", fullName: "Life Member - IEEE" },
   ],
   awards: [
     { icon: "fa-chalkboard-teacher", title: "Best Teacher Award" },
@@ -39,3 +39,5 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+
+

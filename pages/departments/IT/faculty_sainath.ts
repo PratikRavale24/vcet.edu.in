@@ -22,12 +22,12 @@ const faculty: FacultyData = {
     "Android Programming",
   ],
   roles: [
-    { icon: "fa-university", label: "Remote Centre Coordinator ÔÇô IIT Mumbai" },
+    { icon: "fa-university", label: "Remote Centre Coordinator - IIT Mumbai" },
   ],
   books: [
     {
       title: "Internet Programming",
-      subtitle: "Sem-IV, University of Mumbai ┬À TechKnowledge Publications, 2021 ┬À Co-authored with Chandan Kolvankar, Yogesh Pingle",
+      subtitle: "Sem-IV, University of Mumbai - TechKnowledge Publications, 2021 - Co-authored with Chandan Kolvankar, Yogesh Pingle",
     },
   ],
   memberships: [
@@ -45,3 +45,5 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+
+

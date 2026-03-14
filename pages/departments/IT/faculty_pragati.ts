@@ -10,15 +10,15 @@ const faculty: FacultyData = {
   papersPublished: "12",
   photo: "faculty/it/pragati-patil.jpg",
   qualifications: [
-    "Ph.D. (Pursuing ÔÇô Eklavya University)",
-    "M.Tech. ÔÇô A Grade",
+    "Ph.D. (Pursuing - Eklavya University)",
+    "M.Tech. - A Grade",
   ],
   specialization: ["Information Technology"],
   patents: [
-    { title: "Patent 1 ÔÇô details to be updated" },
-    { title: "Patent 2 ÔÇô details to be updated" },
-    { title: "Copyright 1 ÔÇô details to be updated" },
-    { title: "Copyright 2 ÔÇô details to be updated" },
+    { title: "Published Patent (1 of 2)" },
+    { title: "Published Patent (2 of 2)" },
+    { title: "Registered Copyright (1 of 2)" },
+    { title: "Registered Copyright (2 of 2)" },
   ],
   memberships: [
     { label: "ISTE" },
@@ -27,3 +27,5 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+
+

@@ -10,22 +10,22 @@ const faculty: FacultyData = {
   papersPublished: "9",
   photo: "faculty/ce/sunil-katkar.jpg",
   qualifications: [
-    "M.E. ÔÇô First Class",
+    "M.E. - First Class",
   ],
   specialization: [
     "Data Compression",
     "Computer Graphics",
   ],
   patents: [
-    { title: "Published Patent 1 ÔÇô details to be updated" },
-    { title: "Published Patent 2 ÔÇô details to be updated" },
+    { title: "Published Patent 1 - details to be updated" },
+    { title: "Published Patent 2 - details to be updated" },
   ],
   memberships: [
-    "ISTE ÔÇô LM 128571",
+    "ISTE - LM 128571",
   ],
   eResources: [
     {
-      title: "Computer Graphics ÔÇô Google Classroom",
+      title: "Computer Graphics - Google Classroom",
       icon: "fa-paint-brush",
       url: "https://classroom.google.com",
       code: "u7oi3ta",
@@ -34,3 +34,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

@@ -21,13 +21,13 @@ const faculty: FacultyData = {
   ],
   eResources: [
     {
-      title: "Machine Learning ÔÇô Google Classroom",
+      title: "Machine Learning - Google Classroom",
       icon: "fa-robot",
       url: "https://classroom.google.com",
       code: "qq22zjz",
     },
     {
-      title: "Data Warehousing and Mining ÔÇô Google Classroom",
+      title: "Data Warehousing and Mining - Google Classroom",
       icon: "fa-database",
       url: "https://classroom.google.com",
       code: "fofrxzz",
@@ -36,3 +36,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

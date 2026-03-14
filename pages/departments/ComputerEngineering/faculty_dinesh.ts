@@ -19,10 +19,10 @@ const faculty: FacultyData = {
     "Computer Security",
   ],
   patents: [
-    { title: "Published IPR / Patent ÔÇô details to be updated" },
+    { title: "Published IPR / Patent - details to be updated" },
   ],
   memberships: [
-    "ISTE ÔÇô LM-50887",
+    "ISTE - LM-50887",
   ],
   youtube: [
     {
@@ -34,3 +34,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

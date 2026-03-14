@@ -11,7 +11,7 @@ const faculty: FacultyData = {
   papersPublished: "1",
   photo: "faculty/it/chandan-kolvankar.jpg",
   qualifications: [
-    "Ph.D. (Pursuing ÔÇô K. J. Somaiya College of Engineering, Mumbai)",
+    "Ph.D. (Pursuing - K. J. Somaiya College of Engineering, Mumbai)",
     "M.E. (Computer Engineering)",
   ],
   roles: [
@@ -20,9 +20,11 @@ const faculty: FacultyData = {
   books: [
     {
       title: "Internet Programming",
-      subtitle: "Sem-IV, University of Mumbai ┬À TechKnowledge Publications, 2021 ┬À Co-authored with Yogesh Pingle, Sainath Patil",
+      subtitle: "Sem-IV, University of Mumbai - TechKnowledge Publications, 2021 - Co-authored with Yogesh Pingle, Sainath Patil",
     },
   ],
 };
 
 export default faculty;
+
+

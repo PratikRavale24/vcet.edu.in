@@ -15,11 +15,13 @@ const faculty: FacultyData = {
   ],
   specialization: ["Computer Science and Engineering"],
   patents: [
-    { title: "Published Patent ÔÇô details to be updated" },
+    { title: "Published Patent (1 total)" },
   ],
   websites: [
-    { href: "https://scholar.google.com/", icon: "fa-user-graduate", name: "Google Scholar", sub: "Citation Profile" },
+    { href: "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=yogita+shelar&btnG=", icon: "fa-user-graduate", name: "Google Scholar", sub: "Citation Profile" },
   ],
 };
 
 export default faculty;
+
+

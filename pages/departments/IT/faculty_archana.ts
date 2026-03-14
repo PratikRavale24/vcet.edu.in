@@ -8,18 +8,21 @@ const faculty: FacultyData = {
   dateOfJoining: "08 July 2002",
   email: "archana.ekbote@vcet.edu.in",
   experienceYears: "20",
-  papersPublished: "10",
+  papersPublished: "10 (4 Journals + 6 Conferences)",
   photo: "faculty/it/archana-ekbote.jpg",
   qualifications: [
     "Ph.D. (BAMU)",
     "M.E. (University of Mumbai)",
   ],
   memberships: [
-    { label: "ISTE", fullName: "Life Membership ÔÇô LM 38954" },
-    { label: "IETE", fullName: "Life Membership ÔÇô M 183963" },
+    { label: "ISTE", fullName: "Life Membership - LM 38954" },
+    { label: "IETE", fullName: "Life Membership - M 183963" },
   ],
   websites: [
     { href: "https://archanaekbote.wordpress.com", icon: "fa-globe", name: "Personal Website", sub: "archanaekbote.wordpress.com" },
+  ],
+  youtube: [
+    { href: "https://www.youtube.com/channel/UCgeyo7dafCpO8nasdjPuWfg", name: "Dr. Archana Ekbote", sub: "Educational Channel" },
   ],
   eResources: [
     { title: "Computer Networks (CN)",           icon: "fa-network-wired", url: "https://archanaekbote.wordpress.com/computer-networks" },
@@ -28,3 +31,5 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+
+

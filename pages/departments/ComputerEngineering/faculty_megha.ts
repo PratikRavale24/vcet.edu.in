@@ -17,8 +17,8 @@ const faculty: FacultyData = {
     { icon: "fa-crown", label: "Head of Department (HOD)" },
   ],
   patents: [
-    { title: "Published Patent 1 ÔÇô details to be updated" },
-    { title: "Published Patent 2 ÔÇô details to be updated" },
+    { title: "Published Patent 1 - details to be updated" },
+    { title: "Published Patent 2 - details to be updated" },
   ],
   memberships: [
     "ISTE",
@@ -27,12 +27,12 @@ const faculty: FacultyData = {
     {
       href: "https://www.youtube.com/channel/UCKRXFTJ8QESgSNCyQTfCvEg/featured",
       name: "Dr. Megha Trivedi",
-      sub: "Computer Engineering ÔÇô Educational Content",
+      sub: "Computer Engineering - Educational Content",
     },
   ],
   eResources: [
     {
-      title: "Machine Learning ÔÇô Google Classroom",
+      title: "Machine Learning - Google Classroom",
       icon: "fa-robot",
       url: "https://classroom.google.com",
       code: "qq22zjz",
@@ -41,3 +41,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

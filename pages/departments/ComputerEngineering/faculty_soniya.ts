@@ -16,8 +16,9 @@ const faculty: FacultyData = {
     "Computer Science & Technology",
   ],
   memberships: [
-    "ISTE ÔÇô LM 135427",
+    "ISTE - LM 135427",
   ],
 };
 
 export default faculty;
+

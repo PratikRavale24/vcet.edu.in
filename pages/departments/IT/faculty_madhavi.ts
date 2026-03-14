@@ -21,12 +21,17 @@ const faculty: FacultyData = {
     {
       icon: "fa-flask",
       title: "Minor Research Grant",
-      subtitle: "Automated Lawn Mover Using Internet of Things ┬À Ref. No: APD/ICD/2019-20/762 ┬À Approval Sr. No. 1048",
+      subtitle: "Automated Lawn Mover Using Internet of Things - Ref. No: APD/ICD/2019-20/762 - Approval Sr. No. 1048",
     },
   ],
   websites: [
     { href: "https://madhavihw.wordpress.com", icon: "fa-globe", name: "Personal Website", sub: "madhavihw.wordpress.com" },
   ],
+  youtube: [
+    { href: "https://www.youtube.com/channel/UC5yePBC5yUSRYdVcrJ-MLaQ", name: "Dr. Madhavi Waghmare", sub: "Educational Channel" },
+  ],
 };
 
 export default faculty;
+
+
