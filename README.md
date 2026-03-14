@@ -584,6 +584,7 @@ This project is built by an amazing team of developers committed to creating a w
 | 9 | **shweta1909patil-maker** | [@shweta1909patil-maker](https://github.com/shweta1909patil-maker) |
 | 10 | **Sumit Vishwakarma** | [@Sumitc0de](https://github.com/Sumitc0de) |
 | 11 | **antarikshsingh** | [@antarikshsingh](https://github.com/antarikshsingh) |
+| 12 | **PratikRavale24** | [@PratikRavale24](https://github.com/PratikRavale24) |
 
 ### How to contribute
 
