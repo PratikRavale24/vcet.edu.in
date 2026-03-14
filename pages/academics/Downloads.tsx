@@ -3,6 +3,8 @@ import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
 import { Download, FileText, ExternalLink, FolderOpen } from 'lucide-react';
 
+const ADMISSION_BROCHURE_URL = '/documents/admissions/vcet-brochure.pdf';
+
 const downloadItems = [
   { title: 'Academic Calendar', category: 'Academics', url: '#' },
   { title: 'Syllabus Documents', category: 'Academics', url: '#' },
@@ -11,7 +13,7 @@ const downloadItems = [
   { title: 'NIRF Data Submission', category: 'Research', url: '#' },
   { title: 'Anti-Ragging Policy', category: 'Administration', url: '#' },
   { title: 'Code of Conduct', category: 'Administration', url: '#' },
-  { title: 'Admission Brochure', category: 'Admissions', url: '#' },
+  { title: 'Admission Brochure', category: 'Admissions', url: ADMISSION_BROCHURE_URL },
   { title: 'Fee Structure', category: 'Admissions', url: '#' },
   { title: 'Scholarship Forms', category: 'Admissions', url: '#' },
   { title: 'NAAC SSR Report', category: 'Accreditation', url: '#' },
