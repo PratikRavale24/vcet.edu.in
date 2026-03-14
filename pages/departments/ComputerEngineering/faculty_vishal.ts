@@ -16,8 +16,8 @@ const faculty: FacultyData = {
     "Process Instrumentation",
   ],
   patents: [
-    { title: "Published IPR / Patent 1 ÔÇô details to be updated" },
-    { title: "Published IPR / Patent 2 ÔÇô details to be updated" },
+    { title: "Published IPR / Patent 1 - details to be updated" },
+    { title: "Published IPR / Patent 2 - details to be updated" },
   ],
   memberships: [
     "ISTE",
@@ -25,19 +25,19 @@ const faculty: FacultyData = {
   ],
   eResources: [
     {
-      title: "SCCD ÔÇô Google Classroom (Code 1)",
+      title: "SCCD - Google Classroom (Code 1)",
       icon: "fa-laptop-code",
       url: "https://classroom.google.com",
       code: "agoocnv",
     },
     {
-      title: "SCCD ÔÇô Google Classroom (Code 2)",
+      title: "SCCD - Google Classroom (Code 2)",
       icon: "fa-laptop-code",
       url: "https://classroom.google.com",
       code: "k2lre3p",
     },
     {
-      title: "COA Semester VI ÔÇô Google Classroom",
+      title: "COA Semester VI - Google Classroom",
       icon: "fa-microchip",
       url: "https://classroom.google.com",
       code: "fbyp3py",
@@ -46,3 +46,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

@@ -14,7 +14,7 @@ const faculty: FacultyData = {
     "Ph.D. (Computer)",
   ],
   pgProjects: [
-    { label: "M.E. Project", detail: "1 Project guided at PG Level ÔÇô 2017 (Computer Engineering)" },
+    { label: "M.E. Project", detail: "1 Project guided at PG Level - 2017 (Computer Engineering)" },
   ],
   books: [
     { title: "TCS",      subtitle: "ISBN: 978-93-5451-822-5" },
@@ -44,10 +44,11 @@ const faculty: FacultyData = {
   websites: [
     { href: "https://www.vaishalishirsath.com/",          icon: "fa-globe",         name: "Personal Website",  sub: "vaishalishirsath.com" },
     { href: "https://www.vaishalishirsath.wordpress.com", icon: "fa-blog",          name: "WordPress Blog",    sub: "vaishalishirsath.wordpress.com" },
-    { href: "https://orcid.org/",                         icon: "fa-orcid",         name: "ORCID",             sub: "Researcher ID" },
-    { href: "https://scholar.google.com/",                icon: "fa-user-graduate", name: "Google Scholar",    sub: "Citation Profile" },
-    { href: "https://www.scopus.com/",                    icon: "fa-search",        name: "Scopus",            sub: "Indexed Publications" },
+    { href: "https://orcid.org/0000-0003-2892-526X",      icon: "fa-orcid",         name: "ORCID",             sub: "0000-0003-2892-526X" },
+    { href: "https://www.scopus.com/authid/detail.uri?authorId=58574562200", icon: "fa-search", name: "Scopus", sub: "Author ID: 58574562200" },
   ],
 };
 
 export default faculty;
+
+

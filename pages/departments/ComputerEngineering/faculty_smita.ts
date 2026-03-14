@@ -10,7 +10,7 @@ const faculty: FacultyData = {
   papersPublished: "08",
   photo: "faculty/ce/smita-jawale.jpg",
   qualifications: [
-    "M.E. (Computer Engineering) ÔÇô First Class",
+    "M.E. (Computer Engineering) - First Class",
   ],
   specialization: [
     "Database Management System",
@@ -20,19 +20,19 @@ const faculty: FacultyData = {
     { icon: "fa-user-tie", label: "Deputy HOD" },
   ],
   books: [
-    { title: "Textbook ÔÇô title to be updated" },
-    { title: "Textbook ÔÇô title to be updated" },
-    { title: "Textbook ÔÇô title to be updated" },
-    { title: "Textbook ÔÇô title to be updated" },
-    { title: "Textbook ÔÇô title to be updated" },
-    { title: "Textbook ÔÇô title to be updated" },
+    { title: "Textbook - title to be updated" },
+    { title: "Textbook - title to be updated" },
+    { title: "Textbook - title to be updated" },
+    { title: "Textbook - title to be updated" },
+    { title: "Textbook - title to be updated" },
+    { title: "Textbook - title to be updated" },
   ],
   memberships: [
-    { label: "Life Member ÔÇô ISTE", fullName: "Indian Society for Technical Education" },
+    { label: "Life Member - ISTE", fullName: "Indian Society for Technical Education" },
   ],
   eResources: [
     {
-      title: "Advanced Database Management System ÔÇô Google Classroom",
+      title: "Advanced Database Management System - Google Classroom",
       icon: "fa-database",
       url: "https://classroom.google.com/u/2/w/Mzc5MDk0ODA4NTQ3/tc/Mzc5MDk0ODE2Mjc1",
       code: "hd4zxlf",
@@ -41,3 +41,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

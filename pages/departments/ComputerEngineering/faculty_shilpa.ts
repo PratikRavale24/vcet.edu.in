@@ -16,9 +16,10 @@ const faculty: FacultyData = {
     "Computer Science and Engineering",
   ],
   books: [
-    { title: "Thesis Book Chapter 1 ÔÇô details to be updated" },
-    { title: "Thesis Book Chapter 2 ÔÇô details to be updated" },
+    { title: "Thesis Book Chapter 1 - details to be updated" },
+    { title: "Thesis Book Chapter 2 - details to be updated" },
   ],
 };
 
 export default faculty;
+

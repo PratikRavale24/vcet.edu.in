@@ -11,7 +11,7 @@ const faculty: FacultyData = {
   photo: "faculty/ce/anil-hingmire.jpg",
   qualifications: [
     "PhD (Computer Science and Engineering)",
-    "M.E. (Computer Engineering) ÔÇô First Class",
+    "M.E. (Computer Engineering) - First Class",
   ],
   specialization: [
     "Artificial Intelligence",
@@ -20,13 +20,13 @@ const faculty: FacultyData = {
     { icon: "fa-user-tie", label: "Deputy HOD" },
   ],
   patents: [
-    { title: "Published Patent 1 ÔÇô details to be updated" },
-    { title: "Published Patent 2 ÔÇô details to be updated" },
-    { title: "Copyright ÔÇô details to be updated" },
+    { title: "Published Patent 1 - details to be updated" },
+    { title: "Published Patent 2 - details to be updated" },
+    { title: "Copyright - details to be updated" },
   ],
   memberships: [
-    { label: "Life Member ÔÇô ISTE", fullName: "Indian Society for Technical Education" },
-    { label: "Member ÔÇô IACSIT", fullName: "International Association of Computer Science and Information Technology, Singapore" },
+    { label: "Life Member - ISTE", fullName: "Indian Society for Technical Education" },
+    { label: "Member - IACSIT", fullName: "International Association of Computer Science and Information Technology, Singapore" },
   ],
   websites: [
     {
@@ -39,3 +39,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

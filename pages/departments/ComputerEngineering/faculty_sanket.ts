@@ -20,11 +20,11 @@ const faculty: FacultyData = {
   books: [
     {
       title: "Evaluating the Effectiveness of CNN in Detecting Brain Tumour",
-      subtitle: "Book Chapter ┬À Next Generation Healthcare Systems Using Soft Computing Techniques ┬À CRC Press",
+      subtitle: "Book Chapter - Next Generation Healthcare Systems Using Soft Computing Techniques - CRC Press",
     },
   ],
   memberships: [
-    { label: "Life Member ÔÇô ISTE", fullName: "Indian Society for Technical Education" },
+    { label: "Life Member - ISTE", fullName: "Indian Society for Technical Education" },
   ],
   websites: [
     {
@@ -37,3 +37,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

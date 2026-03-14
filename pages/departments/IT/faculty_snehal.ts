@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   experienceYears: "2.4",
   photo: "faculty/it/snehal-mhatre.jpg",
   qualifications: [
-    "M.E. (Information Technology) ÔÇô CGPA 8.98",
+    "M.E. (Information Technology) - CGPA 8.98",
   ],
   specialization: ["Machine Learning"],
   memberships: [
@@ -18,3 +18,5 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+
+

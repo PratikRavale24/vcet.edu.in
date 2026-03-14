@@ -21,3 +21,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+

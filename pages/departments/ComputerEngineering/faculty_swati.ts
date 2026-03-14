@@ -12,7 +12,7 @@ const faculty: FacultyData = {
   photo: "faculty/ce/swati-varma.jpg",
   qualifications: [
     "Ph.D.",
-    "M.E. (Computers) ÔÇô First Class with Distinction",
+    "M.E. (Computers) - First Class with Distinction",
   ],
   specialization: [
     "Deep Learning",
@@ -22,7 +22,7 @@ const faculty: FacultyData = {
   books: [
     {
       title: "Software Engineering",
-      subtitle: "Tech-Neo Publications ┬À ISBN: 978-93-90904-95-2",
+      subtitle: "Tech-Neo Publications",
     },
   ],
   isbnNumbers: [
@@ -40,6 +40,13 @@ const faculty: FacultyData = {
       sub: "swativarma.home.blog",
     },
   ],
+  youtube: [
+    {
+      href: "https://www.youtube.com/channel/UCCWPB3mGpJvU6BXzWUlljsg",
+      name: "Dr. Swati Varma",
+      sub: "Educational Channel",
+    },
+  ],
   eResources: [
     {
       title: "C Programming Notes",
@@ -55,3 +62,4 @@ const faculty: FacultyData = {
 };
 
 export default faculty;
+
