@@ -360,11 +360,20 @@ Output goes to `dist/`. See [DEPLOYMENT.md](./DEPLOYMENT.md) for full hosting in
 
 *(**Note:** See [wiki/Backend-Integration-Status.md](./wiki/Backend-Integration-Status.md) for details on the current implementation differences between the frontend expectations and backend Laravel Inertia monolith).*
 
-The backend is intended to be a **separate Laravel 12 REST API** at [ivory-26/vcet](https://github.com/ivory-26/vcet).
-This frontend consumes it via `VITE_API_URL` — see `.env.example`.
+The backend is a **Laravel 12 REST API** hosted in a separate repository: [ivory-26/vcet](https://github.com/ivory-26/vcet).
+
+### Backend & Database Setup
+If you are running the backend locally or deploying a new instance:
+
+1. **MySQL Configuration**:
+   - Create a database named `vcet`.
+   - Update your `.env` with the database credentials (use `DB_PORT=4000` for TiDB Cloud).
+2. **Migrations & Seeding**:
+   - Run `php artisan migrate --seed` to set up tables and the admin user (`admin@vcet.edu.in` / `password`).
+3. **Environment Variables**:
+   - Ensure `VITE_API_URL` in your frontend `.env` points to your running backend (e.g., `http://localhost:8000/api` or `https://vcet-api.onrender.com/api`).
 
 ### Data flow
-
 ```
 Backend (Laravel) → services/ → hooks/ → components/
 ```
