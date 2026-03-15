@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import TopBanner from "../../components/TopBanner";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import NaacHeader from "../../components/NaacHeader";
+import PageLayout from "../../components/PageLayout";
+import PageBanner from "../../components/PageBanner";
 import CycleTabs from "../../components/CycleTabs";
 import "../../styles/naac.css";
 
@@ -40,23 +38,21 @@ const NaacPage: React.FC<NaacPageProps> = ({ initialCycle = "cycle1" }) => {
   const [activeCycle, setActiveCycle] = useState<CycleKey>(initialCycle);
 
   return (
-    <div className="naac-page">
-      <div className="naac-site-header">
-        <TopBanner />
-        <Header />
-      </div>
-      <NaacHeader 
+    <PageLayout>
+      <PageBanner
         title={activeCycle === "cycle1" ? "SSR Cycle 1" : "SSR Cycle 2"} 
-        activeCrumb={activeCycle === "cycle1" ? "SSR Cycle 1" : "SSR Cycle 2"} 
+        breadcrumbs={[
+          { label: 'NAAC', href: '#' },
+          { label: activeCycle === "cycle1" ? "SSR Cycle 1" : "SSR Cycle 2" },
+        ]}
       />
 
-      <section className="naac-content">
-        <div className="naac-content__container">
-          <CycleTabs activeCycle={activeCycle} onChange={setActiveCycle} />
+      <div className="naac-page">
+        <section className="naac-content py-16">
+          <div className="naac-content__container container mx-auto px-4">
+            <CycleTabs activeCycle={activeCycle} onChange={setActiveCycle} />
 
-          <div className="naac-divider" />
-
-          {activeCycle === "cycle1" ? (
+            <div className="naac-divider" />          {activeCycle === "cycle1" ? (
             <div className="naac-cycle">
               <p className="naac-ssr">
                 To download SSR Report click here:{" "}
@@ -1846,9 +1842,9 @@ const NaacPage: React.FC<NaacPageProps> = ({ initialCycle = "cycle1" }) => {
             </div>
           )}
         </div>
-      </section>
-      <Footer />
-    </div>
+        </section>
+      </div>
+    </PageLayout>
   );
 };
 

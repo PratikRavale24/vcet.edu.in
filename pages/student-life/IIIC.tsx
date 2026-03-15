@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
 import { Building2, Handshake, Users, GraduationCap, Briefcase, BookOpen, MapPin, Award } from 'lucide-react';
@@ -54,7 +54,36 @@ const highlights = [
   'Alumni in industry acting as ambassadors for IIIC activities',
 ];
 
+const sidebarLinks = [
+  { id: 'about',    label: 'About Industry-Institute Interaction Cell', icon: 'ph-info' },
+  { id: 'roles',    label: 'Roles of Industry-Institute Interaction Cell', icon: 'ph-briefcase' },
+  { id: 'mou',      label: 'MOU', icon: 'ph-handshake' },
+  { id: 'projects', label: 'Collaborative Projects', icon: 'ph-buildings' },
+  { id: 'events',   label: 'Events', icon: 'ph-calendar-star' },
+];
+
 const IIIC: React.FC = () => {
+  const [activeId, setActiveId] = useState('about');
+  const activeLink = sidebarLinks.find(l => l.id === activeId);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    const t = setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach((el) => observer.observe(el));
+    }, 50);
+    return () => { clearTimeout(t); observer.disconnect(); };
+  }, [activeId]);
+
   return (
     <PageLayout>
       <PageBanner
@@ -64,134 +93,110 @@ const IIIC: React.FC = () => {
         ]}
       />
 
-      {/* Overview */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="reveal">
-                <div className="bg-brand-light rounded-2xl aspect-[4/3] flex items-center justify-center border border-brand-blue/10">
-                  <span className="text-sm font-semibold text-brand-blue/40 tracking-wide">
-                    iiic.jpg
-                  </span>
-                </div>
-              </div>
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 px-6 lg:px-12 py-12">
+        {/* Sticky Sidebar */}
+        <aside className="w-full lg:w-[320px] flex-shrink-0">
+          <div className="sticky top-28 bg-white rounded-xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] overflow-hidden border border-slate-200">
+            <nav className="flex flex-col py-2">
+              {sidebarLinks.map((link) => {
+                const isActive = activeId === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => setActiveId(link.id)}
+                    className={`px-6 py-4 text-[15px] text-left transition-all flex items-center justify-between group ${
+                        isActive
+                          ? 'bg-[#183a68] text-[#f2a900] font-semibold'
+                          : 'text-[#183a68] font-medium hover:bg-slate-50'
+                    }`}
+                  >
+                    <span className="flex items-center gap-4">
+                      <i className={`ph ${link.icon} text-xl ${ isActive ? '' : 'opacity-70'}`} />
+                      {link.label}
+                    </span>
+                    {isActive && (
+                      <i className="ph ph-arrow-right text-sm transform group-hover:translate-x-1 transition-transform" />
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
+        </aside>
 
-              <div className="reveal" style={{ transitionDelay: '0.1s' }}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-0.5 bg-brand-gold" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">
-                    Industry Connect
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-6">
-                  Industry-Institute Interaction Cell
-                </h2>
-                <p className="text-slate-500 leading-relaxed mb-4">
-                  The Industry-Institute Interaction Cell (IIIC) at VCET serves as a bridge between
-                  academia and industry. The cell facilitates mutually beneficial partnerships that
-                  enhance the quality of education and prepare students for successful careers.
+        {/* Main Content */}
+        <main className="flex-1 w-full min-w-0">
+          
+          {/* About Tab */}
+          {activeId === 'about' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-justify md:text-left text-[15px]">
+                <p>
+                  In today&apos;s world, Engineering Institutions need to interact with the corresponding Industries for improving the quality of the Engineers by understanding their expectations. VCET has started Industry Institute Interaction Cell with this objective to have more Companies involved and our students will get benefit from the MOU&apos;s done with these companies. We facilitate students for interacting with the Company by organizing events and activities. We want to help students to improve their knowledge and skills and for getting them job in good Companies. This III Cell tries to provide internship, Industrial visit, Guest Lectures &amp; workshops for the students under MOU signed with the industries.
                 </p>
-                <p className="text-slate-500 leading-relaxed">
-                  Through MoUs, guest lectures, industrial visits, internships, and collaborative
-                  projects, IIIC ensures that students gain practical exposure and industry-relevant
-                  skills alongside their academic learning.
+                <div className="mt-8">
+                  <h3 className="text-xl font-bold text-[#183a68] mb-4">Objectives</h3>
+                  <ol className="list-decimal pl-5 space-y-3">
+                    <li>To bridge the gap between Industry and Institute.</li>
+                    <li>To establish convergence with industrial and research organizations from various fields through MOUs as a form of interaction.</li>
+                    <li>To establish Centre of Excellence by industry/ corporate to provide real time exposure on technologies.</li>
+                    <li>To share the experience and expertise between Institutions and Industry for mutual benefit.</li>
+                  </ol>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Roles Tab */}
+          {activeId === 'roles' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Roles of Industry-Institute Interaction Cell</h3>
+                <ul className="list-disc pl-5 space-y-3">
+                  <li>To give industrial exposure to Faculty members and students, thus enabling them to tune their knowledge to cope with the industrial culture.</li>
+                  <li>Continuing Education and Training for Faculty.</li>
+                  <li>Training &amp; Internship for Students.</li>
+                  <li>B.E. Project work in industries under joint guidance of the faculty and experts from industry.</li>
+                  <li>To assist the Departments in organizing workshops, conferences and symposia with joint participation of the industries.</li>
+                  <li>Encouraging Engineers from industries to visit institution to deliver lectures.</li>
+                  <li>To organize industrial visits for Faculty members and students.</li>
+                  <li>To coordinate/ identify industrial partners for proposing &apos;Centre for Excellence&apos;.</li>
+                  <li>To assist the Training and Placement Cell.</li>
+                  <li>Visit of industry executives and practicing engineers to the institute for seeing research work and laboratories.</li>
+                  <li>Memorandum of Understanding between the institute and industries to bring the two sides emotionally and strategically closer.</li>
+                  <li>Visits of faculty to industry for study and discussions or delivering lectures on subjects of mutual interest.</li>
+                  <li>Visiting faculty/professors from industries.</li>
+                  <li>Practical training of students in industries.</li>
+                </ul>
+              </div>
+            </section>
+          )}
+
+          {/* Events Tab */}
+          {activeId === 'events' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Events</h3>
+                <p>
+                  Successfully completed Internship Program organized by IIIC, VCET and IETE, Mumbai centre. Students from VJTI, DBIT, Datta Meghe COE, Atharva COE, VIVA IT along with VCET participated.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
+          )}
 
-      {/* Stats */}
-      <section className="py-12 bg-gradient-to-r from-brand-blue to-brand-navy">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-              {stats.map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="reveal text-center"
-                  style={{ transitionDelay: `${idx * 0.1}s` }}
-                >
-                  <div className="w-12 h-12 mx-auto rounded-xl bg-white/10 flex items-center justify-center mb-3">
-                    <stat.icon className="w-5 h-5 text-brand-gold" />
-                  </div>
-                  <div className="text-2xl font-display font-bold text-white">{stat.value}</div>
-                  <div className="text-xs text-white/60 mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Activities */}
-      <section className="py-16 md:py-24 bg-brand-light">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Activities</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
+          {/* Placeholders for other tabs */}
+          {activeId !== 'about' && activeId !== 'roles' && activeId !== 'events' && (
+            <section className="reveal bg-white rounded-2xl p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col items-center justify-center text-center min-h-[400px]">
+              <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6">
+                <i className={`ph ${activeLink?.icon ?? 'ph-folder'} text-3xl text-[#183a68]`} />
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                IIIC Activities
-              </h2>
-            </div>
+              <h3 className="text-xl font-bold text-[#183a68] mb-2">{activeLink?.label}</h3>
+              <p className="text-slate-500">Content for this section is coming soon.</p>
+            </section>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {activities.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
-                  style={{ transitionDelay: `${Math.min(idx * 0.05, 0.4)}s` }}
-                >
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/5 flex items-center justify-center mb-4 group-hover:bg-brand-gold/10 transition-colors duration-300">
-                    <item.icon className="w-5 h-5 text-brand-blue/60 group-hover:text-brand-gold transition-colors duration-300" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-brand-navy mb-2 font-display">{item.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Highlights */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Highlights</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Key Highlights
-              </h2>
-            </div>
-
-            <div className="space-y-3">
-              {highlights.map((highlight, idx) => (
-                <div
-                  key={idx}
-                  className="reveal flex items-start gap-4 bg-brand-light rounded-xl p-4 hover:shadow-md transition-all duration-300"
-                  style={{ transitionDelay: `${Math.min(idx * 0.04, 0.4)}s` }}
-                >
-                  <div className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Award className="w-4 h-4 text-brand-gold" />
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">{highlight}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+        </main>
+      </div>
     </PageLayout>
   );
 };

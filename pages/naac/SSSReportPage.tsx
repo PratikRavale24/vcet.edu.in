@@ -1,5 +1,6 @@
 import React from "react";
 import PageLayout from "../../components/PageLayout";
+import PageBanner from "../../components/PageBanner";
 
 const sssReports = [
   {
@@ -30,37 +31,13 @@ const SSSReport: React.FC = () => {
 
   return (
     <PageLayout>
-      <section className="bg-[#1a4b7c]">
-        <div className="max-w-7xl mx-auto px-16 py-3 text-xs uppercase tracking-widest text-white flex items-center gap-2">
-          <span className="inline-flex items-center">
-            <svg
-              viewBox="0 0 24 24"
-              className="w-4 h-4 mr-1"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M3 10.5L12 3l9 7.5" />
-              <path d="M5 10v10h14V10" />
-            </svg>
-            HOME
-          </span>
-          <span>&gt;</span>
-          <span>NAAC</span>
-          <span>&gt;</span>
-          <span className="text-[#fdb813] font-semibold">SSS REPORT</span>
-        </div>
-      </section>
-
-      <section className="bg-gradient-to-r from-[#143a61] to-[#1f5d92] text-white">
-        <div className="max-w-7xl mx-auto px-16 py-10">
-          <div className="text-sm uppercase tracking-[0.35em] text-[#fdb813] font-semibold">
-            NAAC
-          </div>
-          <div className="h-1 w-16 bg-[#fdb813] mt-2 mb-4" />
-          <h1 className="text-4xl font-bold font-serif uppercase">SSS Report</h1>
-        </div>
-      </section>
+      <PageBanner
+        title="SSS Report"
+        breadcrumbs={[
+          { label: 'NAAC', href: '#' },
+          { label: 'SSS Report' },
+        ]}
+      />
 
       <main className="flex-1 py-12">
         <div className="max-w-5xl mx-auto px-6">

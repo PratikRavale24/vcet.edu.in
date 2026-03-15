@@ -54,7 +54,36 @@ const trainingHighlights = [
   'Guest sessions by industry leaders and successful alumni',
 ];
 
+const sidebarLinks = [
+  { id: 'training',  label: 'Training', icon: 'ph-chalkboard-teacher' },
+  { id: 'events',    label: 'Events', icon: 'ph-calendar-star' },
+  { id: 'career',    label: 'Career Guidance', icon: 'ph-compass' },
+  { id: 'internship',label: 'Internship', icon: 'ph-briefcase' },
+  { id: 'gallery',   label: 'Gallery', icon: 'ph-image' },
+];
+
 const Training: React.FC = () => {
+  const [activeId, setActiveId] = React.useState('training');
+  const activeLink = sidebarLinks.find(l => l.id === activeId);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    const t = setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach((el) => observer.observe(el));
+    }, 50);
+    return () => { clearTimeout(t); observer.disconnect(); };
+  }, [activeId]);
+
   return (
     <PageLayout>
       <PageBanner
@@ -64,135 +93,198 @@ const Training: React.FC = () => {
         ]}
       />
 
-      {/* Overview */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="reveal">
-                <div className="bg-brand-light rounded-2xl aspect-[4/3] flex items-center justify-center border border-brand-blue/10">
-                  <span className="text-sm font-semibold text-brand-blue/40 tracking-wide">
-                    training.jpg
-                  </span>
-                </div>
-              </div>
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 px-6 lg:px-12 py-12">
+        {/* Sticky Sidebar */}
+        <aside className="w-full lg:w-[320px] flex-shrink-0">
+          <div className="sticky top-28 bg-white rounded-xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] overflow-hidden border border-slate-200">
+            <nav className="flex flex-col py-2">
+              {sidebarLinks.map((link) => {
+                const isActive = activeId === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => setActiveId(link.id)}
+                    className={`px-6 py-4 text-[15px] text-left transition-all flex items-center justify-between group ${
+                        isActive
+                          ? 'bg-[#183a68] text-[#f2a900] font-semibold'
+                          : 'text-[#183a68] font-medium hover:bg-slate-50'
+                    }`}
+                  >
+                    <span className="flex items-center gap-4">
+                      <i className={`ph ${link.icon} text-xl ${ isActive ? '' : 'opacity-70'}`} />
+                      {link.label}
+                    </span>
+                    {isActive && (
+                      <i className="ph ph-arrow-right text-sm transform group-hover:translate-x-1 transition-transform" />
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
+        </aside>
 
-              <div className="reveal" style={{ transitionDelay: '0.1s' }}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-0.5 bg-brand-gold" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">
-                    Career Readiness
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-6">
-                  Training Programs
-                </h2>
-                <p className="text-slate-500 leading-relaxed mb-4">
-                  VCET's Training & Placement Cell conducts comprehensive training programs to
-                  bridge the gap between academic knowledge and industry requirements. Our
-                  structured training approach ensures students are well-prepared for campus
-                  placements and their professional careers.
+        {/* Main Content */}
+        <main className="flex-1 w-full min-w-0">
+          
+          {/* Training Tab */}
+          {activeId === 'training' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Training</h3>
+                <p>
+                  To gear-up the students for facing the recruitment process successfully, an extensive pre-placement training on aptitude, group discussions, interviews and presentation is offered to the students. The various measures taken in line with this are:
                 </p>
-                <p className="text-slate-500 leading-relaxed">
-                  From soft skills and aptitude training to technical workshops and mock interviews,
-                  the programs are designed to develop well-rounded professionals who can excel in
-                  the competitive corporate world.
+                <div className="mt-8">
+                  <ul className="list-disc pl-5 space-y-3">
+                    <li>Scheduling of pre-placement training programs in conjunction with academic schedule</li>
+                    <li>Conducting Aptitude Development training sessions right from the third year of UG program</li>
+                    <li>Collaborating with leading training agencies like IMS, Campus credential, Career Launcher for conduction of Aptitude Development training &amp; Soft skills development to provide high-quality training by seasoned trainers experienced in corporate education.</li>
+                    <li>Conducting technical and domain specific training sessions</li>
+                    <li>Orientation of students on core companies opportunities and preparations required for placements.</li>
+                    <li>Identification of students&apos; soft skills and Aptitude development/training needs and provide additional sessions either through external/internal resources.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Events Tab */}
+          {activeId === 'events' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Events</h3>
+                
+                <div className="overflow-x-auto mt-6">
+                  <table className="w-full text-left border-collapse min-w-[600px]">
+                    <thead>
+                      <tr className="bg-slate-50 text-[#183a68] border-b border-slate-200">
+                        <th className="p-4 font-semibold w-16">SR.</th>
+                        <th className="p-4 font-semibold w-1/4">Name of the Event</th>
+                        <th className="p-4 font-semibold w-1/2">Company Name / Resource Person</th>
+                        <th className="p-4 font-semibold w-32">Date of conduction</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      
+                      {/* Row 1 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-top font-medium text-slate-500">1</td>
+                        <td className="p-4 align-top font-semibold text-brand-navy">Aptitude Training</td>
+                        <td className="p-4 align-top space-y-3">
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span> 
+                            Career Launcher (a part of CL Educate Ltd) focuses on diverse segments of learners across multiple age groups. Led by a team of highly qualified professionals, including IIT-IIM alumni, with a passion for excellence in education.
+                          </p>
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span> 
+                            Aptitude Training for students is arranged by Career Launcher team.
+                          </p>
+                        </td>
+                        <td className="p-4 align-top whitespace-nowrap text-slate-500">Since 2019</td>
+                      </tr>
+
+                      {/* Row 2 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-top font-medium text-slate-500">2</td>
+                        <td className="p-4 align-top font-semibold text-brand-navy">AMCAT Test</td>
+                        <td className="p-4 align-top space-y-3">
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span>
+                            AMCAT (Aspiring Minds Computer Adaptive Assessment) is India&apos;s largest Employability Assessment and is recognized by over many companies. AMCAT gives candidates detailed feedback of their employability (seven stroke feedback) and helps connect them to over 40,000 entry level jobs every year.
+                          </p>
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span>
+                            Duration of test &ndash; 03 hours
+                          </p>
+                        </td>
+                        <td className="p-4 align-top whitespace-nowrap text-slate-500">Since 2019</td>
+                      </tr>
+
+                      {/* Row 3 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-top font-medium text-slate-500">3</td>
+                        <td className="p-4 align-top font-semibold text-brand-navy">Aptitude Test Series</td>
+                        <td className="p-4 align-top space-y-3">
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span>
+                            CoCubes is India&apos;s leading assessment and hiring platform. They run assessments to measure employability across all domains &ndash; from programming to plumbing
+                          </p>
+                          <p>
+                            <span className="text-brand-gold mr-2">❖</span>
+                            CoCubes schedules regular aptitude exams and its assessments for our students allround the year
+                          </p>
+                        </td>
+                        <td className="p-4 align-top whitespace-nowrap text-slate-500">Since 2017</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </section>
+          )}
+
+          {/* Career Guidance Tab */}
+          {activeId === 'career' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Career Guidance</h3>
+                <p>
+                  In line with objectiveof helping in placing students in competitively good companies, apropos initiatives are taken to counsel the students with respect to career guidance and higher education. Some of them are:
+                </p>
+                <div className="mt-8">
+                  <ul className="list-disc pl-5 space-y-3">
+                    <li>Seminars on Higher Studies</li>
+                    <li>Talks on Career Guidance</li>
+                    <li>Motivational lectures by Alumni, Entrepreneurs, Industry guests and Faculty.</li>
+                    <li>Provision of books, magazines, periodicals on Competitive/Civil service/GATE/GRE/TOEFL etc. exams in the library</li>
+                    <li>Subscription of newspapers related to career opportunities such as Rojgar Samachar</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Internship Tab */}
+          {activeId === 'internship' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-[15px]">
+                <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Internship</h3>
+                <p>
+                  Gaining from course books, lectures and other investigation material doesn&apos;t get the job done for all encompassing learning. Down to earth and hands-on learning is fundamental for better comprehension of work forms. Industry internships are sorted out to uncover the students for industry condition which upgrades the down to earth comprehension of the ideas. The students are urged to take up internship programs during their semester break. Training and Placement cell give their guidelines, recommendations, scope and contact subtleties of industries. They additionally help the students by interacting with the industry persons, give them recommendation letters and other fundamental backings.
+                </p>
+                <div className="mt-8">
+                  <h4 className="text-lg font-bold text-[#183a68] mb-4">Procedure:</h4>
+                  <ol className="list-decimal pl-5 space-y-3">
+                    <li>At first Training and Placement cell issue a letter for summer/winter internship for each student.</li>
+                    <li>Students submit this letter to individual organization/industry from where they need to seek training as an intern.</li>
+                    <li>After completion of training, industry gives a certificate or assessment letter.</li>
+                    <li>Students submit Xerox copy of their training certificate issued by industry to training and placement cell.</li>
+                    <li>Students submit feedback and training report for the completed internship.</li>
+                  </ol>
+                </div>
+                <p className="mt-6 pt-4 font-semibold text-[#183a68]">
+                  Some of the industries where students regularly go for Internships are:
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
+          )}
 
-      {/* Stats */}
-      <section className="py-12 bg-gradient-to-r from-brand-blue to-brand-navy">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-              {stats.map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="reveal text-center"
-                  style={{ transitionDelay: `${idx * 0.1}s` }}
-                >
-                  <div className="w-12 h-12 mx-auto rounded-xl bg-white/10 flex items-center justify-center mb-3">
-                    <stat.icon className="w-5 h-5 text-brand-gold" />
-                  </div>
-                  <div className="text-2xl font-display font-bold text-white">{stat.value}</div>
-                  <div className="text-xs text-white/60 mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Training Programs */}
-      <section className="py-16 md:py-24 bg-brand-light">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Programs</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
+          {/* Placeholders for other tabs */}
+          {activeId !== 'training' && activeId !== 'events' && activeId !== 'career' && activeId !== 'internship' && (
+            <section className="reveal bg-white rounded-2xl p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col items-center justify-center text-center min-h-[400px]">
+              <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6">
+                <i className={`ph ${activeLink?.icon ?? 'ph-folder'} text-3xl text-[#183a68]`} />
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Our Training Programs
-              </h2>
-            </div>
+              <h3 className="text-xl font-bold text-[#183a68] mb-2">{activeLink?.label}</h3>
+              <p className="text-slate-500">Content for this section is coming soon.</p>
+            </section>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {trainingPrograms.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
-                  style={{ transitionDelay: `${Math.min(idx * 0.05, 0.4)}s` }}
-                >
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/5 flex items-center justify-center mb-4 group-hover:bg-brand-gold/10 transition-colors duration-300">
-                    <item.icon className="w-5 h-5 text-brand-blue/60 group-hover:text-brand-gold transition-colors duration-300" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-brand-navy mb-2 font-display">{item.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Highlights */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Highlights</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Training Highlights
-              </h2>
-            </div>
-
-            <div className="space-y-3">
-              {trainingHighlights.map((highlight, idx) => (
-                <div
-                  key={idx}
-                  className="reveal flex items-start gap-4 bg-brand-light rounded-xl p-4 hover:shadow-md transition-all duration-300"
-                  style={{ transitionDelay: `${Math.min(idx * 0.04, 0.4)}s` }}
-                >
-                  <div className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Award className="w-4 h-4 text-brand-gold" />
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">{highlight}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+        </main>
+      </div>
     </PageLayout>
   );
 };

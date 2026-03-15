@@ -102,7 +102,7 @@ const menuGroups: MenuGroup[] = [
         ],
       },
       { label: 'Teaching Learning Process',  href: '/teaching-learning' },
-      { label: 'Swayam - NPTEL',             href: '/swayam-nptel' },
+      { label: 'Swayam - NPTEL',             href: 'https://nptel.ac.in/' },
       {
         label: 'Honours / Minor Degree Program',
         href:'/honours-minor',

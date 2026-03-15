@@ -3,10 +3,11 @@ import { ChevronRight, Home } from 'lucide-react';
 
 interface PageBannerProps {
   title: string;
+  subtitle?: string;
   breadcrumbs?: { label: string; href?: string }[];
 }
 
-const PageBanner: React.FC<PageBannerProps> = ({ title, breadcrumbs }) => {
+const PageBanner: React.FC<PageBannerProps> = ({ title, subtitle, breadcrumbs }) => {
   return (
     <>
       {/* ── Breadcrumb strip (below navbar) ── */}
@@ -60,6 +61,14 @@ const PageBanner: React.FC<PageBannerProps> = ({ title, breadcrumbs }) => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
               {title}
             </h1>
+            {subtitle && (
+              <p
+                className="mt-4 max-w-2xl text-sm md:text-base text-white/75 leading-relaxed"
+                style={{ fontFamily: '"Times New Roman", Times, serif' }}
+              >
+                {subtitle}
+              </p>
+            )}
           </div>
         </div>
 
