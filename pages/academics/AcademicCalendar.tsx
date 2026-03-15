@@ -27,7 +27,6 @@ const AcademicCalendar: React.FC = () => {
       <PageBanner
         title="Academic Calendar"
         breadcrumbs={[
-          { label: 'Academics', href: '/academics' },
           { label: 'Academic Calendar' },
         ]}
       />
