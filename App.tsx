@@ -106,7 +106,6 @@ const IETE = lazy(() => import('./pages/clubs/IETE'));
 const ISHRAE = lazy(() => import('./pages/clubs/ISHRAE'));
 const VMEA = lazy(() => import('./pages/clubs/VMEA'));
 const IGBC = lazy(() => import('./pages/clubs/IGBC'));
-const IIC = lazy(() => import('./pages/clubs/IIC'));
 
 // pages/committees
 const CollegeDevelopmentCommittee = lazy(() => import('./pages/committees/CollegeDevelopmentCommittee'));
@@ -121,11 +120,12 @@ const SEDGCell = lazy(() => import('./pages/committees/SEDGCell'));
 
 // pages/naac
 const SSS = lazy(() => import('./pages/naac/SSS'));
-const SSSReport = lazy(() => import('./pages/naac/SSSReport'));
-const SSRCycle1 = lazy(() => import('./pages/naac/SSRCycle1'));
-const SSRCycle2 = lazy(() => import('./pages/naac/SSRCycle2'));
+const SSSReport = lazy(() => import('./pages/naac/SSSReportPage'));
+// const SSRCycle1 = lazy(() => import('./pages/naac/SSRCycle1'));
+// const SSRCycle2 = lazy(() => import('./pages/naac/SSRCycle2'));
 const BestPractices = lazy(() => import('./pages/naac/BestPractices'));
 const NAACScore = lazy(() => import('./pages/naac/NAACScore'));
+const NaacPage = lazy(() => import('./pages/naac/NAACPage'));
 
 // pages/contact
 const ContactUs = lazy(() => import('./pages/contact/ContactUs'));
@@ -312,10 +312,11 @@ function App() {
           <Route path="/sedg-cell" element={<SEDGCell />} />
 
           {/* NAAC */}
+          {/* <Route path="/naac-ssr-cycle-1" element={<NaacPage />} /> */}
           <Route path="/sss" element={<SSS />} />
           <Route path="/sss-report" element={<SSSReport />} />
-          <Route path="/ssr-cycle-1" element={<SSRCycle1 />} />
-          <Route path="/ssr-cycle-2" element={<SSRCycle2 />} />
+          <Route path="/ssr-cycle-1" element={<NaacPage initialCycle="cycle1" />} />
+          <Route path="/ssr-cycle-2" element={<NaacPage initialCycle="cycle2" />} />
           <Route path="/best-practices" element={<BestPractices />} />
           <Route path="/naac-score" element={<NAACScore />} />
 

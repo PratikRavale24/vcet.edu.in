@@ -60,7 +60,6 @@ const Training: React.FC = () => {
       <PageBanner
         title="Training"
         breadcrumbs={[
-          { label: 'Training & Placement', href: '#' },
           { label: 'Training' },
         ]}
       />

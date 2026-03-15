@@ -60,7 +60,6 @@ const IIIC: React.FC = () => {
       <PageBanner
         title="IIIC"
         breadcrumbs={[
-          { label: 'Training & Placement', href: '#' },
           { label: 'IIIC' },
         ]}
       />

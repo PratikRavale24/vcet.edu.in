@@ -138,7 +138,6 @@ const CentralComputing: React.FC = () => {
       <PageBanner
         title="Central Computing Facility"
         breadcrumbs={[
-          { label: 'Facilities', href: '/facilities' },
           { label: 'Central Computing Facility' },
         ]}
       />

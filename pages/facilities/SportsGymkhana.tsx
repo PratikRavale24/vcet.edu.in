@@ -73,7 +73,6 @@ const SportsGymkhana: React.FC = () => {
       <PageBanner
         title="Sports & Gymkhana"
         breadcrumbs={[
-          { label: 'Facilities', href: '/facilities' },
           { label: 'Sports & Gymkhana' },
         ]}
       />

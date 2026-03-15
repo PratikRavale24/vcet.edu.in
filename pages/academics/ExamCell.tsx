@@ -61,7 +61,6 @@ const ExamCell: React.FC = () => {
       <PageBanner
         title="Exam Cell"
         breadcrumbs={[
-          { label: 'Alumni & Exam', href: '#' },
           { label: 'Exam Cell' },
         ]}
       />
