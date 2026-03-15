@@ -1,4 +1,5 @@
 const API_BASE = (import.meta.env.VITE_API_BASE_URL as string) ?? 'http://localhost:8000';
+const API_ORIGIN = API_BASE.replace(/\/api$/, '').replace(/\/$/, '');
 
 interface ApiError {
     status: number;
@@ -36,4 +37,10 @@ export async function get<T>(path: string): Promise<T> {
     }
 
     return data as T;
+}
+
+export function resolveApiUrl(path: string | null | undefined): string | null {
+    if (!path) return null;
+    if (/^https?:\/\//i.test(path) || path.startsWith('blob:')) return path;
+    return `${API_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`;
 }

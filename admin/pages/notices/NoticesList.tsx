@@ -3,33 +3,73 @@ import { Link } from 'react-router-dom';
 import { noticesApi } from '../../api/notices';
 import type { Notice } from '../../types';
 
+function isNoticeExpired(notice: Notice, now: number): boolean {
+  if (!notice.deactivates_at) return false;
+
+  const deactivatesAt = new Date(notice.deactivates_at);
+  if (Number.isNaN(deactivatesAt.getTime())) return false;
+
+  return deactivatesAt.getTime() <= now;
+}
+
+function isNoticeVisible(notice: Notice, now: number): boolean {
+  return notice.is_active && !isNoticeExpired(notice, now);
+}
+
 const NoticesList: React.FC = () => {
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState<number | null>(null);
+  const [toggling, setToggling] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-
-  const [viewedIds, setViewedIds] = useState<Set<number>>(new Set());
+  const [currentTime, setCurrentTime] = useState(() => Date.now());
 
   const load = () => {
     setLoading(true);
+    setError('');
     noticesApi
       .list()
-      .then((r) => setNotices(r.data ?? []))
+      .then((r) => setNotices((r.data ?? []).filter((notice) => !notice.deleted_at)))
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
   };
 
   useEffect(load, []);
 
-  const handleView = (id: number) => {
-    setViewedIds(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 30_000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  const handleToggleStatus = async (notice: Notice) => {
+    const nextIsActive = !notice.is_active;
+
+    setToggling(notice.id);
+    setError('');
+    setNotices((prev) =>
+      prev.map((item) => (item.id === notice.id ? { ...item, is_active: nextIsActive } : item)),
+    );
+
+    try {
+      const response = nextIsActive
+        ? await noticesApi.activate(notice.id)
+        : await noticesApi.deactivate(notice.id);
+
+      setNotices((prev) =>
+        prev.map((item) => (item.id === notice.id ? response.data : item)),
+      );
+    } catch (e) {
+      setNotices((prev) =>
+        prev.map((item) => (item.id === notice.id ? { ...item, is_active: notice.is_active } : item)),
+      );
+      setError(e instanceof Error ? e.message : 'Failed to update notice status');
+    } finally {
+      setToggling(null);
+    }
   };
 
   const handleDelete = async (id: number, title: string) => {
@@ -45,25 +85,29 @@ const NoticesList: React.FC = () => {
     }
   };
 
-  const filteredNotices = notices.filter(n => 
+  const filteredNotices = notices.filter(n =>
     n.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (n.category && n.category.toLowerCase().includes(searchTerm.toLowerCase()))
+    (n.body ?? '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    n.type.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const stats = {
     total: notices.length,
-    published: notices.filter(n => n.is_active).length,
-    drafts: notices.filter(n => !n.is_active).length
+    published: notices.filter((n) => isNoticeVisible(n, currentTime)).length,
+    drafts: notices.filter((n) => !isNoticeVisible(n, currentTime)).length
   };
 
-  const getCategoryStyles = (category: string | null) => {
-    switch (category?.toLowerCase()) {
-      case 'academic': return 'bg-blue-50 text-blue-600';
-      case 'cultural': return 'bg-purple-50 text-purple-600';
-      case 'placement': return 'bg-orange-50 text-orange-600';
+  const getTypeStyles = (type: string) => {
+    switch (type.toLowerCase()) {
+      case 'info': return 'bg-blue-50 text-blue-600';
+      case 'warning': return 'bg-orange-50 text-orange-600';
+      case 'urgent': return 'bg-red-50 text-red-600';
       default: return 'bg-slate-50 text-slate-600';
     }
   };
+
+  const getTypeLabel = (type: string) =>
+    type.charAt(0).toUpperCase() + type.slice(1);
 
   return (
     <div className="space-y-10 pb-12">
@@ -137,72 +181,113 @@ const NoticesList: React.FC = () => {
               <thead className="bg-slate-50/50">
                 <tr className="border-b border-slate-100 text-slate-400 text-[11px] uppercase tracking-[0.1em] font-bold">
                   <th className="text-left px-8 py-5">Notice Title</th>
-                  <th className="text-left px-6 py-5">Category</th>
+                  <th className="text-left px-6 py-5">Type</th>
                   <th className="text-left px-6 py-5">Published Date</th>
                   <th className="text-left px-6 py-5">Status</th>
                   <th className="text-right px-8 py-5">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {filteredNotices.map((n) => (
-                  <tr key={n.id} className="hover:bg-slate-50/30 transition-colors group">
-                    <td className="px-8 py-5">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-[#111827] font-bold text-sm leading-tight group-hover:text-slate-900 transition-colors">
-                          {n.title}
-                        </span>
-                        <span className="text-slate-400 text-[11px] font-medium tracking-wide">
-                          Notice ID: #NOT-{n.id}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-5">
-                      <span className={`px-3 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase ${getCategoryStyles(n.category)}`}>
-                        {n.category || 'General'}
-                      </span>
-                    </td>
-                    <td className="px-6 py-5 text-slate-500 font-medium">
-                      {n.is_active ? new Date(n.created_at).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) : '—'}
-                    </td>
-                    <td className="px-6 py-5">
-                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase ${n.is_active ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-500'}`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${n.is_active ? 'bg-emerald-500' : 'bg-slate-400'}`} />
-                        {n.is_active ? 'Published' : 'Draft'}
-                      </div>
-                    </td>
-                    <td className="px-8 py-5 text-right">
-                      <div className="flex items-center justify-end gap-4">
-                        <button 
-                          onClick={() => handleView(n.id)}
-                          className={`transition-colors ${viewedIds.has(n.id) ? 'text-red-400 hover:text-red-600' : 'text-slate-400 hover:text-slate-700'}`}
-                          title={viewedIds.has(n.id) ? "Mark as Unviewed" : "View"}
-                        >
-                          {viewedIds.has(n.id) ? (
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
-                            </svg>
-                          ) : (
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
+                {filteredNotices.map((n) => {
+                  const expired = isNoticeExpired(n, currentTime);
+                  const visible = isNoticeVisible(n, currentTime);
+                  const statusClasses = expired
+                    ? 'bg-amber-50 text-amber-700'
+                    : visible
+                      ? 'bg-emerald-50 text-emerald-600'
+                      : 'bg-slate-100 text-slate-500';
+                  const dotClasses = expired
+                    ? 'bg-amber-500'
+                    : visible
+                      ? 'bg-emerald-500'
+                      : 'bg-slate-400';
+                  const statusLabel = expired ? 'Expired' : visible ? 'Published' : 'Inactive';
+                  const eyeTitle = expired
+                    ? 'Notice expired. Update the deactivation date to show it again.'
+                    : visible
+                      ? 'Hide from Website'
+                      : 'Show on Website';
+
+                  return (
+                    <tr key={n.id} className="hover:bg-slate-50/30 transition-colors group">
+                      <td className="px-8 py-5">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[#111827] font-bold text-sm leading-tight group-hover:text-slate-900 transition-colors">
+                            {n.title}
+                          </span>
+                          {n.has_pdf && (
+                            <div className="flex items-center gap-2">
+                              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-sky-50 text-sky-700">
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M7 7h10M7 11h10M7 15h6M7 3h7l5 5v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1z" /></svg>
+                                PDF Attached
+                              </span>
+                              {(n.admin_pdf_url ?? n.pdf_url) && (
+                                <a
+                                  href={n.admin_pdf_url ?? n.pdf_url ?? '#'}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="text-[11px] font-bold text-slate-500 hover:text-slate-800 transition-colors"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  Preview
+                                </a>
+                              )}
+                            </div>
                           )}
-                        </button>
-                        <Link to={`/admin/notices/${n.id}/edit`} className="text-slate-400 hover:text-[#1e293b] transition-colors" title="Edit">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-                        </Link>
-                        <button 
-                          onClick={() => handleDelete(n.id, n.title)}
-                          disabled={deleting === n.id}
-                          className="text-slate-400 hover:text-red-600 transition-colors disabled:opacity-30" 
-                          title="Delete"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                          <span className="text-slate-400 text-[11px] font-medium tracking-wide">
+                            Notice ID: #NOT-{n.id}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-5">
+                        <span className={`px-3 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase ${getTypeStyles(n.type)}`}>
+                          {getTypeLabel(n.type)}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5 text-slate-500 font-medium">
+                        {new Date(n.created_at).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}
+                      </td>
+                      <td className="px-6 py-5">
+                        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase ${statusClasses}`}>
+                          <span className={`w-1.5 h-1.5 rounded-full ${dotClasses}`} />
+                          {statusLabel}
+                        </div>
+                      </td>
+                      <td className="px-8 py-5 text-right">
+                        <div className="flex items-center justify-end gap-4">
+                          <button 
+                            onClick={() => handleToggleStatus(n)}
+                            disabled={toggling === n.id || expired}
+                            className={`transition-colors disabled:opacity-40 ${visible ? 'text-slate-400 hover:text-slate-700' : 'text-red-400 hover:text-red-600'}`}
+                            title={eyeTitle}
+                          >
+                            {visible ? (
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                              </svg>
+                            ) : (
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                              </svg>
+                            )}
+                          </button>
+                          <Link to={`/admin/notices/${n.id}/edit`} className="text-slate-400 hover:text-[#1e293b] transition-colors" title="Edit">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                          </Link>
+                          <button 
+                            onClick={() => handleDelete(n.id, n.title)}
+                            disabled={deleting === n.id}
+                            className="text-slate-400 hover:text-red-600 transition-colors disabled:opacity-30" 
+                            title="Delete"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           )}

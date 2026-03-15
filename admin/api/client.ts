@@ -6,22 +6,96 @@ const API_BASE =
     "https://vcet.edu.in"
   ).replace(/\/$/, "") + "/api";
 
-async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+const API_ORIGIN = API_BASE.replace(/\/api$/, "");
+const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
+let csrfBootstrapPromise: Promise<void> | null = null;
+
+function getCookie(name: string): string | null {
+  if (typeof document === "undefined") return null;
+
+  const prefixed = `${name}=`;
+  const match = document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(prefixed));
+
+  if (!match) return null;
+
+  return decodeURIComponent(match.slice(prefixed.length));
+}
+
+function buildHeaders(input?: HeadersInit): Headers {
+  const headers = new Headers(input);
+  headers.set("Accept", "application/json");
+  headers.set("X-Requested-With", "XMLHttpRequest");
+  return headers;
+}
+
+async function ensureCsrfCookie(forceRefresh = false): Promise<void> {
+  if (!forceRefresh && getCookie("XSRF-TOKEN")) {
+    return;
+  }
+
+  if (!csrfBootstrapPromise || forceRefresh) {
+    csrfBootstrapPromise = fetch(`${API_BASE}/auth/csrf-token`, {
+      method: "GET",
+      credentials: "include",
+      headers: buildHeaders(),
+    }).then(async (res) => {
+      if (!res.ok) {
+        const message = await res.text().catch(() => "");
+        throw new Error(message || `Unable to initialize CSRF protection (HTTP ${res.status})`);
+      }
+    }).finally(() => {
+      csrfBootstrapPromise = null;
+    });
+  }
+
+  await csrfBootstrapPromise;
+}
+
+function applyCsrfHeader(headers: Headers): void {
+  const token = getCookie("XSRF-TOKEN");
+  if (token) {
+    headers.set("X-XSRF-TOKEN", token);
+  }
+}
+
+function extractErrorMessage(status: number, json: unknown): string {
+  const payload = json as { message?: string } | null;
+  if (status === 419) {
+    return "Your admin session expired or the CSRF token is missing. Refresh the page and sign in again if needed.";
+  }
+
+  return payload?.message ?? `HTTP ${status}`;
+}
+
+async function request<T>(path: string, options: RequestInit = {}, retryOnCsrf = true): Promise<T> {
+  const method = (options.method ?? "GET").toUpperCase();
+  const headers = buildHeaders(options.headers);
+  headers.set("Content-Type", "application/json");
+
+  if (!SAFE_METHODS.has(method)) {
+    await ensureCsrfCookie();
+    applyCsrfHeader(headers);
+  }
+
   const res = await fetch(`${API_BASE}${path}`, {
     ...options,
+    method,
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      ...(options.headers as Record<string, string> | undefined),
-    },
+    headers,
   });
 
   const json = await res.json();
-  if (!res.ok)
-    throw new Error(
-      (json as { message?: string })?.message ?? `HTTP ${res.status}`,
-    );
+  if (!res.ok) {
+    if (res.status === 419 && retryOnCsrf) {
+      await ensureCsrfCookie(true);
+      return request<T>(path, options, false);
+    }
+
+    throw new Error(extractErrorMessage(res.status, json));
+  }
   return json as T;
 }
 
@@ -30,20 +104,39 @@ async function requestForm<T>(
   path: string,
   body: FormData,
   method = "POST",
+  retryOnCsrf = true,
 ): Promise<T> {
+  const normalizedMethod = method.toUpperCase();
+  const headers = buildHeaders();
+
+  if (!SAFE_METHODS.has(normalizedMethod)) {
+    await ensureCsrfCookie();
+    applyCsrfHeader(headers);
+  }
+
   const res = await fetch(`${API_BASE}${path}`, {
-    method,
+    method: normalizedMethod,
     credentials: "include",
-    headers: { Accept: "application/json" },
+    headers,
     body,
   });
 
   const json = await res.json();
-  if (!res.ok)
-    throw new Error(
-      (json as { message?: string })?.message ?? `HTTP ${res.status}`,
-    );
+  if (!res.ok) {
+    if (res.status === 419 && retryOnCsrf) {
+      await ensureCsrfCookie(true);
+      return requestForm<T>(path, body, method, false);
+    }
+
+    throw new Error(extractErrorMessage(res.status, json));
+  }
   return json as T;
+}
+
+export function resolveApiUrl(path: string | null | undefined): string | null {
+  if (!path) return null;
+  if (/^https?:\/\//i.test(path) || path.startsWith("blob:")) return path;
+  return `${API_ORIGIN}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export const client = { request, requestForm };
