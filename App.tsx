@@ -121,7 +121,7 @@ const SEDGCell = lazy(() => import('./pages/committees/SEDGCell'));
 
 // pages/naac
 const SSS = lazy(() => import('./pages/naac/SSS'));
-const SSSReport = lazy(() => import('./pages/naac/SSSReport'));
+const SSSReport = lazy(() => import('./pages/naac/SSSReportPage'));
 // const SSRCycle1 = lazy(() => import('./pages/naac/SSRCycle1'));
 // const SSRCycle2 = lazy(() => import('./pages/naac/SSRCycle2'));
 const BestPractices = lazy(() => import('./pages/naac/BestPractices'));
