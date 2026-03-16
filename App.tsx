@@ -175,6 +175,10 @@ const MMSStudentsLifeOscillations = lazy(() => import('./pages/mms/students-life
 const MMSStudentsLifeIdeathon = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeIdeathon'));
 const MMSStudentsLifeRankers = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeRankers'));
 const MMSFacilities = lazy(() => import('./pages/mms/facilities/MMSFacilities'));
+const MMSFacilitiesLibrary = lazy(() => import('./pages/mms/facilities/MMSFacilitiesLibrary'));
+const MMSFacilitiesSeminarHall = lazy(() => import('./pages/mms/facilities/MMSFacilitiesSeminarHall'));
+const MMSFacilitiesClassroom = lazy(() => import('./pages/mms/facilities/MMSFacilitiesClassroom'));
+const MMSFacilitiesGymkhana = lazy(() => import('./pages/mms/facilities/MMSFacilitiesGymkhana'));
 const MMSFAQs = lazy(() => import('./pages/mms/faqs/MMSFAQs'));
 
 /* ── Admin Panel Pages (lazy) ── */
@@ -425,6 +429,10 @@ function App() {
           <Route path="/mms/students-life/ideathon-1-0" element={<MMSStudentsLifeIdeathon />} />
           <Route path="/mms/students-life/rankers" element={<MMSStudentsLifeRankers />} />
           <Route path="/mms/facilities" element={<MMSFacilities />} />
+          <Route path="/mms/facilities/library" element={<MMSFacilitiesLibrary />} />
+          <Route path="/mms/facilities/seminar-hall" element={<MMSFacilitiesSeminarHall />} />
+          <Route path="/mms/facilities/classroom" element={<MMSFacilitiesClassroom />} />
+          <Route path="/mms/facilities/gymkhana" element={<MMSFacilitiesGymkhana />} />
           <Route path="/mms/faqs" element={<MMSFAQs />} />
 
           {/* ─── Admin Panel ─── */}
