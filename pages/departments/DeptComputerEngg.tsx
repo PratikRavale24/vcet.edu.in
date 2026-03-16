@@ -21,43 +21,11 @@ const sidebarLinks = [
   { id: 'newsletter',   label: 'Newsletter',                   icon: 'ph-newspaper' },
 ];
 
-/* ── Core skills ────────────────────────────────────────────── */
-const skills = [
-  { icon: 'ph-code',            label: 'Programming & Algorithms' },
-  { icon: 'ph-database',        label: 'Database Management' },
-  { icon: 'ph-brain',           label: 'Artificial Intelligence & ML' },
-  { icon: 'ph-cloud',           label: 'Cloud Computing' },
-  { icon: 'ph-shield-check',    label: 'Cyber Security' },
-  { icon: 'ph-network',         label: 'Computer Networks' },
-  { icon: 'ph-terminal-window', label: 'Operating Systems' },
-];
-
-/* ── Career roles ────────────────────────────────────────────── */
-const roles = [
-  {
-    icon: 'ph-code-block', accent: 'gold', title: 'Software Engineer',
-    description: "Software Engineers design, develop, and maintain software systems. They work across the full stack — from backend logic to frontend interfaces — applying engineering principles to create reliable, scalable, and maintainable software products for businesses and end users.",
-  },
-  {
-    icon: 'ph-cloud-arrow-up', accent: 'navy', title: 'Cloud & DevOps Engineer',
-    description: "Cloud & DevOps Engineers build and maintain the infrastructure that powers modern applications. They automate deployment pipelines, manage cloud platforms (AWS, Azure, GCP), and bridge the gap between development and operations to accelerate delivery cycles.",
-  },
-  {
-    icon: 'ph-shield-check', accent: 'gold', title: 'Cybersecurity Analyst',
-    description: "Cybersecurity Analysts protect organizational systems from digital threats. They monitor networks for breaches, conduct vulnerability assessments, implement security protocols, and respond to incidents — ensuring the confidentiality, integrity, and availability of data.",
-  },
-  {
-    icon: 'ph-graph', accent: 'navy', title: 'Machine Learning Engineer',
-    description: "ML Engineers build intelligent systems that learn from data. They design and deploy machine learning models for applications such as recommendation systems, image recognition, natural language processing, and predictive analytics.",
-  },
-  {
-    icon: 'ph-device-mobile', accent: 'gold', title: 'Full Stack / App Developer',
-    description: "Full Stack Developers craft end-to-end digital products — designing databases, writing server-side logic, and building responsive user interfaces. App Developers specialize in mobile platforms, creating feature-rich iOS and Android applications.",
-  },
-];
-
-const delayClass = (idx: number) =>
-  idx % 3 === 0 ? 'delay-100' : idx % 3 === 1 ? 'delay-200' : 'delay-300';
+const delayClass = (idx: number) => {
+  if (idx % 3 === 0) return 'delay-100';
+  if (idx % 3 === 1) return 'delay-200';
+  return 'delay-300';
+};
 
 /* ── Component ─────────────────────────────────────────────── */
 const DeptComputerEngg: React.FC = () => {
@@ -144,6 +112,7 @@ const DeptComputerEngg: React.FC = () => {
               {/* dept info */}
               <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
                 <div className="space-y-6 text-slate-600 leading-8 text-left">
+                  <p className="text-lg font-bold text-brand-navy">Dr. Megha Trivedi, Associate Professor &amp; Head Of Department</p>
                   <p>
                     The Department of Computer Engineering was established in the year 1999 to impart knowledge and develop practical
                     skills in various areas of computer engineering. The Department offers an undergraduate program in Computer Engineering
@@ -165,73 +134,21 @@ const DeptComputerEngg: React.FC = () => {
                   <p>
                     The Department also has a student-driven Android Application Development Club, a Meta-Club, and a Microsoft Learn
                     Students Club to foster peer learning and skill development. The Department publishes a newsletter, an e-magazine,
-                    and a wall magazine designed by students.
+                    and a wall magazine designed by students, which encompasses articles contributed by students and faculty.
                   </p>
                   <p>
-                    The Department encourages students for various IPR activities such as publications, copyrights, and patents. The
-                    Department provides placement and higher studies support through various guidance sessions.
+                    Various self-learning opportunities are provided to the students through platforms such as e-Yantra Robotics Laboratory
+                    (in association with IIT Bombay), Virtual Laboratory, Infosys Springboard and Swayam. The Department encourages students
+                    for IPR activities such as publications, copyrights and patents, and provides placement and higher studies support.
                   </p>
-                  <div className="bg-gradient-to-r from-brand-navylight to-white p-6 rounded-2xl border-l-4 border-brand-gold shadow-inner">
-                    <p className="text-brand-navy font-semibold m-0 flex items-start gap-3">
-                      <i className="ph-fill ph-lightbulb text-brand-gold text-2xl mt-1 flex-shrink-0" />
-                      The Department's strong industry connect and placement track record make it one of the most sought-after programs at VCET.
-                    </p>
-                  </div>
+                  <p>
+                    The Department provides opportunities for industrial exposure through internships, guest lectures, seminars, workshops,
+                    industrial projects, product development, and MoU activities. The Department also has strong alumni connections through
+                    social media and professional platforms.
+                  </p>
                 </div>
               </section>
 
-              {/* Skills */}
-              <section className="reveal">
-                <h2 className="text-3xl font-bold text-brand-navy relative inline-block mb-10">
-                  Core Skills in Computer Engineering:
-                  <span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" />
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                  {skills.map((skill, idx) => (
-                    <div
-                      key={skill.label}
-                      className={`reveal ${delayClass(idx)} bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 hover:shadow-md hover:border-brand-gold transition-all duration-300 flex items-center gap-4 group`}
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-brand-navylight flex items-center justify-center text-brand-navy group-hover:bg-brand-gold group-hover:text-white transition-colors flex-shrink-0">
-                        <i className={`ph ${skill.icon} text-2xl`} />
-                      </div>
-                      <span className="font-semibold text-slate-700 leading-tight">{skill.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* Career Roles */}
-              <section className="reveal">
-                <h2 className="text-3xl font-bold text-brand-navy relative inline-block mb-12">
-                  Prominent Career Roles in Computer Engineering:
-                  <span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" />
-                </h2>
-                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-brand-navy before:via-brand-navylight before:to-transparent">
-                  {roles.map((role, idx) => (
-                    <div
-                      key={role.title}
-                      className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal ${delayClass(idx)}`}
-                    >
-                      <div
-                        className={`flex items-center justify-center w-10 h-10 rounded-full border-4 border-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-110 ${
-                          role.accent === 'gold' ? 'bg-brand-gold' : 'bg-brand-navy'
-                        }`}
-                      >
-                        <i className={`ph-fill ${role.icon} text-white text-lg`} />
-                      </div>
-                      <div
-                        className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow border-t-4 ${
-                          role.accent === 'gold' ? 'bg-[#deeaf7] border-t-brand-navy' : 'bg-[#e8f2fb] border-t-brand-gold'
-                        }`}
-                      >
-                        <h3 className="text-xl font-bold text-brand-gold mb-3">{role.title}</h3>
-                        <p className="text-slate-600 text-sm leading-relaxed text-justify">{role.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
             </>
           )}
 
@@ -250,16 +167,13 @@ const DeptComputerEngg: React.FC = () => {
                   <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
                   <div className="relative z-10 p-8 md:p-14">
                     <div className="flex items-center gap-3 mb-8">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(253,184,19,0.15)', border: '1px solid rgba(253,184,19,0.3)' }}>
-                        <i className="ph-fill ph-eye text-xl text-brand-gold" />
-                      </div>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold/70">Department</p>
                         <p className="text-sm font-bold text-white/90 uppercase tracking-widest">Vision</p>
                       </div>
                     </div>
                     <blockquote className="text-2xl md:text-3xl lg:text-4xl font-display font-semibold text-white leading-[1.3] italic mb-10 max-w-4xl">
-                      "To develop competent Computer Engineers empowered with knowledge, skills, and ethical values to serve industry and society."
+                      "To evolve as a center of excellence in the field of Computer Engineering to cater the industrial and societal needs."
                     </blockquote>
                     <div className="flex items-center gap-4">
                       <div className="h-px flex-1 bg-white/10" />
@@ -278,54 +192,27 @@ const DeptComputerEngg: React.FC = () => {
                   </div>
                   <div className="hidden md:flex items-center gap-2 text-slate-400 text-sm">
                     <i className="ph ph-arrow-down text-brand-gold" />
-                    <span className="text-xs tracking-wide">4 Pillars</span>
+                    <span className="text-xs tracking-wide">3 Pillars</span>
                   </div>
                 </div>
                 <div className="h-px bg-gradient-to-r from-brand-gold via-brand-navylight to-transparent" />
 
-                <div className="grid md:grid-cols-2 gap-5 pt-2">
-                  {[
-                    {
-                      id: '01', delay: 'delay-100', icon: 'ph-graduation-cap',
-                      title: 'Quality Education',
-                      body: 'Provide quality education in Computer Engineering with strong fundamentals, preparing graduates who can engineer solutions across software, hardware, and networking domains.',
-                    },
-                    {
-                      id: '02', delay: 'delay-200', icon: 'ph-lightbulb',
-                      title: 'Innovation & Research',
-                      body: 'Foster innovation, research aptitude, and entrepreneurial skills by encouraging students to publish, patent, and participate in national and international competitions.',
-                    },
-                    {
-                      id: '03', delay: 'delay-300', icon: 'ph-compass',
-                      title: 'Ethics & Social Responsibility',
-                      body: 'Inculcate professional ethics, leadership qualities, and social responsibility, enabling graduates to be conscientious contributors to their organizations and communities.',
-                    },
-                    {
-                      id: '04', delay: 'delay-100', icon: 'ph-buildings',
-                      title: 'Industry–Institute Interaction',
-                      body: 'Establish strong industry-institute interaction for holistic student development through MoUs, internships, guest lectures, and industry-sponsored projects.',
-                    },
-                  ].map((m, idx) => (
-                    <div
-                      key={m.id}
-                      className={`reveal ${m.delay} group relative bg-white rounded-2xl p-7 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col`}
-                    >
-                      <div className="absolute inset-0 bg-brand-navy opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                      <span className="absolute top-4 right-5 text-6xl font-display font-bold text-slate-100 group-hover:text-white/10 transition-colors duration-300 leading-none select-none">{m.id}</span>
-                      <div className="relative z-10 flex flex-col flex-1">
-                        <div className="w-11 h-11 rounded-xl bg-brand-navylight group-hover:bg-brand-gold/20 flex items-center justify-center mb-5 transition-colors duration-300">
-                          <i className={`ph-fill ${m.icon} text-xl text-brand-navy group-hover:text-brand-gold transition-colors duration-300`} />
-                        </div>
-                        <h3 className="text-base font-bold text-brand-navy group-hover:text-white transition-colors duration-300 mb-3 leading-snug">{m.title}</h3>
-                        <p className="text-sm text-slate-500 group-hover:text-white/70 leading-relaxed transition-colors duration-300 flex-1">{m.body}</p>
-                        <div className="mt-6 flex items-center gap-2">
-                          <div className="h-px flex-1 bg-slate-100 group-hover:bg-white/20 transition-colors duration-300" />
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-gold">M{idx + 1}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <section className="reveal bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3 rounded-xl border border-slate-200 bg-brand-navylight/35 px-4 py-3 text-slate-700 leading-7">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-brand-navy flex-shrink-0" />
+                      <span>To provide quality technical education with the aid of modern resources.</span>
+                    </li>
+                    <li className="flex items-start gap-3 rounded-xl border border-slate-200 bg-brand-navylight/35 px-4 py-3 text-slate-700 leading-7">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-brand-navy flex-shrink-0" />
+                      <span>To inculcate creative thinking through innovative ideas and project development.</span>
+                    </li>
+                    <li className="flex items-start gap-3 rounded-xl border border-slate-200 bg-brand-navylight/35 px-4 py-3 text-slate-700 leading-7">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-brand-navy flex-shrink-0" />
+                      <span>To encourage life-long learning, leadership skills, entrepreneur skills with ethical and moral values.</span>
+                    </li>
+                  </ul>
+                </section>
               </section>
             </div>
           )}
@@ -333,15 +220,20 @@ const DeptComputerEngg: React.FC = () => {
           {/* ════ DAB ════════════════════════════════════════════ */}
           {activeId === 'dab' && (() => {
             const members = [
-              { sr: 1, name: 'Dr. Rakesh Himte',   designation: 'Principal',                    org: 'VCET, Vasai',       role: 'Chairman',                tag: 'internal' },
-              { sr: 2, name: 'Dr. Megha Trivedi',   designation: 'HOD, Computer Engineering',   org: 'VCET, Vasai',       role: 'Head of Department',      tag: 'internal' },
-              { sr: 3, name: 'TBD',                 designation: 'Academic Representative',      org: 'External Institute', role: 'Academic Representative', tag: 'academic' },
-              { sr: 4, name: 'TBD',                 designation: 'Academic Representative',      org: 'External Institute', role: 'Academic Representative', tag: 'academic' },
-              { sr: 5, name: 'TBD',                 designation: 'Industry Expert',              org: 'Industry Partner',   role: 'Industry Representative', tag: 'industry' },
-              { sr: 6, name: 'TBD',                 designation: 'Industry Expert',              org: 'Industry Partner',   role: 'Industry Representative', tag: 'industry' },
-              { sr: 7, name: 'TBD',                 designation: 'Senior Faculty, Comp. Engg',   org: 'VCET, Vasai',       role: 'Secretary',               tag: 'internal' },
-              { sr: 8, name: 'TBD',                 designation: 'BE Student',                   org: 'VCET, Vasai',       role: 'Student Representative',  tag: 'student'  },
-              { sr: 9, name: 'TBD',                 designation: 'TE Student',                   org: 'VCET, Vasai',       role: 'Student Representative',  tag: 'student'  },
+              { sr: 1, name: 'Dr. Rakesh Himte', designation: 'Principal', org: 'VCET, Vasai', role: 'Chairman', tag: 'internal' },
+              { sr: 2, name: 'Dr. Vikas Gupta', designation: 'Dean, Academics', org: 'VCET, Vasai', role: 'Dean', tag: 'internal' },
+              { sr: 3, name: 'Dr. Megha Trivedi', designation: 'HOD, Comps', org: 'VCET, Vasai', role: 'HOD', tag: 'internal' },
+              { sr: 4, name: 'Dr. Swapna Borde', designation: 'Asst. Professor', org: 'VCET, Vasai', role: 'Sr. Faculty', tag: 'internal' },
+              { sr: 5, name: 'Dr. Subhash Shinde', designation: 'Vice-Principal LTCOE & Member BOS, Comp Engg, UoM', org: 'University Representative', role: 'Academic Representative', tag: 'academic' },
+              { sr: 6, name: 'Mr. Gaurav Ghelani', designation: 'Academic Relationship Manager India West & Central', org: 'TCS, Mumbai', role: 'Industry Representative', tag: 'industry' },
+              { sr: 7, name: 'Mr. Sachin Sadre', designation: 'Founder/Director', org: 'Digital Dojo OPC Pvt. Ltd.', role: 'Industry Representative', tag: 'industry' },
+              { sr: 8, name: 'Mr. Rahul Mhatre', designation: 'Senior Engineering Manager', org: 'SAG Banglore Tech. Ltd.', role: 'Industry Representative', tag: 'industry' },
+              { sr: 9, name: 'Mr. Shailesh Jain', designation: 'Software Engineer', org: 'Walmart Labs India', role: 'Alumni Representative', tag: 'academic' },
+              { sr: 10, name: 'Mr. Ritesh Puthran', designation: 'Associate Director', org: 'Cloud Solutions', role: 'Alumni Representative', tag: 'academic' },
+              { sr: 11, name: 'Mr. Ayub Patel', designation: 'Educator', org: 'Vartak College, Vasai', role: 'Parent Representative', tag: 'parent' },
+              { sr: 12, name: 'Ms. Akhila Anilkumar', designation: 'B.E. Computer Engineering', org: 'VCET, Vasai', role: 'Student Representative', tag: 'student' },
+              { sr: 13, name: 'Mr. Aditya Lawate', designation: 'T.E. Computer Engineering', org: 'VCET, Vasai', role: 'Student Representative', tag: 'student' },
+              { sr: 14, name: 'Dr. Anil Hingmire', designation: 'Assistant Professor', org: 'VCET, Vasai', role: 'Convener', tag: 'internal' },
             ];
             const tagStyle: Record<string, string> = {
               internal: 'bg-brand-navylight text-brand-navy',
@@ -360,29 +252,19 @@ const DeptComputerEngg: React.FC = () => {
                   <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy leading-tight">
                     Departmental Advisory Board<span className="text-brand-gold"> (DAB)</span>
                   </h2>
-                  <div className="mt-3 flex items-center gap-2 text-slate-500 text-sm">
-                    <i className="ph-fill ph-check-circle text-brand-gold text-base" />
-                    Following are the members of the committee starting from 2022&#8209;23.
+                  <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6 shadow-md">
+                    <p className="text-slate-600 leading-7">
+                      The Departmental Advisory Board (DAB) has been formed with the purpose of remaining up to date with the latest requirements of the industry, academics and incorporating necessary components in the curricular and extracurricular activities.
+                    </p>
+                    <p className="mt-3 text-slate-600 leading-7">
+                      The DAB is composed of representative members from eminent institutions, industry, alumni, parents, students and faculty of the department.
+                    </p>
+                    <div className="mt-3 flex items-start gap-2 text-slate-600 leading-7">
+                      <i className="ph-fill ph-check-circle text-brand-gold text-base mt-1" />
+                      <span>Following are the members of the committee for three consecutive academic year starting from 2021&#8209;22.</span>
+                    </div>
                   </div>
                   <div className="mt-5 h-px bg-gradient-to-r from-brand-gold via-brand-navylight to-transparent" />
-                </div>
-                <div className="reveal grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {[
-                    { count: '2', label: 'Industry Experts', icon: 'ph-buildings' },
-                    { count: '2', label: 'Academic Reps',    icon: 'ph-graduation-cap' },
-                    { count: '2', label: 'Student Reps',     icon: 'ph-student' },
-                    { count: '3', label: 'Internal Members', icon: 'ph-users' },
-                  ].map(s => (
-                    <div key={s.label} className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-brand-navylight flex items-center justify-center flex-shrink-0">
-                        <i className={`ph-fill ${s.icon} text-xl text-brand-navy`} />
-                      </div>
-                      <div>
-                        <p className="text-2xl font-display font-bold text-brand-navy leading-none">{s.count}</p>
-                        <p className="text-[11px] text-slate-500 mt-0.5">{s.label}</p>
-                      </div>
-                    </div>
-                  ))}
                 </div>
                 <div className="reveal bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
                   <div className="overflow-x-auto">
@@ -431,8 +313,14 @@ const DeptComputerEngg: React.FC = () => {
               { n: '12', text: 'An understanding of engineering and management principles and the ability to apply these to manage projects in multidisciplinary environments.' },
             ];
             const psos = [
-              { n: 'PSO1', text: 'To apply the knowledge of Computer Engineering to analyze, design, and implement solutions for complex computational problems using modern software tools.' },
-              { n: 'PSO2', text: 'To develop applications leveraging AI, cloud computing, cybersecurity, and networking technologies to address real-world industry challenges.' },
+              { n: 'PSO1', text: 'Analyze problems and design applications of database, networking, security, web technology, cloud computing and machine learning using mathematical skills and computational tools.' },
+              { n: 'PSO2', text: 'Develop computer-based systems to provide solutions for organizational and societal problems by working in multidisciplinary teams and pursuing a career in the IT industry.' },
+            ];
+            const peos = [
+              'To facilitate learners with a sound foundation in mathematical, scientific and engineering fundamentals to accomplish professional excellence and succeed in higher studies in the computer engineering domain.',
+              'To enable learners to use modern tools effectively to solve real life problems in the field of computer engineering.',
+              'To equip learners with extensive education necessary to understand the impact of computer technology in a global and social context.',
+              'To inculcate professional and ethical attitude, leadership qualities, commitment to societal responsibilities and prepare learners for life-long learning to build a successful career in Computer Engineering.',
             ];
             return (
               <div className="space-y-16">
@@ -445,25 +333,20 @@ const DeptComputerEngg: React.FC = () => {
                   <div className="mt-4 h-px bg-gradient-to-r from-brand-gold via-brand-navylight to-transparent" />
                 </div>
                 <section className="reveal space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-brand-navy flex items-center justify-center flex-shrink-0">
-                      <i className="ph-fill ph-chart-bar text-brand-gold text-lg" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">12 Outcomes</p>
-                      <h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Outcomes (POs)</h3>
-                    </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">12 Outcomes</p>
+                    <h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Outcomes (POs)</h3>
                   </div>
                   <div className="grid md:grid-cols-2 gap-3">
                     {pos.map((po, idx) => (
                       <div
                         key={po.n}
-                        className={`reveal ${idx % 3 === 0 ? 'delay-100' : idx % 3 === 1 ? 'delay-200' : 'delay-300'} group flex gap-4 items-start bg-white border border-slate-100 rounded-xl px-5 py-4 shadow-sm hover:shadow-md hover:border-brand-gold/40 hover:-translate-y-0.5 transition-all duration-200`}
+                        className={`reveal ${delayClass(idx)} flex gap-4 items-start rounded-xl border border-slate-200 bg-slate-50/70 px-5 py-4`}
                       >
-                        <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-navylight group-hover:bg-brand-navy flex items-center justify-center text-[11px] font-bold text-brand-navy group-hover:text-brand-gold transition-colors duration-200">
+                        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-brand-navylight text-[11px] font-bold text-brand-navy">
                           {po.n}
                         </span>
-                        <p className="text-sm text-slate-600 leading-relaxed pt-1">{po.text}</p>
+                        <p className="pt-1 text-sm leading-relaxed text-slate-700">{po.text}</p>
                       </div>
                     ))}
                   </div>
@@ -472,40 +355,29 @@ const DeptComputerEngg: React.FC = () => {
                   <div className="relative rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(135deg,#0d2d56 0%,#1a4b7c 100%)' }}>
                     <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
                     <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle,rgba(253,184,19,0.12) 0%,transparent 70%)' }} />
-                    <div className="relative z-10 p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6">
-                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(253,184,19,0.15)', border: '1px solid rgba(253,184,19,0.3)' }}>
-                        <i className="ph-fill ph-target text-2xl text-brand-gold" />
-                      </div>
-                      <div>
+                    <div className="relative z-10 p-8 md:p-10">
+                      <div className="max-w-4xl">
                         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold/80 mb-1">Objectives</p>
                         <h3 className="text-2xl font-display font-bold text-white mb-2">Program Educational Objectives (PEOs)</h3>
-                        <p className="text-white/60 text-sm leading-relaxed">PEO details will be published by the department. Please check back or contact the department office for the latest information.</p>
+                        <ul className="space-y-2 pl-5 text-sm leading-relaxed text-white/85 list-disc">
+                          {peos.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>
                 </section>
                 <section className="reveal space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-brand-gold flex items-center justify-center flex-shrink-0">
-                      <i className="ph-fill ph-star text-white text-lg" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">Computer Engineering Specific</p>
-                      <h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Specific Outcomes (PSOs)</h3>
-                    </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">Computer Engineering Specific</p>
+                    <h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Specific Outcomes (PSOs)</h3>
                   </div>
-                  <div className="grid md:grid-cols-2 gap-5">
-                    {psos.map((pso, idx) => (
-                      <div
-                        key={pso.n}
-                        className={`reveal ${idx === 0 ? 'delay-100' : 'delay-200'} relative group bg-white rounded-2xl p-7 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden`}
-                      >
-                        <div className="absolute inset-0 bg-brand-navy opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                        <span className="absolute bottom-3 right-5 text-7xl font-display font-bold text-slate-100 group-hover:text-white/10 transition-colors duration-300 leading-none select-none">{idx + 1}</span>
-                        <div className="relative z-10">
-                          <span className="inline-block px-3 py-1 rounded-full bg-brand-navylight group-hover:bg-brand-gold/20 text-brand-navy group-hover:text-brand-gold text-[11px] font-bold uppercase tracking-widest mb-4 transition-colors duration-300">{pso.n}</span>
-                          <p className="text-slate-600 group-hover:text-white/80 text-sm leading-relaxed transition-colors duration-300">{pso.text}</p>
-                        </div>
+                  <div className="space-y-3">
+                    {psos.map((pso) => (
+                      <div key={pso.n} className="rounded-xl border border-slate-200 bg-white px-5 py-4">
+                        <p className="mb-1 text-sm font-bold text-brand-navy">{pso.n}</p>
+                        <p className="text-sm leading-relaxed text-slate-700">{pso.text}</p>
                       </div>
                     ))}
                   </div>
@@ -815,8 +687,338 @@ const DeptComputerEngg: React.FC = () => {
             );
           })()}
 
-          {/* ════ OTHER SECTIONS (placeholder) ═════════════════ */}
-          {activeId !== 'about' && activeId !== 'vision' && activeId !== 'dab' && activeId !== 'peo' && activeId !== 'faculty' && (
+          {/* ════ PAQIC ════════════════════════════════════════ */}
+          {activeId === 'paqic' && (() => {
+            const members = [
+              'Dr. Megha Trivedi, Head, Department of Computer Engineering (Chairperson)',
+              'Dr. Anil Hingmire, Department of Computer Engineering',
+              'Dr. Uday Aswalekar, Head, Department of Mechanical Engineering',
+              'Dr. Ashish Vanmali, Associate Professor, EXTC Department',
+              'Ms. Sneha Mhatre, Department of Computer Engineering (Coordinator)',
+            ];
+            const roles = [
+              'Devise Standard Operating Procedure for assessment and evaluation of Outcome Based Education (OBE) for the program.',
+              'Confirm linkage of PO, PSO and CO with institute and department vision and mission.',
+              'Review assessment data periodically and identify gaps/shortfalls in the program.',
+              'Recommend action plans to bridge gaps and monitor implementation.',
+              'Review quality and relevance of assessment processes and tools for attainment of COs, POs and PSOs.',
+              'Prepare compliance reports as per accreditation requirements.',
+              'Periodically revise Program Educational Objectives (PEOs), PSOs, etc.',
+              'PAQIC Coordinator schedules meetings, records minutes, and compiles action taken reports.',
+            ];
+            return (
+              <div className="space-y-8">
+                <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="w-8 h-px bg-brand-gold" />
+                    <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-brand-navy mb-4 relative inline-block">Program Assessment and Quality Improvement Committee (PAQIC)<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                  <p className="text-slate-600 leading-7">Frequency of meeting: Minimum 2 per academic year.</p>
+                </section>
+                <section className="reveal bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                  <h4 className="text-xl font-bold text-brand-navy mb-4">Members</h4>
+                  <ul className="list-disc pl-6 text-slate-600 space-y-2">
+                    {members.map((m) => (<li key={m}>{m}</li>))}
+                  </ul>
+                </section>
+                <section className="reveal bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                  <h4 className="text-xl font-bold text-brand-navy mb-4">Roles and Responsibilities</h4>
+                  <ul className="list-disc pl-6 text-slate-600 space-y-2">
+                    {roles.map((r) => (<li key={r}>{r}</li>))}
+                  </ul>
+                </section>
+              </div>
+            );
+          })()}
+
+          {/* ════ INFRASTRUCTURE ═══════════════════════════════ */}
+          {activeId === 'infrastructure' && (() => {
+            const labs = [
+              { name: 'Programming Lab', incharge: 'Dr. Sneha Mhatre & Ms. Joyce D\'Souza', pcs: '20', software: 'Windows 11, Ubuntu Linux, TC, Java, Google Chrome' },
+              { name: 'Project & Research Lab', incharge: 'Dr. Anil Hingmire & Ms. Brinal Colaco', pcs: '16 + 6 GPU systems', software: 'Windows 11, Ubuntu Linux, TC, Java, Google Chrome' },
+              { name: 'AI & Advanced Technology Lab', incharge: 'Dr. Swapna Borde & Ms. Soniya Khatu', pcs: '19 GPU systems', software: 'Windows 11, Ubuntu Linux, TC, Java, Google Chrome' },
+              { name: 'Database Lab', incharge: 'Ms. Smita Jawale & Ms. Bhakti Jadhav', pcs: '21 + HP Server 01', software: 'Windows 11, Ubuntu Linux, TC, Java, Google Chrome' },
+              { name: 'Network & Security Lab', incharge: 'Dr. Dinesh Patil & Dr. Swati Varma', pcs: '20', software: 'Windows 11, Kali Linux, TC, Java, Google Chrome' },
+              { name: 'Software Development Lab', incharge: 'Mr. Sunil Katkar & Ms. Vinal Waghela', pcs: '20', software: 'Windows 11, Ubuntu Linux, TC, Java, Google Chrome' },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <p className="text-slate-600 mb-6">All labs are equipped with internet-enabled systems, licensed software, LCD projector, printer, and network switch. Department conference room is also available.</p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {labs.map((lab, idx) => (
+                    <div key={lab.name} className={`reveal ${delayClass(idx)} border border-slate-200 rounded-2xl p-5 bg-slate-50/50`}>
+                      <h4 className="text-lg font-bold text-brand-navy">LAB {String(idx + 1).padStart(2, '0')} - {lab.name}</h4>
+                      <p className="text-sm text-slate-600 mt-2"><strong>Lab In-Charge:</strong> {lab.incharge}</p>
+                      <p className="text-sm text-slate-600"><strong>Hardware:</strong> HP Core i5 systems ({lab.pcs})</p>
+                      <p className="text-sm text-slate-600"><strong>Software:</strong> {lab.software}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ TOPPERS ══════════════════════════════════════ */}
+          {activeId === 'toppers' && (() => {
+            const toppers = {
+              SE: ['Yadav Rishiraj - 9.51', 'Barve Smit - 9.49', 'Yadav Visha - 9.48'],
+              TE: ['Chavan Yash - 9.74', 'Bargude Vivek - 9.61', 'Borhade Shruti - 9.52'],
+              BE: ['Bhandigare Nishant Tanaji - 9.51', 'Gharat Swara Narottam - 9.49', 'Patil Bramhati Shailesh - 9.32'],
+            };
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Toppers (2024-25)<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-brand-navy text-white">
+                        <th className="px-4 py-3 text-left">SE</th>
+                        <th className="px-4 py-3 text-left">TE</th>
+                        <th className="px-4 py-3 text-left">BE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[0, 1, 2].map((i) => (
+                        <tr key={i} className="border-t border-slate-100">
+                          <td className="px-4 py-3 text-slate-600">{toppers.SE[i]}</td>
+                          <td className="px-4 py-3 text-slate-600">{toppers.TE[i]}</td>
+                          <td className="px-4 py-3 text-slate-600">{toppers.BE[i]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ SYLLABUS ═════════════════════════════════════ */}
+          {activeId === 'syllabus' && (() => {
+            const links = [
+              { label: 'SE - R16 Syllabus', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/SE-Comps_CBCGS_Syllabus.pdf' },
+              { label: 'TE / BE - R16 Syllabus', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/TE_BE-Comp_Engg_CBCGS_Syllabus.pdf' },
+              { label: 'BE - R12 Syllabus', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/BE-Comps_VII_VIII_Syllabus-1.pdf' },
+              { label: 'First Year - R19 Syllabus', url: 'https://vcet.edu.in/wp-content/uploads/2023/07/FE-Final-Syllabus-R19.pdf' },
+              { label: 'SE - R19 Syllabus', url: 'https://vcet.edu.in/wp-content/uploads/2023/06/SE-C-scheme-syllabus-Computer-Engg.pdf' },
+              { label: 'TE - R19 Syllabus', url: 'https://vcet.edu.in/wp-content/uploads/2023/06/T.E.-C-scheme-syllabus-Computer-Engg.pdf' },
+              { label: 'BE - R19 Syllabus', url: 'https://vcet.edu.in/wp-content/uploads/2023/06/B.E.-C-scheme-syllabus-Computer-Engg.pdf' },
+              { label: 'First Year (NEP) 2024-25', url: 'https://vcet.edu.in/wp-content/uploads/2025/01/First-Year-Engineering-All-Branches-Scheme-Syllabus-Sem-I-and-Sem-II-Final-1-July-2024-25-1.pdf' },
+              { label: 'Honours & Minor Degree Program (Data Science)', url: 'https://vcet.edu.in/wp-content/uploads/2023/07/Honours-Minor-Degree-Program-Data-Science.pdf' },
+              { label: 'PO PSO CO - R12', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/NAAC-Comp_PO_PSO_CO_R-12.pdf' },
+              { label: 'PO PSO CO - R16', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/NAAC-Comp_PO_PSO_CO_R-16.pdf' },
+              { label: 'PO PSO CO - R19', url: 'https://vcet.edu.in/wp-content/uploads/2023/10/NACC-COMP_PO_PSO_CO_R-19-updated.pdf' },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Syllabus<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <p className="text-slate-600 mb-5">NEP-2020 MU syllabus link is currently not available in the provided document.</p>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {links.map((item) => (
+                    <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                      <span>{item.label}</span>
+                      <i className="ph ph-arrow-up-right text-brand-gold" />
+                    </a>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ PUBLICATIONS & IPR ═══════════════════════════ */}
+          {activeId === 'patent' && (() => {
+            const links = [
+              { label: 'Patents Published', url: 'https://vcet.edu.in/wp-content/uploads/2025/04/copyright.pdf' },
+              { label: 'Copyrights Registered', url: 'https://vcet.edu.in/wp-content/uploads/2025/04/copyright.pdf' },
+              { label: 'Books & Book Chapters', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/Comp-Book_BookChapter-with-academic-Year.pdf' },
+              { label: 'Faculty Publication Index 2024-25', url: 'https://vcet.edu.in/wp-content/uploads/2025/08/Faculty-Publication-Index-2024-25-up.pdf' },
+              { label: 'Faculty Publication Index 2023-24', url: 'https://vcet.edu.in/wp-content/uploads/2025/04/Faculty-Publication-Index-2023-24.pdf' },
+              { label: 'Faculty Publication Index 2022-23', url: 'https://vcet.edu.in/wp-content/uploads/2025/04/Faculty-Publication-Index-2022-23.pdf' },
+              { label: 'Faculty Publication Index 2021-22', url: 'https://vcet.edu.in/wp-content/uploads/2025/04/Faculty-Publication-Index-2021-22.pdf' },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Publications &amp; IPR<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <div className="space-y-3">
+                  {links.map((item) => (
+                    <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                      <span>{item.label}</span>
+                      <i className="ph ph-arrow-up-right text-brand-gold" />
+                    </a>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ INNOVATION & TECHNIQUE ═══════════════════════ */}
+          {activeId === 'teaching-learning' && (() => {
+            const links = [
+              { label: 'Innovation in Teaching Learning 2025-26', url: 'https://vcet.edu.in/wp-content/uploads/2025/11/Innovative-activities-in-Teaching-Learning_2025-26_Odd_Sem.pdf' },
+              { label: 'Innovation in Teaching Learning 2024-25', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/Innovative-activities-in-Teaching-Learning_2024-25_Odd_Even.pdf' },
+              { label: 'Innovation in Teaching Learning 2023-24', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/Innovative-activities-in-Teaching-Learning_2023-24_Odd_Even.pdf' },
+              { label: 'Innovation in Teaching Learning 2022-23', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/Innovative-activities-in-Teaching-Learning_2022-23_Odd-Even.pdf' },
+              { label: 'Innovation in Teaching Learning 2021-22', url: 'https://vcet.edu.in/wp-content/uploads/2022/01/Innovative-activities-in-Teaching-Learning_2021-22_links.pdf' },
+              { label: 'Innovation in Teaching Learning 2020-21', url: 'https://vcet.edu.in/wp-content/uploads/2022/01/Innovation_teaching_learning-2020-21.pdf' },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Innovation &amp; Technique<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <div className="space-y-3">
+                  {links.map((item) => (
+                    <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                      <span>{item.label}</span>
+                      <i className="ph ph-arrow-up-right text-brand-gold" />
+                    </a>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ MoU ══════════════════════════════════════════ */}
+          {activeId === 'mou' && (
+            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-8 h-px bg-brand-gold" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+              </div>
+              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">MoU<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+              <a href="https://vcet.edu.in/wp-content/uploads/2025/04/MOU-Computer-Summary.pdf" target="_blank" rel="noopener noreferrer" className="group mt-3 flex w-full sm:w-max items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                <span>MoU List</span>
+                <i className="ph ph-arrow-up-right text-brand-gold" />
+              </a>
+            </section>
+          )}
+
+          {/* ════ TIME TABLE ═══════════════════════════════════ */}
+          {activeId === 'time-table' && (
+            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-8 h-px bg-brand-gold" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+              </div>
+              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Time Table<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+              <div className="space-y-3">
+                <a href="https://vcet.edu.in/wp-content/uploads/2025/08/TT_master_2025-26.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors"><span>Master TT 2025-26</span><i className="ph ph-arrow-up-right text-brand-gold" /></a>
+                <a href="https://vcet.edu.in/wp-content/uploads/2025/05/Master_TT_Even_24-25.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors"><span>Master TT Even Sem 2024-25</span><i className="ph ph-arrow-up-right text-brand-gold" /></a>
+              </div>
+            </section>
+          )}
+
+          {/* ════ NEWSLETTER & MAGAZINE ═══════════════════════ */}
+          {activeId === 'newsletter' && (() => {
+            const newsletterLinks = [
+              { label: 'BYTE Odd Sem 2025-26', url: 'https://vcet.edu.in/wp-content/uploads/2025/09/byte.pdf' },
+              { label: 'BYTE Even Sem 2024-25', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/final-Byte-2024-25-even-sem.pdf' },
+              { label: 'BYTE Odd Sem 2024-25', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/BYTE-odd-sem-24-25.pdf' },
+              { label: 'BYTE Odd Sem 2023', url: 'https://vcet.edu.in/wp-content/uploads/2023/11/BYTE-ODD-SEM-2023-1.pdf' },
+              { label: 'BYTE Even Sem 2023', url: 'https://vcet.edu.in/wp-content/uploads/2023/05/News-Letter-Even-Sem-2023.pdf' },
+            ];
+            const wallLinks = [
+              { label: 'Wall Magazine Odd Sem 2025-26', url: 'https://vcet.edu.in/wp-content/uploads/2025/09/VIDYAVARDHINIS-COLLEGE-OF-ENGINEERING-AND-TECHNOLOGY.pdf' },
+              { label: 'Wall Magazine Even Sem 2024-25', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/Wall-2025-even-sem.pdf' },
+              { label: 'Wall Magazine Odd Sem 2024-25', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/Wall-1.pdf' },
+            ];
+            const emagLinks = [
+              { label: 'BYTE E-Magazine Vol I & II', url: 'https://3xlhoob70lrkdyk1voigzw.on.drv.tw/www.bytemagvcet.com/' },
+              { label: 'BYTE E-Magazine Vol III (2021)', url: 'https://3xlhoob70lrkdyk1voigzw.on.drv.tw/www.bytemag2021.com/#p=13' },
+              { label: 'BYTE E-Magazine Vol IV (2022)', url: 'https://bnaunugymx9uazml2zwtvq.on.drv.tw/www.emagzine.com/mobile/' },
+              { label: 'BYTE E-Magazine Vol V (2023)', url: 'https://byte-2023.vercel.app/' },
+              { label: 'BYTE E-Magazine Vol VI (2024)', url: 'https://vcet.edu.in/wp-content/uploads/2025/05/E-Mgazine-2024.pdf' },
+            ];
+            const committeeRows = [
+              { newsletter: 'Sahil Kulabkar', wall: 'Aditya Lawate', emag: 'Polomi Adak' },
+              { newsletter: 'Bramheti Patil', wall: 'Vaishnavi Gaikwad', emag: 'Akhila Anilkumar' },
+              { newsletter: 'Swara Gharat', wall: 'Aditya Bhandare', emag: 'Hrushikesh Shetty' },
+              { newsletter: 'Dhruv Save', wall: 'Paarth Baradia', emag: 'Rohit Redekar' },
+              { newsletter: 'Amey Chaudhari', wall: 'Prathmesh Ingawale', emag: '' },
+              { newsletter: 'Srushti Gawande', wall: 'Mohit Raje', emag: '' },
+              { newsletter: 'Karan Sankhe', wall: 'Vaishnavi Gaikwad', emag: '' },
+              { newsletter: 'Vrusharth Nirmal', wall: 'Pratima Bombe', emag: '' },
+              { newsletter: 'Kshitij Vyas', wall: 'Paarth Baradia', emag: '' },
+              { newsletter: 'Arya Raul', wall: 'Aditya Bhandare', emag: '' },
+              { newsletter: 'Atharva Chavan', wall: '', emag: '' },
+              { newsletter: 'Kunj Vadhia', wall: '', emag: '' },
+              { newsletter: 'Ankita Yadav', wall: '', emag: '' },
+              { newsletter: 'Kartik Rathod', wall: '', emag: '' },
+              { newsletter: 'Sanket Bauskar', wall: '', emag: '' },
+              { newsletter: 'Aditya Shete', wall: '', emag: '' },
+              { newsletter: 'Yash Mohadikar', wall: '', emag: '' },
+              { newsletter: 'Aakansha Chaudhari', wall: '', emag: '' },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100 space-y-8">
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Computer Engineering</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy relative inline-block">Newsletter &amp; Magazine<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <div>
+                  <h4 className="text-lg font-bold text-brand-navy mb-3">Newsletter</h4>
+                  <div className="space-y-2">{newsletterLinks.map((item) => <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors"><span>{item.label}</span><i className="ph ph-arrow-up-right text-brand-gold" /></a>)}</div>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-brand-navy mb-3">Wall Magazine</h4>
+                  <div className="space-y-2">{wallLinks.map((item) => <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors"><span>{item.label}</span><i className="ph ph-arrow-up-right text-brand-gold" /></a>)}</div>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-brand-navy mb-3">E-Magazine</h4>
+                  <div className="space-y-2">{emagLinks.map((item) => <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors"><span>{item.label}</span><i className="ph ph-arrow-up-right text-brand-gold" /></a>)}</div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                  <div className="px-4 py-3 border-b border-slate-100 bg-brand-navylight/40">
+                    <h4 className="text-lg font-bold text-brand-navy">Committee Details</h4>
+                    <p className="text-sm text-slate-600 mt-1">Staff Incharge: Mr. Vikrant Agaskar | vikrant.agaskar@vcet.edu.in | 9822836508</p>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-brand-navy text-white">
+                          <th className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-widest">Newsletter</th>
+                          <th className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-widest">Wall-Magazine</th>
+                          <th className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-widest">E-Magazine</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {committeeRows.map((row, idx) => (
+                          <tr key={`${row.newsletter}-${idx}`} className={`border-t border-slate-100 ${idx % 2 === 1 ? 'bg-slate-50/60' : 'bg-white'}`}>
+                            <td className="px-4 py-3 text-slate-600">{row.newsletter || '-'}</td>
+                            <td className="px-4 py-3 text-slate-600">{row.wall || '-'}</td>
+                            <td className="px-4 py-3 text-slate-600">{row.emag || '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ FALLBACK ═════════════════════════════════════ */}
+          {activeId !== 'about' && activeId !== 'vision' && activeId !== 'dab' && activeId !== 'peo' && activeId !== 'faculty' && activeId !== 'paqic' && activeId !== 'infrastructure' && activeId !== 'toppers' && activeId !== 'syllabus' && activeId !== 'patent' && activeId !== 'teaching-learning' && activeId !== 'mou' && activeId !== 'time-table' && activeId !== 'newsletter' && (
             <section className="reveal bg-white rounded-3xl p-12 shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center min-h-[300px]">
               <div className="w-16 h-16 rounded-2xl bg-brand-navylight flex items-center justify-center mb-4">
                 <i className={`ph ${activeLink?.icon ?? 'ph-folder'} text-3xl text-brand-navy`} />
