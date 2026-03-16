@@ -4,6 +4,19 @@ import { noticesApi } from '../../api/notices';
 import type { Notice } from '../../types';
 import PdfPreviewModal from '../../components/PdfPreviewModal';
 
+function isNoticeExpired(notice: Notice, now: number): boolean {
+  if (!notice.deactivates_at) return false;
+
+  const deactivatesAt = new Date(notice.deactivates_at);
+  if (Number.isNaN(deactivatesAt.getTime())) return false;
+
+  return deactivatesAt.getTime() <= now;
+}
+
+function isNoticeVisible(notice: Notice, now: number): boolean {
+  return notice.is_active && !isNoticeExpired(notice, now);
+}
+
 const NoticesList: React.FC = () => {
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
@@ -25,9 +38,10 @@ const NoticesList: React.FC = () => {
 
   const load = () => {
     setLoading(true);
+    setError('');
     noticesApi
       .list()
-      .then((r) => setNotices(r.data ?? []))
+      .then((r) => setNotices((r.data ?? []).filter((notice) => !notice.deleted_at)))
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
   };
@@ -100,6 +114,9 @@ const NoticesList: React.FC = () => {
     active: notices.filter(n => n.is_active && !isExpired(n)).length,
     expired: notices.filter(n => isExpired(n)).length,
   };
+
+  const getTypeLabel = (type: string) =>
+    type.charAt(0).toUpperCase() + type.slice(1);
 
   return (
     <div className="space-y-10 pb-12">

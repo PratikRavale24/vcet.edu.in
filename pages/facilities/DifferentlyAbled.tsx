@@ -60,7 +60,6 @@ const DifferentlyAbled: React.FC = () => {
       <PageBanner
         title="Differently-Abled Facilities"
         breadcrumbs={[
-          { label: 'Facilities', href: '/facilities' },
           { label: 'Differently-Abled Facilities' },
         ]}
       />

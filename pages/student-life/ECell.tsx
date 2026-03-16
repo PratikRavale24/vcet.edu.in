@@ -1,199 +1,437 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
-import { Rocket, Lightbulb, Users, Award, Target, TrendingUp, Briefcase, Star } from 'lucide-react';
 
-const activities = [
-  {
-    icon: Rocket,
-    title: 'Startup Incubation',
-    description: 'Supporting student startups from ideation to execution with mentorship, resources, and networking opportunities.',
-  },
-  {
-    icon: Lightbulb,
-    title: 'Business Plan Competitions',
-    description: 'Organizing inter-college and intra-college business plan competitions to foster entrepreneurial thinking.',
-  },
-  {
-    icon: Users,
-    title: 'Mentorship Programs',
-    description: 'Connecting aspiring entrepreneurs with experienced mentors from industry and successful startup founders.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Entrepreneurship Workshops',
-    description: 'Conducting workshops on business model canvas, financial planning, marketing strategies, and product development.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Industry Connect',
-    description: 'Facilitating meetings with investors, venture capitalists, and industry leaders for potential collaboration and funding.',
-  },
-  {
-    icon: Star,
-    title: 'Innovation Challenges',
-    description: 'Hosting innovation challenges and hackathons focused on solving real-world problems through entrepreneurial solutions.',
-  },
-];
 
-const stats = [
-  { icon: Rocket, value: '15+', label: 'Student Startups' },
-  { icon: Users, value: '200+', label: 'E-Cell Members' },
-  { icon: Award, value: '10+', label: 'B-Plan Competitions' },
-  { icon: Target, value: '30+', label: 'Workshops Conducted' },
-];
-
-const initiatives = [
-  'Annual Entrepreneurship Summit with keynote speakers from the startup ecosystem',
-  'Startup Saturday sessions with pitch practice and peer feedback',
-  'Collaboration with IIC (Institution Innovation Council) for innovation activities',
-  'Support for patent filing and intellectual property rights awareness',
-  'Tie-ups with incubation centers and startup accelerators',
-  'E-Cell newsletter and social media presence for knowledge sharing',
-  'Alumni entrepreneur network for mentoring and angel investment',
-  'Participation in national-level entrepreneurship events and competitions',
+const sidebarLinks = [
+  { id: 'about',       label: 'Entrepreneurship Cell', icon: 'ph-info' },
+  { id: 'events',      label: 'Events',                icon: 'ph-calendar-star' },
+  { id: 'coordinator', label: 'Co-ordinator',          icon: 'ph-user' },
+  { id: 'gallery',     label: 'Gallery',               icon: 'ph-image' },
 ];
 
 const ECell: React.FC = () => {
+  const [activeId, setActiveId] = useState('about');
+  const activeLink = sidebarLinks.find(l => l.id === activeId);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    const t = setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach((el) => observer.observe(el));
+    }, 50);
+    return () => { clearTimeout(t); observer.disconnect(); };
+  }, [activeId]);
+
   return (
     <PageLayout>
       <PageBanner
         title="E-Cell"
         breadcrumbs={[
-          { label: 'Training & Placement', href: '#' },
           { label: 'E-Cell' },
         ]}
       />
 
-      {/* Overview */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="reveal">
-                <div className="bg-brand-light rounded-2xl aspect-[4/3] flex items-center justify-center border border-brand-blue/10">
-                  <span className="text-sm font-semibold text-brand-blue/40 tracking-wide">
-                    e-cell.jpg
-                  </span>
-                </div>
-              </div>
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 px-6 lg:px-12 py-12">
+        {/* Sticky Sidebar */}
+        <aside className="w-full lg:w-[320px] flex-shrink-0">
+          <div className="sticky top-28 bg-white rounded-xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] overflow-hidden border border-slate-200">
+            <nav className="flex flex-col py-2">
+              {sidebarLinks.map((link) => {
+                const isActive = activeId === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => setActiveId(link.id)}
+                    className={`px-6 py-4 text-[15px] text-left transition-all flex items-center justify-between group ${
+                        isActive
+                          ? 'bg-[#183a68] text-[#f2a900] font-semibold'
+                          : 'text-[#183a68] font-medium hover:bg-slate-50'
+                    }`}
+                  >
+                    <span className="flex items-center gap-4">
+                      <i className={`ph ${link.icon} text-xl ${ isActive ? '' : 'opacity-70'}`} />
+                      {link.label}
+                    </span>
+                    {isActive && (
+                      <i className="ph ph-arrow-right text-sm transform group-hover:translate-x-1 transition-transform" />
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
+        </aside>
 
-              <div className="reveal" style={{ transitionDelay: '0.1s' }}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-0.5 bg-brand-gold" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">
-                    Entrepreneurship
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-6">
-                  Entrepreneurship Cell
-                </h2>
-                <p className="text-slate-500 leading-relaxed mb-4">
-                  The Entrepreneurship Cell (E-Cell) at VCET is a student-driven initiative that
-                  fosters the spirit of entrepreneurship and innovation among students. E-Cell
-                  provides a platform for aspiring entrepreneurs to explore, experiment, and
-                  launch their business ideas.
+        {/* Main Content */}
+        <main className="flex-1 w-full min-w-0">
+          {activeId === 'about' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-6 text-[#5b6574] leading-relaxed text-justify md:text-left text-[15px]">
+                <p>
+                  The entrepreneurship cell of V.C.E.T., known as &apos;E-Cell&apos; is formed with an objective of fostering entrepreneurship skills amongst the students of V.C.E.T.
                 </p>
-                <p className="text-slate-500 leading-relaxed">
-                  Through mentorship programs, business plan competitions, startup incubation
-                  support, and networking events, E-Cell empowers students to think beyond
-                  traditional career paths and create value through entrepreneurial ventures.
+                <p>
+                  It is a student-driven and faculty-guided cell striving to channel the competencies of the budding engineers. It started in the year 2015 and now comprises an overwhelming strength of 50 students across various branches of V.C.E.T. Myriad of activities like seminars, talks &amp; prototype building of the ideas are conducted for the students to strengthen their 6 Ps of success comprising of Patience, Persistence, Perspiration, Passion, Perseverance, and Pragmatism.
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-12 bg-gradient-to-r from-brand-blue to-brand-navy">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-              {stats.map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="reveal text-center"
-                  style={{ transitionDelay: `${idx * 0.1}s` }}
-                >
-                  <div className="w-12 h-12 mx-auto rounded-xl bg-white/10 flex items-center justify-center mb-3">
-                    <stat.icon className="w-5 h-5 text-brand-gold" />
-                  </div>
-                  <div className="text-2xl font-display font-bold text-white">{stat.value}</div>
-                  <div className="text-xs text-white/60 mt-1">{stat.label}</div>
+                <p>
+                  With a variety of programs E-Cell plays a key role in the development of entrepreneurial skills and giving an opportunity to the deserving. At the same time, it has been invoking a sense of responsibility towards the nation in students by empowering social start-up&apos;s as well.
+                </p>
+                
+                <div className="mt-8">
+                  <h3 className="text-xl font-bold text-[#183a68] mb-4">Objectives</h3>
+                  <ol className="list-decimal pl-5 space-y-3">
+                    <li>To inculcate entrepreneurial mindset amongst our students.</li>
+                    <li>To help students validate their ideas.</li>
+                    <li>To help students get mentors who can handhold them.</li>
+                    <li>To help students to find business ecosystem and funding opportunity. Over the years we have tried to meet our motto by hosting various entrepreneurial events such as the Bizmaster competition, the Esummit and the Internship fair. We also hold various talk sessions with our students wherein speakers and entrepreneurs from various business backgrounds share their experiences and motivate the students to build a business mindset and help them to come forward with their ideas to kick start their entrepreneurial journey.</li>
+                  </ol>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Activities */}
-      <section className="py-16 md:py-24 bg-brand-light">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Activities</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                E-Cell Activities
-              </h2>
-            </div>
+            </section>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {activities.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
-                  style={{ transitionDelay: `${Math.min(idx * 0.05, 0.4)}s` }}
-                >
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/5 flex items-center justify-center mb-4 group-hover:bg-brand-gold/10 transition-colors duration-300">
-                    <item.icon className="w-5 h-5 text-brand-blue/60 group-hover:text-brand-gold transition-colors duration-300" />
+          {/* Events Tab */}
+          {activeId === 'events' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-12 text-[#5b6574] leading-relaxed text-[15px]">
+                
+                {/* 2022-2023 */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3">2022-2023</h3>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Pitch Perfect</h4>
+                    <p className="text-justify">
+                      Elevate Your Startup Journey Through Pitch Perfect is a transformative event for aspiring entrepreneurs. Over two days, students immerse themselves in innovation, pitching creative business ideas to industry experts. With mentorship from seasoned professionals, they explore startup concepts and emerging trends, equipping them for success in the dynamic world of business.
+                    </p>
                   </div>
-                  <h3 className="text-sm font-semibold text-brand-navy mb-2 font-display">{item.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Initiatives */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Initiatives</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Startup Street</h4>
+                    <p className="italic text-slate-500 mb-2">“Discover Innovation at The Startup Street”</p>
+                    <p className="text-justify">
+                      Experience a showcase of entrepreneurial ingenuity at The Startup Street, where startups present their products and services to investors, industrialists, students, and customers. This exhibition offers a unique opportunity to network and engage directly with founders and co-founders, gaining insights into their journey and vision. With a diverse array of offerings spanning various fields, everyone can find something to learn from these innovative startups.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Etalk</h4>
+                    <p className="italic text-slate-500 mb-2">“Past Event Recap: Emerging Technologies in Every Sector”</p>
+                    <p className="text-justify">
+                      This event provided invaluable insights from industry experts on their journey to building successful startups. Attendees had the opportunity to discover the pathways taken by professionals to cultivate thriving ventures. The event showcased the latest developments in technology across all domains, featuring speaker profiles including startup founders, ecosystem members, industry experts, entrepreneurs, finance institutions, government representatives, investors, and more. Stay tuned for future events!
+                    </p>
+                    <div className="mt-4 bg-slate-50 p-6 rounded-xl border border-slate-100">
+                      <h5 className="font-semibold text-[#183a68] mb-3">Speakers:</h5>
+                      <ul className="space-y-2 list-disc pl-5">
+                        <li>Mr. Abdul Basit Saboowala (Founder &amp; CEO Holo Abdul, Holo Shiksha)</li>
+                        <li>Ms. Hetal Kudecha (Founder &amp; Director Discidium Solutions)</li>
+                        <li>Ms. Richa Maheshwari (Founder-Evision Training)</li>
+                        <li>Ms. Radhika Bajoria (Founder-Radically Yours Inc USA, Building India&apos;s first prodcast with global women leaders - &apos;Wiping out the Norm&apos;)</li>
+                        <li>Mr. Soumyadeep Mukerjee (Building Spice Story, India&apos;s next Consumer Food SuperBrand)</li>
+                        <li>Mr. Pradipta Sahoo (CHRO; Board Member; Aligning Talent Capability, Change Mgt, Org Culture @ BFSI, ITES, Travel industries)</li>
+                        <li>Mr. Zubin Mehta (Top 300 Economic Times Young Leaders, CFA, Mentor &amp; Financial Speaker, ICICI Prudential, Ex-Chegg Inc, Ex-Vedanta)</li>
+                        <li>Mr. Vishal Rupani (Building Sprect, Ex Co-founder, mCanvas / VP, Affinity, Advisor, TripperWifi, LinkedIn CAP 2022, 40 under 40, Teacher)</li>
+                        <li>Mr. Rammohan Bhave (CA 1980 CMA CS IFRS Faculty/advisor IFRS/Valuation/Strategy/Startup~Ind- Director~Alumna Reliance Mukesh Ambani, Foundsoft USA, Mittal London~President Asso of Valuation Prof, Limca record)</li>
+                        <li>Mr. Atul Juvle (Consulting Gen. Counsel, TEDx speaker &amp; Independent Director)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2021-2022 */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3">2021-2022</h3>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Entrepreneur Desk</h4>
+                    <p className="text-justify">
+                      A platform for VCET&apos;s students &amp; professionals to support, guide and promote their business and startups. Faculty provides proper guidance to the Entrepreneurs of VCET.
+                      This year 6 teams presented their startups, promoted it on this platform and shared the motivation, struggle, do&apos;s and don&apos;ts while starting their own startup.
+                    </p>
+                    <div className="mt-4 bg-slate-50 p-6 rounded-xl border border-slate-100">
+                      <h5 className="font-semibold text-[#183a68] mb-3">Startups of VCET:</h5>
+                      <ul className="space-y-2 list-disc pl-5">
+                        <li>Coding Adda – Aditya Trivedi, SE-IT</li>
+                        <li>Dice Bakes – Lavina Rathod, TE-COMPS</li>
+                        <li>Cafe cineFX – Studios Sahil Patil, TE-IT</li>
+                        <li>The Food Zest – Nidhi Mehta, TE-COMPS</li>
+                        <li>Team Shavy Nutrition – Hritik Gavankar, BE-EXTC</li>
+                        <li>Sharelelo – Kunal Patwa EXTC, Alumni, 2021 Graduate</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Lights Camera Startup</h4>
+                    <p className="text-justify">
+                      The E-cell committee organized lights camera startup for VCET&apos;s students. In this session, students got to know about the various steps required in product development. Students got to learn that before developing any product research is needed in that field. The speaker gave us various insights and shared his great knowledge about Product development. He gave a glimpse of all the processes required to start a career in the product development industry. The webinar was an interactive one with lots of Q&amp;A sessions from the audience. The webinar was a great success with splendid interactions. There were total 109 participants.
+                    </p>
+                    <p className="mt-2 text-sm font-semibold">Speaker: Mr. Sikandar Manihar (Technical Director of FOX DOMOTICS PVT LTD.)</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Startup Genesis: A kickstart to your start-up journey</h4>
+                    <p className="text-justify">
+                      Startup Genesis was a two-days long workshop program organized by Team E-CELL 2021-22 for young startups and entrepreneurs. Various experts with years of experience in their fields were invited to speak on a specific topic to guide young Entrepreneurs and Enthusiasts.
+                    </p>
+                    <div className="mt-4 bg-slate-50 p-6 rounded-xl border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <ul className="space-y-2 text-sm">
+                        <li><span className="font-semibold text-[#183a68]">Ideation:</span> Mr. Arjun Panchal</li>
+                        <li><span className="font-semibold text-[#183a68]">Company Formation:</span> Mr. Dipankar Verma</li>
+                        <li><span className="font-semibold text-[#183a68]">Product Development:</span> Mr. Neil Sawant</li>
+                        <li><span className="font-semibold text-[#183a68]">Marketing:</span> Mr. Brij Parekh</li>
+                        <li><span className="font-semibold text-[#183a68]">Finance:</span> Mr. Charudatta Panda</li>
+                      </ul>
+                      <ul className="space-y-2 text-sm">
+                        <li><span className="font-semibold text-[#183a68]">Sales &amp; Advertisement:</span> Mr. Mohsin Sheikh</li>
+                        <li><span className="font-semibold text-[#183a68]">Compliances:</span> Mr. Abhijit Barje</li>
+                        <li><span className="font-semibold text-[#183a68]">Government Schemes:</span> Mr. Vishal Kumar</li>
+                        <li><span className="font-semibold text-[#183a68]">Competitors:</span> Mr. Noorian Panjwani</li>
+                        <li><span className="font-semibold text-[#183a68]">Import/Export:</span> Ms. Trupti Shah</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2020-2021 */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3">2020-2021</h3>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Bizcharcha 20-21</h4>
+                    <p className="text-justify mb-3">
+                      Bizcharcha is an series of seminar, where in each episode we call various entrepreneurs from various fields to share their journey, help the students in understanding various aspects of Entrepreneurship. This year the number of registrations were 110.
+                    </p>
+                    <ul className="space-y-1 list-disc pl-5">
+                      <li>Mr. Rushi Shenghani (Founder of Earth Energy EV, Mumbai)</li>
+                      <li>Mr. Zubin Damania (Co-Founder at Social Media Bundle, Mumbai)</li>
+                      <li>Ms. Neha Agarwal (SEO Pioneer, Mompreneur)</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">E-Summit 20-21</h4>
+                    <p className="text-justify mb-3">
+                      In this event various speakers and business personalities are invited for the event to mentor the youth, the ones who are aspiring to become entrepreneurs. The event is organized for exploring the startup ideas and the business nature to the students in the college and also to mentor the students regarding the trends in upcoming technology. This event takes place for two days.
+                    </p>
+                    <ul className="space-y-1 list-disc pl-5">
+                      <li>Ms. Ritu Malhotra (Founder of &apos;Anuja Center for learning&apos;)</li>
+                      <li>Mr. Rushikesh Pandit (Founder of &apos;BitPandit&apos;)</li>
+                      <li>Ms. Prachi Tehlan (Actress, Sportsperson, Entrepreneur)</li>
+                      <li>Ms. Pallavi Mukherjee (Founder and CEO of &apos;Pop Diaries&apos;)</li>
+                      <li>Mr. Anand Prabhudesai (Co-Founder of &apos;Turtlemint&apos;)</li>
+                      <li>Mr. Praful Sharma (Entrepreneur in Finance and Renewable Energy)</li>
+                      <li>Mr. Anurag Khurana (Co-Founder &amp; CEO of &apos;Newgen Gaming&apos;)</li>
+                      <li>Ms. Saumya Iyer (Mobile Game Producer at &apos;Gear Inc.&apos;)</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Internship Fair 20-21</h4>
+                    <p className="text-justify">
+                      It is a two-day program where various companies come to college and students get a chance to give an interview in their choice of company. The fair is held for students who require internships and helps them get a kick start to their careers. It helps students to inculcate skills that will be required in the corporate market. Held on 15th and 16th May 2021, with 13 companies and 119 student registrations.
+                    </p>
+                    <p className="mt-2 text-sm text-slate-500">
+                      <span className="font-semibold text-[#183a68]">Companies Visited:</span> Kraftpixel, Ryutek Technologies, Autocal, A-Dot Creation, Cerebro Spark, Abner Security, Navyuvak Enterprises, Booklustic, Fashion TV, Modern Innovative, Orena Solutions, Spicetech, Symphony Infotech.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Bizmaster 20-21</h4>
+                    <p className="text-justify mb-3">
+                      It is a business plan competition, students from various fields of interest present their ideas, business models, strategies. This was the fifth year of Bizmaster organized by E-CELL. We had 12 teams participating from all over Mumbai. This year few participants got an opportunity for funding. The total prize money distributed was Rs. 40,000/-.
+                    </p>
+                    <ul className="space-y-1 list-disc pl-5 text-sm">
+                      <li>Rushi Shenghani (Founder of Earth Energy EV)</li>
+                      <li>Gaurav Mishra (Founder of Navyuvak Enterprises)</li>
+                      <li>Srijit Mondal (Founder of Pi-Paradox and Booklustic)</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* 2019-2020 */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3">2019-2020</h3>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">E-Summit</h4>
+                    <p className="text-justify mb-3">
+                      E-Summit is an annual flagship event effectuated with the intention to foster entrepreneurial initiatives. Spanning two days with speakers from Business, Marketing, Technology and Content Creation, it helps students get motivated towards the business aspect of life.
+                    </p>
+                    <ul className="space-y-1 list-disc pl-5 text-sm">
+                      <li>Gaurav Mishra (Product Manager at Rebel Foods)</li>
+                      <li>Ravi Poddar (Executive Director, Kyndryl AWS Alliance leader)</li>
+                      <li>Anmol (Food Entrepreneur)</li>
+                      <li>Ankita Chawla (Influencer)</li>
+                      <li>Divya (Owns start-up, raised up to 2 lakhs)</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Internship Fair 19-20</h4>
+                    <p className="text-justify">
+                      Conducted over a span of 2 days with a number of companies providing opportunities to students of all branches and with over 400+ registrations. The interviews were profusely conducted, providing students with an opportunity to gain experience of interviews and test their knowledge and skills for the industry.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2018-2019 */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3">2018-2019</h3>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">E-SUMMIT 19</h4>
+                    <p className="text-justify mb-3">
+                      E-Summit &apos;19 conducted by E-CELL committee under the guidance of Prof. Chandan Kolvankar was a successful event. Plenty of speakers from the business background spoke at length on entrepreneurial skills across the two-day event.
+                    </p>
+                    <ul className="space-y-1 list-disc pl-5 text-sm">
+                      <li>Mr. Subhash Talekar (President, Mumbai Dabbawalas Association)</li>
+                      <li>Mr. Sumer Singh (Content Developer, Youtuber &apos;Last Moment Tuitions&apos;)</li>
+                      <li>Mr. Gaurav Mishra (Founder, Navayuvak Entrepreneurs)</li>
+                      <li>Mr. Varun Kodolikar (Creative Wedding Photographer, Kodoclicker)</li>
+                      <li>Mr. Abhishek Gharat (Director, Kraftpixel)</li>
+                      <li>Ms. Neha Joshi &amp; Ms. Gayatri Kale (Co-founders, Finden Godigital)</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">BIZMASTER 19</h4>
+                    <p className="text-justify">
+                      This flagship business plan competition had 9 teams participating from all over Mumbai. Audiences witnessed a great battle among participants from the best colleges across the city. The winners were awarded cash prizes of ₹40,000, trophies, and certificates.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2017-2018 */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3">2017-2018</h3>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">Internship Fair 17-18</h4>
+                    <p className="text-justify">
+                      The team prepared the Internship Fair within a short period of time, approaching over fifty companies. Seven companies joined, conducting their interview processes within the college. There were 220 students who participated with 450 total form submissions. Participating companies included ImpactGuru, VPS Techub, RGM Technologies, Ebzaar, Seth Group Developers, Verdantis, and Tech Whizzers.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">BIZMASTER 2018</h4>
+                    <p className="text-justify">
+                      The Bizmaster 2018 saw maximum participation by students. Members worked hard to flourish the event very well. This time few participants showed up with patents of their business product or idea. Judges included industry personages and one judge from Google. Prize pool was Rs. 40,000/-.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2016-2017 */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3">2016-2017</h3>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">ESUMMIT EVENT 2017</h4>
+                    <p className="text-justify mb-3">
+                      Organized to explore startup ideas and mentor youth aspiring to become entrepreneurs. Featured speakers included Mr. Mukesh Jain (CTO, VP Insights &amp; Data at Capgemini India), Mr. Ishwar Jha (Founder &amp; CEO at appetals), Mr. Devdatta Mainkar (CA), and Mr. Nishant Patel (founder Raw Engineering).
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">BIZMASTER 2017</h4>
+                    <p className="text-justify">
+                      The second year of Bizmaster received much more hype, with over 23 teams participating. With proper judging from business backgrounds and industry professionals (Mr. Mehul Khandedia &amp; Mr. Swapnil Karvir), winning teams were awarded a prize worth Rs. 40,000/-.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2015-2016 */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3">2015-2016</h3>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#183a68] mb-2">BIZMASTER 2016</h4>
+                    <p className="text-justify">
+                      This is the year when the Entrepreneurship Cell was established. Bizmaster was launched as a competitive event where budding entrepreneurs come up with new startup ideas and convince judges from the industry of their viability. Top three winners were awarded prizes worth Rs. 40,000/-.
+                    </p>
+                  </div>
+                </div>
+                
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Key Initiatives
-              </h2>
-            </div>
+            </section>
+          )}
 
-            <div className="space-y-3">
-              {initiatives.map((initiative, idx) => (
-                <div
-                  key={idx}
-                  className="reveal flex items-start gap-4 bg-brand-light rounded-xl p-4 hover:shadow-md transition-all duration-300"
-                  style={{ transitionDelay: `${Math.min(idx * 0.04, 0.4)}s` }}
-                >
-                  <div className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Lightbulb className="w-4 h-4 text-brand-gold" />
+          {/* Co-ordinator Tab */}
+          {activeId === 'coordinator' && (
+            <section className="reveal bg-white rounded-2xl p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100">
+              <div className="space-y-10 text-[#5b6574] leading-relaxed text-[15px]">
+                
+                <div>
+                  <h3 className="text-2xl font-bold text-[#183a68] border-b border-slate-100 pb-3 mb-6">Faculty In Charge</h3>
+                  
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <div className="w-20 h-20 rounded-full bg-brand-navylight flex flex-shrink-0 items-center justify-center text-[#183a68]">
+                      <i className="ph ph-user text-4xl"></i>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-[#183a68] mb-1">Mr. Vikrant Agaskar</h4>
+                      <p className="flex items-center gap-2 mb-1">
+                        <i className="ph ph-envelope-simple text-[#183a68]"></i>
+                        <a href="mailto:vikrant.agaskar@vcet.edu.in" className="hover:text-brand-gold transition-colors">vikrant.agaskar@vcet.edu.in</a>
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <i className="ph ph-phone text-[#183a68]"></i>
+                        <a href="tel:+919822836508" className="hover:text-brand-gold transition-colors">+91 9822836508</a>
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">{initiative}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+
+                <div>
+                  <h3 className="text-xl font-bold text-[#183a68] mb-6">Faculty Members</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      'Mr. Vikrant Agaskar',
+                      'Mrs. Mugdha Salvi',
+                      'Mrs. Shaista Khanam',
+                      'Mr. Viren Chandanshive',
+                      'Mr. Mukund Kavekar'
+                    ].map((member, idx) => (
+                      <div key={idx} className="flex items-center gap-4 bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                        <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#183a68]">
+                          <i className="ph ph-identification-card text-xl"></i>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-[#183a68]">{member}</p>
+                          <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Member</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </section>
+          )}
+
+          {/* Placeholders for other tabs */}
+          {activeId !== 'about' && activeId !== 'events' && activeId !== 'coordinator' && (
+            <section className="reveal bg-white rounded-2xl p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col items-center justify-center text-center min-h-[400px]">
+              <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6">
+                <i className={`ph ${activeLink?.icon ?? 'ph-folder'} text-3xl text-[#183a68]`} />
+              </div>
+              <h3 className="text-xl font-bold text-[#183a68] mb-2">{activeLink?.label}</h3>
+              <p className="text-slate-500">Content for this section is coming soon.</p>
+            </section>
+          )}
+        </main>
+      </div>
     </PageLayout>
   );
 };

@@ -25,7 +25,6 @@ const CounselingCell: React.FC = () => {
       <PageBanner
         title="Counselling Cell"
         breadcrumbs={[
-          { label: 'Facilities', href: '/facilities' },
           { label: 'Counselling Cell' },
         ]}
       />

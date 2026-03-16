@@ -78,6 +78,7 @@ const menuGroups: MenuGroup[] = [
       { label: 'Electronics & Telecommunication Engineering',       href: '/electronics-telecomm' },
       { label: 'Civil Engineering',                           href: '/civil-engineering' },
       { label: 'First Year Engineering',                      href: '/first-year-engineering' },
+      { label: 'MMS (MBA)',                                   href: '/mms' },
     ],
   },
 
@@ -102,7 +103,7 @@ const menuGroups: MenuGroup[] = [
         ],
       },
       { label: 'Teaching Learning Process',  href: '/teaching-learning' },
-      { label: 'Swayam - NPTEL',             href: '/swayam-nptel' },
+      { label: 'Swayam - NPTEL',             href: 'https://nptel.ac.in/' },
       {
         label: 'Honours / Minor Degree Program',
         href:'/honours-minor',

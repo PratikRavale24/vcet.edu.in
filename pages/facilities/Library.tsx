@@ -67,7 +67,6 @@ const Library: React.FC = () => {
       <PageBanner
         title="Library"
         breadcrumbs={[
-          { label: 'Facilities', href: '/facilities' },
           { label: 'Library' },
         ]}
       />
