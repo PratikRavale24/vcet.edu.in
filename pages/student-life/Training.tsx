@@ -376,6 +376,169 @@ const Training: React.FC = () => {
                     <li>Subscription of newspapers related to career opportunities such as Rojgar Samachar</li>
                   </ul>
                 </div>
+
+                {/* Seminars Table */}
+                <div className="mt-12 overflow-x-auto">
+                  <table className="w-full border-collapse min-w-[800px] border border-slate-200">
+                    <thead>
+                      <tr className="bg-[#0b1b3d]">
+                        <th className="p-4 font-semibold w-16 text-center border border-slate-300 text-[#f2a900]">SR.</th>
+                        <th className="p-4 font-semibold w-1/4 text-center border border-slate-300 text-[#f2a900]">Event</th>
+                        <th className="p-4 font-semibold text-center border border-slate-300 text-[#f2a900]" colSpan={2}>Resource Person</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      
+                      {/* Row 1 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-middle text-center font-medium text-slate-700 border border-slate-200">1</td>
+                        <td className="p-4 align-middle text-[#183a68] border border-slate-200">
+                          Seminar on &quot;Recruitment Process&quot;
+                        </td>
+                        <td className="p-6 align-middle border-y border-slate-200 border-l border-slate-200 border-r-0">
+                          <h4 className="font-bold text-[#183a68] mb-1">Mr. Swapnil Karvir</h4>
+                          <p className="text-sm mb-1 text-slate-600">CEO, S S Dies Works Experience of 10 Years in Product Management and Service Delivery across Banking, Telecom and Manufacturing</p>
+                          <p className="text-sm font-medium text-[#f2a900]">Experience &ndash; 15 Years</p>
+                        </td>
+                        <td className="p-3 align-middle w-48 border-y border-slate-200 border-r border-slate-200 border-l-0">
+                          <div className="w-full aspect-square bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                            <i className="ph ph-image text-3xl mb-2"></i>
+                            <span className="text-xs font-normal text-center">Image Placeholder</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Row 2 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-middle text-center font-medium text-slate-700 border border-slate-200">2</td>
+                        <td className="p-4 align-middle text-[#183a68] border border-slate-200">
+                          Seminar on &quot;Career in Finance Management&quot;
+                        </td>
+                        <td className="p-6 align-middle border-y border-slate-200 border-l border-slate-200 border-r-0">
+                          <h4 className="font-bold text-[#183a68] mb-1">Ms. Aishwarya Mohol</h4>
+                          <p className="text-sm mb-1 text-slate-600">Treasury Deputy Manager in Forex at Axis Bank Mumbai</p>
+                          <p className="text-sm font-medium text-[#f2a900]">Experience &ndash; 10 Years</p>
+                        </td>
+                        <td className="p-3 align-middle w-48 border-y border-slate-200 border-r border-slate-200 border-l-0">
+                          <div className="w-full aspect-square bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                            <i className="ph ph-image text-3xl mb-2"></i>
+                            <span className="text-xs font-normal text-center">Image Placeholder</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Row 3 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-middle text-center font-medium text-slate-700 border border-slate-200">3</td>
+                        <td className="p-4 align-middle text-[#183a68] border border-slate-200">
+                          Seminar on AI and Machine Learning
+                        </td>
+                        <td className="p-6 align-middle border-y border-slate-200 border-l border-slate-200 border-r-0">
+                          <h4 className="font-bold text-[#183a68] mb-1">Mr. Hemant Tendolkar</h4>
+                          <p className="text-sm mb-1 text-slate-600">Oracle ERP (Oracle Financials) + Siebel CRM + MDM (UCM &ndash; Customer Master). Customer Experience: Social, Mobile, IoT and AI in CRM-CX, Voice Assistants (Alexa, Google) + Chatbots (FB, Twitter, Telegram etc.) for CRM-CX! Specialties: Technical / Integration Architect</p>
+                        </td>
+                        <td className="p-3 align-middle w-48 border-y border-slate-200 border-r border-slate-200 border-l-0">
+                          <div className="w-full aspect-square bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                            <i className="ph ph-image text-3xl mb-2"></i>
+                            <span className="text-xs font-normal text-center">Image Placeholder</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Row 4 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-middle text-center font-medium text-slate-700 border border-slate-200">4</td>
+                        <td className="p-4 align-middle text-[#183a68] border border-slate-200">
+                          Seminar on Higher Education
+                        </td>
+                        <td className="p-6 align-middle border-y border-slate-200 border-l border-slate-200 border-r-0">
+                          <h4 className="font-bold text-[#183a68] mb-1">Dr Ben Baliga.</h4>
+                          <p className="text-sm mb-1 text-slate-600">Treasury Deputy Manager in Forex at Axis Bank Mumbai</p>
+                          <p className="text-sm font-medium text-[#f2a900]">Experience &ndash; 22 Years</p>
+                        </td>
+                        <td className="p-3 align-middle w-48 border-y border-slate-200 border-r border-slate-200 border-l-0">
+                          <div className="w-full aspect-square bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                            <i className="ph ph-image text-3xl mb-2"></i>
+                            <span className="text-xs font-normal text-center">Image Placeholder</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Row 5 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-middle text-center font-medium text-slate-700 border border-slate-200">5</td>
+                        <td className="p-4 align-middle text-[#183a68] border border-slate-200">
+                          Seminar on Machine Learning
+                        </td>
+                        <td className="p-6 align-middle border-y border-slate-200 border-l border-slate-200 border-r-0">
+                          <h4 className="font-bold text-[#183a68] mb-1">Mr. Gejo Sreenivasan</h4>
+                          <p className="text-sm mb-1 text-slate-600">Director, Career Launcher, Mumbai.</p>
+                          <p className="text-sm font-medium text-[#f2a900]">Experience &ndash; 20 Years<span className="text-slate-600 font-normal"> in Education space. Specialties &ndash; Test-Prep &ndash; Up-Skilling &ndash; Product Management &ndash; All-things-Quant &ndash; eMarketing &amp; SE</span></p>
+                        </td>
+                        <td className="p-3 align-middle w-48 border-y border-slate-200 border-r border-slate-200 border-l-0">
+                          <div className="w-full aspect-square bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                            <i className="ph ph-image text-3xl mb-2"></i>
+                            <span className="text-xs font-normal text-center">Image Placeholder</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Row 6 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-middle text-center font-medium text-slate-700 border border-slate-200">6</td>
+                        <td className="p-4 align-middle text-[#183a68] border border-slate-200">
+                          Seminar on higher studies
+                        </td>
+                        <td className="p-6 align-middle border-y border-slate-200 border-l border-slate-200 border-r-0">
+                          <h4 className="font-bold text-[#183a68] mb-1">Mr. Bhupesh Daheria</h4>
+                          <p className="text-sm mb-1 text-slate-600">EdTech Futurist | Educator | CEO, Aegis School of Data Science, <span className="text-[#f2a900] font-medium">Experience &ndash; 24 Years</span> &amp; managing trustee of Aegis Knowledge Trust</p>
+                        </td>
+                        <td className="p-3 align-middle w-48 border-y border-slate-200 border-r border-slate-200 border-l-0">
+                          <div className="w-full aspect-square bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                            <i className="ph ph-image text-3xl mb-2"></i>
+                            <span className="text-xs font-normal text-center">Image Placeholder</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Row 7 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-middle text-center font-medium text-slate-700 border border-slate-200">7</td>
+                        <td className="p-4 align-middle text-[#183a68] border border-slate-200">
+                          Shaping Young Minds Programs
+                        </td>
+                        <td className="p-6 align-middle border-y border-slate-200 border-l border-slate-200 border-r-0">
+                          <h4 className="font-bold text-[#183a68]">Tarapur Management Association</h4>
+                        </td>
+                        <td className="p-3 align-middle w-48 border-y border-slate-200 border-r border-slate-200 border-l-0">
+                          <div className="w-full h-24 bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                            <i className="ph ph-image text-3xl mb-2"></i>
+                            <span className="text-xs font-normal text-center">Image Placeholder</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Row 8 */}
+                      <tr className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-4 align-middle text-center font-medium text-slate-700 border border-slate-200">8</td>
+                        <td className="p-4 align-middle text-[#183a68] border border-slate-200">
+                          Seminar on Career Guidance
+                        </td>
+                        <td className="p-6 align-middle border-y border-slate-200 border-l border-slate-200 border-r-0">
+                          <p className="text-sm text-slate-600">Campus Credential is a training institute and has established itself as Forerunner in Competitive Exam training</p>
+                        </td>
+                        <td className="p-3 align-middle w-48 border-y border-slate-200 border-r border-slate-200 border-l-0">
+                          <div className="w-full h-24 bg-slate-100 border border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                            <i className="ph ph-image text-3xl mb-2"></i>
+                            <span className="text-xs font-normal text-center">Image Placeholder</span>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
               </div>
             </section>
           )}
