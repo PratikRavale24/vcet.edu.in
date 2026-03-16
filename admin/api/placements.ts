@@ -3,7 +3,7 @@ import type { ListResponse, ItemResponse, DeleteResponse, Placement, PlacementPa
 import { createMockCrud, MOCK_PLACEMENTS } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<Placement>(MOCK_PLACEMENTS) : null;
+const mock = USE_MOCK ? createMockCrud<Placement>(MOCK_PLACEMENTS, 'vcet_mock_placements') : null;
 
 function toFormData(payload: PlacementPayload): FormData {
   const form = new FormData();

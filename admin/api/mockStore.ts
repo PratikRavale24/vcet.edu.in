@@ -15,9 +15,62 @@ const now = () => new Date().toISOString();
 let _nextId = 1000;
 const nextId = () => ++_nextId;
 
+const fileToDataUrl = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+};
+
+const hydrateDataUrl = (dataUrl: string | null): string | null => {
+  if (!dataUrl || !dataUrl.startsWith('data:')) return dataUrl;
+  try {
+    const [header, base64] = dataUrl.split(',');
+    const mime = header.match(/:(.*?);/)?.[1] || '';
+    const bstr = atob(base64);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) u8arr[n] = bstr.charCodeAt(n);
+    const blob = new Blob([u8arr], { type: mime });
+    return URL.createObjectURL(blob);
+  } catch (e) {
+    console.error('Failed to parse base64 back to Blob URL', e);
+    return dataUrl;
+  }
+};
+
 // ── Generic CRUD factory ─────────────────────────────────────────────────────
-export function createMockCrud<T extends { id: number }>(seed: T[]) {
-  let store = [...seed];
+export function createMockCrud<T extends { id: number }>(seed: T[], storageKey: string) {
+  const initStore = () => {
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) {
+        const parsed = JSON.parse(stored) as T[];
+        // Hydrate attachments/images back to object URLs so iframe viewers don't break CSP
+        return parsed.map((item: any) => {
+          if (item.attachment) item.attachment = hydrateDataUrl(item.attachment);
+          if (item.image) item.image = hydrateDataUrl(item.image);
+          return item;
+        });
+      }
+    } catch (e) {
+      console.error(`Failed to parse ${storageKey} from localStorage`, e);
+    }
+    // Seed arrays might also have base64 or mock URLs, but let's just return seed
+    return [...seed];
+  };
+
+  let store = initStore();
+
+  const persist = () => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(store));
+    } catch (e) {
+      console.error(`Failed to save ${storageKey} to localStorage`, e);
+    }
+  };
 
   return {
     list: async (): Promise<ListResponse<T>> => {
@@ -34,27 +87,60 @@ export function createMockCrud<T extends { id: number }>(seed: T[]) {
 
     create: async (payload: Partial<T>): Promise<ItemResponse<T>> => {
       await delay(300);
+      
+      // Handle mock file uploads by generating local object URLs
+      const processedPayload = { ...payload } as Record<string, any>;
+      if (processedPayload.attachment instanceof File) {
+        processedPayload.attachment = await fileToDataUrl(processedPayload.attachment);
+      }
+      if (processedPayload.image instanceof File) {
+        processedPayload.image = await fileToDataUrl(processedPayload.image);
+      }
+
       const item = {
         id: nextId(),
         created_at: now(),
         updated_at: now(),
-        ...payload,
+        ...processedPayload,
       } as unknown as T;
       store.unshift(item);
-      return { success: true, data: item, message: 'Created successfully' };
+      persist();
+
+      const returnItem = { ...item } as any;
+      if (returnItem.attachment) returnItem.attachment = hydrateDataUrl(returnItem.attachment);
+      if (returnItem.image) returnItem.image = hydrateDataUrl(returnItem.image);
+
+      return { success: true, data: returnItem, message: 'Created successfully' };
     },
 
     update: async (id: number, payload: Partial<T>): Promise<ItemResponse<T>> => {
       await delay(300);
       const idx = store.findIndex((i) => i.id === id);
       if (idx === -1) throw new Error(`Item ${id} not found`);
-      store[idx] = { ...store[idx], ...payload, updated_at: now() };
-      return { success: true, data: { ...store[idx] }, message: 'Updated successfully' };
+
+      // Handle mock file uploads
+      const processedPayload = { ...payload } as Record<string, any>;
+      if (processedPayload.attachment instanceof File) {
+        processedPayload.attachment = await fileToDataUrl(processedPayload.attachment);
+      }
+      if (processedPayload.image instanceof File) {
+        processedPayload.image = await fileToDataUrl(processedPayload.image);
+      }
+
+      store[idx] = { ...store[idx], ...processedPayload, updated_at: now() };
+      persist();
+
+      const returnItem = { ...store[idx] } as any;
+      if (returnItem.attachment) returnItem.attachment = hydrateDataUrl(returnItem.attachment);
+      if (returnItem.image) returnItem.image = hydrateDataUrl(returnItem.image);
+
+      return { success: true, data: returnItem, message: 'Updated successfully' };
     },
 
     delete: async (id: number): Promise<DeleteResponse> => {
       await delay(200);
       store = store.filter((i) => i.id !== id);
+      persist();
       return { success: true, message: 'Deleted successfully' };
     },
   };
@@ -140,6 +226,7 @@ export const MOCK_EVENTS: Event[] = [
     description: 'Annual technical festival featuring 20+ events across all departments.',
     date: '2024-10-24', time: '09:00 AM - 05:00 PM', venue: 'Main Auditorium, Block A',
     image: null, category: 'Seminar', status: 'Upcoming', is_featured: true, is_active: true,
+    expiry_date: '2027-10-24', expiry_time: '17:00',
     created_at: '2024-03-01T10:00:00Z', updated_at: '2024-03-01T10:00:00Z',
   },
   {
@@ -148,6 +235,7 @@ export const MOCK_EVENTS: Event[] = [
     description: 'Hands-on workshop on building mobile apps with React Native.',
     date: '2024-10-15', time: '10:00 AM - 01:00 PM', venue: 'IoT Lab, 3rd Floor',
     image: null, category: 'Workshop', status: 'Completed', is_featured: true, is_active: true,
+    expiry_date: '2024-10-15', expiry_time: '13:00', // Intentionally past expiry
     created_at: '2024-02-20T10:00:00Z', updated_at: '2024-02-20T10:00:00Z',
   },
   {
@@ -156,6 +244,7 @@ export const MOCK_EVENTS: Event[] = [
     description: 'Inter-departmental cultural competition.',
     date: '2024-12-12', time: 'All Day', venue: 'College Grounds',
     image: null, category: 'Fest', status: 'Upcoming', is_featured: false, is_active: true,
+    expiry_date: '2027-12-12', expiry_time: '23:59',
     created_at: '2024-02-15T10:00:00Z', updated_at: '2024-02-15T10:00:00Z',
   },
   {
@@ -164,6 +253,7 @@ export const MOCK_EVENTS: Event[] = [
     description: 'Orientation session for final year students.',
     date: '2024-09-28', time: '02:00 PM - 04:00 PM', venue: 'Conference Room 2',
     image: null, category: 'Seminar', status: 'Cancelled', is_featured: false, is_active: true,
+    expiry_date: '2027-09-28', expiry_time: '16:00',
     created_at: '2024-02-12T10:00:00Z', updated_at: '2024-02-12T10:00:00Z',
   },
 ];
@@ -343,8 +433,33 @@ export const MOCK_ENQUIRIES: Enquiry[] = [
 ];
 
 // ── Gallery-specific CRUD (no "get" or "update", only upload + delete) ───────
-export function createGalleryCrud(seed: GalleryImage[]) {
-  let store = [...seed];
+export function createGalleryCrud(seed: GalleryImage[], storageKey: string = 'vcet_mock_gallery') {
+  const initStore = () => {
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) {
+        const parsed = JSON.parse(stored) as GalleryImage[];
+        return parsed.map((item) => {
+          if (item.image) item.image = hydrateDataUrl(item.image) || item.image;
+          return item;
+        });
+      }
+    } catch (e) {
+      console.error(`Failed to parse ${storageKey} from localStorage`, e);
+    }
+    // Seed arrays might also have base64 or mock URLs, but let's just return seed
+    return [...seed];
+  };
+
+  let store = initStore();
+
+  const persist = () => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(store));
+    } catch (e) {
+      console.error(`Failed to save ${storageKey} to localStorage`, e);
+    }
+  };
 
   return {
     list: async (): Promise<ListResponse<GalleryImage>> => {
@@ -353,18 +468,23 @@ export function createGalleryCrud(seed: GalleryImage[]) {
     },
     upload: async (payload: { image: File; caption?: string }): Promise<{ data: GalleryImage; message: string }> => {
       await delay(400);
+      const base64Image = await fileToDataUrl(payload.image);
       const item: GalleryImage = {
         id: nextId(),
-        image: URL.createObjectURL(payload.image),
+        image: base64Image,
         caption: payload.caption ?? null,
         created_at: now(),
       };
       store.unshift(item);
-      return { data: item, message: 'Uploaded successfully' };
+      persist();
+      
+      const returnItem = { ...item, image: hydrateDataUrl(base64Image) || base64Image };
+      return { data: returnItem, message: 'Uploaded successfully' };
     },
     delete: async (id: number): Promise<DeleteResponse> => {
       await delay(200);
       store = store.filter((i) => i.id !== id);
+      persist();
       return { success: true, message: 'Deleted successfully' };
     },
   };

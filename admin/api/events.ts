@@ -3,7 +3,7 @@ import type { ListResponse, ItemResponse, DeleteResponse, Event, EventPayload } 
 import { createMockCrud, MOCK_EVENTS } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<Event>(MOCK_EVENTS) : null;
+const mock = USE_MOCK ? createMockCrud<Event>(MOCK_EVENTS, 'vcet_mock_events') : null;
 
 function toFormData(payload: EventPayload): FormData {
   const form = new FormData();

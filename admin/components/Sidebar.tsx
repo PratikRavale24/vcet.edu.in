@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { NavLink } from 'react-router-dom';
 
 interface NavItem {
   label: string;
   path: string;
   icon: React.ReactNode;
 }
+
+/* ── Icons ─────────────────────────────────────────────────────────────────── */
 
 const LayoutGrid = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
@@ -47,7 +48,6 @@ const XIcon = () => (
     <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
   </svg>
 );
-
 const ImageIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
     <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" />
@@ -88,6 +88,23 @@ const MailIcon = () => (
     <polyline points="22,6 12,13 2,6" />
   </svg>
 );
+const ChevronLeftIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <polyline points="15 18 9 12 15 6" />
+  </svg>
+);
+const ChevronRightIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <polyline points="9 6 15 12 9 18" />
+  </svg>
+);
+const HelpCircleIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+  </svg>
+);
+
+/* ── Nav sections ──────────────────────────────────────────────────────────── */
 
 interface NavSection {
   label: string;
@@ -126,46 +143,71 @@ const navSections: NavSection[] = [
       { label: 'Partners', path: '/admin/placement-partners', icon: <UsersIcon /> },
     ],
   },
-
 ];
 
-const Sidebar: React.FC = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+/* ── Sidebar Component ─────────────────────────────────────────────────────── */
 
-  const handleLogout = async () => {
-    await logout();
-    navigate('/admin/login');
-  };
+interface SidebarProps {
+  collapsed: boolean;
+  onToggle: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const linkClass = (active: boolean) =>
-    `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${active
-      ? 'bg-[#1e293b] text-white shadow-sm'
-      : 'text-slate-500 hover:text-[#1e293b] hover:bg-slate-100'
+    `flex items-center gap-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+      collapsed ? 'justify-center px-2 py-2.5' : 'px-4 py-2.5'
+    } ${active
+      ? 'bg-[#2563EB] text-white shadow-md shadow-blue-200'
+      : 'text-slate-500 hover:text-[#0F172A] hover:bg-slate-100'
     }`;
 
-  const nav = (
+  const navContent = (isMobile: boolean) => (
     <nav className="flex flex-col h-full">
-      {/* Logo */}
-      <div className="px-6 py-5 border-b border-slate-200 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full bg-[#1e293b] flex items-center justify-center flex-shrink-0">
-          <img src="/images/VCET logo.jpeg " alt="VCET LOGO" className='w-10 h-10' />
+      {/* Sidebar Header: Branding + Toggle */}
+      <div className={`border-b border-slate-200/80 flex items-center ${collapsed && !isMobile ? 'justify-center px-3 py-5' : 'justify-between px-5 py-5'}`}>
+        {/* Branding */}
+        <div className={`flex items-center gap-3 ${collapsed && !isMobile ? 'hidden' : ''}`}>
+          <div className="w-9 h-9 rounded-xl bg-[#2563EB] flex items-center justify-center flex-shrink-0 shadow-sm">
+            <span className="text-white text-sm font-bold">V</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[#0F172A] text-sm font-bold leading-none mb-1">VCET</span>
+            <span className="text-slate-400 text-[10px] uppercase tracking-widest leading-none">Admin Panel</span>
+          </div>
         </div>
-        <div>
-          <p className="text-[#1e293b] text-sm font-bold leading-tight">VCET Admin</p>
-          <p className="text-slate-400 text-[10px] uppercase tracking-widest">Admin Panel</p>
-        </div>
+        
+        {/* Collapsed Logo (show only when collapsed on desktop) */}
+        {collapsed && !isMobile && (
+          <div className="w-9 h-9 rounded-xl bg-[#2563EB] flex items-center justify-center flex-shrink-0 shadow-sm mb-2">
+            <span className="text-white text-sm font-bold">V</span>
+          </div>
+        )}
+
+        {/* Toggle Button */}
+        {!isMobile && (
+          <button
+            onClick={onToggle}
+            className={`w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors ${collapsed ? 'mt-3' : ''}`}
+            title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          >
+            {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </button>
+        )}
       </div>
 
       {/* Nav items */}
       <div className="flex-1 px-3 py-4 space-y-4 overflow-y-auto">
         {navSections.map((section) => (
-          <div key={section.label}>
-            {section.label && (
+          <div key={section.label || 'main'}>
+            {section.label && !(collapsed && !isMobile) && (
               <p className="px-4 mb-1 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
                 {section.label}
               </p>
+            )}
+            {section.label && collapsed && !isMobile && (
+              <div className="mx-auto w-8 border-t border-slate-200 my-2" />
             )}
             <div className="space-y-0.5">
               {section.items.map((item) => (
@@ -174,10 +216,11 @@ const Sidebar: React.FC = () => {
                   to={item.path}
                   end={item.path === '/admin'}
                   className={({ isActive }) => linkClass(isActive)}
-                  onClick={() => setOpen(false)}
+                  onClick={() => setMobileOpen(false)}
+                  title={collapsed && !isMobile ? item.label : undefined}
                 >
-                  {item.icon}
-                  {item.label}
+                  <span className="flex-shrink-0">{item.icon}</span>
+                  {!(collapsed && !isMobile) && <span>{item.label}</span>}
                 </NavLink>
               ))}
             </div>
@@ -185,26 +228,40 @@ const Sidebar: React.FC = () => {
         ))}
       </div>
 
-      {/* User + Logout */}
-      <div className="px-3 py-4 border-t border-slate-200">
-        <div className="px-4 py-3 rounded-xl bg-slate-50 mb-2 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-[#1e293b] flex items-center justify-center flex-shrink-0">
-            <span className="text-white text-sm font-bold">
-              {(user?.full_name ?? 'A').charAt(0).toUpperCase()}
-            </span>
+      {/* Sidebar Footer: Support / Help */}
+      <div className="px-3 py-4 border-t border-slate-200/80 bg-slate-50">
+        {collapsed && !isMobile ? (
+          <div className="flex justify-center">
+            <a 
+              href="mailto:support@vcet.edu.in" 
+              className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-[#2563EB] hover:border-blue-200 transition-colors shadow-sm"
+              title="Help & Support"
+            >
+              <HelpCircleIcon />
+            </a>
           </div>
-          <div className="min-w-0">
-            <p className="text-slate-800 text-sm font-medium truncate">{user?.full_name ?? 'Admin'}</p>
-            <p className="text-slate-400 text-xs capitalize">{user?.role ?? 'Super Admin'}</p>
+        ) : (
+          <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm relative overflow-hidden">
+            <div className="absolute -right-4 -top-4 w-16 h-16 bg-blue-50 rounded-full opacity-50"></div>
+            <div className="relative z-10 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 text-[#2563EB]">
+                <HelpCircleIcon />
+              </div>
+              <div>
+                <p className="text-[#0F172A] text-sm font-semibold mb-1">Need help?</p>
+                <p className="text-slate-500 text-xs mb-3 leading-relaxed">
+                  Check our documentation or contact support.
+                </p>
+                <a 
+                  href="mailto:support@vcet.edu.in"
+                  className="inline-flex items-center text-xs font-semibold text-[#2563EB] hover:text-blue-700 transition-colors"
+                >
+                  Contact Support →
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-        <button
-          onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:text-red-500 hover:bg-red-50 transition-all duration-200"
-        >
-          <LogOutIcon />
-          Sign out
-        </button>
+        )}
       </div>
     </nav>
   );
@@ -213,27 +270,34 @@ const Sidebar: React.FC = () => {
     <>
       {/* Mobile toggle */}
       <button
-        onClick={() => setOpen(!open)}
-        className="lg:hidden fixed top-4 left-4 z-50 w-9 h-9 bg-white border border-slate-200 rounded-lg flex items-center justify-center text-slate-700 shadow-sm"
+        onClick={() => setMobileOpen(!mobileOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 bg-white border border-slate-200 rounded-xl flex items-center justify-center text-slate-700 shadow-sm hover:shadow-md transition-shadow"
       >
-        {open ? <XIcon /> : <MenuIcon />}
+        {mobileOpen ? <XIcon /> : <MenuIcon />}
       </button>
 
       {/* Mobile overlay */}
-      {open && (
+      {mobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
+          className="lg:hidden fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
+          onClick={() => setMobileOpen(false)}
         />
       )}
 
-      {/* Sidebar panel */}
+      {/* Mobile drawer */}
       <aside
-        className={`fixed top-0 left-0 z-40 h-full w-64 bg-white border-r border-slate-200
-          transition-transform duration-300 lg:translate-x-0
-          ${open ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`lg:hidden fixed top-0 left-0 z-40 h-full w-64 bg-white border-r border-slate-200
+          transition-transform duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
-        {nav}
+        {navContent(true)}
+      </aside>
+
+      {/* Desktop sidebar */}
+      <aside
+        className={`hidden lg:block fixed top-0 left-0 z-30 h-full bg-white border-r border-slate-200/80
+          transition-all duration-300 ease-in-out ${collapsed ? 'w-[72px]' : 'w-64'}`}
+      >
+        {navContent(false)}
       </aside>
     </>
   );

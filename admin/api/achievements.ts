@@ -3,7 +3,7 @@ import type { ListResponse, ItemResponse, DeleteResponse, Achievement, Achieveme
 import { createMockCrud, MOCK_ACHIEVEMENTS } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<Achievement>(MOCK_ACHIEVEMENTS) : null;
+const mock = USE_MOCK ? createMockCrud<Achievement>(MOCK_ACHIEVEMENTS, 'vcet_mock_achievements') : null;
 
 export const achievementsApi = {
   list: USE_MOCK

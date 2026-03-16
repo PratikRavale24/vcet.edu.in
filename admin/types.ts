@@ -55,9 +55,9 @@ export interface Notice {
   pdf_url: string | null;
   admin_pdf_url: string | null;
   is_active: boolean;
-  deactivates_at: string | null;
-  added_by: number;
-  deleted_at?: string | null;
+  sort_order: number;
+  expiry_date: string | null;
+  expiry_time: string | null;
   created_at: string;
   updated_at: string;
   author?: {
@@ -76,7 +76,10 @@ export interface NoticePayload {
   pdf?: File | null;
   remove_pdf?: boolean;
   is_active?: boolean;
-  deactivates_at?: string | null;
+  sort_order?: number;
+  expiry_date?: string;
+  expiry_time?: string;
+  attachment?: File;
 }
 
 // ── Events ────────────────────────────────────────────────────────────────────
@@ -94,6 +97,8 @@ export interface Event {
   status: 'Upcoming' | 'Completed' | 'Cancelled' | null;
   is_featured: boolean;
   is_active: boolean;
+  expiry_date: string | null;
+  expiry_time: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -109,7 +114,10 @@ export interface EventPayload {
   status?: 'Upcoming' | 'Completed' | 'Cancelled';
   is_featured?: boolean;
   is_active?: boolean;
+  expiry_date?: string;
+  expiry_time?: string;
   image?: File;
+  attachment?: File;
 }
 
 // ── Placements ────────────────────────────────────────────────────────────────
