@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { LampContainer } from '../ui/lamp';
 import { placementStatsApi, type PlacementStat } from '../admin/api/placementStats';
+import { usePlacements } from '../hooks/usePlacements';
 
 interface ChartEntry {
   year: string;
@@ -27,7 +28,7 @@ const Placements: React.FC = () => {
   const { placements } = usePlacements();
   
   const finalData = React.useMemo(() => {
-    if (!placements || placements.length === 0) return DEFAULT_PLACEMENT_DATA;
+    if (!placements || placements.length === 0) return [];
     
     const CURRENT_YEAR = new Date().getFullYear();
     const grouped = placements.reduce((acc, curr) => {
