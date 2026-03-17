@@ -130,6 +130,16 @@ const NaacPage = lazy(() => import('./pages/naac/NAACPage'));
 // pages/contact
 const ContactUs = lazy(() => import('./pages/contact/ContactUs'));
 
+// pages/footer
+const GermanLanguageClubLayout = lazy(() => import('./pages/footer/german-language-club/GermanLanguageClubLayout'));
+const GermanClubAbout = lazy(() => import('./pages/footer/german-language-club/GermanClubAbout'));
+const GermanClubCourseObjectives = lazy(() => import('./pages/footer/german-language-club/GermanClubCourseObjectives'));
+const GermanClubCourseContent = lazy(() => import('./pages/footer/german-language-club/GermanClubCourseContent'));
+const GermanClubActivities = lazy(() => import('./pages/footer/german-language-club/GermanClubActivities'));
+const GermanClubGallery = lazy(() => import('./pages/footer/german-language-club/GermanClubGallery'));
+const GermanClubFaculty = lazy(() => import('./pages/footer/german-language-club/GermanClubFaculty'));
+const HelplineForDivyangjan = lazy(() => import('./pages/footer/HelplineForDivyangjan'));
+
 // pages/mms
 const MMSHome = lazy(() => import('./pages/mms/MMSHome'));
 const MMSAbout = lazy(() => import('./pages/mms/about/MMSAbout'));
@@ -191,6 +201,7 @@ const EventsList = lazy(() => import('./admin/pages/events/EventsList'));
 const EventForm = lazy(() => import('./admin/pages/events/EventForm'));
 const PlacementsList = lazy(() => import('./admin/pages/placements/PlacementsList'));
 const PlacementForm = lazy(() => import('./admin/pages/placements/PlacementForm'));
+const PlacementStats = lazy(() => import('./admin/pages/placements/PlacementStats'));
 const HeroSlidesList = lazy(() => import('./admin/pages/hero-slides/HeroSlidesList'));
 const HeroSlideForm = lazy(() => import('./admin/pages/hero-slides/HeroSlideForm'));
 const NewsTickerList = lazy(() => import('./admin/pages/news-ticker/NewsTickerList'));
@@ -203,6 +214,7 @@ const GalleryPage = lazy(() => import('./admin/pages/gallery/GalleryPage'));
 const PlacementPartnersList = lazy(() => import('./admin/pages/placement-partners/PlacementPartnersList'));
 const PlacementPartnersForm = lazy(() => import('./admin/pages/placement-partners/PlacementPartnersForm'));
 const EnquiriesList = lazy(() => import('./admin/pages/enquiries/EnquiriesList'));
+const SitePages = lazy(() => import('./admin/pages/pages/SitePages'));
 
 /* ── Loading Spinner ── */
 const PageLoader = () => (
@@ -378,6 +390,18 @@ function App() {
             <Route path="/e-cell" element={<ECell />} />
             <Route path="/iiic" element={<IIIC />} />
             <Route path="/exam-cell" element={<ExamCell />} />
+            <Route path="/helpline-for-divyangjan" element={<HelplineForDivyangjan />} />
+
+            {/* Footer Pages */}
+            <Route path="/german-language-club" element={<GermanLanguageClubLayout />}>
+              <Route index element={<Navigate to="about" replace />} />
+              <Route path="about" element={<GermanClubAbout />} />
+              <Route path="course-objectives" element={<GermanClubCourseObjectives />} />
+              <Route path="course-content" element={<GermanClubCourseContent />} />
+              <Route path="activities" element={<GermanClubActivities />} />
+              <Route path="gallery" element={<GermanClubGallery />} />
+              <Route path="faculty" element={<GermanClubFaculty />} />
+            </Route>
 
           {/* MMS mini-site */}
           <Route path="/mms" element={<MMSHome />} />
@@ -458,6 +482,7 @@ function App() {
             <Route path="placements" element={<PlacementsList />} />
             <Route path="placements/new" element={<PlacementForm />} />
             <Route path="placements/:id/edit" element={<PlacementForm />} />
+            <Route path="home/placement-stats" element={<PlacementStats />} />
             <Route path="hero-slides" element={<HeroSlidesList />} />
             <Route path="hero-slides/new" element={<HeroSlideForm />} />
             <Route path="hero-slides/:id/edit" element={<HeroSlideForm />} />
@@ -475,6 +500,8 @@ function App() {
             <Route path="placement-partners/new" element={<PlacementPartnersForm />} />
             <Route path="placement-partners/:id/edit" element={<PlacementPartnersForm />} />
             <Route path="enquiries" element={<EnquiriesList />} />
+            <Route path="pages" element={<Navigate to="home" replace />} />
+            <Route path="pages/:pageKey" element={<SitePages />} />
           </Route>
         </Routes>
       </Suspense>

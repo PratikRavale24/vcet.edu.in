@@ -167,7 +167,10 @@ export default function MMSLayout({ title, children }: MMSLayoutProps) {
             </aside>
           ) : null}
 
-          <div className="min-w-0 w-full flex-1 text-base leading-7 text-slate-700 sm:text-[17px] sm:leading-8 lg:pl-1 xl:pl-2">
+          <div
+            key={`${pathname}${hash}`}
+            className="mms-page-transition min-w-0 w-full flex-1 text-base leading-7 text-slate-700 sm:text-[17px] sm:leading-8 lg:pl-1 xl:pl-2"
+          >
             {title ? (
               <h2 className="mb-4 text-3xl font-display font-bold leading-[1.2] tracking-[-0.01em] text-brand-navy sm:text-4xl lg:text-5xl">
                 {title}
@@ -187,6 +190,31 @@ export default function MMSLayout({ title, children }: MMSLayoutProps) {
       <Footer />
 
       <MMSEnquirePopup />
+
+      <style>{`
+        .mms-page-transition {
+          transform-origin: left center;
+          animation: mmsPageTurn 260ms cubic-bezier(0.22, 0.7, 0.2, 1);
+          will-change: transform, opacity;
+        }
+
+        @keyframes mmsPageTurn {
+          0% {
+            opacity: 0;
+            transform: translateX(10px) scale(0.997);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0px) scale(1);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .mms-page-transition {
+            animation: none !important;
+          }
+        }
+      `}</style>
 
       {showPosterPopup ? (
         <div className="fixed inset-0 z-[220] flex items-center justify-center bg-slate-950/55 p-3 backdrop-blur-md sm:p-6">

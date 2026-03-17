@@ -4,7 +4,7 @@ import { ExperientialImageHolder, ExperientialSectionCard } from './Experiential
 
 export default function MMSExperientialFinancialLiteracy() {
   return (
-    <MMSLayout title="Experiential Learning">
+    <MMSLayout title="Financial Literacy Program">
       <div className="space-y-6">
         <ExperientialSectionCard title="Financial Literacy Program">
           <p className="text-[17px] leading-8 text-slate-700">

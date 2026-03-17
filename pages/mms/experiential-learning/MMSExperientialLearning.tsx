@@ -4,7 +4,7 @@ import { ExperientialSectionCard } from './ExperientialLearningShared';
 
 export default function MMSExperientialLearning() {
   return (
-    <MMSLayout title="Experiential Learning">
+    <MMSLayout title="Information">
       <div className="space-y-6">
         <ExperientialSectionCard title="Information">
           <p className="text-[17px] leading-8 text-slate-700">
