@@ -1,59 +1,23 @@
-import React from 'react';
+﻿import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
-import { Shield, Users, Heart, BookOpen, HandHeart, Target, Award } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 const objectives = [
-  {
-    icon: Shield,
-    title: 'Protection of Rights',
-    description: 'Ensuring that the rights and dignity of SC/ST students are protected within the campus.',
-  },
-  {
-    icon: Heart,
-    title: 'Welfare Measures',
-    description: 'Implementing welfare policies and schemes for the benefit of SC/ST students.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Academic Support',
-    description: 'Providing academic support through remedial coaching, mentoring, and counseling.',
-  },
-  {
-    icon: HandHeart,
-    title: 'Scholarship Assistance',
-    description: 'Facilitating government scholarships, fellowships, and financial aid for eligible students.',
-  },
-  {
-    icon: Target,
-    title: 'Awareness Programs',
-    description: 'Conducting awareness programs about government policies, schemes, and constitutional rights.',
-  },
-  {
-    icon: Award,
-    title: 'Grievance Handling',
-    description: 'Addressing complaints of discrimination or harassment faced by SC/ST students promptly.',
-  },
-];
-
-const activities = [
-  'Orientation sessions for newly admitted SC/ST students',
-  'Information dissemination about government scholarship schemes',
-  'Organizing skill development workshops and training programs',
-  'Providing guidance for competitive exams and career opportunities',
-  'Facilitating access to book banks and study materials',
-  'Counseling services for academic and personal issues',
-  'Coordination with government agencies for welfare schemes',
-  'Celebration of important national days like Ambedkar Jayanti, Constitution Day',
+  'Ensuring that the policies and programs devised by the Government of India, the University Grants Commission (UGC), and state governments regarding backward castes and classes are effectively implemented within the institution.',
+  'Acting as advocates for SC/ST students, helping them access government schemes and programs designed to support their educational and career aspirations.',
+  'Providing counseling and guidance services tailored to the specific needs of SC/ST students, assisting them in navigating academic challenges and personal issues they may face during their college life.',
+  'Taking proactive measures to prevent any form of discrimination or atrocities against SC/ST faculty, staff, and students within the institute and creating a safe and inclusive environment for all community members.',
+  'Implementing, monitoring, and continuously evaluating the reservation policy within the institute, ensuring that it is effectively enforced and that eligible SC/ST candidates are given the opportunities they are entitled to.',
+  'Establishing a formal grievance redressal mechanism specifically tailored to address the concerns and issues faced by SC/ST students.',
 ];
 
 const members = [
-  { name: 'Chairperson', designation: 'Faculty (SC/ST Category)', role: 'Chairperson' },
-  { name: 'Member 1', designation: 'Faculty Representative', role: 'Member' },
-  { name: 'Member 2', designation: 'Faculty Representative', role: 'Member' },
-  { name: 'Member 3', designation: 'Non-Teaching Staff (SC/ST)', role: 'Member' },
-  { name: 'Student Representative 1', designation: 'Student (SC/ST Category)', role: 'Student Member' },
-  { name: 'Student Representative 2', designation: 'Student (SC/ST Category)', role: 'Student Member' },
+  { name: 'Mrs. C.V. Sonarkar', designation: 'Chairman', caste: 'SC' },
+  { name: 'Dr. Swapnil Mane', designation: 'Member', caste: 'SC' },
+  { name: 'Mr. Sandeep Pawar', designation: 'Member', caste: 'SC' },
+  { name: 'Mrs. Shubhangi Dalvi', designation: 'Member', caste: 'OBC' },
+  { name: 'Mr. Sachin Gondke', designation: 'Member', caste: 'ST' },
 ];
 
 const SCSTCommittee: React.FC = () => {
@@ -62,156 +26,115 @@ const SCSTCommittee: React.FC = () => {
       <PageBanner
         title="SC-ST Committee"
         breadcrumbs={[
-          { label: 'Committees', href: '#' },
-          { label: 'Statutory Committees', href: '#' },
+          { label: 'Committees', href: '/college-development-committee' },
+          { label: 'Statutory Committees', href: '/anti-ragging-committee' },
           { label: 'SC-ST Committee' },
         ]}
       />
 
-      {/* About */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="bg-[radial-gradient(1200px_500px_at_10%_0%,rgba(26,75,124,0.09),transparent),radial-gradient(900px_400px_at_90%_10%,rgba(253,184,19,0.08),transparent),#f5f7fa] py-10 md:py-14">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="reveal">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">
-                  Statutory Committee
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-6">
-                SC-ST Committee for Student Welfare
+          <div className="max-w-6xl mx-auto space-y-8 md:space-y-10">
+            <div className="reveal bg-white border border-[#8ea2b8] border-l-4 border-l-[#fdb813] shadow-[0_16px_34px_rgba(253,184,19,0.38),0_6px_14px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500">
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-4">
+                SC-ST Committee
               </h2>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                The SC/ST Committee at VCET has been constituted as per UGC guidelines and
-                the provisions of the SC/ST Prevention of Atrocities Act. The committee is
-                dedicated to ensuring the welfare, protection, and overall development of
-                students belonging to Scheduled Castes and Scheduled Tribes.
-              </p>
-              <p className="text-slate-500 leading-relaxed">
-                The committee works towards creating an inclusive environment where SC/ST students
-                can pursue their education without any discrimination or hindrance. It acts as a
-                bridge between students and the administration, ensuring that their concerns are
-                heard and addressed effectively.
+              <p className="text-[#333333] leading-relaxed text-base md:text-lg">
+                Vidyavardhini&apos;s College of Engineering and Technology (VCET) has formed the
+                Schedule Caste/Schedule Tribe (SC/ST) committee as per the AICTE guidelines and
+                the Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act No.
+                33 of 1989.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Objectives */}
-      <section className="py-16 md:py-24 bg-brand-light">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Objectives</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Committee Objectives
+            <div
+              className="reveal bg-gradient-to-br from-white to-[#f8fbff] border-2 border-[#8ea2b8] shadow-[0_14px_28px_rgba(26,75,124,0.30),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
+              style={{ transitionDelay: '0.06s' }}
+            >
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-5">
+                Objectives
               </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {objectives.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
-                  style={{ transitionDelay: `${Math.min(idx * 0.05, 0.4)}s` }}
-                >
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/5 flex items-center justify-center mb-4 group-hover:bg-brand-gold/10 transition-colors duration-300">
-                    <item.icon className="w-5 h-5 text-brand-blue/60 group-hover:text-brand-gold transition-colors duration-300" />
+              <div className="space-y-4">
+                {objectives.map((objective, index) => (
+                  <div
+                    key={index}
+                    className="reveal group flex items-start gap-4 bg-[#ffefc2] border border-[#fdb813] rounded-none p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#fff4d6] hover:border-[#e3a910] hover:shadow-[0_10px_22px_rgba(253,184,19,0.30)]"
+                    style={{ transitionDelay: `${Math.min(index * 0.05, 0.2)}s` }}
+                  >
+                    <span className="mt-0.5 inline-flex w-9 h-9 rounded-lg bg-[#143759] border border-[#102e4a] items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                      <Check className="w-5 h-5 text-[#fdb813]" strokeWidth={3.25} />
+                    </span>
+                    <p className="text-base md:text-lg leading-[1.7] text-[#333333]">{objective}</p>
                   </div>
-                  <h3 className="text-sm font-semibold text-brand-navy mb-2 font-display">{item.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Activities */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Activities</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
+                ))}
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Key Activities
+            </div>
+
+            <div
+              className="reveal bg-gradient-to-br from-white to-[#f7faff] border-2 border-[#7f96ad] shadow-[0_16px_32px_rgba(253,184,19,0.36),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
+              style={{ transitionDelay: '0.12s' }}
+            >
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-5">
+                Committee Composition
               </h2>
-            </div>
 
-            <div className="space-y-3">
-              {activities.map((activity, idx) => (
-                <div
-                  key={idx}
-                  className="reveal flex items-start gap-4 bg-brand-light rounded-xl p-4 hover:shadow-md transition-all duration-300"
-                  style={{ transitionDelay: `${Math.min(idx * 0.04, 0.4)}s` }}
-                >
-                  <div className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Award className="w-4 h-4 text-brand-gold" />
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">{activity}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+              <div className="mt-6 overflow-x-auto border-2 border-[#6f89a5] shadow-none">
+                <table className="w-full min-w-[720px] border-separate border-spacing-0">
+                  <colgroup>
+                    <col className="w-[38%]" />
+                    <col className="w-[31%]" />
+                    <col className="w-[31%]" />
+                  </colgroup>
+                  <thead>
+                    <tr className="bg-[#143759]">
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a] border-r border-r-[#1e4469]">
+                        Name
+                      </th>
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a] border-r border-r-[#1e4469]">
+                        Designation
+                      </th>
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a]">
+                        Caste
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {members.map((member, index) => {
+                      const isChairman = member.designation === 'Chairman';
 
-      {/* Members */}
-      <section className="py-16 md:py-24 bg-brand-light">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Members</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
+                      return (
+                        <tr
+                          key={`${member.name}-${index}`}
+                          className={`group transition-all duration-200 shadow-[inset_0_-1px_0_rgba(215,221,228,0.95)] hover:bg-[#fff6dc] hover:shadow-[0_8px_18px_rgba(0,0,0,0.12)] hover:translate-y-[-1px] ${
+                            isChairman ? 'bg-[#f1f4f8]' : 'bg-white'
+                          }`}
+                        >
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
+                            {member.name}
+                          </td>
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
+                            <span
+                              className={`inline-flex items-center px-3 py-1.5 rounded-[20px] text-sm md:text-base font-extrabold ${
+                                isChairman
+                                  ? 'bg-[#ffe38a] text-[#1a4b7c] shadow-[0_0_0_1px_rgba(247,188,42,0.35),0_0_10px_rgba(253,184,19,0.22)]'
+                                  : 'bg-[#eceff3] text-[#333333]'
+                              }`}
+                            >
+                              {member.designation}
+                            </span>
+                          </td>
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8]">
+                            {member.caste}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Committee Members
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {members.map((member, idx) => (
-                <div
-                  key={idx}
-                  className={`reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500 ${
-                    idx === 0 ? 'sm:col-span-2 lg:col-span-3 bg-gradient-to-r from-brand-blue to-brand-navy text-white' : ''
-                  }`}
-                  style={{ transitionDelay: `${Math.min(idx * 0.05, 0.4)}s` }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                      idx === 0 ? 'bg-white/10' : 'bg-brand-blue/5'
-                    }`}>
-                      <Users className={`w-5 h-5 ${idx === 0 ? 'text-brand-gold' : 'text-brand-blue/60'}`} />
-                    </div>
-                    <div>
-                      <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${
-                        idx === 0 ? 'text-brand-gold' : 'text-brand-gold/70'
-                      }`}>
-                        {member.role}
-                      </div>
-                      <h3 className={`text-sm font-semibold ${idx === 0 ? 'text-white' : 'text-brand-navy'}`}>
-                        {member.name}
-                      </h3>
-                      <p className={`text-xs mt-0.5 ${idx === 0 ? 'text-white/60' : 'text-slate-400'}`}>
-                        {member.designation}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -221,3 +144,4 @@ const SCSTCommittee: React.FC = () => {
 };
 
 export default SCSTCommittee;
+

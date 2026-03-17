@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
 import { Check, FileText } from 'lucide-react';
@@ -74,7 +74,7 @@ const IQAC: React.FC = () => {
       <section className="bg-[radial-gradient(1200px_500px_at_10%_0%,rgba(26,75,124,0.09),transparent),radial-gradient(900px_400px_at_90%_10%,rgba(253,184,19,0.08),transparent),#f5f7fa] py-10 md:py-14">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto space-y-8 md:space-y-10">
-            <div className="reveal bg-white border-2 border-[#c4cdd8] shadow-[0_16px_34px_rgba(253,184,19,0.38),0_6px_14px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500">
+            <div className="reveal bg-white border border-[#8ea2b8] border-l-4 border-l-[#fdb813] shadow-[0_16px_34px_rgba(253,184,19,0.38),0_6px_14px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500">
               <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
               <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-4">
                 Internal Quality Assurance Cell
@@ -90,7 +90,7 @@ const IQAC: React.FC = () => {
             </div>
 
             <div
-              className="reveal bg-gradient-to-br from-white to-[#f8fbff] border-2 border-[#c4cdd8] shadow-[0_14px_28px_rgba(26,75,124,0.30),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
+              className="reveal bg-gradient-to-br from-white to-[#f8fbff] border-2 border-[#8ea2b8] shadow-[0_14px_28px_rgba(26,75,124,0.30),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
               style={{ transitionDelay: '0.06s' }}
             >
               <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
@@ -101,7 +101,7 @@ const IQAC: React.FC = () => {
                 {objectives.map((objective, index) => (
                   <div
                     key={index}
-                    className="reveal group flex items-start gap-4 bg-[#ffefc2] border border-[#fdb813] rounded-xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#fff4d6] hover:border-[#e3a910] hover:shadow-[0_10px_22px_rgba(253,184,19,0.30)]"
+                    className="reveal group flex items-start gap-4 bg-[#ffefc2] border border-[#fdb813] rounded-none p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#fff4d6] hover:border-[#e3a910] hover:shadow-[0_10px_22px_rgba(253,184,19,0.30)]"
                     style={{ transitionDelay: `${Math.min(index * 0.05, 0.2)}s` }}
                   >
                     <span className="mt-0.5 inline-flex w-9 h-9 rounded-lg bg-[#143759] border border-[#102e4a] items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
@@ -114,7 +114,7 @@ const IQAC: React.FC = () => {
             </div>
 
             <div
-              className="reveal bg-gradient-to-br from-white to-[#f7faff] border-2 border-[#aebdcb] shadow-[0_16px_32px_rgba(253,184,19,0.36),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
+              className="reveal bg-gradient-to-br from-white to-[#f7faff] border-2 border-[#7f96ad] shadow-[0_16px_32px_rgba(253,184,19,0.36),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
               style={{ transitionDelay: '0.12s' }}
             >
               <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
@@ -122,7 +122,7 @@ const IQAC: React.FC = () => {
                 IQAC Committee Composition
               </h2>
 
-              <div className="mt-6 overflow-x-auto border-2 border-[#8fa1b5] shadow-none">
+              <div className="mt-6 overflow-x-auto border-2 border-[#6f89a5] shadow-none">
                 <table className="w-full min-w-[640px] border-separate border-spacing-0">
                   <colgroup>
                     <col className="w-[32%]" />
@@ -149,7 +149,7 @@ const IQAC: React.FC = () => {
                             isHighlighted ? 'bg-[#f1f4f8]' : 'bg-white'
                           }`}
                         >
-                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#b2c0d0] border-r border-r-[#bac8d8]">
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
                             <span
                               className={`inline-flex items-center px-3 py-1.5 rounded-[20px] text-sm md:text-base font-extrabold ${
                                 isHighlighted
@@ -160,7 +160,7 @@ const IQAC: React.FC = () => {
                               {member.role}
                             </span>
                           </td>
-                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#b2c0d0]">
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8]">
                             {member.name}
                           </td>
                         </tr>
@@ -177,35 +177,35 @@ const IQAC: React.FC = () => {
       <section className="py-16 md:py-20 bg-[#f3f6fb]">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="reveal border border-[#b5c5d6] border-l-4 border-l-[#fdb813] bg-white p-5 pl-6 md:p-7 md:pl-8 shadow-[0_12px_26px_rgba(20,55,89,0.08)]">
-              <div className="flex items-center justify-center mb-4">
-                <span className="inline-flex items-center px-5 py-1.5 bg-[#143759] border border-[#0f2e4c] text-[#fdb813] text-xs md:text-sm font-extrabold uppercase tracking-[0.24em] shadow-[0_8px_18px_rgba(20,55,89,0.30)]">
-                  Minutes
-                </span>
-              </div>
-              <h2 className="text-center text-2xl md:text-4xl lg:text-[2.6rem] font-display font-bold text-brand-navy mb-6 md:whitespace-nowrap">
+            <div className="reveal border border-[#8ea2b8] border-l-4 border-l-[#fdb813] bg-white p-3 pl-4 md:p-4 md:pl-5 shadow-[0_12px_26px_rgba(20,55,89,0.08)]">
+              <h2 className="text-center text-xl md:text-2xl lg:text-3xl font-display font-bold text-brand-navy mb-6 md:mb-8 md:whitespace-nowrap">
                 <span className="inline-block border-b-4 border-[#fdb813] pb-1">IQAC Minutes of Meeting (MoM)</span>
               </h2>
 
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-2.5 md:gap-3.5">
                 {momReportParts.map((part, partIndex) => (
-                  <div key={partIndex} className="space-y-3">
+                  <div key={partIndex} className="space-y-2.5">
                     {part.map((report, idx) => (
                       <div
                         key={`${partIndex}-${idx}`}
-                        className="reveal border border-[#a9b9ca] bg-[#f8fbff] p-4 md:p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_22px_rgba(20,55,89,0.14)]"
+                        className="reveal border border-[#7f96ad] bg-[#f8fbff] p-2 md:p-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#fff4d6] hover:border-[#e3a910] hover:shadow-[0_10px_22px_rgba(253,184,19,0.24)]"
                         style={{ transitionDelay: `${Math.min((partIndex * 3 + idx) * 0.04, 0.25)}s` }}
                       >
-                        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-                          <div className="w-16 h-16 bg-[#1d5388] flex items-center justify-center flex-shrink-0">
-                            <FileText className="w-8 h-8 text-[#fdb813]" />
+                        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-2.5">
+                          <div className="w-8 h-8 md:w-9 md:h-9 bg-[#1d5388] flex items-center justify-center flex-shrink-0">
+                            <FileText className="w-4 h-4 md:w-5 md:h-5 text-[#fdb813]" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-2xl font-display font-bold text-brand-navy">MoM {report.year}</h3>
+                            <h3 className="text-base md:text-lg font-display font-bold text-brand-navy">MoM {report.year}</h3>
                           </div>
-                          <span className="inline-flex items-center self-start md:self-center px-6 py-3 text-sm md:text-base font-bold tracking-[0.14em] uppercase border border-[#6f89a5] text-[#5e7794] bg-[#edf3fa] transition-colors duration-200 hover:bg-[#1d5388] hover:text-white hover:border-[#1d5388] cursor-pointer">
+                          <a
+                            href={report.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center self-start md:self-center px-2 py-1 text-[8px] md:text-[10px] font-bold tracking-[0.05em] uppercase border border-[#6f89a5] text-[#5e7794] bg-[#edf3fa] transition-colors duration-200 hover:bg-[#1d5388] hover:text-white hover:border-[#1d5388] cursor-pointer"
+                          >
                             View PDF
-                          </span>
+                          </a>
                         </div>
                       </div>
                     ))}
@@ -220,35 +220,35 @@ const IQAC: React.FC = () => {
       <section className="py-16 md:py-20 bg-white border-t border-[#dbe3ec]">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="reveal border border-[#b5c5d6] border-l-4 border-l-[#fdb813] bg-[#f8fbff] p-5 pl-6 md:p-7 md:pl-8 shadow-[0_12px_26px_rgba(20,55,89,0.08)]">
-              <div className="flex items-center justify-center mb-4">
-                <span className="inline-flex items-center px-5 py-1.5 bg-[#143759] border border-[#0f2e4c] text-[#fdb813] text-xs md:text-sm font-extrabold uppercase tracking-[0.24em] shadow-[0_8px_18px_rgba(20,55,89,0.30)]">
-                  Reports
-                </span>
-              </div>
-              <h2 className="text-center text-3xl md:text-5xl font-display font-bold text-brand-navy mb-6">
+            <div className="reveal border border-[#8ea2b8] border-l-4 border-l-[#fdb813] bg-[#f8fbff] p-5 pl-6 md:p-7 md:pl-8 shadow-[0_12px_26px_rgba(20,55,89,0.08)]">
+              <h2 className="text-center text-xl md:text-2xl lg:text-3xl font-display font-bold text-brand-navy mb-6 md:mb-8 md:whitespace-nowrap">
                 <span className="inline-block border-b-4 border-[#fdb813] pb-1">Annual Quality Assurance Reports (AQAR)</span>
               </h2>
 
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-2.5 md:gap-3.5">
                 {aqarReportParts.map((part, partIndex) => (
-                  <div key={partIndex} className="space-y-3">
+                  <div key={partIndex} className="space-y-2.5">
                     {part.map((report, idx) => (
                       <div
                         key={`${partIndex}-${idx}`}
-                        className="reveal border border-[#a9b9ca] bg-[#f8fbff] p-4 md:p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_22px_rgba(20,55,89,0.14)]"
+                        className="reveal border border-[#7f96ad] bg-[#f8fbff] p-2 md:p-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#fff4d6] hover:border-[#e3a910] hover:shadow-[0_10px_22px_rgba(253,184,19,0.24)]"
                         style={{ transitionDelay: `${Math.min((partIndex * 3 + idx) * 0.04, 0.25)}s` }}
                       >
-                        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-                          <div className="w-16 h-16 bg-[#1d5388] flex items-center justify-center flex-shrink-0">
-                            <FileText className="w-8 h-8 text-[#fdb813]" />
+                        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-2.5">
+                          <div className="w-8 h-8 md:w-9 md:h-9 bg-[#1d5388] flex items-center justify-center flex-shrink-0">
+                            <FileText className="w-4 h-4 md:w-5 md:h-5 text-[#fdb813]" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-2xl font-display font-bold text-brand-navy">AQAR {report.year}</h3>
+                            <h3 className="text-base md:text-lg font-display font-bold text-brand-navy">AQAR {report.year}</h3>
                           </div>
-                          <span className="inline-flex items-center self-start md:self-center px-6 py-3 text-sm md:text-base font-bold tracking-[0.14em] uppercase border border-[#6f89a5] text-[#5e7794] bg-[#edf3fa] transition-colors duration-200 hover:bg-[#1d5388] hover:text-white hover:border-[#1d5388] cursor-pointer">
+                          <a
+                            href={report.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center self-start md:self-center px-2 py-1 text-[8px] md:text-[10px] font-bold tracking-[0.05em] uppercase border border-[#6f89a5] text-[#5e7794] bg-[#edf3fa] transition-colors duration-200 hover:bg-[#1d5388] hover:text-white hover:border-[#1d5388] cursor-pointer"
+                          >
                             View PDF
-                          </span>
+                          </a>
                         </div>
                       </div>
                     ))}
@@ -264,3 +264,4 @@ const IQAC: React.FC = () => {
 };
 
 export default IQAC;
+

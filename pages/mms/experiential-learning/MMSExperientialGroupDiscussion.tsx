@@ -4,7 +4,7 @@ import { ExperientialImageHolder, ExperientialSectionCard } from './Experiential
 
 export default function MMSExperientialGroupDiscussion() {
   return (
-    <MMSLayout title="Experiential Learning">
+    <MMSLayout title="Group Discussion">
       <div className="space-y-6">
         <ExperientialSectionCard title="Group Discussion">
           <p className="text-[17px] leading-8 text-slate-700">

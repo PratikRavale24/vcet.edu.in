@@ -4,7 +4,7 @@ import { ExperientialImageHolder, ExperientialSectionCard } from './Experiential
 
 export default function MMSExperientialNesco() {
   return (
-    <MMSLayout title="Experiential Learning">
+    <MMSLayout title="NESCO Bombay Exhibition Centre">
       <div className="space-y-6">
         <ExperientialSectionCard title="NESCO Bombay Exhibition Centre">
           <p className="text-[17px] leading-8 text-slate-700">

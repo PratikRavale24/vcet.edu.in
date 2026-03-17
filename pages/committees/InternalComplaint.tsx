@@ -1,66 +1,79 @@
-import React from 'react';
+﻿import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
-import { Shield, Users, FileText, Scale, AlertCircle, CheckCircle2, ClipboardList, Lock } from 'lucide-react';
+import { Check } from 'lucide-react';
 
-const iccDetails = [
-  {
-    icon: Shield,
-    title: 'POSH Compliance',
-    description: 'Constituted under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013.',
-  },
-  {
-    icon: Lock,
-    title: 'Confidentiality',
-    description: 'All complaints are treated with strict confidentiality and handled with sensitivity.',
-  },
-  {
-    icon: Scale,
-    title: 'Fair & Impartial',
-    description: 'The committee ensures fair, unbiased, and impartial inquiry into all complaints.',
-  },
-  {
-    icon: AlertCircle,
-    title: 'Awareness & Prevention',
-    description: 'Regular awareness sessions, workshops, and training programs on prevention of sexual harassment.',
-  },
-];
-
-const complaintProcess = [
-  {
-    step: '01',
-    title: 'Written Complaint',
-    description: 'The aggrieved person submits a written complaint to the ICC within 3 months of the incident.',
-  },
-  {
-    step: '02',
-    title: 'Acknowledgement',
-    description: 'ICC acknowledges the complaint and initiates conciliation or inquiry as appropriate.',
-  },
-  {
-    step: '03',
-    title: 'Inquiry',
-    description: 'The committee conducts a thorough and confidential inquiry, hearing both parties.',
-  },
-  {
-    step: '04',
-    title: 'Recommendations',
-    description: 'Based on the inquiry, ICC submits its findings and recommendations to the management.',
-  },
-  {
-    step: '05',
-    title: 'Action',
-    description: 'The management takes appropriate action based on ICC recommendations within 60 days.',
-  },
+const objectives = [
+  'To create awareness among all employees.',
+  'To make it illegal for any employee to engage in unwelcome workplace sexual harassment or acts that amount to sexual harassment.',
+  'To ensure that all individuals are treated with respect and that no discriminatory treatment is meted out solely based on gender.',
+  'To provide a fair and compassionate redress process.',
 ];
 
 const members = [
-  { name: 'Presiding Officer', designation: 'Senior Woman Faculty', role: 'Presiding Officer' },
-  { name: 'Member 1', designation: 'Faculty Representative (Female)', role: 'Member' },
-  { name: 'Member 2', designation: 'Faculty Representative', role: 'Member' },
-  { name: 'Member 3', designation: 'Non-Teaching Staff', role: 'Member' },
-  { name: 'External Member', designation: 'NGO / Legal Expert', role: 'External Member' },
-  { name: 'Student Representative', designation: 'Student', role: 'Student Member' },
+  {
+    post: 'Presiding Officer',
+    name: 'Dr.Archana Dongre',
+    email: 'archana.dongre@vcet.edu.in',
+    contactNo: '91-9291500000',
+    address: 'K.T.Marg,Vasai Road (W)',
+  },
+  {
+    post: 'Member',
+    name: 'Dr. Ashish Chaudhari',
+    email: 'ashish.chaudhari@vcet.edu.in',
+    contactNo: '91-8830385807',
+    address: 'K.T.Marg,Vasai Road (W)',
+  },
+  {
+    post: 'Member',
+    name: 'Dr. Anagha Patil',
+    email: 'anagha.patil@vcet.edu.in',
+    contactNo: '91-9004078402',
+    address: 'K.T.Marg,Vasai Road (W)',
+  },
+  {
+    post: 'Member',
+    name: 'Ms. Milan Pawar',
+    email: 'milan.pawar@vcet.edu.in',
+    contactNo: '91-9702333011',
+    address: 'K.T.Marg,Vasai Road (W)',
+  },
+  {
+    post: 'Member',
+    name: 'Ms. Ashlesha Patil',
+    email: 'ashlesha.patil@vcet.edu.in',
+    contactNo: '91-9833447730',
+    address: 'K.T.Marg,Vasai Road (W)',
+  },
+  {
+    post: 'Member',
+    name: 'Mr. Rohan Patil',
+    email: 'rohan.patil@vcet.edu.in',
+    contactNo: '--',
+    address: 'K.T.Marg,Vasai Road (W)',
+  },
+  {
+    post: 'Member',
+    name: 'Ms. Prapti Raut',
+    email: 'prapti.raut@vcet.edu.in',
+    contactNo: '--',
+    address: 'Student T.E.(EXTC)',
+  },
+  {
+    post: 'Member',
+    name: 'Ms. Krisha Chika',
+    email: 'krisha.chika@vcet.edu.in',
+    contactNo: '--',
+    address: 'Student T.E.(COMP)',
+  },
+  {
+    post: 'Member',
+    name: 'Mrs.Anjali Dilip Vartak',
+    email: 'anjali.vartak@vcet.edu.in',
+    contactNo: '--',
+    address: 'Swadhar (NGO)',
+  },
 ];
 
 const InternalComplaint: React.FC = () => {
@@ -69,157 +82,132 @@ const InternalComplaint: React.FC = () => {
       <PageBanner
         title="Internal Complaint Committee"
         breadcrumbs={[
-          { label: 'Committees', href: '#' },
+          { label: 'Committees', href: '/college-development-committee' },
+          { label: 'Statutory Committees', href: '/anti-ragging-committee' },
           { label: 'Internal Complaint Committee' },
         ]}
       />
 
-      {/* About ICC */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="bg-[radial-gradient(1200px_500px_at_10%_0%,rgba(26,75,124,0.09),transparent),radial-gradient(900px_400px_at_90%_10%,rgba(253,184,19,0.08),transparent),#f5f7fa] py-10 md:py-14">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="reveal">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">
-                  POSH Act 2013
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-6">
-                Internal Complaint Committee (ICC)
+          <div className="max-w-6xl mx-auto space-y-8 md:space-y-10">
+            <div className="reveal bg-white border border-[#8ea2b8] border-l-4 border-l-[#fdb813] shadow-[0_16px_34px_rgba(253,184,19,0.38),0_6px_14px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500">
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-4">
+                Internal Complaint Committee
               </h2>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                The Internal Complaint Committee (ICC) at VCET has been constituted in compliance
-                with the Sexual Harassment of Women at Workplace (Prevention, Prohibition and
-                Redressal) Act, 2013. The committee ensures a safe and harassment-free environment
-                for all students, faculty, and staff.
+              <p className="text-[#333333] leading-relaxed text-base md:text-lg mb-4">
+                As an employer, VCET, Vasai intends to provide and promote a safe working environment
+                for all women employed by the institution.
               </p>
-              <p className="text-slate-500 leading-relaxed">
-                The ICC is committed to creating awareness about gender sensitization, prevention of
-                sexual harassment, and providing a fair mechanism for complaint redressal. The committee
-                operates with the highest standards of confidentiality and impartiality.
+              <p className="text-[#333333] leading-relaxed text-base md:text-lg">
+                As per the guidelines of the Sexual Harassment of Women at Woekplace (Prevention,
+                Prohibition and Redressal) Act and Rule 2013. VCET has established an internal
+                Complaints Committee to extend the Act&apos;s Provisions to all VCET&apos;s employees.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Details */}
-      <section className="py-16 md:py-24 bg-brand-light">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Key Features</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                ICC Framework
+            <div
+              className="reveal bg-gradient-to-br from-white to-[#f8fbff] border-2 border-[#8ea2b8] shadow-[0_14px_28px_rgba(26,75,124,0.30),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
+              style={{ transitionDelay: '0.06s' }}
+            >
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-5">
+                Objectives
               </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {iccDetails.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
-                  style={{ transitionDelay: `${Math.min(idx * 0.08, 0.4)}s` }}
-                >
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/5 flex items-center justify-center mb-4 group-hover:bg-brand-gold/10 transition-colors duration-300">
-                    <item.icon className="w-5 h-5 text-brand-blue/60 group-hover:text-brand-gold transition-colors duration-300" />
+              <div className="space-y-4">
+                {objectives.map((objective, index) => (
+                  <div
+                    key={index}
+                    className="reveal group flex items-start gap-4 bg-[#ffefc2] border border-[#fdb813] rounded-none p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#fff4d6] hover:border-[#e3a910] hover:shadow-[0_10px_22px_rgba(253,184,19,0.30)]"
+                    style={{ transitionDelay: `${Math.min(index * 0.05, 0.2)}s` }}
+                  >
+                    <span className="mt-0.5 inline-flex w-9 h-9 rounded-lg bg-[#143759] border border-[#102e4a] items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                      <Check className="w-5 h-5 text-[#fdb813]" strokeWidth={3.25} />
+                    </span>
+                    <p className="text-base md:text-lg leading-[1.7] text-[#333333]">{objective}</p>
                   </div>
-                  <h3 className="text-sm font-semibold text-brand-navy mb-2 font-display">{item.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Complaint Process */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Process</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
+                ))}
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Complaint Filing Process
+            </div>
+
+            <div
+              className="reveal bg-gradient-to-br from-white to-[#f7faff] border-2 border-[#7f96ad] shadow-[0_16px_32px_rgba(253,184,19,0.36),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
+              style={{ transitionDelay: '0.12s' }}
+            >
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-5">
+                Committee Composition
               </h2>
-            </div>
 
-            <div className="space-y-4">
-              {complaintProcess.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="reveal flex items-start gap-5 bg-brand-light rounded-xl p-5 hover:shadow-md transition-all duration-300"
-                  style={{ transitionDelay: `${Math.min(idx * 0.06, 0.4)}s` }}
-                >
-                  <div className="text-2xl font-display font-bold text-brand-gold/30 flex-shrink-0 w-10">
-                    {item.step}
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-brand-navy mb-1 font-display">{item.title}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+              <div className="mt-6 overflow-x-auto border-2 border-[#6f89a5] shadow-none">
+                <table className="w-full min-w-[1060px] border-separate border-spacing-0">
+                  <colgroup>
+                    <col className="w-[17%]" />
+                    <col className="w-[23%]" />
+                    <col className="w-[22%]" />
+                    <col className="w-[16%]" />
+                    <col className="w-[22%]" />
+                  </colgroup>
+                  <thead>
+                    <tr className="bg-[#143759]">
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a] border-r border-r-[#1e4469]">
+                        Post
+                      </th>
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a] border-r border-r-[#1e4469]">
+                        Name
+                      </th>
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a] border-r border-r-[#1e4469]">
+                        Email Id
+                      </th>
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a] border-r border-r-[#1e4469]">
+                        Contact No.
+                      </th>
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a]">
+                        Address
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {members.map((member, index) => {
+                      const isPresidingOfficer = member.post === 'Presiding Officer';
 
-      {/* Members */}
-      <section className="py-16 md:py-24 bg-brand-light">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Members</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
+                      return (
+                        <tr
+                          key={`${member.post}-${member.name}-${index}`}
+                          className={`group transition-all duration-200 shadow-[inset_0_-1px_0_rgba(215,221,228,0.95)] hover:bg-[#fff6dc] hover:shadow-[0_8px_18px_rgba(0,0,0,0.12)] hover:translate-y-[-1px] ${
+                            isPresidingOfficer ? 'bg-[#f1f4f8]' : 'bg-white'
+                          }`}
+                        >
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
+                            <span
+                              className={`inline-flex items-center px-3 py-1.5 rounded-[20px] text-sm md:text-base font-extrabold ${
+                                isPresidingOfficer
+                                  ? 'bg-[#ffe38a] text-[#1a4b7c] shadow-[0_0_0_1px_rgba(247,188,42,0.35),0_0_10px_rgba(253,184,19,0.22)]'
+                                  : 'bg-[#eceff3] text-[#333333]'
+                              }`}
+                            >
+                              {member.post}
+                            </span>
+                          </td>
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
+                            {member.name}
+                          </td>
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
+                            {member.email}
+                          </td>
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
+                            {member.contactNo}
+                          </td>
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8]">
+                            {member.address}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Committee Members
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {members.map((member, idx) => (
-                <div
-                  key={idx}
-                  className={`reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500 ${
-                    idx === 0 ? 'sm:col-span-2 lg:col-span-3 bg-gradient-to-r from-brand-blue to-brand-navy text-white' : ''
-                  }`}
-                  style={{ transitionDelay: `${Math.min(idx * 0.05, 0.4)}s` }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                      idx === 0 ? 'bg-white/10' : 'bg-brand-blue/5'
-                    }`}>
-                      <Users className={`w-5 h-5 ${idx === 0 ? 'text-brand-gold' : 'text-brand-blue/60'}`} />
-                    </div>
-                    <div>
-                      <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${
-                        idx === 0 ? 'text-brand-gold' : 'text-brand-gold/70'
-                      }`}>
-                        {member.role}
-                      </div>
-                      <h3 className={`text-sm font-semibold ${idx === 0 ? 'text-white' : 'text-brand-navy'}`}>
-                        {member.name}
-                      </h3>
-                      <p className={`text-xs mt-0.5 ${idx === 0 ? 'text-white/60' : 'text-slate-400'}`}>
-                        {member.designation}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -229,3 +217,4 @@ const InternalComplaint: React.FC = () => {
 };
 
 export default InternalComplaint;
+

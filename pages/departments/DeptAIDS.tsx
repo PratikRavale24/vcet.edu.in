@@ -17,41 +17,11 @@ const sidebarLinks = [
   { id: 'newsletter', label: 'Newsletter',                   icon: 'ph-newspaper' },
 ];
 
-const skills = [
-  { icon: 'ph-brain',              label: 'Artificial Intelligence' },
-  { icon: 'ph-chart-line-up',      label: 'Machine Learning' },
-  { icon: 'ph-database',           label: 'Big Data Analytics' },
-  { icon: 'ph-code',               label: 'Python & R Programming' },
-  { icon: 'ph-math-operations',    label: 'Statistics & Mathematics' },
-  { icon: 'ph-presentation-chart', label: 'Data Visualization' },
-  { icon: 'ph-network',            label: 'Deep Learning & Neural Networks' },
-];
-
-const roles = [
-  {
-    icon: 'ph-flask', accent: 'gold', title: 'AI/ML Engineer',
-    description: 'AI/ML Engineers design and build intelligent systems by developing machine learning models, training neural networks, and deploying AI solutions at scale. They work across domains including computer vision, NLP, and reinforcement learning.',
-  },
-  {
-    icon: 'ph-magnifying-glass-chart', accent: 'navy', title: 'Data Scientist',
-    description: 'Data Scientists extract actionable insights from complex datasets using statistical analysis, predictive modelling, and visualization. They work closely with business stakeholders to translate data into strategic decisions.',
-  },
-  {
-    icon: 'ph-gear-six', accent: 'gold', title: 'Data Engineer',
-    description: 'Data Engineers build and maintain the infrastructure that supports data pipelines, warehouses, and lakes. They ensure data is collected, stored, and accessible in efficient formats for analytics and AI model training.',
-  },
-  {
-    icon: 'ph-robot', accent: 'navy', title: 'AI Research Scientist',
-    description: 'AI Research Scientists advance the state of the art in machine learning by developing novel algorithms and publishing research. They work in academia, corporate R&D labs, and government institutions on foundational and applied AI problems.',
-  },
-  {
-    icon: 'ph-cube', accent: 'gold', title: 'Business Intelligence Analyst',
-    description: 'BI Analysts transform raw business data into meaningful reports and dashboards. Using tools like Power BI, Tableau, and SQL, they help organizations monitor KPIs, identify trends, and make data-driven decisions.',
-  },
-];
-
-const delayClass = (idx: number) =>
-  idx % 3 === 0 ? 'delay-100' : idx % 3 === 1 ? 'delay-200' : 'delay-300';
+const delayClass = (idx: number) => {
+  if (idx % 3 === 0) return 'delay-100';
+  if (idx % 3 === 1) return 'delay-200';
+  return 'delay-300';
+};
 
 const DeptAIDS: React.FC = () => {
   const [activeId, setActiveId] = useState('about');
@@ -132,73 +102,23 @@ const DeptAIDS: React.FC = () => {
 
           {/* ════ ABOUT ════════════════════════════════════════════ */}
           {activeId === 'about' && (
-            <>
-              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
-                <div className="space-y-6 text-slate-600 leading-8 text-left">
-                  <p>
-                    The Department of Artificial Intelligence and Data Science was established in 2020 in response to the rapidly
-                    growing demand for AI and data science professionals across every industry. With an intake of 120 seats, the
-                    department is dedicated to producing skilled engineers proficient in artificial intelligence, machine learning,
-                    and data analytics.
-                  </p>
-                  <p>
-                    The department provides hands-on experience with cutting-edge AI tools, deep learning frameworks such as
-                    TensorFlow and PyTorch, and big data technologies including Hadoop and Apache Spark. Students gain exposure
-                    to real-world AI applications through industry collaborations, research projects, and live case studies.
-                  </p>
-                  <p>
-                    The curriculum is carefully designed to build strong mathematical and statistical foundations alongside
-                    practical AI and data science skills. Students work on projects spanning computer vision, natural language
-                    processing, predictive analytics, and intelligent automation — preparing them for diverse career paths in
-                    technology and research.
-                  </p>
-                  <div className="bg-gradient-to-r from-brand-navylight to-white p-6 rounded-2xl border-l-4 border-brand-gold shadow-inner">
-                    <p className="text-brand-navy font-semibold m-0 flex items-start gap-3">
-                      <i className="ph-fill ph-lightbulb text-brand-gold text-2xl mt-1 flex-shrink-0" />
-                      The department's focus on emerging AI technologies and its industry-linked curriculum place its graduates
-                      at the forefront of one of the fastest-growing fields in technology.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section className="reveal">
-                <h2 className="text-3xl font-bold text-brand-navy relative inline-block mb-10">
-                  Core Skills in AI &amp; Data Science:
-                  <span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" />
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                  {skills.map((skill, idx) => (
-                    <div key={skill.label} className={`reveal ${delayClass(idx)} bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 hover:shadow-md hover:border-brand-gold transition-all duration-300 flex items-center gap-4 group`}>
-                      <div className="w-12 h-12 rounded-xl bg-brand-navylight flex items-center justify-center text-brand-navy group-hover:bg-brand-gold group-hover:text-white transition-colors flex-shrink-0">
-                        <i className={`ph ${skill.icon} text-2xl`} />
-                      </div>
-                      <span className="font-semibold text-slate-700 leading-tight">{skill.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              <section className="reveal">
-                <h2 className="text-3xl font-bold text-brand-navy relative inline-block mb-12">
-                  Prominent Career Roles in AI &amp; Data Science:
-                  <span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" />
-                </h2>
-                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-brand-navy before:via-brand-navylight before:to-transparent">
-                  {roles.map((role, idx) => (
-                    <div key={role.title} className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal ${delayClass(idx)}`}>
-                      <div className={`flex items-center justify-center w-10 h-10 rounded-full border-4 border-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-110 ${role.accent === 'gold' ? 'bg-brand-gold' : 'bg-brand-navy'}`}>
-                        <i className={`ph-fill ${role.icon} text-white text-lg`} />
-                      </div>
-                      <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow border-t-4 ${role.accent === 'gold' ? 'bg-[#deeaf7] border-t-brand-navy' : 'bg-[#e8f2fb] border-t-brand-gold'}`}>
-                        <h3 className="text-xl font-bold text-brand-gold mb-3">{role.title}</h3>
-                        <p className="text-slate-600 text-sm leading-relaxed text-justify">{role.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </>
+            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+              <div className="space-y-6 text-slate-600 leading-8 text-left">
+                <p className="text-lg font-bold text-brand-navy">Dr. Tatwadarshi Nagarhalli, Associate Professor &amp; Head Of Department</p>
+                <p>
+                  The Department of Artificial Intelligence and Data Science was established in 2020 to provide quality education in the emerging fields of Artificial Intelligence and Data Science. Initially, the Department offered 30 seats in the first academic year for the Undergraduate Program (B.E.). However, in the following year (2021-22), the intake was doubled, and currently there are 120 seats.
+                </p>
+                <p>
+                  The department aims to create an environment for the development and fostering of proficient artificial intelligence and data science engineers who embody professionalism and civic responsibility. The department has young, dynamic, highly qualified, and experienced faculty members, is equipped with the most modern software, and has state-of-the-art facilities for facilitating a coherent teaching-learning process.
+                </p>
+                <p>
+                  The Department routinely organizes a variety of activities on new technological developments in collaboration with student chapters. The Department encourages students to participate in diverse IPR activities, including writing research papers, copyrighting, and patenting.
+                </p>
+                <p>
+                  The Department works to ensure that students are developed holistically by establishing outcome-based education methods and placing a regular emphasis on extracurricular and co-curricular activities like sports, cultural events, technical events, and student development programs in addition to the academic schedule.
+                </p>
+              </div>
+            </section>
           )}
 
           {/* ════ VISION & MISSION ═════════════════════════════════ */}
@@ -215,16 +135,13 @@ const DeptAIDS: React.FC = () => {
                   <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
                   <div className="relative z-10 p-8 md:p-14">
                     <div className="flex items-center gap-3 mb-8">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(253,184,19,0.15)', border: '1px solid rgba(253,184,19,0.3)' }}>
-                        <i className="ph-fill ph-eye text-xl text-brand-gold" />
-                      </div>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold/70">Department</p>
                         <p className="text-sm font-bold text-white/90 uppercase tracking-widest">Vision</p>
                       </div>
                     </div>
                     <blockquote className="text-2xl md:text-3xl lg:text-4xl font-display font-semibold text-white leading-[1.3] italic mb-10 max-w-4xl">
-                      "To emerge as a leading department in AI and Data Science, nurturing innovators, ethical problem-solvers, and globally competitive professionals."
+                      "To foster proficient artificial intelligence and data science professionals, making remarkable contributions to industry and society."
                     </blockquote>
                     <div className="flex items-center gap-4">
                       <div className="h-px flex-1 bg-white/10" />
@@ -235,41 +152,27 @@ const DeptAIDS: React.FC = () => {
                 </div>
               </section>
               <section className="reveal space-y-6">
-                <div className="flex items-end justify-between mb-2">
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold mb-1">Guiding Principles</p>
-                    <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy leading-tight">Our Mission</h2>
-                  </div>
-                  <div className="hidden md:flex items-center gap-2 text-slate-400 text-sm">
-                    <i className="ph ph-arrow-down text-brand-gold" />
-                    <span className="text-xs tracking-wide">4 Pillars</span>
-                  </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold mb-1">Guiding Principles</p>
+                  <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy leading-tight">Our Mission</h2>
                 </div>
                 <div className="h-px bg-gradient-to-r from-brand-gold via-brand-navylight to-transparent" />
-                <div className="grid md:grid-cols-2 gap-5 pt-2">
-                  {[
-                    { id: '01', delay: 'delay-100', icon: 'ph-graduation-cap', title: 'Comprehensive AI Education', body: 'Impart comprehensive education in Artificial Intelligence and Data Science, equipping students with strong theoretical foundations and practical expertise in AI, ML, and analytics.' },
-                    { id: '02', delay: 'delay-200', icon: 'ph-lightbulb', title: 'Research & Innovation', body: 'Promote innovative research and application development in AI/ML domains, encouraging students and faculty to contribute to open-source, publications, and real-world problem-solving.' },
-                    { id: '03', delay: 'delay-300', icon: 'ph-buildings', title: 'Industry & Higher Studies', body: 'Prepare students for rewarding careers in industry and higher studies with strong technical fundamentals, competitive programming skills, and exposure to the latest AI frameworks.' },
-                    { id: '04', delay: 'delay-100', icon: 'ph-compass', title: 'Ethical AI & Social Responsibility', body: 'Foster ethical AI practices and social responsibility, ensuring graduates develop AI systems that are fair, transparent, and beneficial to society at large.' },
-                  ].map((m, idx) => (
-                    <div key={m.id} className={`reveal ${m.delay} group relative bg-white rounded-2xl p-7 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col`}>
-                      <div className="absolute inset-0 bg-brand-navy opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                      <span className="absolute top-4 right-5 text-6xl font-display font-bold text-slate-100 group-hover:text-white/10 transition-colors duration-300 leading-none select-none">{m.id}</span>
-                      <div className="relative z-10 flex flex-col flex-1">
-                        <div className="w-11 h-11 rounded-xl bg-brand-navylight group-hover:bg-brand-gold/20 flex items-center justify-center mb-5 transition-colors duration-300">
-                          <i className={`ph-fill ${m.icon} text-xl text-brand-navy group-hover:text-brand-gold transition-colors duration-300`} />
-                        </div>
-                        <h3 className="text-base font-bold text-brand-navy group-hover:text-white transition-colors duration-300 mb-3 leading-snug">{m.title}</h3>
-                        <p className="text-sm text-slate-500 group-hover:text-white/70 leading-relaxed transition-colors duration-300 flex-1">{m.body}</p>
-                        <div className="mt-6 flex items-center gap-2">
-                          <div className="h-px flex-1 bg-slate-100 group-hover:bg-white/20 transition-colors duration-300" />
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-gold">M{idx + 1}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <section className="reveal bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3 rounded-xl border border-slate-200 bg-brand-navylight/35 px-4 py-3 text-slate-700 leading-7">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-brand-navy flex-shrink-0" />
+                      <span>To encourage innovation and creativity with rational thinking for solving the challenges in emerging areas.</span>
+                    </li>
+                    <li className="flex items-start gap-3 rounded-xl border border-slate-200 bg-brand-navylight/35 px-4 py-3 text-slate-700 leading-7">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-brand-navy flex-shrink-0" />
+                      <span>To inculcate standard industrial practices and security norms while dealing with Data.</span>
+                    </li>
+                    <li className="flex items-start gap-3 rounded-xl border border-slate-200 bg-brand-navylight/35 px-4 py-3 text-slate-700 leading-7">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-brand-navy flex-shrink-0" />
+                      <span>To develop sustainable Artificial Intelligence systems for the benefit of various sectors.</span>
+                    </li>
+                  </ul>
+                </section>
               </section>
             </div>
           )}
@@ -277,15 +180,18 @@ const DeptAIDS: React.FC = () => {
           {/* ════ DAB ══════════════════════════════════════════════ */}
           {activeId === 'dab' && (() => {
             const members = [
-              { sr: 1, name: 'Dr. Rakesh Himte',   designation: 'Principal',                   org: 'VCET, Vasai',        role: 'Chairman',                tag: 'internal' },
-              { sr: 2, name: 'HOD, AI & DS',        designation: 'Professor & HOD, AIDS',       org: 'VCET, Vasai',        role: 'Head of Department',      tag: 'internal' },
-              { sr: 3, name: 'TBD',                 designation: 'Academic Representative',     org: 'External Institute', role: 'Academic Representative', tag: 'academic' },
-              { sr: 4, name: 'TBD',                 designation: 'Academic Representative',     org: 'External Institute', role: 'Academic Representative', tag: 'academic' },
-              { sr: 5, name: 'TBD',                 designation: 'Industry Expert',             org: 'Industry Partner',   role: 'Industry Representative', tag: 'industry' },
-              { sr: 6, name: 'TBD',                 designation: 'Industry Expert',             org: 'Industry Partner',   role: 'Industry Representative', tag: 'industry' },
-              { sr: 7, name: 'TBD',                 designation: 'Senior Faculty, AIDS Dept.',  org: 'VCET, Vasai',        role: 'Secretary',               tag: 'internal' },
-              { sr: 8, name: 'TBD',                 designation: 'BE Student',                  org: 'VCET, Vasai',        role: 'Student Representative',  tag: 'student'  },
-              { sr: 9, name: 'TBD',                 designation: 'TE Student',                  org: 'VCET, Vasai',        role: 'Student Representative',  tag: 'student'  },
+              { sr: 1, name: 'Dr. Rakesh Himte', designation: 'Principal', org: 'VCET, Vasai', role: 'Chairman', tag: 'internal' },
+              { sr: 2, name: 'Dr. Vikas Gupta', designation: 'Dean Academics', org: 'VCET, Vasai', role: 'Dean', tag: 'internal' },
+              { sr: 3, name: 'Dr. Tattwadarshi P. N.', designation: 'HOD, AI-DS', org: 'VCET, Vasai', role: 'HOD', tag: 'internal' },
+              { sr: 4, name: 'Mrs. Sejal D\'mello', designation: 'Deputy HOD', org: 'VCET, Vasai', role: 'Secretary', tag: 'internal' },
+              { sr: 5, name: 'Mrs. Sneha Yadav', designation: 'Assistant Professor', org: 'VCET, Vasai', role: 'Faculty Representative', tag: 'internal' },
+              { sr: 6, name: 'Ms. Neha Raut', designation: 'Assistant Professor', org: 'VCET, Vasai', role: 'Faculty Representative', tag: 'internal' },
+              { sr: 7, name: 'Ms. Vibhavari Nagarhalli', designation: 'Director & Head Sales for insurance in India Geography', org: 'TCS', role: 'Industry Representative', tag: 'industry' },
+              { sr: 8, name: 'Mr. Roshan Shetty', designation: 'CEO', org: 'CitiusCloud Services LLP', role: 'Industry Representative', tag: 'industry' },
+              { sr: 9, name: 'Ms. Payal Doshi', designation: 'Director', org: 'Prime Softech Solutions Pvt. Ltd', role: 'Industry Representative', tag: 'industry' },
+              { sr: 10, name: 'Mr. Akshay Bharambe', designation: 'CEO, Founder', org: 'ParkingPal', role: 'Industry Representative', tag: 'industry' },
+              { sr: 11, name: 'Mr. Narendra Shekokar', designation: 'Professor, HOD, IOT & Cyber Security Department', org: 'Dwarkadas J. Sangavi College of Engineering', role: 'Academic Representative', tag: 'academic' },
+              { sr: 12, name: 'Mrs. Alka Arora', designation: 'Parent', org: 'VCET, Vasai', role: 'Parent Representative', tag: 'parent' },
             ];
             const tagStyle: Record<string, string> = { internal: 'bg-brand-navylight text-brand-navy', academic: 'bg-blue-50 text-blue-700', industry: 'bg-amber-50 text-amber-700', student: 'bg-emerald-50 text-emerald-700', parent: 'bg-purple-50 text-purple-700' };
             return (
@@ -295,14 +201,6 @@ const DeptAIDS: React.FC = () => {
                   <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy leading-tight">Departmental Advisory Board<span className="text-brand-gold"> (DAB)</span></h2>
                   <div className="mt-3 flex items-center gap-2 text-slate-500 text-sm"><i className="ph-fill ph-check-circle text-brand-gold text-base" />Following are the members of the committee starting from 2022&#8209;23.</div>
                   <div className="mt-5 h-px bg-gradient-to-r from-brand-gold via-brand-navylight to-transparent" />
-                </div>
-                <div className="reveal grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {[{ count: '2', label: 'Industry Experts', icon: 'ph-buildings' }, { count: '2', label: 'Academic Reps', icon: 'ph-graduation-cap' }, { count: '2', label: 'Student Reps', icon: 'ph-student' }, { count: '3', label: 'Internal Members', icon: 'ph-users' }].map(s => (
-                    <div key={s.label} className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-brand-navylight flex items-center justify-center flex-shrink-0"><i className={`ph-fill ${s.icon} text-xl text-brand-navy`} /></div>
-                      <div><p className="text-2xl font-display font-bold text-brand-navy leading-none">{s.count}</p><p className="text-[11px] text-slate-500 mt-0.5">{s.label}</p></div>
-                    </div>
-                  ))}
                 </div>
                 <div className="reveal bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
                   <div className="overflow-x-auto">
@@ -343,8 +241,8 @@ const DeptAIDS: React.FC = () => {
               { n: '12', text: 'An understanding of engineering and management principles and the ability to apply these to manage projects in multidisciplinary environments.' },
             ];
             const psos = [
-              { n: 'PSO1', text: 'To apply the knowledge of Data Science to analyze, design, and implement application-specific solutions using modern AI/ML tools and frameworks.' },
-              { n: 'PSO2', text: 'To analyze complex problems and design intelligent applications using IoT, Big Data Analytics, Artificial Intelligence, and Machine Learning technologies.' },
+              { n: 'PSO1', text: 'Analyze the current trends in the field of Artificial Intelligence & Data Science and contribute to the technological advancements by presenting/publishing at national/international forums.' },
+              { n: 'PSO2', text: 'Design and develop Artificial Intelligence & Data Science applications and solutions in various domains to cater to the needs of industry and society.' },
             ];
             return (
               <div className="space-y-16">
@@ -354,14 +252,11 @@ const DeptAIDS: React.FC = () => {
                   <div className="mt-4 h-px bg-gradient-to-r from-brand-gold via-brand-navylight to-transparent" />
                 </div>
                 <section className="reveal space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-brand-navy flex items-center justify-center flex-shrink-0"><i className="ph-fill ph-chart-bar text-brand-gold text-lg" /></div>
-                    <div><p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">12 Outcomes</p><h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Outcomes (POs)</h3></div>
-                  </div>
+                  <div><p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">12 Outcomes</p><h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Outcomes (POs)</h3></div>
                   <div className="grid md:grid-cols-2 gap-3">
                     {pos.map((po, idx) => (
-                      <div key={po.n} className={`reveal ${idx % 3 === 0 ? 'delay-100' : idx % 3 === 1 ? 'delay-200' : 'delay-300'} group flex gap-4 items-start bg-white border border-slate-100 rounded-xl px-5 py-4 shadow-sm hover:shadow-md hover:border-brand-gold/40 hover:-translate-y-0.5 transition-all duration-200`}>
-                        <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-navylight group-hover:bg-brand-navy flex items-center justify-center text-[11px] font-bold text-brand-navy group-hover:text-brand-gold transition-colors duration-200">{po.n}</span>
+                      <div key={po.n} className={`reveal ${delayClass(idx)} flex gap-4 items-start bg-white border border-slate-100 rounded-xl px-5 py-4 shadow-sm`}>
+                        <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-navylight flex items-center justify-center text-[11px] font-bold text-brand-navy">{po.n}</span>
                         <p className="text-sm text-slate-600 leading-relaxed pt-1">{po.text}</p>
                       </div>
                     ))}
@@ -371,30 +266,22 @@ const DeptAIDS: React.FC = () => {
                   <div className="relative rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(135deg,#0d2d56 0%,#1a4b7c 100%)' }}>
                     <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
                     <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle,rgba(253,184,19,0.12) 0%,transparent 70%)' }} />
-                    <div className="relative z-10 p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6">
-                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(253,184,19,0.15)', border: '1px solid rgba(253,184,19,0.3)' }}><i className="ph-fill ph-target text-2xl text-brand-gold" /></div>
+                    <div className="relative z-10 p-8 md:p-10">
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold/80 mb-1">Objectives</p>
                         <h3 className="text-2xl font-display font-bold text-white mb-2">Program Educational Objectives (PEOs)</h3>
-                        <p className="text-white/60 text-sm leading-relaxed">PEO details will be published by the department. Please check back or contact the department office for the latest information.</p>
+                        <p className="text-white/80 text-sm leading-relaxed">Program Educational Objectives (PEOs):</p>
                       </div>
                     </div>
                   </div>
                 </section>
                 <section className="reveal space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-brand-gold flex items-center justify-center flex-shrink-0"><i className="ph-fill ph-star text-white text-lg" /></div>
-                    <div><p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">AI &amp; Data Science Specific</p><h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Specific Outcomes (PSOs)</h3></div>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-5">
-                    {psos.map((pso, idx) => (
-                      <div key={pso.n} className={`reveal ${idx === 0 ? 'delay-100' : 'delay-200'} relative group bg-white rounded-2xl p-7 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden`}>
-                        <div className="absolute inset-0 bg-brand-navy opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                        <span className="absolute bottom-3 right-5 text-7xl font-display font-bold text-slate-100 group-hover:text-white/10 transition-colors duration-300 leading-none select-none">{idx + 1}</span>
-                        <div className="relative z-10">
-                          <span className="inline-block px-3 py-1 rounded-full bg-brand-navylight group-hover:bg-brand-gold/20 text-brand-navy group-hover:text-brand-gold text-[11px] font-bold uppercase tracking-widest mb-4 transition-colors duration-300">{pso.n}</span>
-                          <p className="text-slate-600 group-hover:text-white/80 text-sm leading-relaxed transition-colors duration-300">{pso.text}</p>
-                        </div>
+                  <div><p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">AI &amp; Data Science Specific</p><h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Specific Outcomes (PSOs)</h3></div>
+                  <div className="space-y-3">
+                    {psos.map((pso) => (
+                      <div key={pso.n} className="reveal bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+                        <p className="text-sm font-bold text-brand-navy mb-2">{pso.n}</p>
+                        <p className="text-slate-600 text-sm leading-relaxed">{pso.text}</p>
                       </div>
                     ))}
                   </div>
@@ -482,27 +369,12 @@ const DeptAIDS: React.FC = () => {
             return (
               <div className="space-y-10">
                 {/* Section header — compact bar */}
-                <div className="reveal flex items-center justify-between flex-wrap gap-4 pb-5 border-b-2 border-brand-gold/30">
+                <div className="reveal flex items-center gap-3 pb-5 border-b-2 border-brand-gold/30">
                   <div>
                     <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-navy/60 flex items-center gap-2 mb-1">
                       <i className="ph-fill ph-chalkboard-teacher text-sm text-brand-navy/50" /> AI &amp; Data Science
                     </span>
                     <h2 className="text-2xl font-display font-bold text-brand-navy">Our Faculty</h2>
-                  </div>
-                  <div className="flex items-center divide-x divide-slate-200">
-                    {[
-                      { icon: 'ph-users-three',    value: `${faculty.length}`, label: 'Members' },
-                      { icon: 'ph-graduation-cap', value: '1',                 label: 'PhD' },
-                      { icon: 'ph-trophy',         value: '40+',               label: 'Yrs Exp.' },
-                    ].map(stat => (
-                      <div key={stat.label} className="flex items-center gap-2.5 px-5">
-                        <i className={`ph-fill ${stat.icon} text-lg text-brand-navy`} />
-                        <div>
-                          <span className="text-lg font-bold text-brand-navy leading-none">{stat.value}</span>
-                          <span className="block text-[11px] text-slate-500 mt-0.5">{stat.label}</span>
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
 
@@ -523,7 +395,10 @@ const DeptAIDS: React.FC = () => {
                           onError={(e) => {
                             const t = e.currentTarget;
                             t.style.display = 'none';
-                            (t.nextElementSibling as HTMLElement)!.style.display = 'flex';
+                            const fallback = t.nextElementSibling as HTMLElement | null;
+                            if (fallback) {
+                              fallback.style.display = 'flex';
+                            }
                           }}
                         />
                         {/* Fallback initials */}
@@ -551,7 +426,18 @@ const DeptAIDS: React.FC = () => {
                       <div className="w-10 h-0.5 bg-gray-300 my-3" />
 
                       {/* Email */}
-                      <div onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href = `mailto:${f.email}`; }} className="flex items-center gap-2 text-xs text-gray-500 hover:text-[#1a4b7c] transition-colors w-full cursor-pointer"><i className="ph-fill ph-envelope text-sm shrink-0 text-gray-400" /><span className="truncate">{f.email}</span></div>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          globalThis.location.href = `mailto:${f.email}`;
+                        }}
+                        className="flex items-center gap-2 text-xs text-gray-500 hover:text-[#1a4b7c] transition-colors w-full cursor-pointer"
+                      >
+                        <i className="ph-fill ph-envelope text-sm shrink-0 text-gray-400" />
+                        <span className="truncate">{f.email}</span>
+                      </button>
                     </Link>
                   ))}
                 </div>
@@ -559,8 +445,233 @@ const DeptAIDS: React.FC = () => {
             );
           })()}
 
-          {/* ════ OTHER SECTIONS (placeholder) ════════════════════ */}
-          {activeId !== 'about' && activeId !== 'vision' && activeId !== 'dab' && activeId !== 'peo' && activeId !== 'faculty' && (
+          {/* ════ STUDENT ACHIEVEMENTS ════════════════════════════ */}
+          {activeId === 'student-achievements' && (
+            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-8 h-px bg-brand-gold" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">AI &amp; Data Science</span>
+              </div>
+              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Student Achievements<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+              <a href="https://vcet.edu.in/wp-content/uploads/2025/08/AIDS-students-Achievement-24-25.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                <span>Student Achievements 2024-25</span>
+                <i className="ph ph-arrow-up-right text-brand-gold" />
+              </a>
+            </section>
+          )}
+
+          {/* ════ TOPPERS ══════════════════════════════════════════ */}
+          {activeId === 'toppers' && (() => {
+            const poSectionToppers = {
+              SE: ['Pranjal Patil (10)', 'Upadhyay Shagun (9.78)', 'Devendra Gurav (9.92)', 'Shravani Raut (9.75)'],
+              TE: ['Nagar Pratham (9.78)', 'Panchal Dhyanesh (9.61)', 'Bari AnkitBARI (9.48)'],
+              BE: ['Jha Devharsh (9.56)', 'Shetty Amulya (9.45)', 'Maurya Hemani (9.34)'],
+            };
+            const toppers2425SetA = {
+              SE: ['Dnyanesh panchal - 10 SGPI', 'Priyanka bhandari - 9.87 SGPI', 'Mohammed Ali Jaffari - 9.3 SGPI'],
+              TE: ['JHA DEVHARSH JAGDANAND - 9.64 SGPI', 'MAURYA HEMANI RAMAKANT - 9.45 SGPI', 'SINGH NEHA VINOD - 9.45 SGPI', 'SHETTY AMULYA CHANDAYYA - 9.36 SGPI'],
+            };
+            const toppers2425SetB = {
+              SE: ['Devharsh Jha - 9.74 SGPI', 'Amulya Shetty - 8.96 SGPI', 'Hemani Maurya - 8.7 SGPI', 'Ryan Chulliyil - 8.7 SGPI'],
+              TE: ['JHA DEVHARSH JAGDANAND - 9.64 SGPI', 'MAURYA HEMANI RAMAKANT - 9.45 SGPI', 'SINGH NEHA VINOD - 9.45 SGPI', 'SHETTY AMULYA CHANDAYYA - 9.36 SGPI'],
+            };
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100 space-y-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">AI &amp; Data Science</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy relative inline-block">Toppers<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+
+                <div>
+                  <h4 className="text-base font-bold text-brand-navy mb-3">Entries Listed Before Topper&apos;s Section</h4>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-brand-navy text-white">
+                          <th className="px-4 py-3 text-left">SE</th>
+                          <th className="px-4 py-3 text-left">TE</th>
+                          <th className="px-4 py-3 text-left">BE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[0, 1, 2, 3].map((i) => (
+                          <tr key={`po-${i}`} className="border-t border-slate-100">
+                            <td className="px-4 py-3 text-slate-600">{poSectionToppers.SE[i] ?? '-'}</td>
+                            <td className="px-4 py-3 text-slate-600">{poSectionToppers.TE[i] ?? '-'}</td>
+                            <td className="px-4 py-3 text-slate-600">{poSectionToppers.BE[i] ?? '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-base font-bold text-brand-navy mb-3">Toppers: 24-25</h4>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-brand-navy text-white">
+                          <th className="px-4 py-3 text-left">SE</th>
+                          <th className="px-4 py-3 text-left">TE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[0, 1, 2, 3].map((i) => (
+                          <tr key={`2425a-${i}`} className="border-t border-slate-100">
+                            <td className="px-4 py-3 text-slate-600">{toppers2425SetA.SE[i] ?? '-'}</td>
+                            <td className="px-4 py-3 text-slate-600">{toppers2425SetA.TE[i] ?? '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-base font-bold text-brand-navy mb-3">Toppers: 24-25</h4>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-brand-navy text-white">
+                          <th className="px-4 py-3 text-left">SE</th>
+                          <th className="px-4 py-3 text-left">TE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[0, 1, 2, 3].map((i) => (
+                          <tr key={`2425b-${i}`} className="border-t border-slate-100">
+                            <td className="px-4 py-3 text-slate-600">{toppers2425SetB.SE[i] ?? '-'}</td>
+                            <td className="px-4 py-3 text-slate-600">{toppers2425SetB.TE[i] ?? '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+              </section>
+            );
+          })()}
+
+          {/* ════ SYLLABUS ═════════════════════════════════════════ */}
+          {activeId === 'syllabus' && (() => {
+            const links = [
+              { label: 'SYLLABUS Revised 2019-20 (SE)', url: 'https://vcet.edu.in/wp-content/uploads/2021/11/Computer_SE_New_8_Branch_R2019_1.7.2021-1.pdf' },
+              { label: 'SYLLABUS Revised 2019-20 (TE)', url: 'https://vcet.edu.in/wp-content/uploads/2022/08/T.E._AI_ML_DS_DE_R2019.pdf' },
+              { label: 'SYLLABUS Revised 2019-20 (BE)', url: 'https://vcet.edu.in/wp-content/uploads/2023/07/BE_CSE_AIML__CSE_DS__AI_DS_AI_ML_DE.pdf' },
+              { label: 'Honours & Minor Degree Program', url: 'https://vcet.edu.in/wp-content/uploads/2023/07/BE_CSE_AIML__CSE_DS__AI_DS_AI_ML_DE.pdf' },
+              { label: 'PO PSO CO', url: 'https://vcet.edu.in/wp-content/uploads/2023/11/2.6.1_Rev-2019_AIDS_Syllabus-.pdf' },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">AI &amp; Data Science</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Syllabus<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <div className="space-y-3">
+                  {links.map((item) => (
+                    <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                      <span>{item.label}</span>
+                      <i className="ph ph-arrow-up-right text-brand-gold" />
+                    </a>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ PATENT / COPYRIGHTS ═════════════════════════════ */}
+          {activeId === 'patent' && (
+            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-8 h-px bg-brand-gold" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">AI &amp; Data Science</span>
+              </div>
+              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Patent / Copyrights<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+              <a href="https://vcet.edu.in/wp-content/uploads/2025/08/AIDS-Copyright-2024-25.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                <span>Copyrights 2024-25</span>
+                <i className="ph ph-arrow-up-right text-brand-gold" />
+              </a>
+            </section>
+          )}
+
+          {/* ════ INNOVATIONS IN TEACHING LEARNING ═══════════════ */}
+          {activeId === 'teaching-learning' && (() => {
+            const links = [
+              { label: 'Innovation in Teaching Learning 2024-25 (Even)', url: 'https://vcet.edu.in/wp-content/uploads/2025/08/EVEN-SEM-Innovation-in-Teaching-learning-2024-25-.pdf' },
+              { label: 'Innovation in Teaching Learning 2024-25 (Odd)', url: 'https://vcet.edu.in/wp-content/uploads/2025/04/ODD-SEM-Innovation-in-Teaching-learning-2024-25-.docx.pdf' },
+              { label: 'Innovation in Teaching Learning 2023-24 (Odd)', url: 'https://vcet.edu.in/wp-content/uploads/2024/04/Innovation-in-teaching-learning-2023-24-Odd-Sem.pdf' },
+              { label: 'Innovation in Teaching Learning 2022-23 (Odd)', url: 'https://vcet.edu.in/wp-content/uploads/2024/04/Innovation-in-Teaching-Learning-2022-23-ODD-Sem.pdf' },
+              { label: 'Innovation in Teaching Learning 2022-23 (Even)', url: 'https://vcet.edu.in/wp-content/uploads/2024/04/Innovation-in-Teaching-Learning-2022-23-Even-Sem.pdf' },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">AI &amp; Data Science</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Innovations in Teaching Learning<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <div className="space-y-3">
+                  {links.map((item) => (
+                    <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                      <span>{item.label}</span>
+                      <i className="ph ph-arrow-up-right text-brand-gold" />
+                    </a>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ MoU ══════════════════════════════════════════════ */}
+          {activeId === 'mou' && (
+            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-8 h-px bg-brand-gold" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">AI &amp; Data Science</span>
+              </div>
+              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">MoU<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+              <a href="https://vcet.edu.in/wp-content/uploads/2025/08/AIDS-MoU-2024-25.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                <span>MoU 2024-25</span>
+                <i className="ph ph-arrow-up-right text-brand-gold" />
+              </a>
+            </section>
+          )}
+
+          {/* ════ MAGAZINE / NEWSLETTER ═══════════════════════════ */}
+          {activeId === 'newsletter' && (() => {
+            const newsletterLinks = [
+              { label: 'NEWSLETTER (EVEN SEM 2025)', url: 'https://vcet.edu.in/wp-content/uploads/2025/08/Newsletter-Even-2025.pdf' },
+              { label: 'NEWSLETTER (ODD SEM 2024)', url: 'https://vcet.edu.in/wp-content/uploads/2025/08/Newsletter-Odd-2024.pdf' },
+              { label: 'NEWSLETTER (EVEN SEM 2024)', url: 'https://vcet.edu.in/wp-content/uploads/2024/06/Add-a-subheading_20240403_153124_0000.pdf' },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100 space-y-6">
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">AI &amp; Data Science</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy relative inline-block">Magazine / Newsletter<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <div>
+                  <h4 className="text-lg font-bold text-brand-navy mb-3">Newsletter</h4>
+                  <div className="space-y-2">
+                    {newsletterLinks.map((item) => (
+                      <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                        <span>{item.label}</span>
+                        <i className="ph ph-arrow-up-right text-brand-gold" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            );
+          })()}
+
+          {/* ════ FALLBACK ════════════════════════════════════════ */}
+          {activeId !== 'about' && activeId !== 'vision' && activeId !== 'dab' && activeId !== 'peo' && activeId !== 'faculty' && activeId !== 'student-achievements' && activeId !== 'toppers' && activeId !== 'syllabus' && activeId !== 'patent' && activeId !== 'teaching-learning' && activeId !== 'mou' && activeId !== 'newsletter' && (
             <section className="reveal bg-white rounded-3xl p-12 shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center min-h-[300px]">
               <div className="w-16 h-16 rounded-2xl bg-brand-navylight flex items-center justify-center mb-4">
                 <i className={`ph ${activeLink?.icon ?? 'ph-folder'} text-3xl text-brand-navy`} />

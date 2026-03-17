@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { SITE_PAGE_TABS } from '../pages/pages/sitePagesConfig';
 
 interface NavItem {
   label: string;
@@ -76,6 +77,19 @@ const MonitorIcon = () => (
     <rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
   </svg>
 );
+const FolderIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+    <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
+  </svg>
+);
+const FileTextIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
+  </svg>
+);
 const UsersIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
@@ -119,6 +133,12 @@ const navSections: NavSection[] = [
     ],
   },
   {
+    label: 'Pages',
+    items: [
+      { label: 'Pages', path: '/admin/pages/home', icon: <FolderIcon /> },
+    ],
+  },
+  {
     label: 'Content Management',
     items: [
       { label: 'Notices', path: '/admin/notices', icon: <Bell /> },
@@ -154,6 +174,13 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [pagesOpen, setPagesOpen] = useState(false);
+  const location = useLocation();
+  const isPagesRoute = location.pathname.startsWith('/admin/pages');
+
+  useEffect(() => {
+    if (isPagesRoute) setPagesOpen(true);
+  }, [isPagesRoute]);
 
   const linkClass = (active: boolean) =>
     `flex items-center gap-3 rounded-xl text-sm font-medium transition-all duration-200 ${
@@ -210,19 +237,56 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
               <div className="mx-auto w-8 border-t border-slate-200 my-2" />
             )}
             <div className="space-y-0.5">
-              {section.items.map((item) => (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  end={item.path === '/admin'}
-                  className={({ isActive }) => linkClass(isActive)}
-                  onClick={() => setMobileOpen(false)}
-                  title={collapsed && !isMobile ? item.label : undefined}
-                >
-                  <span className="flex-shrink-0">{item.icon}</span>
-                  {!(collapsed && !isMobile) && <span>{item.label}</span>}
-                </NavLink>
-              ))}
+              {section.label === 'Pages' ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setPagesOpen((prev) => !prev)}
+                    className={linkClass(isPagesRoute)}
+                    title={collapsed && !isMobile ? 'Pages' : undefined}
+                  >
+                    <span className="flex-shrink-0"><FolderIcon /></span>
+                    {!(collapsed && !isMobile) && (
+                      <>
+                        <span className="flex-1 text-left">Pages</span>
+                        <span className={`transition-transform duration-200 ${pagesOpen ? 'rotate-90' : ''}`}>
+                          <ChevronRightIcon />
+                        </span>
+                      </>
+                    )}
+                  </button>
+                  {pagesOpen && (
+                    <div className={`${collapsed && !isMobile ? 'space-y-0.5' : 'ml-3 pl-3 border-l border-slate-200 space-y-0.5'}`}>
+                      {SITE_PAGE_TABS.map((tab) => (
+                        <NavLink
+                          key={tab.path}
+                          to={tab.path}
+                          className={({ isActive }) => linkClass(isActive)}
+                          onClick={() => setMobileOpen(false)}
+                          title={collapsed && !isMobile ? tab.label : undefined}
+                        >
+                          <span className="flex-shrink-0">{tab.key === 'home' ? <LayoutGrid /> : <FileTextIcon />}</span>
+                          {!(collapsed && !isMobile) && <span>{tab.label}</span>}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                section.items.map((item) => (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    end={item.path === '/admin'}
+                    className={({ isActive }) => linkClass(isActive)}
+                    onClick={() => setMobileOpen(false)}
+                    title={collapsed && !isMobile ? item.label : undefined}
+                  >
+                    <span className="flex-shrink-0">{item.icon}</span>
+                    {!(collapsed && !isMobile) && <span>{item.label}</span>}
+                  </NavLink>
+                ))
+              )}
             </div>
           </div>
         ))}

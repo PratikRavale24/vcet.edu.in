@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
 import { Accessibility, Heart, BookOpen, Users, Target, HandHeart, GraduationCap, Lightbulb } from 'lucide-react';
@@ -108,7 +108,7 @@ const EqualOpportunity: React.FC = () => {
               {objectives.map((item, idx) => (
                 <div
                   key={idx}
-                  className="reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
+                  className="reveal group bg-white rounded-none border border-[#8ea2b8] p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
                   style={{ transitionDelay: `${Math.min(idx * 0.05, 0.4)}s` }}
                 >
                   <div className="w-12 h-12 rounded-xl bg-brand-blue/5 flex items-center justify-center mb-4 group-hover:bg-brand-gold/10 transition-colors duration-300">
@@ -142,7 +142,7 @@ const EqualOpportunity: React.FC = () => {
               {activities.map((activity, idx) => (
                 <div
                   key={idx}
-                  className="reveal flex items-start gap-4 bg-brand-light rounded-xl p-4 hover:shadow-md transition-all duration-300"
+                  className="reveal flex items-start gap-4 bg-brand-light rounded-none p-4 hover:shadow-md transition-all duration-300"
                   style={{ transitionDelay: `${Math.min(idx * 0.04, 0.4)}s` }}
                 >
                   <div className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -160,3 +160,4 @@ const EqualOpportunity: React.FC = () => {
 };
 
 export default EqualOpportunity;
+
