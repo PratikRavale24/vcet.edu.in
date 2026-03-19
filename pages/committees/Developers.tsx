@@ -142,11 +142,13 @@ const Developers: React.FC = () => {
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
                 {developers.map((dev, i) => (
                   <div
                     key={i}
-                    className="reveal group bg-white border border-[#8ea2b8]/30 p-6 md:p-8 text-center shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_10px_22px_rgba(253,184,19,0.20)]"
+                    className={`reveal group bg-white border border-[#8ea2b8]/30 p-6 md:p-8 text-center shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_10px_22px_rgba(253,184,19,0.20)] ${
+                      i === 4 ? 'col-span-2 sm:col-span-1 lg:col-span-1' : ''
+                    }`}
                     style={{ transitionDelay: `${i * 0.05}s` }}
                   >
                     {/* Large circular placeholder */}
