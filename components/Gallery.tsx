@@ -1,13 +1,14 @@
 import React from 'react';
 import { PixelImage } from '../ui/pixel-image';
+import { useGalleries } from '../hooks/useGalleries';
 
-interface GalleryItem {
+interface FallbackGalleryItem {
   title: string;
   subtitle: string;
   src: string;
 }
 
-const galleryItems: GalleryItem[] = [
+const fallbackGalleryItems: FallbackGalleryItem[] = [
   {
     title: 'VCET Campus',
     subtitle: 'Our Sprawling Campus',
@@ -58,6 +59,18 @@ const galleryItems: GalleryItem[] = [
 const STAGGER_MS = 320;
 
 const Gallery: React.FC = () => {
+  const { galleries, loading, error } = useGalleries();
+
+  const activeGalleries = galleries.filter(g => g.is_active);
+  const displayGalleries = activeGalleries.length > 0
+    ? activeGalleries.map(g => ({
+        title: g.title || '',
+        subtitle: g.subtitle || '',
+        src: g.image_url || '/Images/gallery/Gallary_1.jpg',
+        id: String(g.id)
+      }))
+    : fallbackGalleryItems.map((fg, i) => ({ ...fg, id: `fallback-${i}` }));
+
   return (
     <section id="gallery" className="py-10 md:py-14 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -83,11 +96,11 @@ const Gallery: React.FC = () => {
             Items 1-8 (labs): col-span-1, row-span-1
         */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px] sm:auto-rows-[260px]">
-          {galleryItems.map((item, idx) => {
+          {displayGalleries.map((item, idx) => {
             const isFeatured = idx === 0;
             return (
               <div
-                key={item.title}
+                key={item.id}
                 className={[
                   'relative overflow-hidden rounded-2xl group bg-brand-navy shadow-md',
                   isFeatured ? 'sm:col-span-2 lg:col-span-2 md:row-span-2 lg:row-span-2' : '',

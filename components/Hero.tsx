@@ -13,6 +13,8 @@ import {
 import { post } from "../services/api";
 import { useEvents } from "../hooks/useEvents";
 import { useNotices } from "../hooks/useNotices";
+import { useHeroSlides } from "../hooks/useHeroSlides";
+import ImagePreviewModal from "./ImagePreviewModal";
 
 const departments = [
   "Computer Engineering",
@@ -322,7 +324,7 @@ const packageImages = [
   },
 ];
 
-const bannerSlides = [
+const fallbackBannerSlides = [
   { src: "/Images/Banner/bruse-banner.png", alt: "Bruse Banner" },
   { src: "/Images/Banner/yearly-banner.png", alt: "Yearly Banner" },
 ];
@@ -335,15 +337,27 @@ const Hero: React.FC = () => {
   const [packageIndex, setPackageIndex] = useState(0);
   const [pkgZoom, setPkgZoom] = useState(1);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
+  const [imageModalOpen, setImageModalOpen] = useState(false);
   const { notices, loading: noticesLoading } = useNotices();
   const { events, loading: eventsLoading } = useEvents();
+  const { slides: apiSlides, loading: slidesLoading } = useHeroSlides();
+
+  // Format the API slides
+  const apiFormattedSlides = apiSlides
+    .map((s) => ({ src: s.image_url || '', alt: s.title || 'Slide' }))
+    .filter((s) => s.src);
+
+  // Combine API slides WITH the original fallback slides so both are shown and they keep animating
+  const displaySlides = [...apiFormattedSlides, ...fallbackBannerSlides];
 
   useEffect(() => {
+    if (displaySlides.length <= 1) return;
     const timer = setInterval(() => {
-      setSlideIndex((i) => (i + 1) % bannerSlides.length);
+      setSlideIndex((i) => (i + 1) % displaySlides.length);
     }, 10000);
     return () => clearInterval(timer);
-  }, []);
+  }, [displaySlides.length]);
   return (
     <section
       id="home"
@@ -363,11 +377,11 @@ const Hero: React.FC = () => {
         <div className="relative w-full">
           {/* Spacer image to set natural aspect ratio */}
           <img
-            src={bannerSlides[0].src}
+            src={displaySlides[0]?.src}
             alt=""
             className="w-full h-auto block opacity-0 pointer-events-none"
           />
-          {bannerSlides.map((slide, i) => (
+          {displaySlides.map((slide, i) => (
             <img
               key={slide.src}
               src={slide.src}
@@ -379,7 +393,7 @@ const Hero: React.FC = () => {
         </div>
         {/* Dot indicators */}
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-          {bannerSlides.map((_, i) => (
+          {displaySlides.map((_, i) => (
             <button
               key={i}
               onClick={() => setSlideIndex(i)}
@@ -570,9 +584,30 @@ const Hero: React.FC = () => {
                                     {year}
                                   </span>
                                 </div>
-                                <p className="text-[15px] font-medium text-white leading-snug">
-                                  {ev.title}
-                                </p>
+                                {ev.image ? (
+                                  <button
+                                    onClick={() => {
+                                      setSelectedImageUrl(ev.image);
+                                      setImageModalOpen(true);
+                                    }}
+                                    className="text-left text-[15px] font-medium text-white leading-snug hover:text-brand-gold transition-colors"
+                                  >
+                                    {ev.title}
+                                  </button>
+                                ) : ev.attachment ? (
+                                  <a
+                                    href={ev.attachment}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="text-[15px] font-medium text-white leading-snug hover:text-brand-gold transition-colors"
+                                  >
+                                    {ev.title}
+                                  </a>
+                                ) : (
+                                  <p className="text-[15px] font-medium text-white leading-snug">
+                                    {ev.title}
+                                  </p>
+                                )}
                                 {ev.description && (
                                   <p className="text-xs text-white/60 leading-relaxed mt-1 line-clamp-2">
                                     {ev.description}
@@ -580,14 +615,16 @@ const Hero: React.FC = () => {
                                 )}
                                 <div className="mt-2 flex flex-wrap gap-1.5">
                                   {ev.image && (
-                                    <a
-                                      href={ev.image}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-brand-gold text-brand-dark rounded hover:brightness-110 transition-all"
+                                    <button
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        setSelectedImageUrl(ev.image);
+                                        setImageModalOpen(true);
+                                      }}
+                                      className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-brand-gold text-brand-dark rounded hover:brightness-110 transition-all cursor-pointer"
                                     >
                                       Open Poster
-                                    </a>
+                                    </button>
                                   )}
                                   {ev.attachment && (
                                     <a
@@ -597,6 +634,16 @@ const Hero: React.FC = () => {
                                       className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-white/10 text-white rounded border border-white/20 hover:bg-white/20 transition-colors"
                                     >
                                       Open PDF
+                                    </a>
+                                  )}
+                                  {ev.external_link && (
+                                    <a
+                                      href={ev.external_link}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                                    >
+                                      {ev.external_link_label || 'Learn More'}
                                     </a>
                                   )}
                                 </div>
@@ -810,6 +857,17 @@ const Hero: React.FC = () => {
         </span>
         <ArrowDown className="w-4 h-4 text-white/30 animate-bounce" />
       </div>
+
+      {/* Image Preview Modal */}
+      <ImagePreviewModal
+        isOpen={imageModalOpen}
+        onClose={() => {
+          setImageModalOpen(false);
+          setSelectedImageUrl(null);
+        }}
+        imageUrl={selectedImageUrl}
+        title="Event Poster"
+      />
     </section>
   );
 };

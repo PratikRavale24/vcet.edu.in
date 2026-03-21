@@ -42,20 +42,28 @@ async function ensureCsrfCookie(forceRefresh = false): Promise<void> {
       method: "GET",
       credentials: "include",
       headers: buildHeaders(),
-    }).then(async (res) => {
-      const payload = (await res.json().catch(() => null)) as { token?: string } | null;
+    })
+      .then(async (res) => {
+        const payload = (await res.json().catch(() => null)) as {
+          token?: string;
+        } | null;
 
-      if (!res.ok) {
-        const message = payload && typeof payload === "object" && "message" in payload
-          ? String(payload.message ?? "")
-          : "";
-        throw new Error(message || `Unable to initialize CSRF protection (HTTP ${res.status})`);
-      }
+        if (!res.ok) {
+          const message =
+            payload && typeof payload === "object" && "message" in payload
+              ? String(payload.message ?? "")
+              : "";
+          throw new Error(
+            message ||
+              `Unable to initialize CSRF protection (HTTP ${res.status})`,
+          );
+        }
 
-      csrfToken = payload?.token ?? "";
-    }).finally(() => {
-      csrfBootstrapPromise = null;
-    });
+        csrfToken = payload?.token ?? "";
+      })
+      .finally(() => {
+        csrfBootstrapPromise = null;
+      });
   }
 
   await csrfBootstrapPromise;
@@ -76,7 +84,11 @@ function extractErrorMessage(status: number, json: unknown): string {
   return payload?.message ?? `HTTP ${status}`;
 }
 
-async function request<T>(path: string, options: RequestInit = {}, retryOnCsrf = true): Promise<T> {
+async function request<T>(
+  path: string,
+  options: RequestInit = {},
+  retryOnCsrf = true,
+): Promise<T> {
   const method = (options.method ?? "GET").toUpperCase();
   const headers = buildHeaders(options.headers);
   headers.set("Content-Type", "application/json");
@@ -93,7 +105,9 @@ async function request<T>(path: string, options: RequestInit = {}, retryOnCsrf =
     headers,
   });
 
-  const json = await res.json();
+  const text = await res.text();
+  const json = text ? JSON.parse(text) : {};
+
   if (!res.ok) {
     if (res.status === 419 && retryOnCsrf) {
       await ensureCsrfCookie(true);
@@ -130,7 +144,9 @@ async function requestForm<T>(
     body,
   });
 
-  const json = await res.json();
+  const text = await res.text();
+  const json = text ? JSON.parse(text) : {};
+
   if (!res.ok) {
     if (res.status === 419 && retryOnCsrf) {
       await ensureCsrfCookie(true);

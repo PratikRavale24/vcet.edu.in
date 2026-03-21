@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { heroSlidesApi } from '../../api/heroSlides';
-import type { HeroSlidePayload } from '../../types';
+import { galleriesApi } from '../../api/galleries';
+import type { GalleryPayload } from '../../types';
 
-const HeroSlideForm: React.FC = () => {
+const GalleryForm: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   const isEdit = !!id;
 
-  const [form, setForm] = useState<HeroSlidePayload>({ title: '', subtitle: '', button_text: '', button_link: '', sort_order: 0, is_active: true });
+  const [form, setForm] = useState<GalleryPayload>({ title: '', subtitle: '',   sort_order: 0, is_active: true });
   const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [saving, setSaving] = useState(false);
@@ -17,11 +17,11 @@ const HeroSlideForm: React.FC = () => {
 
   useEffect(() => {
     if (!isEdit) return;
-    heroSlidesApi.get(Number(id))
+    galleriesApi.get(Number(id))
       .then((r) => {
         if (!r.data) return;
         const s = r.data;
-        setForm({ title: s.title, subtitle: s.subtitle ?? '', button_text: s.button_text ?? '', button_link: s.button_link ?? '', sort_order: s.sort_order, is_active: s.is_active });
+        setForm({ title: s.title, subtitle: s.subtitle ?? '', sort_order: s.sort_order, is_active: s.is_active });
         if (s.image_url) setExistingImageUrl(s.image_url);
       })
       .catch((e: Error) => setError(e.message))
@@ -40,10 +40,10 @@ const HeroSlideForm: React.FC = () => {
     if (!form.title?.trim()) { setError('Title is required.'); return; }
     setSaving(true);
     try {
-      const payload: HeroSlidePayload = { ...form, ...(imageFile ? { image: imageFile } : {}) };
-      if (isEdit) await heroSlidesApi.update(Number(id), payload);
-      else await heroSlidesApi.create(payload);
-      navigate('/admin/hero-slides');
+      const payload: GalleryPayload = { ...form, ...(imageFile ? { image: imageFile } : {}) };
+      if (isEdit) await galleriesApi.update(Number(id), payload);
+      else await galleriesApi.create(payload);
+      navigate('/admin/galleries');
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Save failed');
     } finally {
@@ -54,7 +54,7 @@ const HeroSlideForm: React.FC = () => {
   if (loading) return (
     <div className="flex flex-col items-center justify-center py-24 gap-4">
       <div className="w-10 h-10 border-4 border-slate-100 border-t-[#1e293b] rounded-full animate-spin" />
-      <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Loading Slide...</p>
+      <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Loading gallery...</p>
     </div>
   );
 
@@ -64,17 +64,17 @@ const HeroSlideForm: React.FC = () => {
       <div className="flex items-center gap-2 text-[11px] font-bold text-slate-400 mb-4 uppercase tracking-widest">
         <Link to="/admin" className="hover:text-slate-600 transition-colors">Dashboard</Link>
         <span className="text-slate-300 font-normal">/</span>
-        <Link to="/admin/hero-slides" className="hover:text-slate-600 transition-colors">Hero Slides</Link>
+        <Link to="/admin/galleries" className="hover:text-slate-600 transition-colors">Galleries</Link>
         <span className="text-slate-300 font-normal">/</span>
         <span className="text-slate-600">{isEdit ? 'Edit' : 'New'}</span>
       </div>
 
       <div className="flex items-center justify-between mb-12">
         <h1 className="text-4xl font-black text-slate-900 tracking-tight">
-          {isEdit ? 'Edit' : 'Add New'} <span className="text-slate-400">Hero Slide</span>
+          {isEdit ? 'Edit' : 'Add New'} <span className="text-slate-400">Hero gallery</span>
         </h1>
         <button 
-          onClick={() => navigate('/admin/hero-slides')}
+          onClick={() => navigate('/admin/galleries')}
           className="text-slate-400 hover:text-slate-600 font-bold text-xs uppercase tracking-widest flex items-center gap-2 transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
@@ -87,7 +87,7 @@ const HeroSlideForm: React.FC = () => {
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 space-y-8">
             <div className="space-y-2">
-              <label className="text-[11px] font-black text-slate-400 uppercase tracking-wider ml-1">Slide Title</label>
+              <label className="text-[11px] font-black text-slate-400 uppercase tracking-wider ml-1">gallery Title</label>
               <input
                 name="title"
                 value={form.title}
@@ -104,33 +104,15 @@ const HeroSlideForm: React.FC = () => {
                 name="subtitle"
                 value={form.subtitle ?? ''}
                 onChange={handleChange}
-                placeholder="Brief description for the slide banner..."
+                placeholder="Brief description for the gallery banner..."
                 rows={3}
                 className="w-full bg-slate-50 border-2 border-transparent focus:border-[#1e293b] focus:bg-white rounded-3xl px-6 py-4 text-sm font-bold transition-all outline-none resize-none"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-[11px] font-black text-slate-400 uppercase tracking-wider ml-1">Button Text</label>
-                <input
-                  name="button_text"
-                  value={form.button_text ?? ''}
-                  onChange={handleChange}
-                  placeholder="e.g. Explore Now"
-                  className="w-full bg-slate-50 border-2 border-transparent focus:border-[#1e293b] focus:bg-white rounded-2xl px-6 py-4 text-sm font-bold transition-all outline-none"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-[11px] font-black text-slate-400 uppercase tracking-wider ml-1">Button Link</label>
-                <input
-                  name="button_link"
-                  value={form.button_link ?? ''}
-                  onChange={handleChange}
-                  placeholder="e.g. /admissions"
-                  className="w-full bg-slate-50 border-2 border-transparent focus:border-[#1e293b] focus:bg-white rounded-2xl px-6 py-4 text-sm font-bold transition-all outline-none"
-                />
-              </div>
+              
+              
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -157,7 +139,7 @@ const HeroSlideForm: React.FC = () => {
                     />
                     <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 ${form.is_active ? 'left-7' : 'left-1'}`} />
                   </div>
-                  <span className="text-xs font-black text-slate-500 uppercase tracking-widest group-hover:text-slate-700 transition-colors">Active Slide</span>
+                  <span className="text-xs font-black text-slate-500 uppercase tracking-widest group-hover:text-slate-700 transition-colors">Active gallery</span>
                 </label>
               </div>
             </div>
@@ -194,7 +176,7 @@ const HeroSlideForm: React.FC = () => {
 
           <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-2xl shadow-slate-900/20 text-white space-y-6">
             <h3 className="font-bold text-lg">Banner Settings</h3>
-            <p className="text-slate-400 text-xs leading-relaxed font-medium">This slide will be displayed on the homepage hero section.</p>
+            <p className="text-slate-400 text-xs leading-relaxed font-medium">This gallery will be displayed on the homepage hero section.</p>
             {error && <p className="text-red-400 text-xs font-bold leading-relaxed">{error}</p>}
             <button
               onClick={handleSubmit}
@@ -202,10 +184,10 @@ const HeroSlideForm: React.FC = () => {
               className="w-full bg-white text-slate-900 font-black py-4 rounded-2xl text-sm transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {saving && <div className="w-4 h-4 border-2 border-slate-900/20 border-t-slate-900 rounded-full animate-spin" />}
-              {isEdit ? 'Update Slide' : 'Publish Slide'}
+              {isEdit ? 'Update gallery' : 'Publish gallery'}
             </button>
             <button
-              onClick={() => navigate('/admin/hero-slides')}
+              onClick={() => navigate('/admin/galleries')}
               className="w-full bg-slate-800 text-slate-400 font-bold py-4 rounded-2xl text-xs uppercase tracking-widest transition-all hover:bg-slate-700 hover:text-white"
             >
               Discard Changes
@@ -217,4 +199,4 @@ const HeroSlideForm: React.FC = () => {
   );
 };
 
-export default HeroSlideForm;
+export default GalleryForm;

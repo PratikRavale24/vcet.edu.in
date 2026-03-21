@@ -8,7 +8,7 @@ const mock = USE_MOCK ? createMockCrud<NewsTicker>(MOCK_NEWS_TICKER, 'vcet_mock_
 export const newsTickerApi = {
   list: USE_MOCK
     ? () => mock!.list()
-    : () => client.request<ListResponse<NewsTicker>>('/news-ticker'),
+    : () => client.request<ListResponse<NewsTicker>>('/news-ticker/all'),
 
   get: USE_MOCK
     ? (id: number) => mock!.get(id)

@@ -8,7 +8,7 @@ const mock = USE_MOCK ? createMockCrud<Achievement>(MOCK_ACHIEVEMENTS, 'vcet_moc
 export const achievementsApi = {
   list: USE_MOCK
     ? () => mock!.list()
-    : () => client.request<ListResponse<Achievement>>('/achievements'),
+    : () => client.request<ListResponse<Achievement>>('/achievements/all'),
 
   get: USE_MOCK
     ? (id: number) => mock!.get(id)

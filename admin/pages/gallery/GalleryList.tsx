@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { heroSlidesApi } from '../../api/heroSlides';
-import type { HeroSlide } from '../../types';
+import { galleriesApi } from '../../api/galleries';
+import type { Gallery } from '../../types';
 
-const HeroSlidesList: React.FC = () => {
-  const [slides, setSlides] = useState<HeroSlide[]>([]);
+const GalleryList: React.FC = () => {
+  const [galleries, setGalleries] = useState<Gallery[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,20 +12,20 @@ const HeroSlidesList: React.FC = () => {
 
   const fetchItems = () => {
     setLoading(true);
-    heroSlidesApi.list()
-      .then((r) => setSlides(r.data))
+    galleriesApi.list()
+      .then((r) => setGalleries(r.data))
       .catch(console.error)
       .finally(() => setLoading(false));
   };
 
   useEffect(() => { fetchItems(); }, []);
 
-  const handleDelete = async (slide: HeroSlide) => {
-    if (!confirm(`Delete slide "${slide.title}"?`)) return;
-    setDeletingId(slide.id);
+  const handleDelete = async (gallery: Gallery) => {
+    if (!confirm(`Delete gallery "${gallery.title}"?`)) return;
+    setDeletingId(gallery.id);
     try {
-      await heroSlidesApi.delete(slide.id);
-      setSlides((prev) => prev.filter((s) => s.id !== slide.id));
+      await galleriesApi.delete(gallery.id);
+      setGalleries((prev) => prev.filter((s) => s.id !== gallery.id));
     } catch (e) {
       alert(e instanceof Error ? e.message : 'Delete failed');
     } finally {
@@ -33,28 +33,28 @@ const HeroSlidesList: React.FC = () => {
     }
   };
 
-  const handleToggleStatus = async (slide: HeroSlide) => {
-    const newStatus = !slide.is_active;
+  const handleToggleStatus = async (gallery: Gallery) => {
+    const newStatus = !gallery.is_active;
     try {
-      setSlides(prev => prev.map(s => s.id === slide.id ? { ...s, is_active: newStatus } : s));
-      await heroSlidesApi.update(slide.id, { is_active: newStatus });
+      setGalleries(prev => prev.map(s => s.id === gallery.id ? { ...s, is_active: newStatus } : s));
+      await galleriesApi.update(gallery.id, { is_active: newStatus });
     } catch (e) {
-      setSlides(prev => prev.map(s => s.id === slide.id ? { ...s, is_active: !newStatus } : s));
+      setGalleries(prev => prev.map(s => s.id === gallery.id ? { ...s, is_active: !newStatus } : s));
       alert('Failed to update status');
     }
   };
 
-  const filteredSlides = slides.filter(slide => {
+  const filteredgalleries = galleries.filter(gallery => {
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
-      const matchesSearch = (slide.title && slide.title.toLowerCase().includes(term)) ||
-                            (slide.subtitle && slide.subtitle.toLowerCase().includes(term)) ||
-                            (slide.button_text && slide.button_text.toLowerCase().includes(term));
+      const matchesSearch = (gallery.title && gallery.title.toLowerCase().includes(term)) ||
+                            (gallery.subtitle && gallery.subtitle.toLowerCase().includes(term)) ||
+                            false;
       if (!matchesSearch) return false;
     }
     
-    if (statusFilter === 'active' && !slide.is_active) return false;
-    if (statusFilter === 'inactive' && slide.is_active) return false;
+    if (statusFilter === 'active' && !gallery.is_active) return false;
+    if (statusFilter === 'inactive' && gallery.is_active) return false;
     
     return true;
   });
@@ -64,20 +64,20 @@ const HeroSlidesList: React.FC = () => {
   };
 
   const handleExport = () => {
-    if (filteredSlides.length === 0) {
+    if (filteredgalleries.length === 0) {
       alert("No data to export");
       return;
     }
 
-    const headers = ["ID", "Title", "Subtitle", "Sort Order", "Status", "Button Text", "Button Link", "Created At"];
-    const rows = filteredSlides.map(s => [
+    const headers = ["ID", "Title", "Subtitle", "Sort Order", "Status", "Created At"];
+    const rows = filteredgalleries.map(s => [
       s.id,
       `"${(s.title || '').replace(/"/g, '""')}"`,
       `"${(s.subtitle || '').replace(/"/g, '""')}"`,
       s.sort_order,
       s.is_active ? 'Active' : 'Inactive',
-      `"${(s.button_text || '').replace(/"/g, '""')}"`,
-      `"${(s.button_link || '').replace(/"/g, '""')}"`,
+      `"${(s.title || '').replace(/"/g, '""')}"`,
+      `"${(s.title || '').replace(/"/g, '""')}"`,
       new Date(s.created_at).toLocaleDateString()
     ]);
 
@@ -101,16 +101,16 @@ const HeroSlidesList: React.FC = () => {
           <div className="flex items-center gap-2 text-[11px] font-bold text-slate-400 mb-1 uppercase tracking-widest">
             <Link to="/admin" className="hover:text-slate-600 transition-colors">Dashboard</Link>
             <span className="text-slate-300 font-normal">/</span>
-            <span className="text-slate-600">Hero Slides</span>
+            <span className="text-slate-600">Galleries</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-[#111827]">Hero Slides</h1>
+          <h1 className="text-3xl font-extrabold text-[#111827]">Galleries</h1>
         </div>
         <Link 
-          to="/admin/hero-slides/new" 
+          to="/admin/galleries/new" 
           className="bg-[#1e293b] hover:bg-[#0f172a] text-white font-bold px-6 py-3 rounded-full text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
-          Add Slide
+          Add gallery
         </Link>
       </div>
 
@@ -119,7 +119,7 @@ const HeroSlidesList: React.FC = () => {
         <div className="relative w-full sm:max-w-md">
           <input
             type="text"
-            placeholder="Search slides..."
+            placeholder="Search galleries..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full bg-white border-0 ring-1 ring-slate-200 focus:ring-2 focus:ring-[#1e293b] rounded-2xl px-12 py-4 text-sm transition-all shadow-sm outline-none"
@@ -148,28 +148,28 @@ const HeroSlidesList: React.FC = () => {
         {loading ? (
           <div className="flex flex-col items-center justify-center py-24 gap-4">
             <div className="w-10 h-10 border-4 border-slate-100 border-t-[#1e293b] rounded-full animate-spin" />
-            <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Loading Slides...</p>
+            <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Loading galleries...</p>
           </div>
-        ) : filteredSlides.length === 0 ? (
-          <div className="text-center py-24 text-slate-400 text-sm font-bold">No hero slides found.</div>
+        ) : filteredgalleries.length === 0 ? (
+          <div className="text-center py-24 text-slate-400 text-sm font-bold">No hero galleries found.</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-slate-100 text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] bg-slate-50/30">
-                  <th className="text-left px-8 py-5">Slide Content</th>
+                  <th className="text-left px-8 py-5">gallery Content</th>
                   <th className="text-center px-8 py-5">Sort Order</th>
                   <th className="text-right px-8 py-5">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {filteredSlides.map((slide) => (
-                  <tr key={slide.id} className="group hover:bg-slate-50/50 transition-all duration-300">
+                {filteredgalleries.map((gallery) => (
+                  <tr key={gallery.id} className="group hover:bg-slate-50/50 transition-all duration-300">
                     <td className="px-8 py-6">
                       <div className="flex items-center gap-6">
                         <div className="w-32 h-18 rounded-2xl bg-slate-100 border-2 border-white shadow-sm overflow-hidden shrink-0 group-hover:scale-105 transition-transform aspect-video">
-                          {slide.image_url ? (
-                            <img src={slide.image_url} alt="" className="w-full h-full object-cover" />
+                          {gallery.image_url ? (
+                            <img src={gallery.image_url} alt="" className="w-full h-full object-cover" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-slate-300">
                               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
@@ -177,24 +177,24 @@ const HeroSlidesList: React.FC = () => {
                           )}
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-slate-900 font-extrabold text-base leading-tight group-hover:text-[#1e293b] transition-colors">{slide.title}</span>
-                          <span className="text-slate-400 text-xs font-semibold mt-1">{slide.subtitle || 'No subtitle'}</span>
+                          <span className="text-slate-900 font-extrabold text-base leading-tight group-hover:text-[#1e293b] transition-colors">{gallery.title}</span>
+                          <span className="text-slate-400 text-xs font-semibold mt-1">{gallery.subtitle || 'No subtitle'}</span>
                         </div>
                       </div>
                     </td>
                     <td className="px-8 py-6 text-center">
                       <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-600 font-bold text-xs border border-slate-100 ring-2 ring-white shadow-sm">
-                        {slide.sort_order}
+                        {gallery.sort_order}
                       </span>
                     </td>
                     <td className="px-8 py-6 text-right">
                       <div className="flex items-center justify-end gap-3">
                         <button 
-                          onClick={() => handleToggleStatus(slide)}
-                          className={`p-2 transition-colors rounded-xl ${slide.is_active ? 'text-slate-400 hover:text-slate-700 hover:bg-slate-100' : 'text-red-400 hover:text-red-600 hover:bg-red-50'}`}
-                          title={slide.is_active ? "Hide from Website" : "Show on Website"}
+                          onClick={() => handleToggleStatus(gallery)}
+                          className={`p-2 transition-colors rounded-xl ${gallery.is_active ? 'text-slate-400 hover:text-slate-700 hover:bg-slate-100' : 'text-red-400 hover:text-red-600 hover:bg-red-50'}`}
+                          title={gallery.is_active ? "Hide from Website" : "Show on Website"}
                         >
-                          {slide.is_active ? (
+                          {gallery.is_active ? (
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -205,12 +205,12 @@ const HeroSlidesList: React.FC = () => {
                             </svg>
                           )}
                         </button>
-                        <Link to={`/admin/hero-slides/${slide.id}/edit`} className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-all" title="Edit">
+                        <Link to={`/admin/galleries/${gallery.id}/edit`} className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-all" title="Edit">
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                         </Link>
                         <button 
-                          onClick={() => handleDelete(slide)} 
-                          disabled={deletingId === slide.id} 
+                          onClick={() => handleDelete(gallery)} 
+                          disabled={deletingId === gallery.id} 
                           className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all disabled:opacity-40" 
                           title="Delete"
                         >
@@ -229,4 +229,4 @@ const HeroSlidesList: React.FC = () => {
   );
 };
 
-export default HeroSlidesList;
+export default GalleryList;

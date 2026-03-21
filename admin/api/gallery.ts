@@ -1,5 +1,5 @@
 import { client } from './client';
-import type { ListResponse, DeleteResponse, GalleryImage, GalleryPayload } from '../types';
+import type { ListResponse, DeleteResponse, GalleryImage, GalleryImagePayload } from '../types';
 import { createGalleryCrud, MOCK_GALLERY } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
@@ -11,8 +11,8 @@ export const galleryApi = {
     : () => client.request<ListResponse<GalleryImage>>('/gallery'),
 
   upload: USE_MOCK
-    ? (payload: GalleryPayload) => mock!.upload(payload)
-    : (payload: GalleryPayload) => {
+    ? (payload: GalleryImagePayload) => mock!.upload(payload)
+    : (payload: GalleryImagePayload) => {
         const form = new FormData();
         form.append('image', payload.image);
         if (payload.caption) form.append('caption', payload.caption);

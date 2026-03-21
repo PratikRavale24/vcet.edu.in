@@ -144,10 +144,10 @@ const navSections: NavSection[] = [
       { label: 'Notices', path: '/admin/notices', icon: <Bell /> },
       { label: 'Events', path: '/admin/events', icon: <CalendarIcon /> },
       { label: 'Hero Slides', path: '/admin/hero-slides', icon: <MonitorIcon /> },
+      { label: 'Gallery', path: '/admin/galleries', icon: <ImageIcon /> },
       { label: 'News Ticker', path: '/admin/news-ticker', icon: <HashIcon /> },
       { label: 'Achievements', path: '/admin/achievements', icon: <StarIcon /> },
       { label: 'Testimonials', path: '/admin/testimonials', icon: <QuoteIcon /> },
-      { label: 'Gallery', path: '/admin/gallery', icon: <ImageIcon /> },
     ],
   },
   {

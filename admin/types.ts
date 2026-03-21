@@ -52,6 +52,8 @@ export interface Notice {
   pdf_mime_type: string | null;
   pdf_size: number | null;
   has_pdf: boolean;
+  deactivates_at: string | null;
+  deleted_at: string | null;
   pdf_url: string | null;
   admin_pdf_url: string | null;
   is_active: boolean;
@@ -74,6 +76,7 @@ export interface NoticePayload {
   link_url?: string | null;
   link_label?: string | null;
   pdf?: File | null;
+  deactivates_at?: string | null;
   remove_pdf?: boolean;
   is_active?: boolean;
   sort_order?: number;
@@ -100,6 +103,8 @@ export interface Event {
   expiry_date: string | null;
   expiry_time: string | null;
   attachment: string | null;
+  external_link: string | null;
+  external_link_label: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -119,6 +124,8 @@ export interface EventPayload {
   expiry_time?: string;
   image?: File;
   attachment?: File;
+  external_link?: string;
+  external_link_label?: string;
 }
 
 // ── Placements ────────────────────────────────────────────────────────────────
@@ -150,7 +157,7 @@ export interface HeroSlide {
   id: number;
   title: string;
   subtitle: string | null;
-  image: string;
+  image_url: string | null; // Renamed from image to match backend Append attribute
   button_text: string | null;
   button_link: string | null;
   sort_order: number;
@@ -164,6 +171,27 @@ export interface HeroSlidePayload {
   subtitle?: string;
   button_text?: string;
   button_link?: string;
+  sort_order?: number;
+  is_active?: boolean;
+  image?: File;
+}
+
+// ── Gallery ───────────────────────────────────────────────────────────────
+
+export interface Gallery {
+  id: number;
+  title: string | null;
+  subtitle: string | null;
+  image_url: string | null;
+  sort_order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GalleryPayload {
+  title?: string;
+  subtitle?: string;
   sort_order?: number;
   is_active?: boolean;
   image?: File;
@@ -249,17 +277,7 @@ export interface TestimonialPayload {
 
 // ── Gallery ───────────────────────────────────────────────────────────────────
 
-export interface GalleryImage {
-  id: number;
-  image: string;
-  caption: string | null;
-  created_at: string;
-}
 
-export interface GalleryPayload {
-  caption?: string;
-  image: File;
-}
 
 // ── Placement Partners ────────────────────────────────────────────────────────
 
@@ -292,4 +310,16 @@ export interface Enquiry {
   message: string | null;
   course: string | null;
   created_at: string;
+}
+
+export interface GalleryImage {
+  id: number;
+  image: string;
+  caption: string | null;
+  created_at: string;
+}
+
+export interface GalleryImagePayload {
+  caption?: string;
+  image: File;
 }

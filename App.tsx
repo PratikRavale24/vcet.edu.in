@@ -118,6 +118,7 @@ const SCSTCommittee = lazy(() => import('./pages/committees/SCSTCommittee'));
 const InternalComplaint = lazy(() => import('./pages/committees/InternalComplaint'));
 const EqualOpportunity = lazy(() => import('./pages/committees/EqualOpportunity'));
 const SEDGCell = lazy(() => import('./pages/committees/SEDGCell'));
+const Developers = lazy(() => import('./pages/committees/Developers'));
 
 // pages/naac
 const SSS = lazy(() => import('./pages/naac/SSS'));
@@ -205,6 +206,8 @@ const PlacementForm = lazy(() => import('./admin/pages/placements/PlacementForm'
 const PlacementStats = lazy(() => import('./admin/pages/placements/PlacementStats'));
 const HeroSlidesList = lazy(() => import('./admin/pages/hero-slides/HeroSlidesList'));
 const HeroSlideForm = lazy(() => import('./admin/pages/hero-slides/HeroSlideForm'));
+const GalleryList = lazy(() => import('./admin/pages/gallery/GalleryList'));
+const GalleryForm = lazy(() => import('./admin/pages/gallery/GalleryForm'));
 const NewsTickerList = lazy(() => import('./admin/pages/news-ticker/NewsTickerList'));
 const NewsTickerForm = lazy(() => import('./admin/pages/news-ticker/NewsTickerForm'));
 const AchievementsList = lazy(() => import('./admin/pages/achievements/AchievementsList'));
@@ -382,6 +385,7 @@ function App() {
             <Route path="/internal-complaint" element={<InternalComplaint />} />
             <Route path="/equal-opportunity" element={<EqualOpportunity />} />
             <Route path="/sedg-cell" element={<SEDGCell />} />
+            <Route path="/developers" element={<Developers />} />
 
           {/* NAAC */}
           {/* <Route path="/naac-ssr-cycle-1" element={<NaacPage />} /> */}
@@ -495,6 +499,9 @@ function App() {
             <Route path="hero-slides" element={<HeroSlidesList />} />
             <Route path="hero-slides/new" element={<HeroSlideForm />} />
             <Route path="hero-slides/:id/edit" element={<HeroSlideForm />} />
+            <Route path="galleries" element={<GalleryList />} />
+            <Route path="galleries/new" element={<GalleryForm />} />
+            <Route path="galleries/:id/edit" element={<GalleryForm />} />
             <Route path="news-ticker" element={<NewsTickerList />} />
             <Route path="news-ticker/new" element={<NewsTickerForm />} />
             <Route path="news-ticker/:id/edit" element={<NewsTickerForm />} />

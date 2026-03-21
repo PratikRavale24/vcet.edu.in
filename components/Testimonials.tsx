@@ -1,5 +1,6 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
+import { useTestimonials } from '../hooks/useTestimonials';
 
 interface Testimonial {
   id: number;
@@ -46,6 +47,17 @@ const testimonials: Testimonial[] = [
 ];
 
 const Testimonials: React.FC = () => {
+  const { testimonials: apiTestimonials, loading } = useTestimonials();
+  
+  // Use API data if available, otherwise fallback to static data
+  const displayTestimonials = apiTestimonials.length > 0 ? apiTestimonials.map(t => ({
+    id: t.id,
+    text: t.text,
+    name: t.name,
+    position: t.role || '',
+    company: '', // Backend doesn't have company distinct from role yet
+    image: t.photo || ''
+  })) : testimonials;
   return (
     <section id="testimonials" className="py-10 md:py-16 bg-brand-light relative overflow-hidden">
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-blue/[0.03] rounded-full translate-x-1/3 translate-y-1/3" />
@@ -63,7 +75,7 @@ const Testimonials: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {testimonials.map((testimonial) => (
+          {displayTestimonials.map((testimonial) => (
             <div
               key={testimonial.id}
               className="group bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col border border-gray-50 relative"

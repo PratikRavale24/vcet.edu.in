@@ -1,9 +1,9 @@
-Ôªøimport React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./FacultyProfile.css";
 
-/* √î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â
+/* ‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…
    EXPORTED TYPES  (import from here in every faculty data file)
-√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â */
+‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú… */
 
 export interface ResearchDomain {
   icon?: string;
@@ -27,12 +27,14 @@ export interface Book {
   count?: number | string;
   title: string;
   subtitle?: string;
+  url?: string;
   special?: boolean;
 }
 
 export interface Publication {
   title: string;
   journal?: string;
+  url?: string;
   year?: string;
 }
 
@@ -50,6 +52,7 @@ export interface Award {
   icon?: string;
   title: string;
   subtitle?: string;
+  url?: string;
 }
 
 export interface WebsiteLink {
@@ -68,7 +71,7 @@ export interface YoutubeChannel {
 export interface EResource {
   title: string;
   icon?: string;
-  url: string;
+  url?: string;
   code?: string;
 }
 
@@ -105,11 +108,11 @@ export interface FacultyData {
   memberships?: (Membership | string)[];
 }
 
-/* √î√∂√á√î√∂√á√î√∂√á Helpers √î√∂√á√î√∂√á√î√∂√á */
+/* ‘ˆ«‘ˆ«‘ˆ« Helpers ‘ˆ«‘ˆ«‘ˆ« */
 const has = <T,>(arr: T[] | undefined | null): arr is T[] =>
   Array.isArray(arr) && arr.length > 0;
 
-/* √î√∂√á√î√∂√á√î√∂√á Reusable YouTube SVG icon √î√∂√á√î√∂√á√î√∂√á */
+/* ‘ˆ«‘ˆ«‘ˆ« Reusable YouTube SVG icon ‘ˆ«‘ˆ«‘ˆ« */
 function YtSvg(): React.ReactElement {
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +125,7 @@ function YtSvg(): React.ReactElement {
   );
 }
 
-/* √î√∂√á√î√∂√á√î√∂√á Accordion √î√∂√á√î√∂√á√î√∂√á */
+/* ‘ˆ«‘ˆ«‘ˆ« Accordion ‘ˆ«‘ˆ«‘ˆ« */
 interface AccordionProps {
   extraClass?: string;
   defaultOpen?: boolean;
@@ -147,7 +150,7 @@ function Accordion({ extraClass, defaultOpen, summaryContent, children }: Readon
   );
 }
 
-/* √î√∂√á√î√∂√á√î√∂√á Initials helper √î√∂√á√î√∂√á√î√∂√á */
+/* ‘ˆ«‘ˆ«‘ˆ« Initials helper ‘ˆ«‘ˆ«‘ˆ« */
 function initials(name: string): string {
   return name
     .split(" ")
@@ -172,14 +175,14 @@ function parsePublicationLink(title: string): { text: string; url?: string } {
   return { text: text || title, url };
 }
 
-/* √î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â
+/* ‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…
    SHARED FACULTY PROFILE VIEW  (accepts any FacultyData prop)
-√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â√î√≤√â */
+‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú…‘Ú… */
 
 interface Props { faculty: FacultyData; }
 
 const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
-  /* √î√∂√á√î√∂√á derive visibility flags √î√∂√á√î√∂√á */
+  /* ‘ˆ«‘ˆ« derive visibility flags ‘ˆ«‘ˆ« */
   const hasPublications   = has(faculty.publications);
   const hasBooks          = has(faculty.books);
   const hasPatents        = has(faculty.patents);
@@ -194,7 +197,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
   const hasPgProjects     = has(faculty.pgProjects);
   const hasSpecialization = has(faculty.specialization);
 
-  /* √î√∂√á√î√∂√á All 6 tabs are always visible √î√∂√á√î√∂√á */
+  /* ‘ˆ«‘ˆ« All 6 tabs are always visible ‘ˆ«‘ˆ« */
   const allTabs = [
     { id: "profile",      icon: "fa-id-badge",  label: "Profile Info" },
     { id: "academic",     icon: "fa-flask",      label: "Academic Work" },
@@ -225,7 +228,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
     <div className="faculty-profile-root">
       <div className="wrap">
 
-        {/* √î√∂√á√î√∂√á HERO √î√∂√á√î√∂√á */}
+        {/* ‘ˆ«‘ˆ« HERO ‘ˆ«‘ˆ« */}
         <div className="hero" ref={heroRef}>
           <div className="hero-g">
             <div className="ph-wrap">
@@ -265,7 +268,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
           </div>
         </div>
 
-        {/* √î√∂√á√î√∂√á STAT RIBBON √î√∂√á√î√∂√á */}
+        {/* ‘ˆ«‘ˆ« STAT RIBBON ‘ˆ«‘ˆ« */}
         <div className="stat-ribbon">
           {faculty.experienceYears && (
             <div className="sr-item">
@@ -319,7 +322,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
           )}
         </div>
 
-        {/* √î√∂√á√î√∂√á TAB NAV √î√∂√á√î√∂√á */}
+        {/* ‘ˆ«‘ˆ« TAB NAV ‘ˆ«‘ˆ« */}
         <nav className="tab-nav" ref={tabNavRef}>
           <div className="tab-list" role="tablist">
             {allTabs.map(({ id, icon, label }) => (
@@ -334,7 +337,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
           </div>
         </nav>
 
-        {/* √î√≤√â√î√≤√â√î√≤√â√î√≤√â TAB √î√á√∂ PROFILE INFO √î√≤√â√î√≤√â√î√≤√â√î√≤√â */}
+        {/* ‘Ú…‘Ú…‘Ú…‘Ú… TAB ‘«ˆ PROFILE INFO ‘Ú…‘Ú…‘Ú…‘Ú… */}
         <div className={panel("profile")}>
           <div className="two-col">
 
@@ -429,7 +432,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
           )}
         </div>
 
-        {/* √î√≤√â√î√≤√â√î√≤√â√î√≤√â TAB √î√á√∂ ACADEMIC WORK √î√≤√â√î√≤√â√î√≤√â√î√≤√â */}
+        {/* ‘Ú…‘Ú…‘Ú…‘Ú… TAB ‘«ˆ ACADEMIC WORK ‘Ú…‘Ú…‘Ú…‘Ú… */}
         <div className={panel("academic")}>
           {!hasPgProjects && !hasResearch && !hasConsultancy && (
             <p className="empty-notice">This section will be updated with verified information shortly.</p>
@@ -521,7 +524,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
           )}
         </div>
 
-        {/* √î√≤√â√î√≤√â√î√≤√â√î√≤√â TAB √î√á√∂ PUBLICATIONS √î√≤√â√î√≤√â√î√≤√â√î√≤√â */}
+        {/* ‘Ú…‘Ú…‘Ú…‘Ú… TAB ‘«ˆ PUBLICATIONS ‘Ú…‘Ú…‘Ú…‘Ú… */}
         <div className={panel("publications")}>
           {!hasBooks && !hasPublications && !hasPatents && (
             <p className="empty-notice">This section will be updated with verified information shortly.</p>
@@ -666,7 +669,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
           )}
         </div>
 
-        {/* √î√≤√â√î√≤√â√î√≤√â√î√≤√â TAB √î√á√∂ ROLES & AWARDS √î√≤√â√î√≤√â√î√≤√â√î√≤√â */}
+        {/* ‘Ú…‘Ú…‘Ú…‘Ú… TAB ‘«ˆ ROLES & AWARDS ‘Ú…‘Ú…‘Ú…‘Ú… */}
         <div className={panel("roles")}>
           {!hasRoles && !hasAwards && (
             <p className="empty-notice">This section will be updated with verified information shortly.</p>
@@ -725,7 +728,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
           </div>
         </div>
 
-        {/* √î√≤√â√î√≤√â√î√≤√â√î√≤√â TAB √î√á√∂ ONLINE PRESENCE √î√≤√â√î√≤√â√î√≤√â√î√≤√â */}
+        {/* ‘Ú…‘Ú…‘Ú…‘Ú… TAB ‘«ˆ ONLINE PRESENCE ‘Ú…‘Ú…‘Ú…‘Ú… */}
         <div className={panel("online")}>
           {!hasWebsites && !hasYoutube && !hasEResources && (
             <p className="empty-notice">This section will be updated with verified information shortly.</p>
@@ -824,7 +827,7 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
           )}
         </div>
 
-        {/* √î√≤√â√î√≤√â√î√≤√â√î√≤√â TAB √î√á√∂ MEMBERSHIPS √î√≤√â√î√≤√â√î√≤√â√î√≤√â */}
+        {/* ‘Ú…‘Ú…‘Ú…‘Ú… TAB ‘«ˆ MEMBERSHIPS ‘Ú…‘Ú…‘Ú…‘Ú… */}
         <div className={panel("memberships")}>
           {hasMemberships ? (
             <div className="card">
@@ -838,9 +841,9 @@ const FacultyProfileView: React.FC<Readonly<Props>> = ({ faculty }) => {
               <div className="mem-row">
                 {(faculty.memberships as (Membership | string)[]).map((m, i) => {
                   const text  = typeof m === "string" ? m : m.label;
-                  const parts = text.split(/[\s√î√á√¥√î√á√∂-]+/);
+                  const parts = text.split(/[\s‘«Ù‘«ˆ-]+/);
                   const org   = parts.find((p) => /^[A-Z]{2,6}$/.test(p)) ?? parts.at(-1)!;
-                  const id    = text.replaceAll(org, "").replaceAll(/[√î√á√¥√î√á√∂]/gu, "").replaceAll(/\s+/gu, " ").trim();
+                  const id    = text.replaceAll(org, "").replaceAll(/[‘«Ù‘«ˆ]/gu, "").replaceAll(/\s+/gu, " ").trim();
                   return (
                     <div className="mem-card" key={i}>
                       <div className="m-org">{org}</div>
