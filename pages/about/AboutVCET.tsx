@@ -31,7 +31,6 @@ const AboutVCET: React.FC = () => {
       <PageBanner
         title="About VCET"
         breadcrumbs={[
-          { label: 'About Us', href: '/about-us' },
           { label: 'About VCET' },
         ]}
       />

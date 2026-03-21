@@ -1,38 +1,20 @@
-import React from 'react';
+﻿import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import PageBanner from '../../components/PageBanner';
-import { ShieldCheck, FileText, Users, ClipboardList, ExternalLink, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Check } from 'lucide-react';
 
-const processSteps = [
-  {
-    step: '01',
-    title: 'Submit Grievance',
-    description: 'Submit your grievance through the online form or in writing to the committee.',
-  },
-  {
-    step: '02',
-    title: 'Acknowledgement',
-    description: 'The committee acknowledges receipt of the grievance within 3 working days.',
-  },
-  {
-    step: '03',
-    title: 'Investigation',
-    description: 'The committee investigates the grievance thoroughly and impartially.',
-  },
-  {
-    step: '04',
-    title: 'Resolution',
-    description: 'A resolution is communicated to the complainant within a stipulated timeframe.',
-  },
+const objectives = [
+  "To maintain the College's dignity by fostering a peaceful environment in the College through the promotion of cordial student-student and student-teacher relationships, among other things.",
+  'To support responsive, accountable, and easily accessible machinery for grievance resolution, as well as to take measures in college undertakings to ensure expeditious resolution of student grievances in order to maintain a harmonious educational atmosphere in the institute.',
+  'To develop a policy for investigating and reviewing student and faculty complaints or grievances.',
+  "To raise awareness of members' availability for students and faculty to report grievances.",
 ];
 
 const members = [
-  { name: 'Chairperson', designation: 'Senior Faculty Member', role: 'Chairperson' },
-  { name: 'Member 1', designation: 'Faculty Representative', role: 'Member' },
-  { name: 'Member 2', designation: 'Faculty Representative', role: 'Member' },
-  { name: 'Member 3', designation: 'Administrative Staff', role: 'Member' },
-  { name: 'Student Representative 1', designation: 'Student', role: 'Member' },
-  { name: 'Student Representative 2', designation: 'Student', role: 'Member' },
+  { post: 'Chairperson', name: 'Dr. Rakesh Himte', email: 'principal@vcet.edu.in' },
+  { post: 'Member', name: 'Dr. Uday Aswalekar', email: 'uday.aswalekar@vcet.edu.in' },
+  { post: 'Member Nominated by University/DTE', name: '--', email: '--' },
+  { post: 'Member', name: 'Dr. Megha Trivedi', email: 'megha.trivedi@vcet.edu.in' },
 ];
 
 const GrievanceRedressal: React.FC = () => {
@@ -41,144 +23,116 @@ const GrievanceRedressal: React.FC = () => {
       <PageBanner
         title="Grievance Redressal Committee"
         breadcrumbs={[
-          { label: 'Committees', href: '#' },
-          { label: 'Statutory Committees', href: '#' },
+          { label: 'Committees', href: '/college-development-committee' },
+          { label: 'Statutory Committees', href: '/anti-ragging-committee' },
           { label: 'Grievance Redressal' },
         ]}
       />
 
-      {/* About */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="bg-[radial-gradient(1200px_500px_at_10%_0%,rgba(26,75,124,0.09),transparent),radial-gradient(900px_400px_at_90%_10%,rgba(253,184,19,0.08),transparent),#f5f7fa] py-10 md:py-14">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="reveal">
-                <div className="bg-brand-light rounded-2xl aspect-[4/3] flex items-center justify-center border border-brand-blue/10">
-                  <span className="text-sm font-semibold text-brand-blue/40 tracking-wide">
-                    grievance-redressal.jpg
-                  </span>
-                </div>
-              </div>
-
-              <div className="reveal" style={{ transitionDelay: '0.1s' }}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-0.5 bg-brand-gold" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">
-                    Statutory Committee
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-6">
-                  Grievance Redressal Committee
-                </h2>
-                <p className="text-slate-500 leading-relaxed mb-4">
-                  The Grievance Redressal Committee at VCET is constituted to address and resolve
-                  grievances of students, faculty, and staff in a fair, transparent, and timely manner.
-                  The committee ensures that all complaints are heard and dealt with appropriately.
-                </p>
-                <p className="text-slate-500 leading-relaxed mb-6">
-                  The committee functions as per UGC regulations and AICTE guidelines, providing
-                  a structured mechanism for redressal of academic and non-academic grievances.
-                </p>
-
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSe5gwVSZDJS4B4a9tCQsoaBgnGBoaH0xzveLpA0bTaoPgIByg/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-brand-blue text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-brand-navy transition-colors duration-300"
-                >
-                  <FileText className="w-4 h-4" />
-                  Submit Grievance Online
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-16 md:py-24 bg-brand-light">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Process</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Grievance Filing Process
+          <div className="max-w-6xl mx-auto space-y-8 md:space-y-10">
+            <div className="reveal bg-white border border-[#8ea2b8] border-l-4 border-l-[#fdb813] shadow-[0_16px_34px_rgba(253,184,19,0.38),0_6px_14px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500">
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-4">
+                Grievance Redressal Committee
               </h2>
+              <p className="text-[#333333] leading-relaxed text-base md:text-lg">
+                According to the rules and regulations addressed by the AICTE / UGC / University of
+                Mumbai, for students or other stakeholders in a Technical Institution, a
+                &ldquo;Grievance Redressal Committee&rdquo; of Vidyavardhini&apos;s College of Engineering &amp;
+                Technology, Vasai, has been formed with the following Staff in various positions to
+                inquire about the nature and extent of the grievance.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-              {processSteps.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500 text-center"
-                  style={{ transitionDelay: `${Math.min(idx * 0.08, 0.4)}s` }}
-                >
-                  <div className="text-3xl font-display font-bold text-brand-gold/20 mb-3">{item.step}</div>
-                  <h3 className="text-sm font-semibold text-brand-navy mb-2 font-display">{item.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
-                  {idx < processSteps.length - 1 && (
-                    <div className="hidden lg:flex justify-center mt-4">
-                      <ArrowRight className="w-4 h-4 text-brand-gold/40" />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Committee Members */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14 reveal">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-8 h-0.5 bg-brand-gold" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-gold">Members</span>
-                <div className="w-8 h-0.5 bg-brand-gold" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-navy">
-                Committee Members
+            <div
+              className="reveal bg-gradient-to-br from-white to-[#f8fbff] border-2 border-[#8ea2b8] shadow-[0_14px_28px_rgba(26,75,124,0.30),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
+              style={{ transitionDelay: '0.06s' }}
+            >
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-5">
+                Objectives
               </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {members.map((member, idx) => (
-                <div
-                  key={idx}
-                  className={`reveal group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-500 ${
-                    idx === 0 ? 'sm:col-span-2 lg:col-span-3 bg-gradient-to-r from-brand-blue to-brand-navy text-white' : ''
-                  }`}
-                  style={{ transitionDelay: `${Math.min(idx * 0.05, 0.4)}s` }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                      idx === 0 ? 'bg-white/10' : 'bg-brand-blue/5'
-                    }`}>
-                      <Users className={`w-5 h-5 ${idx === 0 ? 'text-brand-gold' : 'text-brand-blue/60'}`} />
-                    </div>
-                    <div>
-                      <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${
-                        idx === 0 ? 'text-brand-gold' : 'text-brand-gold/70'
-                      }`}>
-                        {member.role}
-                      </div>
-                      <h3 className={`text-sm font-semibold ${idx === 0 ? 'text-white' : 'text-brand-navy'}`}>
-                        {member.name}
-                      </h3>
-                      <p className={`text-xs mt-0.5 ${idx === 0 ? 'text-white/60' : 'text-slate-400'}`}>
-                        {member.designation}
-                      </p>
-                    </div>
+              <div className="space-y-4">
+                {objectives.map((objective, index) => (
+                  <div
+                    key={index}
+                    className="reveal group flex items-start gap-4 bg-[#ffefc2] border border-[#fdb813] rounded-none p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#fff4d6] hover:border-[#e3a910] hover:shadow-[0_10px_22px_rgba(253,184,19,0.30)]"
+                    style={{ transitionDelay: `${Math.min(index * 0.05, 0.2)}s` }}
+                  >
+                    <span className="mt-0.5 inline-flex w-9 h-9 rounded-lg bg-[#143759] border border-[#102e4a] items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                      <Check className="w-5 h-5 text-[#fdb813]" strokeWidth={3.25} />
+                    </span>
+                    <p className="text-base md:text-lg leading-[1.7] text-[#333333]">{objective}</p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            <div
+              className="reveal bg-gradient-to-br from-white to-[#f7faff] border-2 border-[#7f96ad] shadow-[0_16px_32px_rgba(253,184,19,0.36),0_4px_10px_rgba(0,0,0,0.08)] p-6 md:p-8 transition-all duration-500"
+              style={{ transitionDelay: '0.12s' }}
+            >
+              <div className="w-16 h-1.5 rounded-full bg-[#fdb813] mb-4" />
+              <h2 className="font-display text-3xl md:text-4xl text-[#1a4b7c] font-bold mb-5">
+                Committee Composition
+              </h2>
+
+              <div className="mt-6 overflow-x-auto border-2 border-[#6f89a5] shadow-none">
+                <table className="w-full min-w-[680px] border-separate border-spacing-0">
+                  <colgroup>
+                    <col className="w-[36%]" />
+                    <col className="w-[30%]" />
+                    <col className="w-[34%]" />
+                  </colgroup>
+                  <thead>
+                    <tr className="bg-[#143759]">
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a] border-r border-r-[#1e4469]">
+                        Post
+                      </th>
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a] border-r border-r-[#1e4469]">
+                        Name
+                      </th>
+                      <th className="text-left px-5 py-4 text-white font-display text-xl md:text-2xl font-bold border-b border-[#102e4a]">
+                        Email Id
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {members.map((member, index) => {
+                      const isKeyRole = member.post === 'Chairperson';
+
+                      return (
+                        <tr
+                          key={`${member.post}-${member.name}-${index}`}
+                          className={`group transition-all duration-200 shadow-[inset_0_-1px_0_rgba(215,221,228,0.95)] hover:bg-[#fff6dc] hover:shadow-[0_8px_18px_rgba(0,0,0,0.12)] hover:translate-y-[-1px] ${
+                            isKeyRole ? 'bg-[#f1f4f8]' : 'bg-white'
+                          }`}
+                        >
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
+                            <span
+                              className={`inline-flex items-center px-3 py-1.5 rounded-[20px] text-sm md:text-base font-extrabold ${
+                                isKeyRole
+                                  ? 'bg-[#ffe38a] text-[#1a4b7c] shadow-[0_0_0_1px_rgba(247,188,42,0.35),0_0_10px_rgba(253,184,19,0.22)]'
+                                  : 'bg-[#eceff3] text-[#333333]'
+                              }`}
+                            >
+                              {member.post}
+                            </span>
+                          </td>
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8] border-r border-r-[#8ea2b8]">
+                            {member.name}
+                          </td>
+                          <td className="px-5 py-4 text-[#333333] text-base md:text-lg border-b border-[#8ea2b8]">
+                            {member.email}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -188,3 +142,4 @@ const GrievanceRedressal: React.FC = () => {
 };
 
 export default GrievanceRedressal;
+

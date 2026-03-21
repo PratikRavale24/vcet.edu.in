@@ -50,7 +50,7 @@ const events = [
   {
     title: 'Marathi Bhasha Diwas :',
     description:
-      'This propitious event is organized for the teaching as well as non teaching staff of VCET to celebrate the glory of our beautiful Maharashtrian culture.The inter-departmental teams vigorously show their competitive spirits to win the various competition in marathi language like extempore, guess the marathi word for the given english word and many such fun games. Best dressed departmental competition is also held on this day. It is always a memorable event for both staff as well as students working in the committee.',
+      'This propitious event is organized for the teaching as well as non teaching staff of VCET to celebrate the glory of our beautiful Maharashtrian culture. The inter-departmental teams vigorously show their competitive spirits to win the various competition in marathi language like extempore, guess the marathi word for the given english word and many such fun games. Best dressed departmental competition is also held on this day. It is always a memorable event for both staff as well as students working in the committee.',
   },
   {
     title: 'Seminar :',
@@ -60,64 +60,28 @@ const events = [
 ];
 
 const gallery = [
-  {
-    src: '/images/student-life/literati/gallery-01.jpg',
-    alt: 'Literati gallery image 1',
-    placeholder: true,
-  },
-  {
-    src: '/images/student-life/literati/gallery-02.jpg',
-    alt: 'Literati gallery image 2',
-    placeholder: true,
-  },
-  {
-    src: '/images/student-life/literati/gallery-03.jpg',
-    alt: 'Literati gallery image 3',
-    placeholder: true,
-  },
-  {
-    src: '/images/student-life/literati/gallery-04.jpg',
-    alt: 'Literati gallery image 4',
-    placeholder: true,
-  },
-  {
-    src: '/images/student-life/literati/gallery-05.jpg',
-    alt: 'Literati gallery image 5',
-    placeholder: true,
-  },
-  {
-    src: '/images/student-life/literati/gallery-06.jpg',
-    alt: 'Literati gallery image 6',
-    placeholder: true,
-  },
-  {
-    src: '/images/student-life/literati/gallery-07.jpg',
-    alt: 'Literati gallery image 7',
-    placeholder: true,
-  },
-  {
-    src: '/images/student-life/literati/gallery-08.jpg',
-    alt: 'Literati gallery image 8',
-    placeholder: true,
-  },
-  {
-    src: '/images/student-life/literati/gallery-09.jpg',
-    alt: 'Literati gallery image 9',
-    placeholder: true,
-  },
+  { src: '/images/student-life/literati/gallery-01.jpg', alt: 'Literati gallery image 1',  placeholder: true },
+  { src: '/images/student-life/literati/gallery-02.jpg', alt: 'Literati gallery image 2',  placeholder: true },
+  { src: '/images/student-life/literati/gallery-03.jpg', alt: 'Literati gallery image 3',  placeholder: true },
+  { src: '/images/student-life/literati/gallery-04.jpg', alt: 'Literati gallery image 4',  placeholder: true },
+  { src: '/images/student-life/literati/gallery-05.jpg', alt: 'Literati gallery image 5',  placeholder: true },
+  { src: '/images/student-life/literati/gallery-06.jpg', alt: 'Literati gallery image 6',  placeholder: true },
+  { src: '/images/student-life/literati/gallery-07.jpg', alt: 'Literati gallery image 7',  placeholder: true },
+  { src: '/images/student-life/literati/gallery-08.jpg', alt: 'Literati gallery image 8',  placeholder: true },
+  { src: '/images/student-life/literati/gallery-09.jpg', alt: 'Literati gallery image 9',  placeholder: true },
 ];
 
 const teamRows = [
-  ['Chairperson', 'Adithya Jayakumar'],
-  ['Co - Chairperson', 'Siddharth Chakravarty\nPreeti Prajapati'],
-  ['Treasurer', 'Krithik Pandey'],
-  ['Secretary', 'Rutuja Pednekar'],
-  ['Organising Head', 'Raj Mor\nJay Patil'],
-  ['Admin Head', 'Sumit Mali\nTushar Rathod'],
-  ['Editorial Head', 'Rutuja Gadhave\nWajiha Kulsum\nJyoti Dhangada'],
-  ['Media Head', 'Meenakshi Kshirsagar\nShardul Brid'],
+  ['Chairperson',       'Adithya Jayakumar'],
+  ['Co - Chairperson',  'Siddharth Chakravarty\nPreeti Prajapati'],
+  ['Treasurer',         'Krithik Pandey'],
+  ['Secretary',         'Rutuja Pednekar'],
+  ['Organising Head',   'Raj Mor\nJay Patil'],
+  ['Admin Head',        'Sumit Mali\nTushar Rathod'],
+  ['Editorial Head',    'Rutuja Gadhave\nWajiha Kulsum\nJyoti Dhangada'],
+  ['Media Head',        'Meenakshi Kshirsagar\nShardul Brid'],
   ['Visual Media Head', 'Meet Mistry\nPranali Rane\nAbhishek Mishra'],
-  ['Sponsorship Head', 'Ganesh Joshi'],
+  ['Sponsorship Head',  'Ganesh Joshi'],
 ];
 
 const magazineLinks = [
@@ -153,6 +117,8 @@ const magazineLinks = [
   },
 ];
 
+// ─── Component ────────────────────────────────────────────────────────────────
+
 const Literati: React.FC = () => {
   return (
     <PageLayout>
@@ -171,10 +137,10 @@ const Literati: React.FC = () => {
         imagePlaceholderLabel="Literati Hero Image"
         chips={[
           { label: 'Objectives', href: '#objectives' },
-          { label: 'Events', href: '#events' },
-          { label: 'Gallery', href: '#gallery' },
-          { label: 'Team', href: '#team' },
-          { label: 'Magazine', href: '#magazine' },
+          { label: 'Events',     href: '#events'     },
+          { label: 'Gallery',    href: '#gallery'    },
+          { label: 'Team',       href: '#team'       },
+          { label: 'Magazine',   href: '#magazine'   },
         ]}
         links={[
           {
@@ -193,7 +159,12 @@ const Literati: React.FC = () => {
       >
         <div className="reveal rounded-[28px] border border-brand-blue/10 bg-white p-8 md:p-10 shadow-sm">
           <p className="text-slate-600 leading-relaxed text-base md:text-lg">
-            The magazine committee was remoulded and renamed and took its form as the LITERATI - THE LITERARY CLUB. The sole responsibility of this committee is to spread the light of knowledge about literature, art and display the outstanding work of our creative-minded vcetians through our annual college magazine 'VISTA'. We begin each year by welcoming new talented members for our committee who put their heart and enthusiasm into making the year an insightful one.
+            The magazine committee was remoulded and renamed and took its form as the LITERATI - THE
+            LITERARY CLUB. The sole responsibility of this committee is to spread the light of
+            knowledge about literature, art and display the outstanding work of our creative-minded
+            vcetians through our annual college magazine 'VISTA'. We begin each year by welcoming
+            new talented members for our committee who put their heart and enthusiasm into making
+            the year an insightful one.
           </p>
         </div>
       </ContentSection>
@@ -234,7 +205,9 @@ const Literati: React.FC = () => {
           />
           <div>
             <div className="mb-6 reveal">
-              <h3 className="text-2xl font-display font-bold text-brand-navy">Student Committee 2025-26 :</h3>
+              <h3 className="text-2xl font-display font-bold text-brand-navy">
+                Student Committee 2025-26 :
+              </h3>
             </div>
             <DataTable columns={['Position', 'Name']} rows={teamRows} />
           </div>

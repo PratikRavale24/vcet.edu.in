@@ -64,7 +64,6 @@ const ISHRAE: React.FC = () => {
       <PageBanner
         title="ISHRAE"
         breadcrumbs={[
-          { label: 'Student Life', href: '/student-life' },
           { label: 'ISHRAE' },
         ]}
       />

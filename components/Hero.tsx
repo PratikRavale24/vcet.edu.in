@@ -11,21 +11,8 @@ import {
   Image,
 } from "lucide-react";
 import { post } from "../services/api";
+import { useEvents } from "../hooks/useEvents";
 import { useNotices } from "../hooks/useNotices";
-
-const events = [
-  {
-    day: "09th Feb",
-    year: "2026",
-    title:
-      "2026 IEEE International Conference on Communication, Computing and Emerging Technologies (IC3ET)",
-  },
-  {
-    day: "16th Jan",
-    year: "2026",
-    title: "ZEAL 2026 - Annual Cultural Festival & Sports Meet",
-  },
-];
 
 const departments = [
   "Computer Engineering",
@@ -349,6 +336,7 @@ const Hero: React.FC = () => {
   const [pkgZoom, setPkgZoom] = useState(1);
   const [slideIndex, setSlideIndex] = useState(0);
   const { notices, loading: noticesLoading } = useNotices();
+  const { events, loading: eventsLoading } = useEvents();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -543,24 +531,79 @@ const Hero: React.FC = () => {
                       </div>
                     ) : (
                       <div>
-                        {events.map((ev, i) => (
-                          <div
-                            key={i}
-                            className="py-4 border-b border-white/10 last:border-0"
-                          >
-                            <div className="flex items-center gap-2 mb-2">
-                              <span className="text-xs font-bold text-white/80 bg-white/10 px-2.5 py-1 rounded border border-white/20">
-                                {ev.day}
-                              </span>
-                              <span className="text-xs font-extrabold bg-brand-gold text-brand-dark px-2.5 py-1 rounded">
-                                {ev.year}
-                              </span>
-                            </div>
+                        {eventsLoading ? (
+                          <div className="py-4 border-b border-white/10 last:border-0">
                             <p className="text-[15px] font-medium text-white leading-snug">
-                              {ev.title}
+                              Loading upcoming events...
                             </p>
                           </div>
-                        ))}
+                        ) : events.length === 0 ? (
+                          <div className="py-4 border-b border-white/10 last:border-0">
+                            <p className="text-[15px] font-medium text-white leading-snug">
+                              No upcoming events right now.
+                            </p>
+                          </div>
+                        ) : (
+                          events.slice(0, 6).map((ev) => {
+                            let day = "TBA";
+                            let year = "TBA";
+                            try {
+                              const dateObj = ev.date ? new Date(ev.date) : new Date();
+                              if (!isNaN(dateObj.getTime())) {
+                                day = dateObj.toLocaleDateString("en-US", { day: "2-digit", month: "short" });
+                                year = dateObj.getFullYear().toString();
+                              }
+                            } catch (e) {
+                              console.error("Date parsing error for event:", ev);
+                            }
+                            
+                            return (
+                              <div
+                                key={ev.id}
+                                className="py-4 border-b border-white/10 last:border-0"
+                              >
+                                <div className="flex items-center gap-2 mb-2">
+                                  <span className="text-xs font-bold text-white/80 bg-white/10 px-2.5 py-1 rounded border border-white/20">
+                                    {day}
+                                  </span>
+                                  <span className="text-xs font-extrabold bg-brand-gold text-brand-dark px-2.5 py-1 rounded">
+                                    {year}
+                                  </span>
+                                </div>
+                                <p className="text-[15px] font-medium text-white leading-snug">
+                                  {ev.title}
+                                </p>
+                                {ev.description && (
+                                  <p className="text-xs text-white/60 leading-relaxed mt-1 line-clamp-2">
+                                    {ev.description}
+                                  </p>
+                                )}
+                                <div className="mt-2 flex flex-wrap gap-1.5">
+                                  {ev.image && (
+                                    <a
+                                      href={ev.image}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-brand-gold text-brand-dark rounded hover:brightness-110 transition-all"
+                                    >
+                                      Open Poster
+                                    </a>
+                                  )}
+                                  {ev.attachment && (
+                                    <a
+                                      href={ev.attachment}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-white/10 text-white rounded border border-white/20 hover:bg-white/20 transition-colors"
+                                    >
+                                      Open PDF
+                                    </a>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })
+                        )}
                       </div>
                     )}
                   </div>

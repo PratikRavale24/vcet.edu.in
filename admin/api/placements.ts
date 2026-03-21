@@ -1,9 +1,37 @@
-import { client } from './client';
+import { client, resolveApiUrl } from './client';
 import type { ListResponse, ItemResponse, DeleteResponse, Placement, PlacementPayload } from '../types';
 import { createMockCrud, MOCK_PLACEMENTS } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<Placement>(MOCK_PLACEMENTS) : null;
+const mock = USE_MOCK ? createMockCrud<Placement>(MOCK_PLACEMENTS, 'vcet_mock_placements') : null;
+
+interface PlacementPaginatorResponse {
+  data: Placement[];
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  total: number;
+}
+
+function normalizePlacement(p: Placement): Placement {
+  return {
+    ...p,
+    logo: resolveApiUrl(p.logo),
+  };
+}
+
+function asListResponse(payload: PlacementPaginatorResponse): ListResponse<Placement> {
+  return {
+    success: true,
+    data: payload.data.map(normalizePlacement),
+    meta: {
+      current_page: payload.current_page,
+      last_page: payload.last_page,
+      total: payload.total,
+      per_page: payload.per_page,
+    },
+  };
+}
 
 function toFormData(payload: PlacementPayload): FormData {
   const form = new FormData();
@@ -20,14 +48,42 @@ function toFormData(payload: PlacementPayload): FormData {
   return form;
 }
 
+async function fetchPlacementById(id: number): Promise<Placement> {
+  let page = 1;
+  let lastPage = 1;
+
+  do {
+    const payload = await client.request<PlacementPaginatorResponse>(`/placements/all?page=${page}`);
+    const found = payload.data.find((item) => item.id === id);
+    if (found) return found;
+
+    page += 1;
+    lastPage = payload.last_page;
+  } while (page <= lastPage);
+
+  throw new Error(`Placement ${id} not found`);
+}
+
 export const placementsApi = {
   list: USE_MOCK
-    ? () => mock!.list()
-    : () => client.request<ListResponse<Placement>>('/placements'),
+    ? async () => {
+        const response = await mock!.list();
+        return {
+          ...response,
+          data: response.data.map(normalizePlacement),
+        } as ListResponse<Placement>;
+      }
+    : async (page = 1) => {
+        const payload = await client.request<PlacementPaginatorResponse>(`/placements/all?page=${page}`);
+        return asListResponse(payload);
+      },
 
   get: USE_MOCK
     ? (id: number) => mock!.get(id)
-    : (id: number) => client.request<ItemResponse<Placement>>(`/placements/${id}`),
+    : async (id: number) => {
+        const p = await fetchPlacementById(id);
+        return { success: true, data: normalizePlacement(p) } as ItemResponse<Placement>;
+      },
 
   create: USE_MOCK
     ? (payload: PlacementPayload) => mock!.create(payload as unknown as Partial<Placement>)

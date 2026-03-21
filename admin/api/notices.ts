@@ -3,7 +3,7 @@ import type { ListResponse, ItemResponse, DeleteResponse, Notice, NoticePayload 
 import { createMockCrud, MOCK_NOTICES } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<Notice>(MOCK_NOTICES) : null;
+const mock = USE_MOCK ? createMockCrud<Notice>(MOCK_NOTICES, 'vcet_mock_notices') : null;
 
 interface NoticePaginatorResponse {
   data: Notice[];

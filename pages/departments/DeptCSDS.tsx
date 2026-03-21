@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../components/PageLayout';
 
@@ -728,13 +728,17 @@ const DeptCSDS: React.FC = () => {
                       <div className="w-10 h-0.5 bg-gray-300 my-3" />
 
                       {/* Email */}
-                      <a
-                        href={`mailto:${f.email}`}
-                        className="flex items-center gap-2 text-xs text-gray-500 hover:text-[#1a4b7c] transition-colors w-full"
+                      <div
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.location.href = `mailto:${f.email}`;
+                        }}
+                        className="flex items-center gap-2 text-xs text-gray-500 hover:text-[#1a4b7c] transition-colors w-full cursor-pointer"
                       >
                         <i className="ph-fill ph-envelope text-sm shrink-0 text-gray-400" />
                         <span className="truncate">{f.email}</span>
-                      </a>
+                      </div>
                     </Link>
                   ))}
                 </div>

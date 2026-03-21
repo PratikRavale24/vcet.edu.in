@@ -64,7 +64,6 @@ const CSI: React.FC = () => {
       <PageBanner
         title="CSI"
         breadcrumbs={[
-          { label: 'Student Life', href: '/student-life' },
           { label: 'CSI' },
         ]}
       />

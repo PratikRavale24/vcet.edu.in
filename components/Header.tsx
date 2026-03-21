@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, Search, ChevronDown, ChevronRight } from 'lucide-react';
 
@@ -81,6 +81,7 @@ const menuGroups: MenuGroup[] = [
       { label: 'Electronics & Telecommunication Engineering',       href: '/electronics-telecomm' },
       { label: 'Civil Engineering',                           href: '/civil-engineering' },
       { label: 'First Year Engineering',                      href: '/first-year-engineering' },
+      { label: 'MMS (MBA)',                                   href: '/mms' },
     ],
   },
 
@@ -88,7 +89,7 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Academics',
     dropdown: [
-      { label: "Dean Academic's Desk",       href: '/dean-academics' },
+      { label: "Dean Academics Desk",       href: '/dean-academics' },
       {
         label: 'Academic Calendar',
         href: '/academic-calendar',
@@ -105,7 +106,7 @@ const menuGroups: MenuGroup[] = [
         ],
       },
       { label: 'Teaching Learning Process',  href: '/teaching-learning' },
-      { label: 'Swayam - NPTEL',             href: '/swayam-nptel' },
+      { label: 'Swayam - NPTEL',             href: 'https://nptel.ac.in/' },
       {
         label: 'Honours / Minor Degree Program',
         href:'/honours-minor',
@@ -183,14 +184,14 @@ const menuGroups: MenuGroup[] = [
         label: 'Statutory Committees',
         subItems: [
           { label: 'Grievance Redressal Committee', href: '/grievance-redressal' },
-          { label: 'SRGC Committee',                href: '/srgc-committee' },
+          { label: 'SGRC Committee',                href: '/srgc-committee' },
           { label: 'Anti Ragging Committee',        href: '/anti-ragging' },
           { label: 'SC â€“ ST Committee',             href: '/sc-st-committee' },
         ],
       },
       { label: 'Internal Complaint Committee',           href: '/internal-complaint' },
-      { label: 'Equal Opportunity Cell',                 href: '/equal-opportunity' },
-      { label: 'Socio-Economically Disadvantaged Groups Cell', href: '/sedg-cell' },
+      { label: 'Equal Opportunity Cell',                 href: 'https://vcet.edu.in/wp-content/uploads/2025/03/EOC-Committee.pdf' },
+      { label: 'Socio-Economically Disadvantaged Groups Cell', href: 'https://vcet.edu.in/wp-content/uploads/2025/03/SEDG.pdf' },
     ],
   },
 
@@ -225,7 +226,7 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Training & Placement',
     dropdown: [
-      { label: 'Placement', href: '#placements' },
+      { label: 'Placement', href: '/placement' },
       { label: 'Training',  href: '/training' },
       { label: 'E-CELL',    href: '/e-cell' },
       { label: 'IIIC',      href: '/iiic' },
@@ -310,7 +311,7 @@ const keywordMap: Record<string, string[]> = {
   '/college-development-committee': ['cdc', 'college development'],
   '/iqac':                 ['iqac', 'quality assurance', 'quality'],
   '/grievance-redressal':  ['grievance', 'complaint', 'redressal'],
-  '/srgc-committee':       ['srgc', 'student redressal'],
+  '/srgc-committee':       ['sgrc', 'student redressal'],
   '/anti-ragging':         ['ragging', 'anti ragging', 'safety'],
   '/sc-st-committee':      ['sc st', 'reservation', 'caste'],
   '/internal-complaint':   ['icc', 'internal complaint', 'harassment'],

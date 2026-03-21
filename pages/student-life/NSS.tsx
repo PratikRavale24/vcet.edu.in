@@ -221,8 +221,6 @@ const NSS: React.FC = () => {
               <Home className="w-3.5 h-3.5" />
             </a>
             <span className="text-white/20">/</span>
-            <a href="/student-life" className="text-white/40 hover:text-brand-gold transition-colors">Student Life</a>
-            <span className="text-white/20">/</span>
             <span className="text-brand-gold">NSS</span>
           </nav>
         </div>

@@ -63,7 +63,7 @@ async function ensureCsrfCookie(forceRefresh = false): Promise<void> {
 
 function applyCsrfHeader(headers: Headers): void {
   if (csrfToken) {
-    headers.set("X-XSRF-TOKEN", csrfToken);
+    headers.set("X-CSRF-TOKEN", csrfToken);
   }
 }
 

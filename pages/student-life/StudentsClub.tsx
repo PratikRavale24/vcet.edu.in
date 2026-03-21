@@ -74,7 +74,6 @@ const StudentsClub: React.FC = () => {
       <PageBanner
         title="Students Club"
         breadcrumbs={[
-          { label: 'Student Life', href: '/student-life' },
           { label: 'Students Club' },
         ]}
       />

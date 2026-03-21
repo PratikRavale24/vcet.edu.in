@@ -3,7 +3,7 @@ import type { ListResponse, ItemResponse, DeleteResponse, NewsTicker, NewsTicker
 import { createMockCrud, MOCK_NEWS_TICKER } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<NewsTicker>(MOCK_NEWS_TICKER) : null;
+const mock = USE_MOCK ? createMockCrud<NewsTicker>(MOCK_NEWS_TICKER, 'vcet_mock_newsticker') : null;
 
 export const newsTickerApi = {
   list: USE_MOCK

@@ -3,7 +3,7 @@ import type { ListResponse, ItemResponse, DeleteResponse, Testimonial, Testimoni
 import { createMockCrud, MOCK_TESTIMONIALS } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<Testimonial>(MOCK_TESTIMONIALS) : null;
+const mock = USE_MOCK ? createMockCrud<Testimonial>(MOCK_TESTIMONIALS, 'vcet_mock_testimonials') : null;
 
 function toFormData(payload: TestimonialPayload): FormData {
   const form = new FormData();

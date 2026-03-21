@@ -1,9 +1,38 @@
-import { client } from './client';
+import { client, resolveApiUrl } from './client';
 import type { ListResponse, ItemResponse, DeleteResponse, Event, EventPayload } from '../types';
 import { createMockCrud, MOCK_EVENTS } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<Event>(MOCK_EVENTS) : null;
+const mock = USE_MOCK ? createMockCrud<Event>(MOCK_EVENTS, 'vcet_mock_events') : null;
+
+interface EventPaginatorResponse {
+  data: Event[];
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  total: number;
+}
+
+function normalizeEvent(event: Event): Event {
+  return {
+    ...event,
+    image: resolveApiUrl(event.image),
+    // note: typescript hack for attachment if you want, but the interface says image
+  };
+}
+
+function asListResponse(payload: EventPaginatorResponse): ListResponse<Event> {
+  return {
+    success: true,
+    data: payload.data.map(normalizeEvent),
+    meta: {
+      current_page: payload.current_page,
+      last_page: payload.last_page,
+      total: payload.total,
+      per_page: payload.per_page,
+    },
+  };
+}
 
 function toFormData(payload: EventPayload): FormData {
   const form = new FormData();
@@ -20,14 +49,42 @@ function toFormData(payload: EventPayload): FormData {
   return form;
 }
 
+async function fetchEventById(id: number): Promise<Event> {
+  let page = 1;
+  let lastPage = 1;
+
+  do {
+    const payload = await client.request<EventPaginatorResponse>(`/events/all?page=${page}`);
+    const found = payload.data.find((item) => item.id === id);
+    if (found) return found;
+
+    page += 1;
+    lastPage = payload.last_page;
+  } while (page <= lastPage);
+
+  throw new Error(`Event ${id} not found`);
+}
+
 export const eventsApi = {
   list: USE_MOCK
-    ? () => mock!.list()
-    : () => client.request<ListResponse<Event>>('/events'),
+    ? async () => {
+        const response = await mock!.list();
+        return {
+          ...response,
+          data: response.data.map(normalizeEvent),
+        } as ListResponse<Event>;
+      }
+    : async (page = 1) => {
+        const payload = await client.request<EventPaginatorResponse>(`/events/all?page=${page}`);
+        return asListResponse(payload);
+      },
 
   get: USE_MOCK
     ? (id: number) => mock!.get(id)
-    : (id: number) => client.request<ItemResponse<Event>>(`/events/${id}`),
+    : async (id: number) => {
+        const evt = await fetchEventById(id);
+        return { success: true, data: normalizeEvent(evt) } as ItemResponse<Event>;
+      },
 
   create: USE_MOCK
     ? (payload: EventPayload) => mock!.create(payload as unknown as Partial<Event>)

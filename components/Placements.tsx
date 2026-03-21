@@ -1,31 +1,61 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { LampContainer } from '../ui/lamp';
+import { placementStatsApi, type PlacementStat } from '../admin/api/placementStats';
 
-const placementData = [
-  { year: '2017-18', count: 299 },
-  { year: '2018-19', count: 320 },
-  { year: '2019-20', count: 263, isCovid: true },
-  { year: '2020-21', count: 305, isCovid: true },
-  { year: '2021-22', count: 257, isCovid: true },
-  { year: '2022-23', count: 261 },
-  { year: '2023-24', count: 228 },
-  { year: '2024-25', count: 241 },
-  { year: '2025-26*', count: 140 },
-];
+interface ChartEntry {
+  year: string;
+  count: number;
+  isCovid?: boolean;
+}
+
+function toChartEntries(stats: PlacementStat[]): ChartEntry[] {
+  return stats
+    .filter((s): s is PlacementStat => s && typeof s === 'object' && 'year' in s)
+    .map((s) => ({
+      year: s.is_ongoing ? `${s.year}*` : s.year,
+      count: s.count,
+      ...(s.is_covid ? { isCovid: true } : {}),
+    }));
+}
 
 const CHART_H = 260; // px — usable bar area height
 
 const Placements: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [animatedCounts, setAnimatedCounts] = useState<number[]>(placementData.map(() => 0));
+
+  // Async-loaded chart data from the backend (or mock)
+  const [placementData, setPlacementData] = useState<ChartEntry[]>([]);
+  const [animatedCounts, setAnimatedCounts] = useState<number[]>([]);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+
+  // Fetch placement year stats from the backend
+  useEffect(() => {
+    placementStatsApi.list()
+      .then((stats) => {
+        if (!Array.isArray(stats)) {
+          console.warn('Placement stats API returned non-array:', stats);
+          return;
+        }
+        const entries = toChartEntries(stats);
+        setPlacementData(entries);
+        setAnimatedCounts(entries.map(() => 0));
+      })
+      .catch((err) => {
+        console.error('Failed to load placement stats:', err);
+        // On fetch error keep empty — chart just shows nothing gracefully
+      });
+  }, []);
+
+  useEffect(() => {
+    setAnimatedCounts(placementData.map(() => 0));
+  }, [placementData]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,7 +67,7 @@ const Placements: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || placementData.length === 0) return;
     const duration = 1800;
     const steps = 72;
     const stepDuration = duration / steps;
@@ -62,7 +92,7 @@ const Placements: React.FC = () => {
       }, delay);
     });
     return () => timers.forEach(t => clearInterval(t));
-  }, [isVisible]);
+  }, [isVisible, placementData]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollRef.current) return;
@@ -79,11 +109,10 @@ const Placements: React.FC = () => {
     scrollRef.current.scrollLeft = scrollLeft - (x - startX) * 2;
   };
 
-  const maxCount = Math.max(...placementData.map(d => d.count));
+  const maxCount = placementData.length ? Math.max(...placementData.map(d => d.count)) : 0;
   const maxIdx   = placementData.findIndex(d => d.count === maxCount);
   const covidIndices = placementData.map((d, i) => d.isCovid ? i : -1).filter(i => i !== -1);
   const covidStartIdx = covidIndices[0];
-  const covidEndIdx   = covidIndices[covidIndices.length - 1];
 
   return (
     <section id="placements" ref={sectionRef} className="relative bg-brand-dark text-white overflow-hidden">
@@ -147,7 +176,7 @@ const Placements: React.FC = () => {
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/25 text-brand-gold text-xs font-semibold tracking-wide">
                 <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
-                Peak: {maxCount} &nbsp;·&nbsp; {placementData[maxIdx].year}
+                Peak: {maxCount} &nbsp;·&nbsp; {maxIdx >= 0 ? placementData[maxIdx]?.year : '—'}
               </div>
             </div>
 
@@ -170,10 +199,13 @@ const Placements: React.FC = () => {
                 >
                   {/* COVID zone backdrop — spans behind the 3 COVID bars */}
                   {(() => {
+                    if (covidIndices.length === 0) return null;
+
                     const barW = 60;
                     const gap = 32; // matches gap-8 (2rem)
                     const left = covidStartIdx * (barW + gap);
                     const width = covidIndices.length * barW + (covidIndices.length - 1) * gap;
+
                     return (
                       <div
                         className="absolute top-0 bottom-0 rounded-xl pointer-events-none"
@@ -183,12 +215,11 @@ const Placements: React.FC = () => {
                           background: 'linear-gradient(180deg, rgba(34,211,238,0.06) 0%, rgba(34,211,238,0.03) 100%)',
                           border: '1px solid rgba(34,211,238,0.12)',
                         }}
-                      >
-                      </div>
+                      />
                     );
                   })()}
                 {placementData.map((item, index) => {
-                    const barH = (item.count / maxCount) * CHART_H * 0.92;
+                    const barH = maxCount > 0 ? (item.count / maxCount) * CHART_H * 0.92 : 0;
                     const isPeak = index === maxIdx;
                     const isCurrent = item.year.includes('*');
                     const isCovid = !!item.isCovid;

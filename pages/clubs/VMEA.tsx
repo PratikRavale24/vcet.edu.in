@@ -64,7 +64,6 @@ const VMEA: React.FC = () => {
       <PageBanner
         title="VMEA"
         breadcrumbs={[
-          { label: 'Student Life', href: '/student-life' },
           { label: 'VMEA' },
         ]}
       />

@@ -60,7 +60,6 @@ const DeptFE = lazy(() => import('./pages/departments/DeptFE'));
 const DeanAcademics = lazy(() => import('./pages/academics/DeanAcademics'));
 const AcademicCalendar = lazy(() => import('./pages/academics/AcademicCalendar'));
 const TeachingLearning = lazy(() => import('./pages/academics/TeachingLearning'));
-const SwayamNPTEL = lazy(() => import('./pages/academics/SwayamNPTEL'));
 const HonoursMinor = lazy(() => import('./pages/academics/HonoursMinor'));
 const ExamCell = lazy(() => import('./pages/academics/ExamCell'));
 
@@ -96,6 +95,7 @@ const StudentsClub = lazy(() => import('./pages/student-life/StudentsClub'));
 const Hackathon = lazy(() => import('./pages/student-life/Hackathon'));
 const NSDC = lazy(() => import('./pages/student-life/NSDC'));
 const Training = lazy(() => import('./pages/student-life/Training'));
+const Placement = lazy(() => import('./pages/student-life/Placement'));
 const ECell = lazy(() => import('./pages/student-life/ECell'));
 const IIIC = lazy(() => import('./pages/student-life/IIIC'));
 const Parents = lazy(() => import('./pages/student-life/Parents'));
@@ -131,27 +131,91 @@ const NaacPage = lazy(() => import('./pages/naac/NAACPage'));
 // pages/contact
 const ContactUs = lazy(() => import('./pages/contact/ContactUs'));
 
+// pages/footer
+const GermanLanguageClubLayout = lazy(() => import('./pages/footer/german-language-club/GermanLanguageClubLayout'));
+const GermanClubAbout = lazy(() => import('./pages/footer/german-language-club/GermanClubAbout'));
+const GermanClubCourseObjectives = lazy(() => import('./pages/footer/german-language-club/GermanClubCourseObjectives'));
+const GermanClubCourseContent = lazy(() => import('./pages/footer/german-language-club/GermanClubCourseContent'));
+const GermanClubActivities = lazy(() => import('./pages/footer/german-language-club/GermanClubActivities'));
+const GermanClubGallery = lazy(() => import('./pages/footer/german-language-club/GermanClubGallery'));
+const GermanClubFaculty = lazy(() => import('./pages/footer/german-language-club/GermanClubFaculty'));
+const HelplineForDivyangjan = lazy(() => import('./pages/footer/HelplineForDivyangjan'));
+
+// pages/mms
+const MMSHome = lazy(() => import('./pages/mms/MMSHome'));
+const MMSAbout = lazy(() => import('./pages/mms/about/MMSAbout'));
+const MMSPrincipalsDesk = lazy(() => import('./pages/mms/about/MMSPrincipalsDesk'));
+const MMSHODsDesk = lazy(() => import('./pages/mms/about/MMSHODsDesk'));
+const MMSFaculty = lazy(() => import('./pages/mms/about/MMSFaculty'));
+const MMSVisionMission = lazy(() => import('./pages/mms/about/MMSVisionMission'));
+const MMSDAB = lazy(() => import('./pages/mms/about/MMSDAB'));
+const MMSProgramOutcomes = lazy(() => import('./pages/mms/about/MMSProgramOutcomes'));
+const MMSAdmission = lazy(() => import('./pages/mms/admission/MMSAdmission'));
+const MMSScholarship = lazy(() => import('./pages/mms/admission/MMSScholarship.tsx'));
+const MMSDocumentsRequired = lazy(() => import('./pages/mms/admission/MMSDocumentsRequired'));
+const MMSFeesStructure = lazy(() => import('./pages/mms/admission/MMSFeesStructure'));
+const MMSExperientialLearning = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialLearning'));
+const MMSExperientialRolePlay = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialRolePlay'));
+const MMSExperientialGroupDiscussion = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialGroupDiscussion'));
+const MMSExperientialEntrepreneurialDrive = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialEntrepreneurialDrive'));
+const MMSExperientialFinancialLiteracy = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialFinancialLiteracy'));
+const MMSExperientialNesco = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialNesco'));
+const MMSExperientialModelMaking = lazy(() => import('./pages/mms/experiential-learning/MMSExperientialModelMaking'));
+const MMSTraining = lazy(() => import('./pages/mms/training-placement/MMSTraining'));
+const MMSTrainingEvents = lazy(() => import('./pages/mms/training-placement/MMSTrainingEvents'));
+const MMSTrainingCareerGuidance = lazy(() => import('./pages/mms/training-placement/MMSTrainingCareerGuidance'));
+const MMSTrainingInternship = lazy(() => import('./pages/mms/training-placement/MMSTrainingInternship'));
+const MMSTrainingGallery = lazy(() => import('./pages/mms/training-placement/MMSTrainingGallery'));
+const MMSPlacement = lazy(() => import('./pages/mms/training-placement/MMSPlacement'));
+const MMSPlacementSoftSkillTraining = lazy(() => import('./pages/mms/training-placement/MMSPlacementSoftSkillTraining'));
+const MMSPlacementPsycometricTest = lazy(() => import('./pages/mms/training-placement/MMSPlacementPsycometricTest'));
+const MMSPlacementCell = lazy(() => import('./pages/mms/training-placement/MMSPlacementCell'));
+const MMSPlacementGallery = lazy(() => import('./pages/mms/training-placement/MMSPlacementGallery'));
+const MMSPlacementRecruiters = lazy(() => import('./pages/mms/training-placement/MMSPlacementRecruiters'));
+const MMSPlacementStudentsPlacements = lazy(() => import('./pages/mms/training-placement/MMSPlacementStudentsPlacements'));
+const MMSPlacementInternships = lazy(() => import('./pages/mms/training-placement/MMSPlacementInternships'));
+const MMSStudentsLife = lazy(() => import('./pages/mms/students-life/MMSStudentsLife'));
+const MMSStudentsLifeVEcstatic = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeVEcstatic'));
+const MMSStudentsLifeDLLE = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeDLLE'));
+const MMSStudentsLifeBookReview = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeBookReview'));
+const MMSStudentsLifeAboutAddOnCourses = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeAboutAddOnCourses'));
+const MMSStudentsLifePowerBi = lazy(() => import('./pages/mms/students-life/MMSStudentsLifePowerBi'));
+const MMSStudentsLifeAdavanceExcel = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeAdavanceExcel'));
+const MMSStudentsLifeIndustryExpertSessions = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeIndustryExpertSessions'));
+const MMSStudentsLifeNSIMTraining = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeNSIMTraining'));
+const MMSStudentsLifeOscillations = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeOscillations'));
+const MMSStudentsLifeIdeathon = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeIdeathon'));
+const MMSStudentsLifeRankers = lazy(() => import('./pages/mms/students-life/MMSStudentsLifeRankers'));
+const MMSFacilities = lazy(() => import('./pages/mms/facilities/MMSFacilities'));
+const MMSFacilitiesLibrary = lazy(() => import('./pages/mms/facilities/MMSFacilitiesLibrary'));
+const MMSFacilitiesSeminarHall = lazy(() => import('./pages/mms/facilities/MMSFacilitiesSeminarHall'));
+const MMSFacilitiesClassroom = lazy(() => import('./pages/mms/facilities/MMSFacilitiesClassroom'));
+const MMSFacilitiesGymkhana = lazy(() => import('./pages/mms/facilities/MMSFacilitiesGymkhana'));
+const MMSFAQs = lazy(() => import('./pages/mms/faqs/MMSFAQs'));
+
 /* ── Admin Panel Pages (lazy) ── */
-const AdminLogin      = lazy(() => import('./admin/pages/Login'));
-const AdminDashboard  = lazy(() => import('./admin/pages/Dashboard'));
-const NoticesList     = lazy(() => import('./admin/pages/notices/NoticesList'));
-const NoticeForm      = lazy(() => import('./admin/pages/notices/NoticeForm'));
-const EventsList      = lazy(() => import('./admin/pages/events/EventsList'));
-const EventForm       = lazy(() => import('./admin/pages/events/EventForm'));
-const PlacementsList  = lazy(() => import('./admin/pages/placements/PlacementsList'));
-const PlacementForm   = lazy(() => import('./admin/pages/placements/PlacementForm'));
-const HeroSlidesList       = lazy(() => import('./admin/pages/hero-slides/HeroSlidesList'));
-const HeroSlideForm        = lazy(() => import('./admin/pages/hero-slides/HeroSlideForm'));
-const NewsTickerList       = lazy(() => import('./admin/pages/news-ticker/NewsTickerList'));
-const NewsTickerForm       = lazy(() => import('./admin/pages/news-ticker/NewsTickerForm'));
-const AchievementsList     = lazy(() => import('./admin/pages/achievements/AchievementsList'));
-const AchievementsForm     = lazy(() => import('./admin/pages/achievements/AchievementsForm'));
-const TestimonialsList     = lazy(() => import('./admin/pages/testimonials/TestimonialsList'));
-const TestimonialsForm     = lazy(() => import('./admin/pages/testimonials/TestimonialsForm'));
-const GalleryPage          = lazy(() => import('./admin/pages/gallery/GalleryPage'));
+const AdminLogin = lazy(() => import('./admin/pages/Login'));
+const AdminDashboard = lazy(() => import('./admin/pages/Dashboard'));
+const NoticesList = lazy(() => import('./admin/pages/notices/NoticesList'));
+const NoticeForm = lazy(() => import('./admin/pages/notices/NoticeForm'));
+const EventsList = lazy(() => import('./admin/pages/events/EventsList'));
+const EventForm = lazy(() => import('./admin/pages/events/EventForm'));
+const PlacementsList = lazy(() => import('./admin/pages/placements/PlacementsList'));
+const PlacementForm = lazy(() => import('./admin/pages/placements/PlacementForm'));
+const PlacementStats = lazy(() => import('./admin/pages/placements/PlacementStats'));
+const HeroSlidesList = lazy(() => import('./admin/pages/hero-slides/HeroSlidesList'));
+const HeroSlideForm = lazy(() => import('./admin/pages/hero-slides/HeroSlideForm'));
+const NewsTickerList = lazy(() => import('./admin/pages/news-ticker/NewsTickerList'));
+const NewsTickerForm = lazy(() => import('./admin/pages/news-ticker/NewsTickerForm'));
+const AchievementsList = lazy(() => import('./admin/pages/achievements/AchievementsList'));
+const AchievementsForm = lazy(() => import('./admin/pages/achievements/AchievementsForm'));
+const TestimonialsList = lazy(() => import('./admin/pages/testimonials/TestimonialsList'));
+const TestimonialsForm = lazy(() => import('./admin/pages/testimonials/TestimonialsForm'));
+const GalleryPage = lazy(() => import('./admin/pages/gallery/GalleryPage'));
 const PlacementPartnersList = lazy(() => import('./admin/pages/placement-partners/PlacementPartnersList'));
 const PlacementPartnersForm = lazy(() => import('./admin/pages/placement-partners/PlacementPartnersForm'));
-const EnquiriesList        = lazy(() => import('./admin/pages/enquiries/EnquiriesList'));
+const EnquiriesList = lazy(() => import('./admin/pages/enquiries/EnquiriesList'));
+const SitePages = lazy(() => import('./admin/pages/pages/SitePages'));
 
 /* ── Loading Spinner ── */
 const PageLoader = () => (
@@ -224,47 +288,46 @@ function App() {
           {/* Homepage */}
           <Route path="/" element={<HomePage />} />
 
-          {/* About Us */}
-          <Route path="/about-us" element={<AboutVCET />} />
-          <Route path="/presidents-desk" element={<PresidentsDesk />} />
-          <Route path="/principals-desk" element={<PrincipalsDesk />} />
-          <Route path="/governing-council" element={<GoverningCouncil />} />
-          <Route path="/organizational-structure" element={<OrganizationalStructure />} />
-          <Route path="/administration" element={<Administration />} />
-          <Route path="/strategic-plan" element={<StrategicPlan />} />
-          <Route path="/code-of-conduct" element={<CodeOfConduct />} />
+            {/* About Us */}
+            <Route path="/about-us" element={<AboutVCET />} />
+            <Route path="/presidents-desk" element={<PresidentsDesk />} />
+            <Route path="/principals-desk" element={<PrincipalsDesk />} />
+            <Route path="/governing-council" element={<GoverningCouncil />} />
+            <Route path="/organizational-structure" element={<OrganizationalStructure />} />
+            <Route path="/administration" element={<Administration />} />
+            <Route path="/strategic-plan" element={<StrategicPlan />} />
+            <Route path="/code-of-conduct" element={<CodeOfConduct />} />
 
-          {/* Admission */}
-          <Route path="/courses-and-intake" element={<CoursesIntake />} />
-          <Route path="/fees-structure" element={<FeesStructure />} />
-          <Route path="/scholarships" element={<Scholarships />} />
-          <Route path="/brochure" element={<Brochure />} />
-          <Route path="/documents-required" element={<DocumentsRequired />} />
-          <Route path="/cut-off" element={<CutOff />} />
+            {/* Admission */}
+            <Route path="/courses-and-intake" element={<CoursesIntake />} />
+            <Route path="/fees-structure" element={<FeesStructure />} />
+            <Route path="/scholarships" element={<Scholarships />} />
+            <Route path="/brochure" element={<Brochure />} />
+            <Route path="/documents-required" element={<DocumentsRequired />} />
+            <Route path="/cut-off" element={<CutOff />} />
 
-          {/* Departments */}
-          <Route path="/computer-engineering" element={<DeptComputerEngg />} />
-          <Route path="/computer-engineering/faculty/:slug" element={<CSDSFacultyProfile />} />
-          <Route path="/cs-data-science" element={<DeptCSDS />} />
-          <Route path="/cs-data-science/faculty/:slug" element={<CSDSFacultyProfile />} />
-          <Route path="/information-technology" element={<DeptIT />} />
-          <Route path="/information-technology/faculty/:slug" element={<CSDSFacultyProfile />} />
-          <Route path="/ai-data-science" element={<DeptAIDS />} />
-          <Route path="/ai-data-science/faculty/:slug" element={<CSDSFacultyProfile />} />
-          <Route path="/mechanical-engineering" element={<DeptMech />} />
-          <Route path="/mechanical-engineering/faculty/:slug" element={<CSDSFacultyProfile />} />
-          <Route path="/electronics-telecomm" element={<DeptENTC />} />
-          <Route path="/electronics-telecommunication/faculty/:slug" element={<CSDSFacultyProfile />} />
-          <Route path="/civil-engineering" element={<DeptCivil />} />
-          <Route path="/civil-engineering/faculty/:slug" element={<CSDSFacultyProfile />} />
-          <Route path="/first-year-engineering" element={<DeptFE />} />
-          <Route path="/first-year-engineering/faculty/:slug" element={<CSDSFacultyProfile />} />
+            {/* Departments */}
+            <Route path="/computer-engineering" element={<DeptComputerEngg />} />
+            <Route path="/computer-engineering/faculty/:slug" element={<CSDSFacultyProfile />} />
+            <Route path="/cs-data-science" element={<DeptCSDS />} />
+            <Route path="/cs-data-science/faculty/:slug" element={<CSDSFacultyProfile />} />
+            <Route path="/information-technology" element={<DeptIT />} />
+            <Route path="/information-technology/faculty/:slug" element={<CSDSFacultyProfile />} />
+            <Route path="/ai-data-science" element={<DeptAIDS />} />
+            <Route path="/ai-data-science/faculty/:slug" element={<CSDSFacultyProfile />} />
+            <Route path="/mechanical-engineering" element={<DeptMech />} />
+            <Route path="/mechanical-engineering/faculty/:slug" element={<CSDSFacultyProfile />} />
+            <Route path="/electronics-telecomm" element={<DeptENTC />} />
+            <Route path="/electronics-telecommunication/faculty/:slug" element={<CSDSFacultyProfile />} />
+            <Route path="/civil-engineering" element={<DeptCivil />} />
+            <Route path="/civil-engineering/faculty/:slug" element={<CSDSFacultyProfile />} />
+            <Route path="/first-year-engineering" element={<DeptFE />} />
+            <Route path="/first-year-engineering/faculty/:slug" element={<CSDSFacultyProfile />} />
 
           {/* Academics */}
           <Route path="/dean-academics" element={<DeanAcademics />} />
           <Route path="/academic-calendar" element={<AcademicCalendar />} />
           <Route path="/teaching-learning" element={<TeachingLearning />} />
-          <Route path="/swayam-nptel" element={<SwayamNPTEL />} />
           <Route path="/honours-minor" element={<HonoursMinor />} />
 
           {/* Research */}
@@ -282,43 +345,43 @@ function App() {
           <Route path="/research-downloads" element={<ResearchDownloads />} />
           <Route path="/downloads" element={<ResearchDownloads />} />
 
-          {/* Facilities */}
-          <Route path="/central-computing" element={<CentralComputing />} />
-          <Route path="/library" element={<LibraryPage />} />
-          <Route path="/counseling-cell" element={<CounselingCell />} />
-          <Route path="/ladies-common-room" element={<LadiesCommonRoom />} />
-          <Route path="/sports-gymkhana" element={<SportsGymkhana />} />
-          <Route path="/health-facilities" element={<HealthFacilities />} />
-          <Route path="/differently-abled" element={<DifferentlyAbled />} />
+            {/* Facilities */}
+            <Route path="/central-computing" element={<CentralComputing />} />
+            <Route path="/library" element={<LibraryPage />} />
+            <Route path="/counseling-cell" element={<CounselingCell />} />
+            <Route path="/ladies-common-room" element={<LadiesCommonRoom />} />
+            <Route path="/sports-gymkhana" element={<SportsGymkhana />} />
+            <Route path="/health-facilities" element={<HealthFacilities />} />
+            <Route path="/differently-abled" element={<DifferentlyAbled />} />
 
-          {/* Student Life */}
-          <Route path="/career-at-vcet" element={<ExternalRedirect to={CAREER_AT_VCET_PDF_URL} />} />
-          <Route path="/students-council" element={<Navigate to="/" replace />} />
-          <Route path="/cultural-committee" element={<CulturalCommittee />} />
-          <Route path="/sports-committee" element={<SportsCommittee />} />
-          <Route path="/literati" element={<Literati />} />
-          <Route path="/nss" element={<NSS />} />
-          <Route path="/ebsb" element={<EBSB />} />
-          <Route path="/ieee" element={<IEEE />} />
-          <Route path="/students-club" element={<StudentsClub />} />
-          <Route path="/csi" element={<CSI />} />
-          <Route path="/iete" element={<IETE />} />
-          <Route path="/ishrae" element={<ISHRAE />} />
-          <Route path="/vmea" element={<VMEA />} />
-          <Route path="/hackathon" element={<Hackathon />} />
-          <Route path="/nsdc" element={<NSDC />} />
-          <Route path="/igbc" element={<IGBC />} />
+            {/* Student Life */}
+            <Route path="/career-at-vcet" element={<ExternalRedirect to={CAREER_AT_VCET_PDF_URL} />} />
+            <Route path="/students-council" element={<Navigate to="/" replace />} />
+            <Route path="/cultural-committee" element={<CulturalCommittee />} />
+            <Route path="/sports-committee" element={<SportsCommittee />} />
+            <Route path="/literati" element={<Literati />} />
+            <Route path="/nss" element={<NSS />} />
+            <Route path="/ebsb" element={<EBSB />} />
+            <Route path="/ieee" element={<IEEE />} />
+            <Route path="/students-club" element={<StudentsClub />} />
+            <Route path="/csi" element={<CSI />} />
+            <Route path="/iete" element={<IETE />} />
+            <Route path="/ishrae" element={<ISHRAE />} />
+            <Route path="/vmea" element={<VMEA />} />
+            <Route path="/hackathon" element={<Hackathon />} />
+            <Route path="/nsdc" element={<NSDC />} />
+            <Route path="/igbc" element={<IGBC />} />
 
-          {/* Committees */}
-          <Route path="/college-development-committee" element={<CollegeDevelopmentCommittee />} />
-          <Route path="/iqac" element={<IQAC />} />
-          <Route path="/grievance-redressal" element={<GrievanceRedressal />} />
-          <Route path="/srgc-committee" element={<SRGCCommittee />} />
-          <Route path="/anti-ragging" element={<AntiRagging />} />
-          <Route path="/sc-st-committee" element={<SCSTCommittee />} />
-          <Route path="/internal-complaint" element={<InternalComplaint />} />
-          <Route path="/equal-opportunity" element={<EqualOpportunity />} />
-          <Route path="/sedg-cell" element={<SEDGCell />} />
+            {/* Committees */}
+            <Route path="/college-development-committee" element={<CollegeDevelopmentCommittee />} />
+            <Route path="/iqac" element={<IQAC />} />
+            <Route path="/grievance-redressal" element={<GrievanceRedressal />} />
+            <Route path="/srgc-committee" element={<SRGCCommittee />} />
+            <Route path="/anti-ragging" element={<AntiRagging />} />
+            <Route path="/sc-st-committee" element={<SCSTCommittee />} />
+            <Route path="/internal-complaint" element={<InternalComplaint />} />
+            <Route path="/equal-opportunity" element={<EqualOpportunity />} />
+            <Route path="/sedg-cell" element={<SEDGCell />} />
 
           {/* NAAC */}
           {/* <Route path="/naac-ssr-cycle-1" element={<NaacPage />} /> */}
@@ -329,12 +392,83 @@ function App() {
           <Route path="/best-practices" element={<BestPractices />} />
           <Route path="/naac-score" element={<NAACScore />} />
 
-          {/* Contact & Others */}
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/training" element={<Training />} />
-          <Route path="/e-cell" element={<ECell />} />
-          <Route path="/iiic" element={<IIIC />} />
-          <Route path="/exam-cell" element={<ExamCell />} />
+            {/* Contact & Others */}
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/training" element={<Training />} />
+            <Route path="/placement" element={<Placement />} />
+            <Route path="/e-cell" element={<ECell />} />
+            <Route path="/iiic" element={<IIIC />} />
+            <Route path="/exam-cell" element={<ExamCell />} />
+            <Route path="/helpline-for-divyangjan" element={<HelplineForDivyangjan />} />
+
+            {/* Footer Pages */}
+            <Route path="/german-language-club" element={<GermanLanguageClubLayout />}>
+              <Route index element={<Navigate to="about" replace />} />
+              <Route path="about" element={<GermanClubAbout />} />
+              <Route path="course-objectives" element={<GermanClubCourseObjectives />} />
+              <Route path="course-content" element={<GermanClubCourseContent />} />
+              <Route path="activities" element={<GermanClubActivities />} />
+              <Route path="gallery" element={<GermanClubGallery />} />
+              <Route path="faculty" element={<GermanClubFaculty />} />
+            </Route>
+
+          {/* MMS mini-site */}
+          <Route path="/mms" element={<MMSHome />} />
+          <Route path="/mms/about" element={<MMSAbout />} />
+          <Route path="/mms/about/principals-desk" element={<MMSPrincipalsDesk />} />
+          <Route path="/mms/about/hods-desk" element={<MMSHODsDesk />} />
+          <Route path="/mms/about/faculty" element={<MMSFaculty />} />
+          <Route path="/mms/about/vision-mission" element={<MMSVisionMission />} />
+          <Route path="/mms/about/dab" element={<MMSDAB />} />
+          <Route path="/mms/about/program-outcomes" element={<MMSProgramOutcomes />} />
+          <Route path="/mms/admission" element={<MMSAdmission />} />
+          <Route path="/mms/admission/scholarship" element={<MMSScholarship />} />
+          <Route path="/mms/admission/documents-required" element={<MMSDocumentsRequired />} />
+          <Route path="/mms/admission/fees-structure" element={<MMSFeesStructure />} />
+          <Route path="/mms/admission-details" element={<MMSAdmission />} />
+          <Route path="/mms/admission-details/scholarship" element={<MMSScholarship />} />
+          <Route path="/mms/admission-details/documents-required" element={<MMSDocumentsRequired />} />
+          <Route path="/mms/admission-details/fees-structure" element={<MMSFeesStructure />} />
+          <Route path="/mms/experiential-learning" element={<MMSExperientialLearning />} />
+          <Route path="/mms/experiential-learning/role-play" element={<MMSExperientialRolePlay />} />
+          <Route path="/mms/experiential-learning/group-discussion" element={<MMSExperientialGroupDiscussion />} />
+          <Route path="/mms/experiential-learning/entrepreneurial-drive" element={<MMSExperientialEntrepreneurialDrive />} />
+          <Route path="/mms/experiential-learning/financial-literacy-program" element={<MMSExperientialFinancialLiteracy />} />
+          <Route path="/mms/experiential-learning/nesco-bombay-exhibition-centre" element={<MMSExperientialNesco />} />
+          <Route path="/mms/experiential-learning/3d-model-making-presentation" element={<MMSExperientialModelMaking />} />
+          <Route path="/mms/training-placement/training" element={<MMSTraining />} />
+          <Route path="/mms/training-placement/training/events" element={<MMSTrainingEvents />} />
+          <Route path="/mms/training-placement/training/career-guidance" element={<MMSTrainingCareerGuidance />} />
+          <Route path="/mms/training-placement/training/internship" element={<MMSTrainingInternship />} />
+          <Route path="/mms/training-placement/training/gallery" element={<MMSTrainingGallery />} />
+          <Route path="/mms/training-placement/placement" element={<MMSPlacement />} />
+          <Route path="/mms/training-placement/placement/soft-skill-training" element={<MMSPlacementSoftSkillTraining />} />
+          <Route path="/mms/training-placement/placement/psycometric-test" element={<MMSPlacementPsycometricTest />} />
+          <Route path="/mms/training-placement/placement/psychometric-test" element={<MMSPlacementPsycometricTest />} />
+          <Route path="/mms/training-placement/placement/placement-cell" element={<MMSPlacementCell />} />
+          <Route path="/mms/training-placement/placement/gallery" element={<MMSPlacementGallery />} />
+          <Route path="/mms/training-placement/placement/our-recruiters" element={<MMSPlacementRecruiters />} />
+          <Route path="/mms/training-placement/placement/students-placements" element={<MMSPlacementStudentsPlacements />} />
+          <Route path="/mms/training-placement/placement/internships" element={<MMSPlacementInternships />} />
+          <Route path="/mms/students-life" element={<MMSStudentsLife />} />
+          <Route path="/mms/students-life/v-ecstatic" element={<MMSStudentsLifeVEcstatic />} />
+          <Route path="/mms/students-life/dlle" element={<MMSStudentsLifeDLLE />} />
+          <Route path="/mms/students-life/book-review" element={<MMSStudentsLifeBookReview />} />
+          <Route path="/mms/students-life/about-add-on-courses" element={<MMSStudentsLifeAboutAddOnCourses />} />
+          <Route path="/mms/students-life/add-on-courses-powerbi" element={<MMSStudentsLifePowerBi />} />
+          <Route path="/mms/students-life/add-on-courses-advance-excel" element={<MMSStudentsLifeAdavanceExcel />} />
+          <Route path="/mms/students-life/add-on-courses-adavance-excel" element={<MMSStudentsLifeAdavanceExcel />} />
+          <Route path="/mms/students-life/industry-expert-sessions" element={<MMSStudentsLifeIndustryExpertSessions />} />
+          <Route path="/mms/students-life/nsim-training" element={<MMSStudentsLifeNSIMTraining />} />
+          <Route path="/mms/students-life/oscillations" element={<MMSStudentsLifeOscillations />} />
+          <Route path="/mms/students-life/ideathon-1-0" element={<MMSStudentsLifeIdeathon />} />
+          <Route path="/mms/students-life/rankers" element={<MMSStudentsLifeRankers />} />
+          <Route path="/mms/facilities" element={<MMSFacilities />} />
+          <Route path="/mms/facilities/library" element={<MMSFacilitiesLibrary />} />
+          <Route path="/mms/facilities/seminar-hall" element={<MMSFacilitiesSeminarHall />} />
+          <Route path="/mms/facilities/classroom" element={<MMSFacilitiesClassroom />} />
+          <Route path="/mms/facilities/gymkhana" element={<MMSFacilitiesGymkhana />} />
+          <Route path="/mms/faqs" element={<MMSFAQs />} />
 
           {/* ─── Admin Panel ─── */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -357,6 +491,7 @@ function App() {
             <Route path="placements" element={<PlacementsList />} />
             <Route path="placements/new" element={<PlacementForm />} />
             <Route path="placements/:id/edit" element={<PlacementForm />} />
+            <Route path="home/placement-stats" element={<PlacementStats />} />
             <Route path="hero-slides" element={<HeroSlidesList />} />
             <Route path="hero-slides/new" element={<HeroSlideForm />} />
             <Route path="hero-slides/:id/edit" element={<HeroSlideForm />} />
@@ -374,6 +509,8 @@ function App() {
             <Route path="placement-partners/new" element={<PlacementPartnersForm />} />
             <Route path="placement-partners/:id/edit" element={<PlacementPartnersForm />} />
             <Route path="enquiries" element={<EnquiriesList />} />
+            <Route path="pages" element={<Navigate to="home" replace />} />
+            <Route path="pages/:pageKey" element={<SitePages />} />
           </Route>
         </Routes>
       </Suspense>

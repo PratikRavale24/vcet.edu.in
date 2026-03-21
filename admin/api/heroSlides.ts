@@ -3,7 +3,7 @@ import type { ListResponse, ItemResponse, DeleteResponse, HeroSlide, HeroSlidePa
 import { createMockCrud, MOCK_HERO_SLIDES } from './mockStore';
 
 const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
-const mock = USE_MOCK ? createMockCrud<HeroSlide>(MOCK_HERO_SLIDES) : null;
+const mock = USE_MOCK ? createMockCrud<HeroSlide>(MOCK_HERO_SLIDES, 'vcet_mock_heroslides') : null;
 
 function toFormData(payload: HeroSlidePayload): FormData {
   const form = new FormData();

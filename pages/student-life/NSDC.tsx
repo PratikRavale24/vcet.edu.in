@@ -64,7 +64,6 @@ const NSDC: React.FC = () => {
       <PageBanner
         title="NSDC"
         breadcrumbs={[
-          { label: 'Student Life', href: '/student-life' },
           { label: 'NSDC' },
         ]}
       />

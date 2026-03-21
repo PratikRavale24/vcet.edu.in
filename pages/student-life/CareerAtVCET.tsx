@@ -66,7 +66,6 @@ const CareerAtVCET: React.FC = () => {
       <PageBanner
         title="Career @ VCET"
         breadcrumbs={[
-          { label: 'Student Life', href: '/student-life' },
           { label: 'Career @ VCET' },
         ]}
       />

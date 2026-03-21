@@ -34,7 +34,6 @@ const Downloads: React.FC = () => {
       <PageBanner
         title="Downloads"
         breadcrumbs={[
-          { label: 'Research', href: '/research' },
           { label: 'Downloads' },
         ]}
       />
