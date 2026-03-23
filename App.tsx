@@ -18,7 +18,6 @@ import Achievements from './components/Achievements';
 import ExploreUs from './components/ExploreUs';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
-import Facilities from './components/Facilities';
 import Footer from './components/Footer';
 import SplashScreen from './components/SplashScreen';
 
@@ -256,7 +255,7 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen font-sans bg-white text-slate-800">
+    <div className="home-page min-h-screen font-sans bg-white text-slate-800">
       <SplashScreen />
       <div className="sticky top-0 z-[100] md:contents">
         <TopBanner />
@@ -272,7 +271,6 @@ const HomePage: React.FC = () => {
         <ExploreUs />
         <Gallery />
         <Testimonials />
-        <Facilities />
       </main>
       <Footer />
     </div>
@@ -402,7 +400,8 @@ function App() {
             <Route path="/placement" element={<Placement />} />
             <Route path="/e-cell" element={<ECell />} />
             <Route path="/iiic" element={<IIIC />} />
-            <Route path="/exam-cell" element={<ExamCell />} />
+            <Route path="/exam" element={<ExamCell />} />
+            <Route path="/exam-cell" element={<Navigate to="/exam" replace />} />
             <Route path="/helpline-for-divyangjan" element={<HelplineForDivyangjan />} />
 
             {/* Footer Pages */}

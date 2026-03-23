@@ -81,7 +81,7 @@ const menuGroups: MenuGroup[] = [
       { label: 'Electronics & Telecommunication Engineering',       href: '/electronics-telecomm' },
       { label: 'Civil Engineering',                           href: '/civil-engineering' },
       { label: 'First Year Engineering',                      href: '/first-year-engineering' },
-      { label: 'MMS (MBA)',                                   href: '/mms' },
+      { label: 'Master of Management Studies (MBA)',          href: '/mms' },
     ],
   },
 
@@ -154,23 +154,32 @@ const menuGroups: MenuGroup[] = [
   {
     label: 'Student & Career',
     dropdown: [
-      { label: 'Career @ VCET',          href: CAREER_AT_VCET_PDF_URL },
-      { label: 'Extra-Curricular',       isGroupLabel: true },
-      { label: 'Cultural Committee',     href: '/cultural-committee' },
-      { label: 'Sports Committee',       href: '/sports-committee' },
-      { label: 'Literati',               href: '/literati' },
-      { label: 'NSS',                    href: '/nss' },
-      { label: 'EBSB',                   href: '/ebsb' },
-      { label: 'Co-Curricular',          isGroupLabel: true },
-      { label: 'IEEE',                   href: '/ieee' },
-      { label: 'Students Club',          href: '/students-club' },
-      { label: 'CSI',                    href: '/csi' },
-      { label: 'IETE',                   href: '/iete' },
-      { label: 'ISHRAE',                 href: '/ishrae' },
-      { label: 'VMEA',                   href: '/vmea' },
-      { label: 'Hackathon',              href: '/hackathon' },
-      { label: 'NSDC',                   href: '/nsdc' },
-      { label: 'IGBC',                   href: '/igbc' },
+      { label: 'Career @ VCET',          href: '/career-at-vcet' },
+      {
+        label: 'Extra Curricular',
+        subItems: [
+          { label: "Student's Council", href: '/students-council' },
+          { label: 'Cultural Committee', href: '/cultural-committee' },
+          { label: 'Sports Committee', href: '/sports-committee' },
+          { label: 'Literati', href: '/literati' },
+          { label: 'NSS', href: '/nss' },
+          { label: 'EBSB', href: '/ebsb' },
+        ],
+      },
+      {
+        label: 'Co Curricular',
+        subItems: [
+          { label: 'IEEE', href: '/ieee' },
+          { label: 'Students Club', href: '/students-club' },
+          { label: 'CSI', href: '/csi' },
+          { label: 'IETE', href: '/iete' },
+          { label: 'ISHRAE', href: '/ishrae' },
+          { label: 'VMEA', href: '/vmea' },
+          { label: 'Hackathon', href: '/hackathon' },
+          { label: 'NSDC', href: '/nsdc' },
+          { label: 'IGBC', href: '/igbc' },
+        ],
+      },
     ],
   },
 
@@ -195,16 +204,19 @@ const menuGroups: MenuGroup[] = [
     ],
   },
 
-  // 9. ALUMNI & EXAM
+  // 9. ALUMNI
   {
-    label: 'Alumni & Exam',
-    dropdown: [
-      { label: 'Alumni Portal', href: 'https://alumni.vcet.edu.in/' },
-      { label: 'Exam Cell',     href: '/exam-cell' },
-    ],
+    label: 'Alumni',
+    href: 'https://alumni.vcet.edu.in/',
   },
 
-  // 10. NAAC ACCREDITATION
+  // 10. EXAM
+  {
+    label: 'Exam',
+    href: '/exam',
+  },
+
+  // 11. NAAC ACCREDITATION
   {
     label: 'NAAC',
     dropdown: [
@@ -327,12 +339,13 @@ const keywordMap: Record<string, string[]> = {
   '/training':             ['training', 'placement training', 'tpo'],
   '/e-cell':               ['ecell', 'entrepreneurship', 'startup'],
   '/iiic':                 ['iiic', 'industry interaction', 'mou'],
+  '/exam':                 ['exam', 'examination', 'results', 'hall ticket', 'exam cell'],
   '/exam-cell':            ['exam', 'examination', 'results', 'hall ticket', 'exam cell'],
 };
 
 /** Homepage section entries */
 const homepageSections: SearchEntry[] = [
-  { label: 'Home', href: '/', category: 'Homepage', keywords: ['home', 'main', 'homepage'] },
+                    { label: 'Exam',                 href: '/exam' },
   { label: 'Placements Overview', href: '/#placements', category: 'Homepage', keywords: ['placement graph', 'placement stats', 'highest package'] },
   { label: 'Recruiters', href: '/#recruiters', category: 'Homepage', keywords: ['recruiters', 'companies', 'hiring partners'] },
   { label: 'Gallery', href: '/#gallery', category: 'Homepage', keywords: ['gallery', 'photos', 'campus photos'] },
