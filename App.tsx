@@ -1,4 +1,4 @@
-wdimport React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import { PageTitleUpdater } from './components/PageTitleUpdater';
