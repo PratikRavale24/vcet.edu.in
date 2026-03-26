@@ -71,11 +71,11 @@ const DepartmentFacultySection: React.FC<DepartmentFacultySectionProps> = ({ dep
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4">
         {faculty.map((f) => (
           <article
-            key={f._id}
+            key={f.id}
             className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 border-t-[3px] border-b-[3px] border-t-[#1a4b7c] border-b-[#fdb813] flex flex-col items-center px-6 pt-6 pb-5 h-full"
           >
             <Link
-              to={`/faculty/${f._id}`}
+              to={`/faculty/${f.slug || f.id}`}
               className="flex w-full flex-col items-center no-underline h-full"
             >
               {/* Photo with gold badge at bottom-right */}
