@@ -159,18 +159,18 @@ const FacultyList: React.FC = () => {
                           )}
                         </div>
                         <div className="flex flex-col min-w-0">
-                          <span className="text-slate-900 font-extrabold text-base leading-tight truncate">{item.basicInfo.fullName}</span>
-                          <span className="text-slate-400 text-xs font-bold truncate">{item.basicInfo.email}</span>
-                          <span className="text-[10px] text-blue-500 font-black uppercase tracking-widest mt-1">{item.basicInfo.department}</span>
+                          <span className="text-slate-900 font-extrabold text-base leading-tight truncate">{item.basicInfo?.fullName || 'Unnamed'}</span>
+                          <span className="text-slate-400 text-xs font-bold truncate">{item.basicInfo?.email || 'No Email'}</span>
+                          <span className="text-[10px] text-blue-500 font-black uppercase tracking-widest mt-1">{item.basicInfo?.department || 'No Department'}</span>
                         </div>
                       </div>
                     </td>
                     <td className="px-8 py-6">
-                      <span className="text-slate-600 font-bold">{item.basicInfo.designation}</span>
+                      <span className="text-slate-600 font-bold">{item.basicInfo?.designation || 'Faculty'}</span>
                     </td>
                     <td className="px-8 py-6">
                       <div className="flex flex-col">
-                        <span className="text-slate-800 font-black">{item.experience.teachingYears}y / {item.experience.industryYears}y</span>
+                        <span className="text-slate-800 font-black">{(item.experience?.teachingYears || 0)}y / {(item.experience?.industryYears || 0)}y</span>
                         <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Teaching / Ind.</span>
                       </div>
                     </td>

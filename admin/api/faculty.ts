@@ -1,6 +1,7 @@
 import type { ListResponse, ItemResponse, DeleteResponse, Faculty, FacultyPayload } from '../types';
+import { mockFacultyApi } from './mockStore';
 
-const FACULTY_API_BASE = 'http://localhost:5000/api/faculty';
+
 
 /**
  * Custom request helper for Faculty API since it's a different backend than Laravel.
@@ -13,11 +14,9 @@ async function facultyRequest<T>(path: string, options: RequestInit = {}): Promi
   return json as T;
 }
 
-export const facultyApi = {
+const realFacultyApi = {
   list: () => facultyRequest<ListResponse<Faculty>>('/'),
-
   get: (id: string) => facultyRequest<ItemResponse<Faculty>>(`/${id}`),
-
   create: (payload: FacultyPayload) => {
     const formData = new FormData();
     if (payload.profileImage) {
@@ -25,13 +24,8 @@ export const facultyApi = {
       delete payload.profileImage;
     }
     formData.append('data', JSON.stringify(payload));
-
-    return facultyRequest<ItemResponse<Faculty>>('/', {
-      method: 'POST',
-      body: formData,
-    });
+    return facultyRequest<ItemResponse<Faculty>>('/', { method: 'POST', body: formData });
   },
-
   update: (id: string, payload: FacultyPayload) => {
     const formData = new FormData();
     if (payload.profileImage) {
@@ -39,12 +33,11 @@ export const facultyApi = {
       delete payload.profileImage;
     }
     formData.append('data', JSON.stringify(payload));
-
-    return facultyRequest<ItemResponse<Faculty>>(`/${id}`, {
-      method: 'PUT',
-      body: formData,
-    });
+    return facultyRequest<ItemResponse<Faculty>>(`/${id}`, { method: 'PUT', body: formData });
   },
-
   delete: (id: string) => facultyRequest<DeleteResponse>(`/${id}`, { method: 'DELETE' }),
 };
+
+export const facultyApi = import.meta.env.VITE_USE_MOCK_FACULTY === 'true' 
+  ? mockFacultyApi 
+  : realFacultyApi;
