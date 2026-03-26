@@ -227,6 +227,13 @@ vcet.edu.in/
 |       |-- faqs/
 |           |-- MMSFAQs.tsx           # /mms/faqs (13 Q&A items)
 |
+|-- ui/                        # Reusable base UI elements (e.g. Shadcn/Radix components)
+|-- utils/                     # Helper functions and utilities
+|-- styles/                    # Global CSS and Tailwind definitions
+|-- scripts/                   # Utility and build/automation scripts
+|-- recruiters/                # Data related to recruiters
+|-- wiki/                      # Additional local documentation
+|
 |-- services/                  # Public API fetch functions (main website, no auth)
 |   |-- api.ts                 # Base fetch client — reads VITE_API_URL env var
 |   |-- heroSlides.ts          # GET /api/hero-slides
@@ -291,10 +298,6 @@ vcet.edu.in/
 |   |   |-- placement-partners/ PlacementPartnersList.tsx, PlacementPartnersForm.tsx
 |   |   |-- enquiries/         EnquiriesList.tsx
 |
-|-- db/
-|   |-- schema.sql             # Full database schema — run once on setup
-|   |-- seed.php               # Creates default admin user — delete after use
-|
 |-- public/                    # Static assets served by Vite at root /
 |   |-- Images/
 |       |-- Banner/
@@ -317,7 +320,6 @@ vcet.edu.in/
 |           |-- syllabus/      # FY.pdf, SY_syllabus.pdf (downloadable syllabi)
 |
 |-- Images/                    # Source image assets (mirrored to public/Images/)
-|-- uploads/                   # Runtime file uploads from admin panel (not in Git)
 |-- .htaccess                  # Apache rewrite rules for SPA routing
 |-- DEPLOYMENT.md              # Step-by-step Bluehost deployment guide
 ```
