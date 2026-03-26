@@ -327,7 +327,8 @@ export interface GalleryImagePayload {
 // ── Faculty ───────────────────────────────────────────────────────────────────
 
 export interface Faculty {
-  _id: string; 
+  id: number;
+  slug?: string;
   basicInfo: {
     fullName: string;
     designation: string;

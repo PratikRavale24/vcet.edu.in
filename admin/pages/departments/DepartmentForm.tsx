@@ -400,8 +400,9 @@ export default function DepartmentForm() {
             <div className="max-h-96 overflow-y-auto pr-2 space-y-6">
               {Object.entries(
                 availableFaculty.reduce((acc, f) => {
-                  acc[f.department] = acc[f.department] || [];
-                  acc[f.department].push(f);
+                  const deptName = f.basicInfo?.department || 'Unassigned';
+                  acc[deptName] = acc[deptName] || [];
+                  acc[deptName].push(f);
                   return acc;
                 }, {} as Record<string, Faculty[]>)
               ).map(([deptName, facs]) => (
@@ -425,8 +426,8 @@ export default function DepartmentForm() {
                             }}
                           />
                           <div className="flex flex-col">
-                            <span className={`text-sm font-bold ${isSelected ? 'text-indigo-900' : 'text-slate-700'}`}>{f.name}</span>
-                            <span className={`text-[11px] font-medium ${isSelected ? 'text-indigo-600/70' : 'text-slate-400'}`}>{f.designation || f.specialization || f.page}</span>
+                            <span className={`text-sm font-bold ${isSelected ? 'text-indigo-900' : 'text-slate-700'}`}>{f.basicInfo?.fullName || 'Unnamed'}</span>
+                            <span className={`text-[11px] font-medium ${isSelected ? 'text-indigo-600/70' : 'text-slate-400'}`}>{f.basicInfo?.designation || f.qualifications?.specialization || 'Faculty'}</span>
                           </div>
                         </label>
                       );

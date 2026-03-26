@@ -25,7 +25,6 @@ const SRGCCommittee: React.FC = () => {
       <PageBanner
         title="Student Grievance Redressal Committee (SGRC)"
         breadcrumbs={[
-          { label: 'Statutory Committees', href: '/anti-ragging-committee' },
           { label: 'Student Grievance Redressal Committee (SDRC)' },
         ]}
       />

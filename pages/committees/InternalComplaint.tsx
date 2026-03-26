@@ -82,7 +82,6 @@ const InternalComplaint: React.FC = () => {
       <PageBanner
         title="Internal Complaint Committee"
         breadcrumbs={[
-          { label: 'Statutory Committees', href: '/anti-ragging-committee' },
           { label: 'Internal Complaint Committee' },
         ]}
       />

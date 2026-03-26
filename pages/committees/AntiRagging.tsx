@@ -25,7 +25,6 @@ const AntiRagging: React.FC = () => {
       <PageBanner
         title="Anti Ragging Committee"
         breadcrumbs={[
-          { label: 'Statutory Committees', href: '/anti-ragging-committee' },
           { label: 'Anti Ragging Committee' },
         ]}
       />

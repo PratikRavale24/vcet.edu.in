@@ -23,7 +23,6 @@ const GrievanceRedressal: React.FC = () => {
       <PageBanner
         title="Grievance Redressal Committee"
         breadcrumbs={[
-          { label: 'Statutory Committees', href: '/anti-ragging-committee' },
           { label: 'Grievance Redressal' },
         ]}
       />

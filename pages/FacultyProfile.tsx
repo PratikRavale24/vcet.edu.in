@@ -43,7 +43,17 @@ const FacultyProfile: React.FC = () => {
     );
   }
 
-  const { basicInfo, qualifications, experience, academic, publications, rolesAndAwards, onlineLinks, memberships, profileImage } = faculty;
+  const { 
+    basicInfo = { fullName: '', designation: '', department: '', email: '', joinDate: '' },
+    qualifications = { degrees: [], specialization: '' },
+    experience = { teachingYears: 0, industryYears: 0, totalPapers: 0, totalBooks: 0 },
+    academic = { pgProjects: '', researchDomains: [], consultancyProjects: [] },
+    publications = { books: [], patents: [], researchPapers: [] },
+    rolesAndAwards = { roles: [], awards: [] },
+    onlineLinks = { website: '', youtube: '', github: '' },
+    memberships = { organizations: [] },
+    profileImage 
+  } = faculty;
 
   const tabs = [
     { id: 'about', label: 'About', icon: 'fa-user' },
@@ -54,8 +64,8 @@ const FacultyProfile: React.FC = () => {
   ];
 
   return (
-    <div className="faculty-profile-root">
-      <PageLayout>
+    <PageLayout>
+      <div className="faculty-profile-root">
         <div className="wrap">
           {/* Hero Section */}
           <div className="hero">
@@ -160,16 +170,16 @@ const FacultyProfile: React.FC = () => {
                         <p className="sec-sub">Academic degrees earned</p>
                       </div>
                     </div>
-                    {qualifications.degrees.map((deg, i) => (
+                    {(qualifications?.degrees || []).map((deg, i) => (
                       <div key={i} className="ql">
                         <div className="qb">DEGREE</div>
                         <div className="qt"><strong>{deg}</strong></div>
                       </div>
                     ))}
-                    <div className="ir" style={{marginTop:'10px'}}><span className="ir-l">Specialization</span><span className="ir-v">{qualifications.specialization}</span></div>
+                    <div className="ir" style={{marginTop:'10px'}}><span className="ir-l">Specialization</span><span className="ir-v">{qualifications?.specialization || 'Not specified'}</span></div>
                   </div>
                 </div>
-                {memberships.organizations.length > 0 && (
+                {(memberships?.organizations || []).length > 0 && (
                   <div className="card">
                     <div className="sec-h">
                       <div className="sec-ico"><i className="fa-solid fa-users-rectangle" /></div>
@@ -179,7 +189,7 @@ const FacultyProfile: React.FC = () => {
                       </div>
                     </div>
                     <div className="chip-row">
-                      {memberships.organizations.map((org, i) => (
+                      {(memberships?.organizations || []).map((org, i) => (
                         <div key={i} className="chip blue"><i className="fa-solid fa-certificate" /> {org}</div>
                       ))}
                     </div>
@@ -210,7 +220,7 @@ const FacultyProfile: React.FC = () => {
                       </div>
                     </div>
                     <div className="chip-row">
-                      {academic.researchDomains.map((dom, i) => (
+                      {(academic?.researchDomains || []).filter(Boolean).map((dom, i) => (
                         <div key={i} className="chip gold">{dom}</div>
                       ))}
                     </div>
@@ -224,7 +234,7 @@ const FacultyProfile: React.FC = () => {
                       </div>
                     </div>
                     <ul className="list-disc pl-5 space-y-2 mt-2">
-                      {academic.consultancyProjects.map((cp, i) => (
+                      {(academic?.consultancyProjects || []).map((cp, i) => (
                         <li key={i} className="text-sm text-slate-600 font-medium">{cp}</li>
                       ))}
                     </ul>
@@ -244,7 +254,7 @@ const FacultyProfile: React.FC = () => {
                     </div>
                   </div>
                   <div className="books-g">
-                    {publications.books.map((book, i) => (
+                    {(publications?.books || []).map((book, i) => (
                       <div key={i} className="bk-row">
                         <div className="bk-num">{i+1}</div>
                         <div className="bk"><strong>{book.title}</strong><span>ISBN: {book.isbn}</span></div>
@@ -252,10 +262,10 @@ const FacultyProfile: React.FC = () => {
                     ))}
                   </div>
                   <div className="space-y-3 mt-6">
-                    {publications.patents.map((pat, i) => (
+                    {(publications?.patents || []).map((pat, i) => (
                       <div key={i} className="pat">
                         <div className="p-num">PAT</div>
-                        <div><strong className="p-title">{pat.title}</strong><span className="p-date"><i className="fa-solid fa-calendar-day" /> {new Date(pat.date).toLocaleDateString()}</span></div>
+                        <div><strong className="p-title">{pat.title}</strong><span className="p-date"><i className="fa-solid fa-calendar-day" /> {pat.date ? new Date(pat.date).toLocaleDateString() : 'N/A'}</span></div>
                       </div>
                     ))}
                   </div>
@@ -269,7 +279,7 @@ const FacultyProfile: React.FC = () => {
                     </div>
                   </div>
                   <div className="space-y-4">
-                    {publications.researchPapers.map((rp, i) => (
+                    {(publications?.researchPapers || []).map((rp, i) => (
                       <div key={i} className="ir"><span className="ir-v text-blue-600 hover:underline cursor-pointer">{rp}</span></div>
                     ))}
                   </div>
@@ -289,7 +299,7 @@ const FacultyProfile: React.FC = () => {
                       </div>
                     </div>
                     <div className="space-y-3">
-                      {rolesAndAwards.roles.map((role, i) => (
+                      {(rolesAndAwards?.roles || []).map((role, i) => (
                         <div key={i} className="role-pill"><i className="fa-solid fa-check-circle" /> {role}</div>
                       ))}
                     </div>
@@ -303,7 +313,7 @@ const FacultyProfile: React.FC = () => {
                       </div>
                     </div>
                     <div className="space-y-4">
-                      {rolesAndAwards.awards.map((award, i) => (
+                      {(rolesAndAwards?.awards || []).map((award, i) => (
                         <div key={i} className="aw">
                           <div className="aw-ico"><i className="fa-solid fa-medal" /></div>
                           <div><strong className="aw-title">{award}</strong></div>
@@ -326,19 +336,19 @@ const FacultyProfile: React.FC = () => {
                     </div>
                   </div>
                   <div className="links-g">
-                    {onlineLinks.website && (
+                    {onlineLinks?.website && (
                       <a href={onlineLinks.website} target="_blank" rel="noreferrer" className="lk">
                         <div className="lk-ico"><i className="fa-solid fa-earth-americas" /></div>
                         <div><span className="lk-name">Website</span><span className="lk-sub">Personal/Portfolio</span></div>
                       </a>
                     )}
-                    {onlineLinks.youtube && (
+                    {onlineLinks?.youtube && (
                       <a href={onlineLinks.youtube} target="_blank" rel="noreferrer" className="lk">
                         <div className="lk-ico"><i className="fa-brands fa-youtube" /></div>
                         <div><span className="lk-name">YouTube</span><span className="lk-sub">Educational Channel</span></div>
                       </a>
                     )}
-                    {onlineLinks.github && (
+                    {onlineLinks?.github && (
                       <a href={onlineLinks.github} target="_blank" rel="noreferrer" className="lk">
                         <div className="lk-ico"><i className="fa-brands fa-github" /></div>
                         <div><span className="lk-name">GitHub</span><span className="lk-sub">Code Repositories</span></div>
@@ -350,8 +360,8 @@ const FacultyProfile: React.FC = () => {
             )}
           </div>
         </div>
-      </PageLayout>
-    </div>
+      </div>
+    </PageLayout>
   );
 };
 

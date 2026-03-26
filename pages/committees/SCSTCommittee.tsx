@@ -26,7 +26,6 @@ const SCSTCommittee: React.FC = () => {
       <PageBanner
         title="SC-ST Committee"
         breadcrumbs={[
-          { label: 'Statutory Committees', href: '/anti-ragging-committee' },
           { label: 'SC-ST Committee' },
         ]}
       />
