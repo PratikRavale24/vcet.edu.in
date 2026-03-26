@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { facultyApi } from '../admin/api/faculty';
+import { get } from '../services/api';
 import type { Faculty } from '../admin/types';
 
 interface DepartmentFacultySectionProps {
@@ -13,10 +13,10 @@ const DepartmentFacultySection: React.FC<DepartmentFacultySectionProps> = ({ dep
 
   useEffect(() => {
     setLoading(true);
-    facultyApi.list()
+    get<{ data: Faculty[] }>('/faculty')
       .then(r => {
         const all = Array.isArray(r.data) ? r.data : [];
-        const filtered = all.filter(f => f.basicInfo.department === departmentName && f.basicInfo.isActive);
+        const filtered = all.filter(f => f.basicInfo.department === departmentName);
         setFaculty(filtered);
       })
       .catch(console.error)
