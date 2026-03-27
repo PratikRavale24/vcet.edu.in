@@ -65,7 +65,7 @@ const StatCard: React.FC<{ stat: typeof stats[0]; onVisible: () => void }> = ({ 
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section id="about" className="pt-2 pb-12 md:py-28 bg-white relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-44 right-0 h-80 w-80 rounded-full bg-brand-blue/[0.05] blur-3xl" />
         <div className="absolute -bottom-28 left-0 h-72 w-72 rounded-full bg-brand-gold/[0.08] blur-3xl" />

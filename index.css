@@ -102,34 +102,12 @@ canvas {
 }
 
 @media (max-width: 1024px) {
-  .hero-mobile-pan {
-    object-position: 0% 50%;
-    animation: hero-pan-horizontal 14s ease-in-out infinite alternate;
-    will-change: object-position;
-  }
-
-  @keyframes hero-pan-horizontal {
-    0% {
-      object-position: 0% 50%;
-    }
-    100% {
-      object-position: 100% 50%;
-    }
-  }
-
   .info-card-top {
     padding: 0.65rem 1rem;
   }
 
   .info-card-body {
     padding: 1.1rem 1rem 1.3rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-mobile-pan {
-    animation: none;
-    object-position: 50% 50%;
   }
 }
 

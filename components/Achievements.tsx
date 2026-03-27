@@ -125,6 +125,97 @@ function ParallaxRow({ items, baseVelocity, onImageClick }: ParallaxRowProps) {
   );
 }
 
+function MobileParallaxRow({ items, speed, direction, onImageClick }: { items: Achievement[], speed: number, direction: 1 | -1, onImageClick: (a: Achievement) => void }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isInteracting = useRef(false);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    
+    let animationFrameId: number;
+    // Set initial position for reverse scrolling to prevent immediate jump
+    if (direction === -1) {
+      el.scrollLeft = el.scrollWidth / 3;
+    }
+
+    const scroll = () => {
+      if (!isInteracting.current && el.scrollWidth > 0) {
+        const singleSetWidth = el.scrollWidth / 3;
+        
+        if (direction === 1) {
+          el.scrollLeft += speed;
+          if (el.scrollLeft >= singleSetWidth * 2) {
+             el.scrollLeft -= singleSetWidth;
+          }
+        } else {
+          el.scrollLeft -= speed;
+          if (el.scrollLeft <= 0) {
+             el.scrollLeft += singleSetWidth;
+          }
+        }
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+    
+    animationFrameId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [speed, direction]);
+
+  const tripled = [...items, ...items, ...items];
+
+  return (
+    <div 
+      ref={scrollRef}
+      className="flex overflow-x-auto w-full no-scrollbar gap-5 px-4"
+      onTouchStart={() => isInteracting.current = true}
+      onTouchEnd={() => isInteracting.current = false}
+      onScroll={() => {
+        isInteracting.current = true;
+        const refAny = scrollRef.current as any;
+        clearTimeout(refAny._timeout);
+        refAny._timeout = setTimeout(() => {
+           isInteracting.current = false;
+        }, 150);
+      }}
+      style={{ scrollBehavior: 'auto' }}
+    >
+      {tripled.map((a, i) => (
+        <div
+          key={`${a.id}-${i}`}
+          className="group relative flex-shrink-0 w-[220px] sm:w-[280px] h-[170px] sm:h-[210px] rounded-2xl overflow-hidden shadow-md cursor-pointer"
+          onClick={() => onImageClick(a)}
+        >
+            <img
+              src={a.image}
+              alt={a.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="400"%3E%3Crect fill="%231B3A5C" width="600" height="400"/%3E%3Ctext fill="%23D4A843" font-family="Inter" font-size="16" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EAchievement%3C/text%3E%3C/svg%3E';
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent" />
+            <div className="absolute top-0 left-0 h-0.5 w-0 bg-brand-gold group-hover:w-full transition-all duration-700 ease-out" />
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <h3 className="text-white font-bold text-sm leading-snug line-clamp-2 drop-shadow">
+                {a.title}
+              </h3>
+              <p
+                className="text-white/80 text-xs mt-1.5 leading-relaxed line-clamp-2
+                           max-h-0 overflow-hidden opacity-0
+                           group-hover:max-h-20 group-hover:opacity-100
+                           transition-all duration-500 ease-out"
+              >
+                {a.description}
+              </p>
+            </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const Achievements: React.FC = () => {
   const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
   const [lightboxZoom, setLightboxZoom] = useState(1);
@@ -164,10 +255,19 @@ const Achievements: React.FC = () => {
             'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
         }}
       >
-        {/* Row 1 — scrolls left */}
-        <ParallaxRow items={rowOne} baseVelocity={0.8} onImageClick={setSelectedAchievement} />
-        {/* Row 2 — scrolls right */}
-        <ParallaxRow items={rowTwo} baseVelocity={-0.8} onImageClick={setSelectedAchievement} />
+        {/* Desktop View (Framer Motion) */}
+        <div className="hidden lg:block space-y-5">
+          {/* Row 1 — scrolls left */}
+          <ParallaxRow items={rowOne} baseVelocity={0.8} onImageClick={setSelectedAchievement} />
+          {/* Row 2 — scrolls right */}
+          <ParallaxRow items={rowTwo} baseVelocity={-0.8} onImageClick={setSelectedAchievement} />
+        </div>
+
+        {/* Mobile View (Native Touch Scrolling + Auto Scroll) */}
+        <div className="block lg:hidden space-y-5">
+          <MobileParallaxRow items={rowOne} speed={2.2} direction={1} onImageClick={setSelectedAchievement} />
+          <MobileParallaxRow items={rowTwo} speed={2.2} direction={-1} onImageClick={setSelectedAchievement} />
+        </div>
       </div>
 
       {/* ── Image Lightbox Modal ── */}
