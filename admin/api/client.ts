@@ -160,8 +160,10 @@ async function requestForm<T>(
 
 export function resolveApiUrl(path: string | null | undefined): string | null {
   if (!path) return null;
-  if (/^https?:\/\//i.test(path) || path.startsWith("blob:")) return path;
-  return `${API_ORIGIN}${path.startsWith("/") ? path : `/${path}`}`;
-}
+  if (/^https?:\/\//i.test(path) || path.startsWith("blob:") || path.startsWith("data:")) return path;      
+  // Local frontend assets shouldn't be prefixed with API_ORIGIN
+  if (/^\/?(images|Images|pdfs|Pdfs)\//.test(path)) {
+    return path.startsWith("/") ? path : `/${path}`;
+  }
 
 export const client = { request, requestForm };
