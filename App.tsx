@@ -68,8 +68,8 @@ const FundedResearch = lazy(() => import('./pages/research/FundedResearch'));
 const Publications = lazy(() => import('./pages/research/Publications'));
 const ConsultancyProjects = lazy(() => import('./pages/research/ConsultancyProjects'));
 const ResearchFacility = lazy(() => import('./pages/research/ResearchFacility'));
-const ResearchConventions = lazy(() => import('./pages/research/ResearchConventions'));
-const ResearchPolicy = lazy(() => import('./pages/research/ResearchPolicy'));
+
+
 const NIRF = lazy(() => import('./pages/research/NIRF'));
 const ResearchPatents = lazy(() => import('./pages/research/Patents'));
 const ResearchIIC = lazy(() => import('./pages/research/IIC'));
@@ -130,6 +130,18 @@ const NaacPage = lazy(() => import('./pages/naac/NAACPage'));
 
 // pages/contact
 const ContactUs = lazy(() => import('./pages/contact/ContactUs'));
+
+// pages/aicte-idea-vcet
+const AICTEIdeaVCET = lazy(() => import('./pages/AICTEIdeaVCET'));
+
+// pages/coe-siemens
+const CenterOfExcellenceSiemens = lazy(() => import('./pages/CenterOfExcellenceSiemens'));
+
+// pages/machinery-diagnostics
+const MachineryDiagnostics = lazy(() => import('./pages/MachineryDiagnostics'));
+
+// pages/texas-instruments-lab
+const TexasInstrumentsLab = lazy(() => import('./pages/TexasInstrumentsLab'));
 
 // pages/footer
 const GermanLanguageClubLayout = lazy(() => import('./pages/footer/german-language-club/GermanLanguageClubLayout'));
@@ -357,8 +369,8 @@ function App() {
           <Route path="/parents" element={<Parents />} />
           <Route path="/consultancy-projects" element={<ConsultancyProjects />} />
           <Route path="/research-facility" element={<ResearchFacility />} />
-          <Route path="/research-conventions" element={<ResearchConventions />} />
-          <Route path="/research-policy" element={<ResearchPolicy />} />
+
+
           <Route path="/iic" element={<ResearchIIC />} />
           <Route path="/nirf" element={<NIRF />} />
           <Route path="/research-downloads" element={<ResearchDownloads />} />
@@ -414,6 +426,10 @@ function App() {
 
             {/* Contact & Others */}
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/aicte-idea-vcet" element={<AICTEIdeaVCET />} />
+            <Route path="/coe-siemens" element={<CenterOfExcellenceSiemens />} />
+            <Route path="/machinery-diagnostics" element={<MachineryDiagnostics />} />
+            <Route path="/texas-instruments-lab" element={<TexasInstrumentsLab />} />
             <Route path="/training" element={<Training />} />
             <Route path="/placement" element={<Placement />} />
             <Route path="/e-cell" element={<ECell />} />
