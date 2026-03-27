@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { SITE_PAGE_TABS } from './sitePagesConfig';
+import AdmissionForm from '../admission/AdmissionForm';
+import AcademicsForm from '../academics/AcademicsForm';
 
 const homeEditables = [
   {
@@ -28,9 +30,54 @@ const homeEditables = [
   },
 ];
 
+const admissionEditables = [
+  {
+    title: 'Intake & Information',
+    description: 'Manage yearly intake seats and general admission information.',
+    links: [{ label: 'Edit Intake Details', section: 'intake' }],
+  },
+  {
+    title: 'Financials & Verification',
+    description: 'Update fees structure and the list of required documents for students.',
+    links: [
+      { label: 'Edit Fees Structure', section: 'fees' },
+      { label: 'Edit Required Documents', section: 'documents' },
+    ],
+  },
+  {
+    title: 'Admission Cutoffs',
+    description: 'Manage historical and current year cutoff trends for various branches.',
+    links: [{ label: 'Edit Cutoffs', section: 'cutoffs' }],
+  },
+  {
+    title: 'Promotional Materials',
+    description: 'Update the official college brochure and other admission assets.',
+    links: [{ label: 'Edit Brochure', section: 'brochure' }],
+  },
+];
+
+const academicsEditables = [
+  {
+    title: 'Academic Calendars',
+    description: 'Manage and upload yearly academic calendars and session schedules.',
+    links: [{ label: 'Edit Calendars', section: 'calendars' }],
+  },
+  {
+    title: 'Program Booklets',
+    description: 'Update institutional booklets for various degree programs and syllabus.',
+    links: [{ label: 'Edit Booklets', section: 'booklets' }],
+  },
+];
+
 const SitePages: React.FC = () => {
   const { pageKey = 'home' } = useParams<{ pageKey: string }>();
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const activeTab = SITE_PAGE_TABS.find((tab) => tab.key === pageKey);
+
+  // Reset active section when tab changes
+  useEffect(() => {
+    setActiveSection(null);
+  }, [pageKey]);
 
   if (!activeTab) {
     return (
@@ -44,16 +91,86 @@ const SitePages: React.FC = () => {
     );
   }
 
+  // Handle Section-specific Editors
+  if (activeTab.key === 'admission' && activeSection) {
+    return <AdmissionForm activeSection={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  if (activeTab.key === 'academics' && activeSection) {
+    return <AcademicsForm activeSection={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  // Handle Hub/Direct Views
+  if (activeTab.key === 'admission') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Admission Module</h1>
+          <p className="text-sm text-slate-500 mt-1">Choose a section below to manage admission content.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {admissionEditables.map((item) => (
+            <div key={item.title} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm">
+              <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
+              <p className="text-sm text-slate-500 mt-2">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {item.links.map((link) => (
+                  <button
+                    key={link.section}
+                    onClick={() => setActiveSection(link.section)}
+                    className="inline-flex items-center px-3.5 py-2 rounded-xl bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (activeTab.key === 'academics') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Academics Module</h1>
+          <p className="text-sm text-slate-500 mt-1">Choose a section below to manage academic content.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+          {academicsEditables.map((item) => (
+            <div key={item.title} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm max-w-2xl">
+              <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
+              <p className="text-sm text-slate-500 mt-2">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {item.links.map((link) => (
+                  <button
+                    key={link.section}
+                    onClick={() => setActiveSection(link.section)}
+                    className="inline-flex items-center px-3.5 py-2 rounded-xl bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   if (activeTab.key !== 'home') {
     return (
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">{activeTab.label}</h1>
-          <p className="text-sm text-slate-500 mt-1">This section is ready in navigation and can be wired with editables next.</p>
+          <p className="text-sm text-slate-500 mt-1">This section ({activeTab.key}) is ready in navigation and can be wired with custom editables next.</p>
         </div>
         <div className="bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm">
           <p className="text-slate-700 text-sm">
-            Use the Home tab to edit homepage blocks now.
+            The {activeTab.label} page management is being built. Use the Home tab to edit homepage blocks now.
           </p>
           <Link to="/admin/pages/home" className="inline-flex mt-4 px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold">
             Open Home Editables

@@ -1,12 +1,23 @@
 import { client } from './client';
 import type { ListResponse, ItemResponse, DeleteResponse, Faculty, FacultyPayload } from '../types';
+import { mockFacultyApi } from './mockStore';
+
+const USE_MOCK = import.meta.env.DEV && import.meta.env.VITE_MOCK_AUTH === 'true';
 
 export const facultyApi = {
-  list: () => client.request<ListResponse<Faculty>>('/faculty/all'),
+  list: USE_MOCK
+    ? () => mockFacultyApi.list()
+    : () => client.request<ListResponse<Faculty>>('/faculty/all'),
 
-  get: (id: number | string) => client.request<ItemResponse<Faculty>>(`/faculty/${id}`),
+  get: USE_MOCK
+    ? (id: number | string) => mockFacultyApi.get(String(id))
+    : (id: number | string) => client.request<ItemResponse<Faculty>>(`/faculty/${id}`),
 
-  create: (payload: FacultyPayload) => {
+  create: async (payload: FacultyPayload) => {
+    if (USE_MOCK) {
+      return mockFacultyApi.create(payload);
+    }
+
     // If there is an image file, use FormData
     if (payload.profileImage instanceof File) {
       const formData = new FormData();
@@ -32,7 +43,11 @@ export const facultyApi = {
     });
   },
 
-  update: (id: number | string, payload: FacultyPayload) => {
+  update: async (id: number | string, payload: FacultyPayload) => {
+    if (USE_MOCK) {
+      return mockFacultyApi.update(String(id), payload);
+    }
+
     // If there is an image file, use FormData (Laravel form spoofing for PUT)
     if (payload.profileImage instanceof File) {
       const formData = new FormData();
@@ -58,5 +73,7 @@ export const facultyApi = {
     });
   },
 
-  delete: (id: number | string) => client.request<DeleteResponse>(`/faculty/${id}`, { method: 'DELETE' }),
+  delete: USE_MOCK
+    ? (id: number | string) => mockFacultyApi.delete(String(id))
+    : (id: number | string) => client.request<DeleteResponse>(`/faculty/${id}`, { method: 'DELETE' }),
 };

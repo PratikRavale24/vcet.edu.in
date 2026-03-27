@@ -471,3 +471,64 @@ export interface DepartmentPayload {
   };
   is_active?: boolean;
 }
+
+// ── Admission ────────────────────────────────────────────────────────────────
+
+export interface AdmissionDocument {
+  title: string;
+  description: string;
+  year?: string;
+  category?: string;
+  fileUrl: string | null;
+  fileName: string | null;
+}
+
+export interface CourseIntakeItem {
+  id?: string;
+  name: string;
+  intake: string;
+}
+
+export interface AdmissionData {
+  id: string;
+  courses: {
+    ug: CourseIntakeItem[];
+    pg: CourseIntakeItem[];
+    management: CourseIntakeItem[];
+  };
+  feesStructure: AdmissionDocument[];
+  brochure: {
+    fileName: string;
+    fileUrl: string;
+  };
+  documentsRequired: AdmissionDocument[];
+  cutOffs: AdmissionDocument[];
+  updatedAt: string;
+}
+
+export interface AdmissionPayload {
+  courses?: {
+    ug: CourseIntakeItem[];
+    pg: CourseIntakeItem[];
+    management: CourseIntakeItem[];
+  };
+  feesStructure?: AdmissionDocument[];
+  documentsRequired?: AdmissionDocument[];
+  cutOffs?: AdmissionDocument[];
+
+  // Single Files
+  brochureFile?: File | null;
+}
+
+// ── Academics ────────────────────────────────────────────────────────────────
+
+export interface AcademicsData {
+  programBooklets: AdmissionDocument[];
+  academicCalendars: AdmissionDocument[];
+  updatedAt: string;
+}
+
+export interface AcademicsPayload {
+  programBooklets?: (AdmissionDocument & { file?: File | null })[];
+  academicCalendars?: (AdmissionDocument & { file?: File | null })[];
+}

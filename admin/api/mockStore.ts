@@ -6,6 +6,7 @@
 import type {
   Notice, Event, Placement, HeroSlide, NewsTicker,
   Achievement, Testimonial, GalleryImage, PlacementPartner, Enquiry, Faculty, Department,
+  AdmissionData, AcademicsData, AdmissionDocument,
   ListResponse, ItemResponse, DeleteResponse,
 } from '../types';
 
@@ -171,6 +172,33 @@ export function createMockCrud<T extends { id: number }>(seed: T[], storageKey: 
     },
   };
 }
+
+export const createMockSingleton = <T>(initialData: T, storageKey: string) => {
+  const hydrate = (): T => {
+    const stored = localStorage.getItem(storageKey);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        return initialData;
+      }
+    }
+    return initialData;
+  };
+
+  return {
+    get: async () => ({ data: hydrate() }),
+    update: async (payload: any) => {
+      const current = hydrate();
+      const updatedData = await processFiles(payload);
+      
+      // Merge logic: specific for singleton
+      const newData = { ...current, ...updatedData, updatedAt: new Date().toISOString() };
+      localStorage.setItem(storageKey, JSON.stringify(newData));
+      return { data: newData as unknown as T };
+    }
+  };
+};
 
 // ── Seed Data ────────────────────────────────────────────────────────────────
 
@@ -476,7 +504,7 @@ export const MOCK_ENQUIRIES: Enquiry[] = [
 
 export const MOCK_FACULTY: Faculty[] = [
   {
-    _id: 'mock-1',
+    id: 1,
     basicInfo: {
       fullName: 'Dr. Sunita Mehta',
       designation: 'Professor & HOD',
@@ -524,7 +552,7 @@ export const MOCK_FACULTY: Faculty[] = [
     updatedAt: '2024-01-10T10:00:00Z',
   },
   {
-    _id: 'mock-2',
+    id: 2,
     basicInfo: {
       fullName: 'Prof. Rajesh Kulkarni',
       designation: 'Associate Professor',
@@ -582,14 +610,14 @@ export function createFacultyMockCrud(seed: Faculty[], storageKey: string = 'vce
   return {
     list: async () => ({ success: true, data: [...store] }),
     get: async (id: string) => {
-      const item = store.find(f => f._id === id);
+      const item = store.find(f => f.id === Number(id));
       if (!item) throw new Error('Faculty not found');
       return { success: true, data: { ...item } };
     },
     create: async (payload: any) => {
       const newItem = { 
         ...payload, 
-        _id: `mock-${Date.now()}`,
+        id: `mock-${Date.now()}`,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       };
@@ -598,14 +626,14 @@ export function createFacultyMockCrud(seed: Faculty[], storageKey: string = 'vce
       return { success: true, data: newItem };
     },
     update: async (id: string, payload: any) => {
-      const idx = store.findIndex(f => f._id === id);
+      const idx = store.findIndex(f => f.id === Number(id));
       if (idx === -1) throw new Error('Faculty not found');
       store[idx] = { ...store[idx], ...payload, updatedAt: new Date().toISOString() };
       persist();
       return { success: true, data: store[idx] };
     },
     delete: async (id: string) => {
-      store = store.filter(f => f._id !== id);
+      store = store.filter(f => f.id !== Number(id));
       persist();
       return { success: true };
     }
@@ -701,3 +729,54 @@ export const MOCK_DEPARTMENTS: Department[] = [
     }
   }
 ];
+
+/* ── Admission & Academics Singletons ───────────────────────────────────────── */
+
+const MOCK_ADMISSION: AdmissionData = {
+  id: 'admission-1',
+  courses: {
+    ug: [
+      { name: 'Computer Engineering', intake: '180' },
+      { name: 'Computer Science and Engineering (Data Science)', intake: '180' },
+      { name: 'Information Technology', intake: '60' },
+      { name: 'Artificial Intelligence and Data Science', intake: '120' },
+      { name: 'Mechanical Engineering', intake: '60' },
+      { name: 'Electronics and Telecommunication Engineering', intake: '60' },
+    ],
+    pg: [
+      { name: 'M.E. Computer Engineering', intake: '18' },
+    ],
+    management: [
+      { name: 'Master of Management Studies (MMS)', intake: '120' },
+    ],
+  },
+  feesStructure: [
+    { title: 'F.E. Fee Structure', description: 'Regular First Year Admission', year: '2025-26', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/09/FE-Fee-2024-25.pdf', fileName: 'FE-Fee.pdf' },
+    { title: 'Direct S.E. Fee', description: 'Lateral Entry Admission', year: '2025-26', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/09/DSE-Fee-2024-25.pdf', fileName: 'DSE-Fee.pdf' },
+  ],
+  brochure: { fileName: "VCET_Brochure_2025.pdf", fileUrl: "https://vcet.edu.in/wp-content/uploads/2024/05/VCET-Brochure.pdf" },
+  documentsRequired: [
+    { title: 'Mandatory Documents', description: 'For all engineering programs', category: 'UG - FIRST YEAR', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/08/Document-Required-2024-25.pdf', fileName: 'Docs-Required.pdf' },
+  ],
+  cutOffs: [
+    { title: 'F.E. (First Year Engineering) 2024-25', description: 'Engineering Department', year: '2024-25', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/09/FE-CAP-1-2024-25.pdf', fileName: 'FE-CAP-1.pdf' },
+    { title: 'DSE (Direct Second Year) 2024-25', description: 'Engineering Department', year: '2024-25', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/09/DSE-CAP-1-2024-25.pdf', fileName: 'DSE-CAP-1.pdf' },
+  ],
+  updatedAt: new Date().toISOString(),
+};
+
+const MOCK_ACADEMICS: AcademicsData = {
+  programBooklets: [
+    { title: 'Honours / Minor Degree Program - Booklet Part 1', description: 'Access the official institutional booklets for program structure and syllabus details.', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/05/Honours-Syllabus-1.pdf', fileName: 'Booklet-Part1.pdf' },
+    { title: 'Honours / Minor Degree Program - Booklet Part 2', description: 'Access the official institutional booklets for program structure and syllabus details.', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/05/Honours-Syllabus-2.pdf', fileName: 'Booklet-Part2.pdf' },
+  ],
+  academicCalendars: [
+    { title: 'EVEN SEM 2025-26 SE TE BE', description: 'TENTATIVE', year: '2025-26', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/05/Acad-Calendar-Even.pdf', fileName: 'Even-Sem-25-26.pdf' },
+    { title: 'ODD SEM 2025-26 SE TE BE', description: 'Confirmed', year: '2025-26', fileUrl: 'https://vcet.edu.in/wp-content/uploads/2024/05/Acad-Calendar-Odd.pdf', fileName: 'Odd-Sem-25-26.pdf' },
+  ],
+  updatedAt: new Date().toISOString(),
+};
+
+export const createAdmissionCrud = () => createMockSingleton(MOCK_ADMISSION, 'vcet_mock_admission_v4');
+export const createAcademicsCrud = () => createMockSingleton(MOCK_ACADEMICS, 'vcet_mock_academics');
+export const createEnquiriesCrud = (seed: Enquiry[]) => createMockCrud(seed, 'vcet_mock_enquiries');
