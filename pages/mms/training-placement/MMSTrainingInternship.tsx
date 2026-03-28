@@ -16,6 +16,7 @@ export default function MMSTrainingInternship() {
         <article className="overflow-hidden rounded-none border border-brand-navy/25 bg-white shadow-[0_18px_34px_-24px_rgba(11,61,145,0.55)]">
           <div className="border-b border-brand-gold/60 bg-gradient-to-r from-brand-navy via-brand-blue to-brand-navy px-5 py-5 sm:px-7">
             <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-gold/95">Training and Placement</p>
+            <h3 className="mt-1 text-2xl font-display font-bold text-white sm:text-3xl">Internship</h3>
           </div>
 
           <div className="space-y-8 px-5 py-6 sm:px-7">

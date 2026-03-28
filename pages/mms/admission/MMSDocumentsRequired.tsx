@@ -30,6 +30,7 @@ export default function MMSDocumentsRequired() {
     <MMSLayout title="Documents Required">
       <div className="space-y-4">
         <article className="space-y-4 border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+          <h2 className="text-2xl font-display font-bold text-[#0d2d56] md:text-3xl">Documents Required</h2>
           <p className="border border-slate-200 bg-slate-50 p-3 text-[16px] leading-7 text-slate-700">
             Original one set of self attested documents only
           </p>

@@ -51,6 +51,8 @@ export default function MMSStudentsLifeRankers() {
   return (
     <MMSLayout title="RANKERS">
       <section className="space-y-6">
+        <h2 className="text-center text-4xl font-display font-bold text-brand-navy sm:text-5xl">RANKERS</h2>
+
         <div className="grid grid-cols-1 gap-7 xl:grid-cols-2">
           <div className="space-y-7">
             <RankersTable title="Semester I Rankers" rows={semesterIRankers} />

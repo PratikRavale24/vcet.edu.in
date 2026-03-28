@@ -48,6 +48,7 @@ export default function MMSProgramOutcomes() {
               </div>
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold">Core Competencies</p>
+                <h3 className="text-2xl font-display font-bold text-brand-navy leading-tight">Program Outcomes (POs)</h3>
               </div>
             </div>
 

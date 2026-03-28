@@ -30,6 +30,7 @@ export default function MMSAdmission() {
         <section>
           <article className="space-y-10 border border-slate-200 bg-white p-6 shadow-sm md:p-8">
             <section id="eligibility-criteria" className="space-y-5 scroll-mt-40">
+              <h2 className="text-2xl font-display font-bold text-[#0d2d56] md:text-3xl">Eligibility Criteria</h2>
               <div className="h-px bg-gradient-to-r from-brand-gold via-brand-navylight to-transparent" />
               <ol className="space-y-4">
                 {criteriaPoints.map((point, index) => (

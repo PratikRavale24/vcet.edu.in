@@ -22,6 +22,7 @@ export default function MMSScholarship() {
 
         <article className="space-y-6 border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <section className="space-y-3">
+            <h2 className="text-2xl font-display font-bold text-[#0d2d56] md:text-3xl">Scholarship</h2>
             <div className="h-px bg-gradient-to-r from-brand-gold via-brand-navylight to-transparent" />
             <ol className="space-y-4">
               {scholarshipPoints.map((point, index) => (
