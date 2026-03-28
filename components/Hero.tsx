@@ -362,16 +362,65 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [displaySlides.length]);
   return (
-    <section
-      id="home"
-      className="relative min-h-[82dvh] lg:min-h-[100dvh] lg:h-screen w-full flex items-center overflow-hidden bg-brand-dark text-white -mt-14 pt-14 md:-mt-16 md:pt-16"
-    >
-      {/* ── Static Background ──────────────────────────────────────────── */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+    <>
+      <section
+        id="home"
+        className="relative w-full overflow-hidden bg-transparent text-white lg:min-h-[100dvh] lg:h-screen lg:-mt-16 lg:pt-16 lg:bg-brand-dark"
+      >
+      {/* ── Mobile hero image + card (keeps them adjacent) ───────────────── */}
+      <div className="lg:hidden flex flex-col w-full bg-brand-dark">
         <img
           src="/Images/Home%20background/VCET-Home-1-scaled.jpg"
           alt="VCET Campus"
-          className="hero-mobile-pan absolute inset-0 w-full h-full object-contain lg:object-cover"
+          className="block w-full h-[260px] sm:h-[320px] object-cover object-top"
+        />
+        <div className="bg-brand-dark px-3 pb-4 pt-4">
+          <div className="rounded-2xl border border-white/20 bg-brand-dark/80 px-4 py-4 shadow-[0_18px_36px_-24px_rgba(0,0,0,0.55)] backdrop-blur-sm">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-brand-gold font-bold">Admissions 2026-27</p>
+            <h2 className="mt-1 text-2xl font-extrabold leading-tight text-white">
+              Build Your Engineering Future at VCET
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-white/75">
+              Explore programs, campus life, and placement support. Open the admission form when you are ready.
+            </p>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <button
+                onClick={() => {
+                  setMobilePanel("admission");
+                  setMobileAdmissionOpen(true);
+                }}
+                className="rounded-xl bg-brand-gold text-brand-dark text-xs font-extrabold uppercase tracking-wider py-2.5"
+              >
+                Apply Now
+              </button>
+              <button
+                onClick={() => {
+                  setMobilePanel("notices");
+                  setMobileAdmissionOpen(true);
+                }}
+                className="rounded-xl border border-white/35 bg-white/10 text-white text-xs font-bold uppercase tracking-wider py-2.5 text-center"
+              >
+                Notices
+              </button>
+              <button
+                onClick={() => {
+                  setMobilePanel("events");
+                  setMobileAdmissionOpen(true);
+                }}
+                className="col-span-2 rounded-xl border border-white/35 bg-white/10 text-white text-xs font-bold uppercase tracking-wider py-2.5 text-center"
+              >
+                Events
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden lg:block absolute inset-0 z-0 overflow-hidden">
+        <img
+          src="/Images/Home%20background/VCET-Home-1-scaled.jpg"
+          alt="VCET Campus"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
       </div>
 
@@ -408,49 +457,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative z-10 h-full w-full flex items-center justify-start px-3 sm:px-6 md:px-10 lg:px-12">
-        {/* Mobile hero content */}
-        <div className="lg:hidden w-full pt-8 pb-8">
-          <div className="max-w-[95%] rounded-2xl border border-white/20 bg-black/35 backdrop-blur-sm px-4 py-4 shadow-2xl">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-brand-gold font-bold">Admissions 2026-27</p>
-            <h2 className="mt-1 text-xl font-extrabold leading-tight text-white">
-              Build Your Engineering Future at VCET
-            </h2>
-            <p className="mt-2 text-xs leading-relaxed text-white/80">
-              Explore programs, campus life, and placement support. Open the admission form when you are ready.
-            </p>
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              <button
-                onClick={() => {
-                  setMobilePanel("admission");
-                  setMobileAdmissionOpen(true);
-                }}
-                className="flex-1 rounded-xl bg-brand-gold text-brand-dark text-xs font-extrabold uppercase tracking-wider py-2.5"
-              >
-                Apply Now
-              </button>
-              <button
-                onClick={() => {
-                  setMobilePanel("notices");
-                  setMobileAdmissionOpen(true);
-                }}
-                className="flex-1 rounded-xl border border-white/30 bg-white/10 text-white text-xs font-bold uppercase tracking-wider py-2.5 text-center"
-              >
-                Notices
-              </button>
-              <button
-                onClick={() => {
-                  setMobilePanel("events");
-                  setMobileAdmissionOpen(true);
-                }}
-                className="col-span-2 rounded-xl border border-white/30 bg-white/10 text-white text-xs font-bold uppercase tracking-wider py-2.5 text-center"
-              >
-                Events
-              </button>
-            </div>
-          </div>
-        </div>
-
+      <div className="relative z-10 hidden lg:flex h-full w-full items-center justify-start px-3 sm:px-6 md:px-10 lg:px-12">
         {/* Outer wrapper — allows the toggle button to escape overflow-hidden */}
         <div
           className="hidden lg:block relative transition-all duration-500 ease-in-out"
@@ -1025,7 +1032,8 @@ const Hero: React.FC = () => {
         imageUrl={selectedImageUrl}
         title="Event Poster"
       />
-    </section>
+      </section>
+    </>
   );
 };
 

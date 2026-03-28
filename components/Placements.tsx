@@ -34,6 +34,50 @@ const Placements: React.FC = () => {
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const isInteracting = useRef(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Ping-pong auto-scroll effect
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || !isVisible || placementData.length === 0) return;
+    
+    let direction = 1;
+    let animationFrameId: number;
+    const speed = 0.8; // suitable smooth speed
+    
+    const scroll = () => {
+      if (!isInteracting.current && !isDown) {
+        if (el.scrollWidth > el.clientWidth) {
+          el.scrollLeft += direction * speed;
+
+          if (direction === 1 && el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
+            direction = -1;
+          } else if (direction === -1 && el.scrollLeft <= 0) {
+            direction = 1;
+          }
+        }
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    // Delay start slightly to allow intro animations to finish
+    const startDelay = setTimeout(() => {
+      animationFrameId = requestAnimationFrame(scroll);
+    }, 2000);
+
+    return () => {
+      clearTimeout(startDelay);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [isVisible, isDown, placementData]);
 
   // Fetch placement year stats from the backend
   useEffect(() => {
@@ -118,21 +162,21 @@ const Placements: React.FC = () => {
     <section id="placements" ref={sectionRef} className="relative bg-brand-dark text-white overflow-hidden">
 
       {/* Lamp Header */}
-      <LampContainer className="pt-10 pb-0 min-h-[200px] md:min-h-[320px]">
+      <LampContainer className="pt-24 md:pt-10 pb-0 min-h-[300px] md:min-h-[320px]">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: 'easeInOut' }}
-          className="flex flex-col items-center text-center"
+          className="flex flex-col items-center text-center px-4"
         >
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-0.5 bg-brand-gold"></div>
             <div className="w-8 h-0.5 bg-brand-gold"></div>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight bg-gradient-to-br from-nova-white via-brand-gold to-brand-gold-light bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold tracking-tight bg-gradient-to-br from-nova-white via-brand-gold to-brand-gold-light bg-clip-text text-transparent leading-tight">
             Placement Excellence
           </h2>
-          <p className="text-white/50 mt-3 text-sm md:text-base max-w-md">
+          <p className="text-white/50 mt-3 text-xs sm:text-sm md:text-base max-w-[280px] sm:max-w-md mx-auto leading-relaxed">
             2300+ students placed — consistent career success across academic years
           </p>
         </motion.div>
@@ -189,22 +233,33 @@ const Placements: React.FC = () => {
               onMouseLeave={handleMouseLeave}
               onMouseUp={handleMouseUp}
               onMouseMove={handleMouseMove}
+              onTouchStart={() => isInteracting.current = true}
+              onTouchEnd={() => isInteracting.current = false}
+              onScroll={() => {
+                isInteracting.current = true;
+                const anyRef = scrollRef.current as any;
+                clearTimeout(anyRef._touchTimeout);
+                anyRef._touchTimeout = setTimeout(() => {
+                  isInteracting.current = false;
+                }, 150);
+              }}
             >
               <div className="relative min-w-max" style={{ height: `${CHART_H + 120}px` }}>
 
                 {/* Bars row */}
                 <div
-                  className="absolute bottom-10 flex items-end gap-5 md:gap-8 px-2 pl-12"
+                  className={`absolute bottom-10 flex items-end ${isMobile ? 'gap-3 px-2 pl-4' : 'gap-8 px-2 pl-12'}`}
                   style={{ height: `${CHART_H}px`, paddingTop: '40px' }}
                 >
                   {/* COVID zone backdrop — spans behind the 3 COVID bars */}
                   {(() => {
                     if (covidIndices.length === 0) return null;
 
-                    const barW = 60;
-                    const gap = 32; // matches gap-8 (2rem)
-                    const left = covidStartIdx * (barW + gap);
-                    const width = covidIndices.length * barW + (covidIndices.length - 1) * gap;
+                    const barW = isMobile ? 38 : 60;
+                    const gap = isMobile ? 12 : 32;
+                    const plOffset = isMobile ? 16 : 48;
+                    const left = plOffset + covidStartIdx * (barW + gap) - (isMobile ? 8 : 16);
+                    const width = covidIndices.length * barW + (covidIndices.length - 1) * gap + (isMobile ? 16 : 32);
 
                     return (
                       <div
@@ -228,9 +283,10 @@ const Placements: React.FC = () => {
                     return (
                       <div
                         key={index}
-                        className="flex flex-col items-center group"
-                        style={{ width: '60px' }}
+                        className="flex flex-col items-center group relative z-10"
+                        style={{ width: isMobile ? '38px' : '60px' }}
                         onMouseEnter={() => setHoveredIdx(index)}
+
                         onMouseLeave={() => setHoveredIdx(null)}
                       >
                         {/* Floating count label */}
@@ -243,19 +299,19 @@ const Placements: React.FC = () => {
                           }}
                         >
                           {isCovid && (
-                            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[11px] font-extrabold text-cyan-300 uppercase tracking-wider whitespace-nowrap drop-shadow-[0_0_6px_rgba(34,211,238,0.6)]">
+                            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] md:text-[11px] font-extrabold text-cyan-300 uppercase tracking-wider whitespace-nowrap drop-shadow-[0_0_6px_rgba(34,211,238,0.6)]">
                               Consistent
                             </span>
                           )}
                           <span
-                            className={`text-xl md:text-2xl font-extrabold tabular-nums transition-colors duration-200 ${
+                            className={`text-[15px] sm:text-xl md:text-2xl font-extrabold tabular-nums transition-colors duration-200 ${
                               isPeak ? 'text-amber-300' : isCovid ? 'text-cyan-300' : isHovered ? 'text-white' : 'text-brand-gold'
                             }`}
                           >
                             {animatedCounts[index]}
                           </span>
                           {isPeak && (
-                            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[13px] text-amber-200 font-extrabold uppercase tracking-wider whitespace-nowrap drop-shadow-[0_0_8px_rgba(251,191,36,0.7)]">
+                            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] md:text-[13px] text-amber-200 font-extrabold uppercase tracking-wider whitespace-nowrap drop-shadow-[0_0_8px_rgba(251,191,36,0.7)]">
                               ★ Best
                             </span>
                           )}
@@ -310,20 +366,20 @@ const Placements: React.FC = () => {
 
                 {/* Year labels row */}
                 <div
-                  className="absolute bottom-0 flex items-center gap-5 md:gap-8 px-2 pl-12"
+                  className={`absolute bottom-0 flex items-center ${isMobile ? 'gap-3 px-2 pl-4' : 'gap-8 px-2 pl-12'}`}
                   style={{ height: '36px' }}
                 >
                   {placementData.map((item, index) => (
                     <div
                       key={index}
                       style={{
-                        width: '60px',
+                        width: isMobile ? '38px' : '60px',
                         opacity: isVisible ? 1 : 0,
                         transition: `opacity 0.5s ease ${index * 100 + 800}ms`,
                       }}
                     >
                       <span
-                        className={`block text-center text-[10px] font-semibold uppercase tracking-wider whitespace-nowrap transition-colors duration-200 ${
+                        className={`block text-center text-[9px] md:text-[10px] font-semibold uppercase tracking-wider whitespace-nowrap transition-colors duration-200 ${
                           hoveredIdx === index ? 'text-brand-gold' : item.isCovid ? 'text-cyan-400/70' : 'text-white/45'
                         }`}
                       >
@@ -338,22 +394,24 @@ const Placements: React.FC = () => {
             </div>
 
             {/* Footer note */}
-            <div className="mt-5 flex items-center justify-between flex-wrap gap-2">
-              <div className="flex items-center gap-5 text-[13px] font-semibold uppercase tracking-widest">
+            <div className="mt-6 sm:mt-8 flex flex-col gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap sm:items-center gap-3 sm:gap-6 text-[10px] sm:text-[11px] md:text-[13px] font-semibold uppercase tracking-widest text-white/80">
                 <span className="flex items-center gap-2">
-                  <span className="inline-block w-4 h-4 rounded-sm bg-gradient-to-t from-yellow-800 to-brand-gold/50" />
-                  <span className="text-white/80">Placed students</span>
+                  <span className="inline-block flex-shrink-0 w-3 h-3 sm:w-4 sm:h-4 rounded-sm bg-gradient-to-t from-yellow-800 to-brand-gold/50" />
+                  <span>Placed students</span>
                 </span>
                 <span className="flex items-center gap-2">
-                  <span className="inline-block w-4 h-4 rounded-sm bg-gradient-to-t from-amber-700 to-amber-200" />
+                  <span className="inline-block flex-shrink-0 w-3 h-3 sm:w-4 sm:h-4 rounded-sm bg-gradient-to-t from-amber-700 to-amber-200" />
                   <span className="text-amber-200">Peak year</span>
                 </span>
                 <span className="flex items-center gap-2">
-                  <span className="inline-block w-4 h-4 rounded-sm bg-gradient-to-t from-cyan-900 to-cyan-300/70" />
+                  <span className="inline-block flex-shrink-0 w-3 h-3 sm:w-4 sm:h-4 rounded-sm bg-gradient-to-t from-cyan-900 to-cyan-300/70" />
                   <span className="text-cyan-300">COVID years — Placements unaffected</span>
                 </span>
               </div>
-              <p className="text-white/80 text-[13px] font-semibold uppercase tracking-widest">* Current Academic Year (In Progress)</p>
+              <p className="text-white/60 text-[9px] sm:text-[10px] md:text-[11px] font-semibold uppercase tracking-widest leading-loose">
+                * Current Academic Year (In Progress)
+              </p>
             </div>
           </motion.div>
         </div>

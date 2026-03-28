@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { SITE_PAGE_TABS } from './sitePagesConfig';
+import AdmissionForm from '../admission/AdmissionForm';
+import AcademicsForm from '../academics/AcademicsForm';
+import ExamsForm from '../exams/ExamsForm';
+import CommitteesForm from '../committees/CommitteesForm';
+import ResearchForm from '../research/ResearchForm';
 
 const homeEditables = [
   {
@@ -28,9 +33,114 @@ const homeEditables = [
   },
 ];
 
+const admissionEditables = [
+  {
+    title: 'Intake & Information',
+    description: 'Manage yearly intake seats and general admission information.',
+    links: [{ label: 'Edit Intake Details', section: 'intake' }],
+  },
+  {
+    title: 'Financials & Verification',
+    description: 'Update fees structure and the list of required documents for students.',
+    links: [
+      { label: 'Edit Fees Structure', section: 'fees' },
+      { label: 'Edit Required Documents', section: 'documents' },
+    ],
+  },
+  {
+    title: 'Admission Cutoffs',
+    description: 'Manage historical and current year cutoff trends for various branches.',
+    links: [{ label: 'Edit Cutoffs', section: 'cutoffs' }],
+  },
+  {
+    title: 'Promotional Materials',
+    description: 'Update the official college brochure and other admission assets.',
+    links: [{ label: 'Edit Brochure', section: 'brochure' }],
+  },
+  {
+    title: 'Scholarships',
+    description: 'Manage institutional and government scholarship details and application forms.',
+    links: [{ label: 'Edit Scholarships', section: 'scholarships' }],
+  },
+];
+
+const academicsEditables = [
+  {
+    title: 'Academic Calendars',
+    description: 'Manage and upload yearly academic calendars and session schedules.',
+    links: [{ label: 'Edit Calendars', section: 'calendars' }],
+  },
+  {
+    title: 'Program Booklets',
+    description: 'Update institutional booklets for various degree programs and syllabus.',
+    links: [{ label: 'Edit Booklets', section: 'booklets' }],
+  },
+];
+
+const examEditables = [
+  {
+    title: 'University Materials',
+    description: 'Manage institutional syllabus records and program structures.',
+    links: [{ label: 'Edit Syllabus', section: 'syllabus' }],
+  },
+  {
+    title: 'Exam Logistics',
+    description: 'Update examination schedules and yearly timetables.',
+    links: [{ label: 'Edit Timetables', section: 'timetable' }],
+  },
+  {
+    title: 'Academic Resources',
+    description: 'Manage previous years question papers and sample mock tests.',
+    links: [
+      { label: 'Edit Question Papers', section: 'questionPapers' },
+      { label: 'Edit Sample Papers', section: 'samplePapers' },
+    ],
+  },
+  {
+    title: 'Results & Exam Notices',
+    description: 'Manage university results and important examination related notices.',
+    links: [
+      { label: 'Edit Results', section: 'results' },
+      { label: 'Edit Exam Notices', section: 'notices' },
+    ],
+  },
+];
+
+const committeesEditables = [
+  { slug: 'cdc', title: 'College Development Committee', description: 'Institutional planning, governance, and development.' },
+  { slug: 'iqac', title: 'IQAC', description: 'Quality assurance, AQAR reports, and academic standards.' },
+  { slug: 'anti-ragging', title: 'Anti-Ragging Committee', description: 'Safe campus protocols and student welfare monitoring.' },
+  { slug: 'grievance', title: 'Grievance Redressal Committee', description: 'Addressing institutional complaints and staff grievances.' },
+  { slug: 'sgrc', title: 'Student Grievance Committee', description: 'Student-specific complaint handling and SGRC guidelines.' },
+  { slug: 'sc-st', title: 'SC-ST Committee', description: 'Promoting inclusivity and welfare for SC/ST students.' },
+  { slug: 'icc', title: 'Internal Complaint Committee', description: 'Prevention of harassment and internal redressal protocols.' },
+  { slug: 'equal-opportunity', title: 'Equal Opportunity Cell', description: 'Inclusivity documents and non-discrimination cell.' },
+  { slug: 'sedg', title: 'SEDG Cell', description: 'Socio-Economically Disadvantaged Groups welfare.' },
+];
+
+const researchEditables = [
+  { slug: 'research-intro', title: 'Research Introduction', description: 'Institutional R&D Hub and PhD datasets.' },
+  { slug: 'funded-research', title: 'Funded Research', description: 'External funding records and reports.' },
+  { slug: 'publications', title: 'Publications', description: 'Books, Journals, and Conference papers.' },
+  { slug: 'patents', title: 'Patents', description: 'Intellectual property and patent records.' },
+  { slug: 'consultancy', title: 'Consultancy Projects', description: 'Industry projects and revenue datasets.' },
+  { slug: 'research-facility', title: 'Research Facility', description: 'Infrastructure and specialized R&D labs.' },
+  { slug: 'conventions', title: 'Research Conventions', description: 'Institutional research convention documents.' },
+  { slug: 'research-policy', title: 'Research Policy', description: 'Institutional R&D policies and guidelines.' },
+  { slug: 'iic', title: 'IIC', description: 'Innovation cell achievements and reports.' },
+  { slug: 'nirf', title: 'NIRF', description: 'NIRF ranking documents and reports.' },
+  { slug: 'downloads', title: 'Downloads', description: 'Research-related downloadable forms.' },
+];
+
 const SitePages: React.FC = () => {
   const { pageKey = 'home' } = useParams<{ pageKey: string }>();
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const activeTab = SITE_PAGE_TABS.find((tab) => tab.key === pageKey);
+
+  // Reset active section when tab changes
+  useEffect(() => {
+    setActiveSection(null);
+  }, [pageKey]);
 
   if (!activeTab) {
     return (
@@ -44,16 +154,182 @@ const SitePages: React.FC = () => {
     );
   }
 
+  // Handle Section-specific Editors
+  if (activeTab.key === 'admission' && activeSection) {
+    return <AdmissionForm activeSection={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  if (activeTab.key === 'academics' && activeSection) {
+    return <AcademicsForm activeSection={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  if (activeTab.key === 'exam' && activeSection) {
+    return <ExamsForm activeSection={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  if (activeTab.key === 'committees' && activeSection) {
+    return <CommitteesForm slug={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  if (activeTab.key === 'research' && activeSection) {
+    return <ResearchForm slug={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  // Handle Hub/Direct Views
+  if (activeTab.key === 'admission') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Admission Module</h1>
+          <p className="text-sm text-slate-500 mt-1">Choose a section below to manage admission content.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {admissionEditables.map((item) => (
+            <div key={item.title} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm">
+              <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
+              <p className="text-sm text-slate-500 mt-2">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {item.links.map((link) => (
+                  <button
+                    key={link.section}
+                    onClick={() => setActiveSection(link.section)}
+                    className="inline-flex items-center px-3.5 py-2 rounded-xl bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (activeTab.key === 'academics') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Academics Module</h1>
+          <p className="text-sm text-slate-500 mt-1">Choose a section below to manage academic content.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+          {academicsEditables.map((item) => (
+            <div key={item.title} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm max-w-2xl">
+              <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
+              <p className="text-sm text-slate-500 mt-2">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {item.links.map((link) => (
+                  <button
+                    key={link.section}
+                    onClick={() => setActiveSection(link.section)}
+                    className="inline-flex items-center px-3.5 py-2 rounded-xl bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (activeTab.key === 'exam') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Exams & Examination Cell</h1>
+          <p className="text-sm text-slate-500 mt-1 font-medium">Manage all examination records, materials, and internal resources here.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {examEditables.map((item) => (
+            <div key={item.title} className="bg-white border border-slate-200/60 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all">
+              <h2 className="text-lg font-bold text-slate-900 tracking-tight">{item.title}</h2>
+              <p className="text-xs text-slate-500 mt-2 font-medium leading-relaxed">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-5">
+                {item.links.map((link) => (
+                  <button
+                    key={link.section}
+                    onClick={() => setActiveSection(link.section)}
+                    className="inline-flex items-center px-4 py-2.5 rounded-xl bg-[#2563EB] text-white text-[11px] uppercase tracking-wider font-extrabold hover:bg-blue-700 transition-all shadow-sm"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (activeTab.key === 'committees') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Committees Page Editor</h1>
+          <p className="text-sm text-slate-500 mt-1">Manage institutional governance, quality assurance, and welfare committees.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {committeesEditables.map((item) => (
+            <div key={item.slug} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm">
+              <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
+              <p className="text-sm text-slate-500 mt-2">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                <button
+                  onClick={() => setActiveSection(item.slug)}
+                  className="inline-flex items-center px-3.5 py-2 rounded-xl bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  Edit Committee
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (activeTab.key === 'research') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Research Page Editor</h1>
+          <p className="text-sm text-slate-500 mt-1">Manage institutional research, publications, patents, and innovation cells.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {researchEditables.map((item) => (
+            <div key={item.slug} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm">
+              <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
+              <p className="text-sm text-slate-500 mt-2">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                <button
+                  onClick={() => setActiveSection(item.slug)}
+                  className="inline-flex items-center px-3.5 py-2 rounded-xl bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  Edit Section
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   if (activeTab.key !== 'home') {
     return (
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">{activeTab.label}</h1>
-          <p className="text-sm text-slate-500 mt-1">This section is ready in navigation and can be wired with editables next.</p>
+          <p className="text-sm text-slate-500 mt-1">This section ({activeTab.key}) is ready in navigation and can be wired with custom editables next.</p>
         </div>
         <div className="bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm">
           <p className="text-slate-700 text-sm">
-            Use the Home tab to edit homepage blocks now.
+            The {activeTab.label} page management is being built. Use the Home tab to edit homepage blocks now.
           </p>
           <Link to="/admin/pages/home" className="inline-flex mt-4 px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold">
             Open Home Editables

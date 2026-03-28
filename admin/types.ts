@@ -471,3 +471,214 @@ export interface DepartmentPayload {
   };
   is_active?: boolean;
 }
+
+// ── Admission ────────────────────────────────────────────────────────────────
+
+export interface AdmissionDocument {
+  title: string;
+  description: string;
+  year?: string;
+  category?: string;
+  fileUrl: string | null;
+  fileName: string | null;
+}
+
+export interface CourseIntakeItem {
+  id?: string;
+  name: string;
+  intake: string;
+}
+
+export interface AdmissionData {
+  id: string;
+  courses: {
+    ug: CourseIntakeItem[];
+    pg: CourseIntakeItem[];
+    management: CourseIntakeItem[];
+  };
+  feesStructure: AdmissionDocument[];
+  brochure: {
+    fileName: string;
+    fileUrl: string;
+  };
+  documentsRequired: AdmissionDocument[];
+  cutOffs: AdmissionDocument[];
+  scholarships: AdmissionDocument[];
+  updatedAt: string;
+}
+
+export interface AdmissionPayload {
+  courses?: {
+    ug: CourseIntakeItem[];
+    pg: CourseIntakeItem[];
+    management: CourseIntakeItem[];
+  };
+  feesStructure?: AdmissionDocument[];
+  documentsRequired?: AdmissionDocument[];
+  cutOffs?: AdmissionDocument[];
+  scholarships?: (AdmissionDocument & { file?: File | null })[];
+
+  // Single Files
+  brochureFile?: File | null;
+}
+
+export interface CommitteeMember {
+  post: string;
+  name: string;
+  designation?: string;
+  contact?: string;
+  email?: string;
+}
+
+export interface CommitteeReport {
+  year: string;
+  fileUrl: string | null;
+  fileName: string | null;
+}
+
+export interface CommitteeData {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  responsibilities?: string[];
+  objectives?: string[];
+  guidelines?: string[];
+  members?: CommitteeMember[];
+  reports?: CommitteeReport[];
+  documents?: { title: string; fileUrl: string | null; fileName: string | null; pdfUrl?: string }[];
+}
+
+export interface CommitteePayload {
+  responsibilities?: string[];
+  objectives?: string[];
+  guidelines?: string[];
+  members?: CommitteeMember[];
+  reports?: CommitteeReport[];
+  documents?: { title: string; fileUrl: string | null; fileName: string | null; pdfUrl?: string; file?: File | null }[];
+}
+
+/* ── Research Module ───────────────────────────────────────────────────────── */
+export interface ResearchData {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  
+  // Research Introduction
+  hubCards?: { title: string; description: string }[];
+  objectives?: string[];
+  phdPursuing?: { department: string; count: number }[];
+  phdHolders?: { department: string; count: number }[];
+  dean?: { name: string; designation: string; researchInterest: string };
+  quickLinks?: { title: string; url: string }[];
+
+  // Funded Research
+  funding?: { year: string; amount: string }[];
+  fundingReport?: { fileUrl: string | null; fileName: string | null };
+
+  // Publications
+  books?: { year: string; count: string }[];
+  journals?: { year: string; journalCount: string; conferenceCount: string }[];
+  publicationReport?: { fileUrl: string | null; fileName: string | null };
+
+  // Patents
+  patents?: { 
+    sno: string; 
+    department: string; 
+    names: string; 
+    title: string; 
+    office: string; 
+    year: string; 
+    appNo: string; 
+    status: string; 
+  }[];
+  patentStats?: { [key: string]: string };
+
+  // Consultancy
+  consultancyRevenue?: { year: string; value: string; note: string }[];
+  consultancyReport?: { fileUrl: string | null; fileName: string | null };
+  industryPartners?: { name: string; tagline: string; description: string; tags: string[] }[];
+  consultancyStats?: { [key: string]: string };
+
+  // Facilities
+  facilities?: { title: string; description: string; imageUrl: string | null; category: string; status: string }[];
+  fallbackFacility?: { title: string; description: string; imageUrl: string | null };
+
+  // IIC
+  iicAchievements?: string[];
+  iicGallery?: { imageUrl: string | null }[];
+  iicCommittee?: { post: string; name: string; designation: string }[];
+  iicReports?: { year: string; fileUrl: string | null; fileName: string | null }[];
+
+  // PDF-only (NIRF, Policy, Conventions, Downloads)
+  documents?: { title: string; fileUrl: string | null; fileName: string | null }[];
+}
+
+export interface ResearchPayload {
+  hubCards?: { title: string; description: string }[];
+  objectives?: string[];
+  phdPursuing?: { department: string; count: number }[];
+  phdHolders?: { department: string; count: number }[];
+  dean?: { name: string; designation: string; researchInterest: string };
+  quickLinks?: { title: string; url: string }[];
+  funding?: { year: string; amount: string }[];
+  fundingReport?: { fileUrl: string | null; fileName: string | null; file?: File | null };
+  books?: { year: string; count: string }[];
+  journals?: { year: string; journalCount: string; conferenceCount: string }[];
+  publicationReport?: { fileUrl: string | null; fileName: string | null; file?: File | null };
+  patents?: { 
+    sno: string; 
+    department: string; 
+    names: string; 
+    title: string; 
+    office: string; 
+    year: string; 
+    appNo: string; 
+    status: string; 
+  }[];
+  patentStats?: { [key: string]: string };
+  consultancyRevenue?: { year: string; value: string; note: string }[];
+  consultancyReport?: { fileUrl: string | null; fileName: string | null; file?: File | null };
+  industryPartners?: { name: string; tagline: string; description: string; tags: string[] }[];
+  consultancyStats?: { [key: string]: string };
+  facilities?: { title: string; description: string; imageUrl: string | null; category: string; status: string; file?: File | null }[];
+  fallbackFacility?: { title: string; description: string; imageUrl: string | null; file?: File | null };
+  iicAchievements?: string[];
+  iicGallery?: { imageUrl: string | null; file?: File | null }[];
+  iicCommittee?: { post: string; name: string; designation: string }[];
+  iicReports?: { year: string; fileUrl: string | null; fileName: string | null; file?: File | null }[];
+  documents?: { title: string; fileUrl: string | null; fileName: string | null; file?: File | null }[];
+}
+
+export interface ExamData {
+  syllabus: AdmissionDocument[];
+  timetable: AdmissionDocument[];
+  questionPapers: AdmissionDocument[];
+  samplePapers: AdmissionDocument[];
+  results: AdmissionDocument[];
+  notices: AdmissionDocument[];
+  updatedAt: string;
+}
+
+export interface ExamPayload {
+  syllabus?: (AdmissionDocument & { file?: File | null })[];
+  timetable?: (AdmissionDocument & { file?: File | null })[];
+  questionPapers?: (AdmissionDocument & { file?: File | null })[];
+  samplePapers?: (AdmissionDocument & { file?: File | null })[];
+  results?: (AdmissionDocument & { file?: File | null })[];
+  notices?: (AdmissionDocument & { file?: File | null })[];
+}
+
+// ── Academics ────────────────────────────────────────────────────────────────
+
+export interface AcademicsData {
+  programBooklets: AdmissionDocument[];
+  academicCalendars: AdmissionDocument[];
+  updatedAt: string;
+}
+
+export interface AcademicsPayload {
+  programBooklets?: (AdmissionDocument & { file?: File | null })[];
+  academicCalendars?: (AdmissionDocument & { file?: File | null })[];
+}
