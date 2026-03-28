@@ -193,7 +193,6 @@ export const createMockSingleton = <T>(initialData: T, storageKey: string) => {
       const current = hydrate();
       const updatedData = await processFiles(payload);
       
-      // Merge logic: specific for singleton
       const newData = { ...current, ...updatedData, updatedAt: new Date().toISOString() };
       localStorage.setItem(storageKey, JSON.stringify(newData));
       return { data: newData as unknown as T };
@@ -303,7 +302,7 @@ export const MOCK_EVENTS: Event[] = [
     description: 'Hands-on workshop on building mobile apps with React Native.',
     date: '2024-10-15', time: '10:00 AM - 01:00 PM', venue: 'IoT Lab, 3rd Floor',
     image: null, category: 'Workshop', status: 'Completed', is_featured: true, is_active: true,
-    expiry_date: '2024-10-15', expiry_time: '13:00', // Intentionally past expiry
+    expiry_date: '2024-10-15', expiry_time: '13:00',
     attachment: null, external_link: null, external_link_label: null,
     created_at: '2024-02-20T10:00:00Z', updated_at: '2024-02-20T10:00:00Z',
   },
@@ -420,7 +419,7 @@ export const MOCK_ACHIEVEMENTS: Achievement[] = [
     created_at: '2024-01-01T10:00:00Z', updated_at: '2024-01-01T10:00:00Z',
   },
   {
-    id: 3, title: 'IEEE Journal Publication (AI/ML)', value: 'Scientific Paper',
+    id: 2, title: 'IEEE Journal Publication (AI/ML)', value: 'Scientific Paper',
     participant_name: 'Dr. S. Meenakshi', participant_role: 'Associate Professor - IT', participant_avatar: null,
     date: '2024-01-05', category: 'Research', document_name: 'IEEE_Paper.pdf', document_url: '#',
     description: 'Published a research paper on AI/ML in IEEE journal.',
@@ -805,11 +804,76 @@ export const MOCK_EXAM: ExamData = {
   updatedAt: new Date().toISOString(),
 };
 
-export const createExamCrud = () => createMockSingleton(MOCK_EXAM, 'vcet_mock_exam');
+/* ── Committees Module ─────────────────────────────────────────────────────── */
+let MOCK_COMMITTEES: CommitteeData[] = [
+  { id: '1', slug: 'cdc', name: 'College Development Committee', description: 'Institutional planning and development governance.', responsibilities: [], members: [] },
+  { id: '2', slug: 'iqac', name: 'IQAC', description: 'Quality assurance and academic excellence monitoring.', objectives: [], members: [], reports: [] },
+  { id: '3', slug: 'anti-ragging', name: 'Anti-Ragging Committee', description: 'Ensuring a safe and ragging-free campus environment.', objectives: [], members: [] },
+  { id: '4', slug: 'grievance', name: 'Grievance Redressal Committee', description: 'Addressing institutional and staff grievances.', objectives: [], members: [] },
+  { id: '5', slug: 'sgrc', name: 'Student Grievance Redressal Committee (SGRC)', description: 'Handling student-specific concerns and complaints.', guidelines: [], members: [] },
+  { id: '6', slug: 'sc-st', name: 'SC-ST Committee', description: 'Promoting welfare and equal opportunities for SC/ST students.', objectives: [], members: [] },
+  { id: '7', slug: 'icc', name: 'Internal Complaint Committee', description: 'Prevention and redressal of sexual harassment.', objectives: [], members: [] },
+  { id: '8', slug: 'equal-opportunity', name: 'Equal Opportunity Cell', description: 'Ensuring non-discrimination and inclusivity.', documents: [] },
+  { id: '9', slug: 'sedg', name: 'SEDG Cell', description: 'Socio-Economically Disadvantaged Groups welfare.', documents: [] },
+];
 
+export const createCommitteeCrud = () => ({
+  get: async (slug: string) => {
+    const committee = MOCK_COMMITTEES.find(c => c.slug === slug);
+    return { data: committee || null, success: true };
+  },
+  update: async (slug: string, payload: CommitteePayload) => {
+    const idx = MOCK_COMMITTEES.findIndex(c => c.slug === slug);
+    if (idx !== -1) {
+      MOCK_COMMITTEES[idx] = { ...MOCK_COMMITTEES[idx], ...payload };
+    }
+    return { data: MOCK_COMMITTEES[idx], success: true };
+  }
+});
+
+export const mockCommittees = createCommitteeCrud();
+
+/* ── Research Module ───────────────────────────────────────────────────────── */
+let MOCK_RESEARCH: ResearchData[] = [
+  { id: '1', slug: 'research-intro', name: 'Research Introduction', description: 'Institutional R&D Hub and PhD datasets.', hubCards: [], objectives: [], phdPursuing: [], phdHolders: [], dean: { name: '', designation: '', researchInterest: '' }, quickLinks: [] },
+  { id: '2', slug: 'funded-research', name: 'Funded Research', description: 'External funding records and reports.', funding: [], fundingReport: { fileUrl: null, fileName: null } },
+  { id: '3', slug: 'publications', name: 'Publications', description: 'Books, Journals, and Conference papers.', books: [], journals: [], publicationReport: { fileUrl: null, fileName: null } },
+  { id: '4', slug: 'patents', name: 'Patents', description: 'Intellectual property and patent records.', patents: [], patentStats: {} },
+  { id: '5', slug: 'consultancy', name: 'Consultancy Projects', description: 'Industry projects and revenue datasets.', consultancyRevenue: [], consultancyReport: { fileUrl: null, fileName: null }, industryPartners: [], consultancyStats: {} },
+  { id: '6', slug: 'research-facility', name: 'Research Facility', description: 'Infrastructure and specialized R&D labs.', facilities: [], fallbackFacility: { title: '', description: '', imageUrl: null } },
+  { id: '7', slug: 'conventions', name: 'Research Conventions', description: 'PDF-based convention records.', documents: [] },
+  { id: '8', slug: 'research-policy', name: 'Research Policy', description: 'Institutional policy documents.', documents: [] },
+  { id: '9', slug: 'iic', name: 'IIC', description: 'Innovation cell achievements and reports.', iicAchievements: [], iicGallery: [], iicCommittee: [], iicReports: [] },
+  { id: '10', slug: 'nirf', name: 'NIRF', description: 'NIRF ranking documents.', documents: [] },
+  { id: '11', slug: 'downloads', name: 'Downloads', description: 'Research-related downloadable forms.', documents: [] },
+];
+
+export const createResearchCrud = () => ({
+  get: async (slug: string) => {
+    const section = MOCK_RESEARCH.find(s => s.slug === slug);
+    return { data: section || null, success: true };
+  },
+  update: async (slug: string, payload: ResearchPayload) => {
+    const idx = MOCK_RESEARCH.findIndex(s => s.slug === slug);
+    if (idx !== -1) {
+      MOCK_RESEARCH[idx] = { ...MOCK_RESEARCH[idx], ...payload };
+    }
+    return { data: MOCK_RESEARCH[idx], success: true };
+  }
+});
+
+export const mockResearch = createResearchCrud();
+
+/* ── Legacy Hub Creators ───────────────────────────────────────────────────── */
+export const createExamCrud = () => createMockSingleton(MOCK_EXAM, 'vcet_mock_exam');
+export const mockExam = createExamCrud();
 
 export const createAdmissionCrud = () => createMockSingleton(MOCK_ADMISSION, 'vcet_mock_admission_v4');
+export const mockAdmission = createAdmissionCrud();
+
 export const createAcademicsCrud = () => createMockSingleton(MOCK_ACADEMICS, 'vcet_mock_academics');
+export const mockAcademics = createAcademicsCrud();
+
 export const createEnquiriesCrud = (seed: Enquiry[]) => createMockCrud(seed, 'vcet_mock_enquiries');
 
 /* ── Admission Sections (new structured system) ───────────────────────────────── */

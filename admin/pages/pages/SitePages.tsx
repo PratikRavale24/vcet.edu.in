@@ -5,6 +5,8 @@ import AdmissionForm from '../admission/AdmissionForm';
 import ScholarshipForm from '../admission/ScholarshipForm';
 import AcademicsForm from '../academics/AcademicsForm';
 import ExamsForm from '../exams/ExamsForm';
+import CommitteesForm from '../committees/CommitteesForm';
+import ResearchForm from '../research/ResearchForm';
 
 const homeEditables = [
   {
@@ -105,6 +107,32 @@ const examEditables = [
   },
 ];
 
+const committeesEditables = [
+  { slug: 'cdc', title: 'College Development Committee', description: 'Institutional planning, governance, and development.' },
+  { slug: 'iqac', title: 'IQAC', description: 'Quality assurance, AQAR reports, and academic standards.' },
+  { slug: 'anti-ragging', title: 'Anti-Ragging Committee', description: 'Safe campus protocols and student welfare monitoring.' },
+  { slug: 'grievance', title: 'Grievance Redressal Committee', description: 'Addressing institutional complaints and staff grievances.' },
+  { slug: 'sgrc', title: 'Student Grievance Committee', description: 'Student-specific complaint handling and SGRC guidelines.' },
+  { slug: 'sc-st', title: 'SC-ST Committee', description: 'Promoting inclusivity and welfare for SC/ST students.' },
+  { slug: 'icc', title: 'Internal Complaint Committee', description: 'Prevention of harassment and internal redressal protocols.' },
+  { slug: 'equal-opportunity', title: 'Equal Opportunity Cell', description: 'Inclusivity documents and non-discrimination cell.' },
+  { slug: 'sedg', title: 'SEDG Cell', description: 'Socio-Economically Disadvantaged Groups welfare.' },
+];
+
+const researchEditables = [
+  { slug: 'research-intro', title: 'Research Introduction', description: 'Institutional R&D Hub and PhD datasets.' },
+  { slug: 'funded-research', title: 'Funded Research', description: 'External funding records and reports.' },
+  { slug: 'publications', title: 'Publications', description: 'Books, Journals, and Conference papers.' },
+  { slug: 'patents', title: 'Patents', description: 'Intellectual property and patent records.' },
+  { slug: 'consultancy', title: 'Consultancy Projects', description: 'Industry projects and revenue datasets.' },
+  { slug: 'research-facility', title: 'Research Facility', description: 'Infrastructure and specialized R&D labs.' },
+  { slug: 'conventions', title: 'Research Conventions', description: 'Institutional research convention documents.' },
+  { slug: 'research-policy', title: 'Research Policy', description: 'Institutional R&D policies and guidelines.' },
+  { slug: 'iic', title: 'IIC', description: 'Innovation cell achievements and reports.' },
+  { slug: 'nirf', title: 'NIRF', description: 'NIRF ranking documents and reports.' },
+  { slug: 'downloads', title: 'Downloads', description: 'Research-related downloadable forms.' },
+];
+
 const SitePages: React.FC = () => {
   const { pageKey = 'home' } = useParams<{ pageKey: string }>();
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -141,6 +169,14 @@ const SitePages: React.FC = () => {
 
   if (activeTab.key === 'exam' && activeSection) {
     return <ExamsForm activeSection={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  if (activeTab.key === 'committees' && activeSection) {
+    return <CommitteesForm slug={activeSection} onBack={() => setActiveSection(null)} />;
+  }
+
+  if (activeTab.key === 'research' && activeSection) {
+    return <ResearchForm slug={activeSection} onBack={() => setActiveSection(null)} />;
   }
 
   // Handle Hub/Direct Views
@@ -226,6 +262,60 @@ const SitePages: React.FC = () => {
                     {link.label}
                   </button>
                 ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (activeTab.key === 'committees') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Committees Page Editor</h1>
+          <p className="text-sm text-slate-500 mt-1">Manage institutional governance, quality assurance, and welfare committees.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {committeesEditables.map((item) => (
+            <div key={item.slug} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm">
+              <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
+              <p className="text-sm text-slate-500 mt-2">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                <button
+                  onClick={() => setActiveSection(item.slug)}
+                  className="inline-flex items-center px-3.5 py-2 rounded-xl bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  Edit Committee
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (activeTab.key === 'research') {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Research Page Editor</h1>
+          <p className="text-sm text-slate-500 mt-1">Manage institutional research, publications, patents, and innovation cells.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {researchEditables.map((item) => (
+            <div key={item.slug} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm">
+              <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
+              <p className="text-sm text-slate-500 mt-2">{item.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                <button
+                  onClick={() => setActiveSection(item.slug)}
+                  className="inline-flex items-center px-3.5 py-2 rounded-xl bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  Edit Section
+                </button>
               </div>
             </div>
           ))}
