@@ -522,6 +522,42 @@ export interface AdmissionPayload {
   brochureFile?: File | null;
 }
 
+export interface CommitteeMember {
+  post: string;
+  name: string;
+  designation?: string;
+  contact?: string;
+  email?: string;
+}
+
+export interface CommitteeReport {
+  year: string;
+  fileUrl: string | null;
+  fileName: string | null;
+}
+
+export interface CommitteeData {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  responsibilities?: string[];
+  objectives?: string[];
+  guidelines?: string[];
+  members?: CommitteeMember[];
+  reports?: CommitteeReport[];
+  documents?: { title: string; fileUrl: string | null; fileName: string | null; pdfUrl?: string }[];
+}
+
+export interface CommitteePayload {
+  responsibilities?: string[];
+  objectives?: string[];
+  guidelines?: string[];
+  members?: CommitteeMember[];
+  reports?: CommitteeReport[];
+  documents?: { title: string; fileUrl: string | null; fileName: string | null; pdfUrl?: string; file?: File | null }[];
+}
+
 export interface ExamData {
   syllabus: AdmissionDocument[];
   timetable: AdmissionDocument[];

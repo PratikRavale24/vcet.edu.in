@@ -3,12 +3,15 @@ import type {
   AdmissionData, AdmissionPayload, 
   AcademicsData, AcademicsPayload,
   ExamData, ExamPayload,
+  CommitteeData, CommitteePayload,
   ItemResponse 
 } from '../types';
 import { 
   createAdmissionCrud, 
   createAcademicsCrud,
-  createExamCrud
+  createExamCrud,
+  createCommitteeCrud,
+  mockCommittees
 } from './mockStore';
 
 const USE_MOCK = import.meta.env.VITE_MOCK_AUTH === 'true';
@@ -96,6 +99,21 @@ export const pagesApi = {
       buildFormData(formData, payload);
       
       return client.requestForm<ItemResponse<ExamData>>('/pages/exam', formData);
+    }
+  },
+
+  committees: {
+    get: (slug: string) => USE_MOCK
+      ? mockCommittees.get(slug)
+      : client.request<ItemResponse<CommitteeData>>(`/pages/committees/${slug}`),
+    
+    update: (slug: string, payload: CommitteePayload) => {
+      if (USE_MOCK) return mockCommittees.update(slug, payload);
+      
+      const formData = new FormData();
+      buildFormData(formData, payload);
+      
+      return client.requestForm<ItemResponse<CommitteeData>>(`/pages/committees/${slug}`, formData);
     }
   }
 };

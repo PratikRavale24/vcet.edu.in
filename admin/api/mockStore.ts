@@ -7,7 +7,9 @@ import type {
   Notice, Event, Placement, HeroSlide, NewsTicker,
   Achievement, Testimonial, GalleryImage, PlacementPartner, Enquiry, Faculty, Department,
   AdmissionData, AdmissionDocument,
-  AcademicsData, ExamData,
+  AcademicsData, AcademicsPayload,
+  ExamData, ExamPayload,
+  CommitteeData, CommitteePayload,
   ListResponse, ItemResponse, DeleteResponse,
 } from '../types';
 
@@ -804,6 +806,36 @@ export const MOCK_EXAM: ExamData = {
   ],
   updatedAt: new Date().toISOString(),
 };
+
+
+/* ── Committees Module ─────────────────────────────────────────────────────── */
+let MOCK_COMMITTEES: CommitteeData[] = [
+  { id: '1', slug: 'cdc', name: 'College Development Committee', description: 'Institutional planning and development governance.', responsibilities: [], members: [] },
+  { id: '2', slug: 'iqac', name: 'IQAC', description: 'Quality assurance and academic excellence monitoring.', objectives: [], members: [], reports: [] },
+  { id: '3', slug: 'anti-ragging', name: 'Anti-Ragging Committee', description: 'Ensuring a safe and ragging-free campus environment.', objectives: [], members: [] },
+  { id: '4', slug: 'grievance', name: 'Grievance Redressal Committee', description: 'Addressing institutional and staff grievances.', objectives: [], members: [] },
+  { id: '5', slug: 'sgrc', name: 'Student Grievance Redressal Committee (SGRC)', description: 'Handling student-specific concerns and complaints.', guidelines: [], members: [] },
+  { id: '6', slug: 'sc-st', name: 'SC-ST Committee', description: 'Promoting welfare and equal opportunities for SC/ST students.', objectives: [], members: [] },
+  { id: '7', slug: 'icc', name: 'Internal Complaint Committee', description: 'Prevention and redressal of sexual harassment.', objectives: [], members: [] },
+  { id: '8', slug: 'equal-opportunity', name: 'Equal Opportunity Cell', description: 'Ensuring non-discrimination and inclusivity.', documents: [] },
+  { id: '9', slug: 'sedg', name: 'SEDG Cell', description: 'Socio-Economically Disadvantaged Groups welfare.', documents: [] },
+];
+
+export const createCommitteeCrud = () => ({
+  get: async (slug: string) => {
+    const committee = MOCK_COMMITTEES.find(c => c.slug === slug);
+    return { data: committee || null, success: true };
+  },
+  update: async (slug: string, payload: CommitteePayload) => {
+    const idx = MOCK_COMMITTEES.findIndex(c => c.slug === slug);
+    if (idx !== -1) {
+      MOCK_COMMITTEES[idx] = { ...MOCK_COMMITTEES[idx], ...payload };
+    }
+    return { data: MOCK_COMMITTEES[idx], success: true };
+  }
+});
+
+export const mockCommittees = createCommitteeCrud();
 
 export const createExamCrud = () => createMockSingleton(MOCK_EXAM, 'vcet_mock_exam');
 
