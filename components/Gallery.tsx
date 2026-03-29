@@ -18,7 +18,7 @@ const fallbackGalleryItems: FallbackGalleryItem[] = [
   {
     title: 'AICTE IDEA Lab',
     subtitle: 'Innovation & Design',
-    src: '/Images/gallery/aicte_idea_lab.png',
+    src: '/Images/Packages/AICTE-Pamphlet_page-0001.jpg',
   },
   {
     title: 'Center of Excellence',
@@ -33,7 +33,7 @@ const fallbackGalleryItems: FallbackGalleryItem[] = [
   {
     title: 'Texas Instruments Lab',
     subtitle: 'Embedded Systems',
-    src: '/Images/gallery/texas_instruments_lab.png',
+    src: '/Images/Departments/Electronics%20&%20Telecommunication/extc-infra-Microwave-And-Antenna-Laboratory.png',
   },
   {
     title: 'Robotics Lab',
