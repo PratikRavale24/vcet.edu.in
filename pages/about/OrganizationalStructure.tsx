@@ -108,12 +108,12 @@ const OrganizationalStructure: React.FC = () => {
 
             {/* Image Placeholder */}
             <div className="reveal mb-20">
-              <div className="aspect-[16/10] bg-brand-light rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center hover:border-brand-gold/40 transition-colors duration-300">
-                <div className="text-center">
-                  <Building2 className="w-16 h-16 text-brand-blue/20 mx-auto mb-3" />
-                  <p className="text-sm text-slate-400 font-medium">organizational-structure-chart.jpg</p>
-                  <p className="text-xs text-slate-300 mt-1">Full organizational hierarchy chart</p>
-                </div>
+              <div className="w-full bg-brand-light rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-brand-gold/40 transition-colors duration-300">
+                <img 
+                  src="/images/About Us/Organizational Structure/VCET_Organization-Structure.png" 
+                  alt="Full organizational hierarchy chart"
+                  className="w-full h-auto object-contain"
+                />
               </div>
             </div>
 

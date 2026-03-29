@@ -12,8 +12,14 @@ export default function MMSExperientialGroupDiscussion() {
           </p>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <ExperientialImageHolder label="Group Discussion 01" />
-            <ExperientialImageHolder label="Group Discussion 02" />
+            <ExperientialImageHolder 
+              label="Group Discussion 01" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/Group Discussion/Experential_Learning_-_Group_Discussion_IMG1.jpeg"
+            />
+            <ExperientialImageHolder 
+              label="Group Discussion 02" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/Group Discussion/Experential_Learning_-_Group_Discussion_IMG2.jpeg"
+            />
           </div>
         </ExperientialSectionCard>
       </div>

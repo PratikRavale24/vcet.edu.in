@@ -17,10 +17,11 @@ export default function MMSAbout() {
               <div className="rounded-3xl bg-gradient-to-br from-yellow-300 via-brand-gold to-yellow-500 p-[2.5px] shadow-[0_0_36px_6px_rgba(253,184,19,0.3)]">
                 <div className="overflow-hidden rounded-[22px] bg-white">
                   <div className="flex h-[330px] w-full items-center justify-center bg-brand-light">
-                    <div className="text-center">
-                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-blue/70">Image Holder</p>
-                      <p className="mt-2 text-sm font-semibold text-brand-navy">MMS About Visual (img4.jpeg)</p>
-                    </div>
+                    <img 
+                      src="/images/Departments/MMS(MBA)/About/About MMS/MMS_About_Visual_(img4.jpeg).jpeg" 
+                      alt="MMS About Visual" 
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <div className="bg-gradient-to-b from-white to-amber-50/40 px-5 py-4 text-center">
                     <h3 className="text-xl font-display font-extrabold text-brand-navy">Master of Management Studies</h3>

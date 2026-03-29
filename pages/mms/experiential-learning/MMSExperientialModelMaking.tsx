@@ -12,10 +12,22 @@ export default function MMSExperientialModelMaking() {
           </p>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <ExperientialImageHolder label="3D Model Presentation 01" />
-            <ExperientialImageHolder label="3D Model Presentation 02" />
-            <ExperientialImageHolder label="3D Model Presentation 03" />
-            <ExperientialImageHolder label="3D Model Presentation 04" />
+            <ExperientialImageHolder 
+              label="3D Model Presentation 01" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/3D MODEL MAKING PRESENTATION/Experential_Learning_-_3D_Model_Making_IMG1.jpeg"
+            />
+            <ExperientialImageHolder 
+              label="3D Model Presentation 02" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/3D MODEL MAKING PRESENTATION/Experential_Learning_-_3D_Model_Making_IMG2.jpeg"
+            />
+            <ExperientialImageHolder 
+              label="3D Model Presentation 03" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/3D MODEL MAKING PRESENTATION/Experential_Learning_-_3D_Model_Making_IMG3.jpeg"
+            />
+            <ExperientialImageHolder 
+              label="3D Model Presentation 04" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/3D MODEL MAKING PRESENTATION/Experential_Learning_-_3D_Model_Making_IMG4.jpeg"
+            />
           </div>
         </ExperientialSectionCard>
       </div>

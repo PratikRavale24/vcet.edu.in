@@ -51,8 +51,14 @@ export default function MMSFaculty() {
               >
                 <div className="relative mb-5 flex h-36 w-36 items-center justify-center bg-gradient-to-br from-brand-gold via-yellow-300 to-yellow-500 p-[2.5px] shadow-[0_10px_28px_rgba(26,75,124,0.2)]">
                   <div className="relative flex h-full w-full items-center justify-center overflow-hidden border border-white/70 bg-gradient-to-br from-brand-navy via-brand-blue to-[#245f99] text-3xl font-extrabold text-white">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.3),transparent_42%)]" />
-                    <span className="relative tracking-wide">{initials}</span>
+                    {faculty.imageUrl ? (
+                      <img src={faculty.imageUrl} alt={faculty.name} className="h-full w-full object-cover object-top" />
+                    ) : (
+                      <>
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.3),transparent_42%)]" />
+                        <span className="relative tracking-wide">{initials}</span>
+                      </>
+                    )}
                   </div>
                 </div>
 

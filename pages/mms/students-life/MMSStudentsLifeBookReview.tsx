@@ -15,7 +15,7 @@ export default function MMSStudentsLifeBookReview() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <StudentsLifeImageHolder label="Book Review Session 01" size="large" />
+          <StudentsLifeImageHolder label="Book Review Session 01" size="large" src="images/Departments/MMS(MBA)/Students life/mms-studentlife-bookreview-1.jpg" />
           <StudentsLifeImageHolder label="Book Review Session 02" size="large" />
         </div>
       </StudentsLifeSectionCard>

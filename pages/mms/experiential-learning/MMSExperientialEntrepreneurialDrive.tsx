@@ -12,8 +12,14 @@ export default function MMSExperientialEntrepreneurialDrive() {
           </p>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <ExperientialImageHolder label="Entrepreneurial Activity 01" />
-            <ExperientialImageHolder label="Entrepreneurial Activity 02" />
+            <ExperientialImageHolder 
+              label="Entrepreneurial Activity 01" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/ENTERPRENEURIAL DRIVE/Experential_Learning_-_Entrepreneurial_Drive_IMG_1.jpg"
+            />
+            <ExperientialImageHolder 
+              label="Entrepreneurial Activity 02" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/ENTERPRENEURIAL DRIVE/Experential_Learning_-_Entrepreneurial_Drive_IMG_2.jpg"
+            />
           </div>
         </ExperientialSectionCard>
       </div>

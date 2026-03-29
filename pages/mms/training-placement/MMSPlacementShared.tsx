@@ -23,21 +23,26 @@ export function PlacementSectionCard({ title, subtitle, children }: PlacementSec
 interface PlacementImageHolderProps {
   label: string;
   size?: 'default' | 'large';
+  src?: string;
 }
 
-export function PlacementImageHolder({ label, size = 'default' }: PlacementImageHolderProps) {
+export function PlacementImageHolder({ label, size = 'default', src }: PlacementImageHolderProps) {
   const minHeightClass = size === 'large' ? 'min-h-[300px]' : 'min-h-[220px]';
 
   return (
     <article className="group relative overflow-hidden rounded-none border border-brand-blue/20 bg-gradient-to-br from-slate-50 to-brand-light/35 p-[3px] shadow-[0_16px_28px_-20px_rgba(11,61,145,0.6)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_20px_36px_-20px_rgba(11,61,145,0.65)]">
-      <div className="rounded-none border border-brand-blue/15 bg-white p-4">
-        <div className={`flex ${minHeightClass} items-center justify-center rounded-none border-2 border-dashed border-brand-blue/30 bg-gradient-to-br from-brand-light/30 to-slate-100 text-center`}>
-          <div className="space-y-2 px-4">
-            <ImageIcon className="mx-auto h-9 w-9 text-brand-blue/65" />
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">Image Holder</p>
-            <p className="text-sm font-semibold text-brand-navy">{label}</p>
+      <div className="rounded-none border border-brand-blue/15 bg-white p-4 h-full">
+        {src ? (
+          <img src={src} alt={label} className={`w-full ${minHeightClass} object-cover`} />
+        ) : (
+          <div className={`flex ${minHeightClass} items-center justify-center rounded-none border-2 border-dashed border-brand-blue/30 bg-gradient-to-br from-brand-light/30 to-slate-100 text-center`}>
+            <div className="space-y-2 px-4">
+              <ImageIcon className="mx-auto h-9 w-9 text-brand-blue/65" />
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">Image Holder</p>
+              <p className="text-sm font-semibold text-brand-navy">{label}</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-brand-gold via-yellow-300 to-brand-gold/75" />
       <div className="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r-[3px] border-t-[3px] border-brand-gold/90" />

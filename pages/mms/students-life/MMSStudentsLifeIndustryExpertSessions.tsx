@@ -3,9 +3,9 @@ import MMSLayout from '../../../components/mms/MMSLayout';
 import { StudentsLifeImageHolder, StudentsLifeSectionCard } from './MMSStudentsLifeShared';
 
 const industrySessionDescriptions = [
-  'MMS students interacting with industry experts during a knowledge-sharing session.',
-  'Group photo with esteemed guest speakers and students after an insightful session.',
-  'Student delivering a presentation during the expert-led session to enhance communication and leadership skills.',
+  { text: 'MMS students interacting with industry experts during a knowledge-sharing session.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-1.jpeg' },
+  { text: 'Group photo with esteemed guest speakers and students after an insightful session.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-2.jpeg' },
+  { text: 'Student delivering a presentation during the expert-led session to enhance communication and leadership skills.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-industryexpertsession-3.jpeg' },
 ];
 
 export default function MMSStudentsLifeIndustryExpertSessions() {
@@ -29,10 +29,10 @@ export default function MMSStudentsLifeIndustryExpertSessions() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {industrySessionDescriptions.map((description, index) => (
-            <article key={description} className="space-y-3">
-              <StudentsLifeImageHolder label={`Industry Session ${index + 1}`} />
-              <p className="border-l-2 border-brand-gold pl-3 text-sm leading-6 text-slate-700">{description}</p>
+          {industrySessionDescriptions.map(({ text, src }, index) => (
+            <article key={text} className="space-y-3">
+              <StudentsLifeImageHolder label={`Industry Session ${index + 1}`} src={src} />
+              <p className="border-l-2 border-brand-gold pl-3 text-sm leading-6 text-slate-700">{text}</p>
             </article>
           ))}
         </div>

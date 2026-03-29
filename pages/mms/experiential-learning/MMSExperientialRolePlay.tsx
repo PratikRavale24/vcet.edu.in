@@ -12,8 +12,14 @@ export default function MMSExperientialRolePlay() {
           </p>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <ExperientialImageHolder label="Role Play Session 01" />
-            <ExperientialImageHolder label="Role Play Session 02" />
+            <ExperientialImageHolder 
+              label="Role Play Session 01" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/Role Play/Experential_Learning_-_Role_Play_IMG1.jpeg"
+            />
+            <ExperientialImageHolder 
+              label="Role Play Session 02" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/Role Play/Experential_Learning_-_Role_Play_IMG2.jpeg"
+            />
           </div>
         </ExperientialSectionCard>
       </div>

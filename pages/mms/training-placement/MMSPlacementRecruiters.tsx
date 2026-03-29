@@ -1,19 +1,31 @@
 import React from 'react';
-import { ImageIcon } from 'lucide-react';
 import MMSLayout from '../../../components/mms/MMSLayout';
+import { PlacementSectionCard } from './MMSPlacementShared';
 
 export default function MMSPlacementRecruiters() {
+  const images = [
+    '/images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG1.png',
+    '/images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG2.png',
+    '/images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG3.png',
+    '/images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG4.jpeg',
+    '/images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG5.png',
+    '/images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG6.png',
+    '/Images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG7.png',
+    '/Images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG8.webp',
+    '/Images/Departments/MMS(MBA)/Training And Placement/Placement/Our_Recruiters/Placement_-_Our_Recruiters_IMG9.png',
+  ];
+
   return (
     <MMSLayout title="Our Recruiters">
-      <section className="bg-white px-1 py-2 sm:px-2">
-        <div className="flex min-h-[420px] items-center justify-center bg-white text-center">
-          <div className="space-y-3 px-4">
-            <ImageIcon className="mx-auto h-12 w-12 text-brand-blue/55" />
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-gold">Image Holder</p>
-            <p className="text-base font-semibold text-brand-navy">Our Recruiters Banner</p>
-          </div>
+      <PlacementSectionCard title="Our Recruiters" subtitle="Top companies hiring our management graduates">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
+          {images.map((src, index) => (
+            <div key={index} className="flex items-center justify-center rounded-none bg-white p-4 shadow-sm border border-brand-blue/15">
+              <img src={src} alt={`Recruiter ${index + 1}`} className="max-h-24 w-auto object-contain" />
+            </div>
+          ))}
         </div>
-      </section>
+      </PlacementSectionCard>
     </MMSLayout>
   );
 }

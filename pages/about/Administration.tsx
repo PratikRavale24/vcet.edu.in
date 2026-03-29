@@ -8,7 +8,7 @@ interface AdminMember {
   role: string;
   email: string;
   initials: string;
-  imagePlaceholder: string;
+  imageUrl: string;
 }
 
 const adminMembers: AdminMember[] = [
@@ -17,14 +17,14 @@ const adminMembers: AdminMember[] = [
     role: 'Registrar',
     email: 'registrar@vcet.edu.in',
     initials: 'PP',
-    imagePlaceholder: 'registrar-parag-patil.jpg',
+    imageUrl: '/images/About Us/Adiminsitration/Mr._Parag_Patil.jpg',
   },
   {
     name: 'Prof. Vishal Pande',
     role: 'Exam Incharge',
     email: 'icexam_vcet@vcet.edu.in',
     initials: 'VP',
-    imagePlaceholder: 'exam-incharge-vishal-pande.jpg',
+    imageUrl: '/images/About Us/Adiminsitration/Prof._Vishal_Pande.jpg',
   },
 ];
 
@@ -68,17 +68,15 @@ const Administration: React.FC = () => {
                   style={{ transitionDelay: `${idx * 0.15}s` }}
                 >
                   <div className="bg-brand-light rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:border-brand-gold/30 transition-all duration-500 group">
-                    {/* Photo Placeholder */}
+                    {/* Photo */}
                     <div className="aspect-[3/4] bg-gradient-to-br from-brand-blue/10 to-brand-gold/10 flex items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/5 to-transparent" />
-                      <div className="text-center relative z-10">
-                        <div className="w-20 h-20 bg-white/60 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-500">
-                          <span className="text-3xl font-display font-bold text-brand-blue/30">
-                            {member.initials}
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-400">{member.imagePlaceholder}</p>
-                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 to-transparent z-10" />
+                      <img 
+                        src={member.imageUrl} 
+                        alt={member.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
                     </div>
 
                     {/* Info */}

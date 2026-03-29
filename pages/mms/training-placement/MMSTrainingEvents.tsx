@@ -22,8 +22,8 @@ export default function MMSTrainingEvents() {
                 <td className="border border-slate-700/80 px-3 py-3 text-base text-slate-900">1</td>
                 <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                   <div className="space-y-3">
-                    <div className="flex h-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 px-3">
-                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue/75">Image Holder</p>
+                    <div className="flex h-32 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                      <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Events/Training_Events_-_AMCAT_Test.webp" alt="AMCAT Test" className="h-full w-full object-cover" />
                     </div>
                     <p className="text-2xl leading-tight">AMCAT Test</p>
                   </div>
@@ -38,8 +38,8 @@ export default function MMSTrainingEvents() {
                 <td className="border border-slate-700/80 px-3 py-3 text-base text-slate-900">2</td>
                 <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                   <div className="space-y-3">
-                    <div className="flex h-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 px-3">
-                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue/75">Image Holder</p>
+                    <div className="flex h-32 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                      <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Events/Training_Events_-_Refresher_Course_on_Technical_Interview_Preparation.webp" alt="Refresher Course" className="h-full w-full object-cover" />
                     </div>
                     <p className="text-2xl leading-tight">Refresher Course on Technical interview Preparation.</p>
                   </div>
@@ -55,8 +55,8 @@ export default function MMSTrainingEvents() {
                 <td className="border border-slate-700/80 px-3 py-3 text-base text-slate-900">3</td>
                 <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                   <div className="space-y-3">
-                    <div className="flex h-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 px-3">
-                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-blue/75">Image Holder</p>
+                    <div className="flex h-32 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                      <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Events/Training_Events_-_Mock_Interview.webp" alt="Mock Interview" className="h-full w-full object-cover" />
                     </div>
                     <p className="text-2xl leading-tight">Mock Interview</p>
                   </div>

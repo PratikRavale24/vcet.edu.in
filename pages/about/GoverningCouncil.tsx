@@ -8,20 +8,21 @@ const chairman = {
   role: 'Chairman',
   name: 'Sri. Vikas Vartak',
   description: 'Chairman Vidyavardhini',
+  imageUrl: '/Images/About Us/governing Council/ Sri. Vikas Vartak/Sri._Vikas_Vartak_(1).jpg',
 };
 
 const members = [
-  { id: 2,  role: 'Member',           name: 'Sri. M.N. alias Bhausaheb Mohol',         description: 'Industrialist' },
+  { id: 2,  role: 'Member',           name: 'Sri. M.N. alias Bhausaheb Mohol',         description: 'Industrialist'},
   { id: 3,  role: 'Member',           name: 'Sri. Pandurang alias Babansheth Naik',    description: 'Educationist' },
-  { id: 4,  role: 'Member',           name: 'Sri. Hasmukh Shah',                       description: 'Industrialist' },
-  { id: 5,  role: 'Member',           name: 'Sri. Madhurkar B. Parekh',                description: 'Industrialist, Chairman of Pidilite Industries' },
+  { id: 4,  role: 'Member',           name: 'Sri. Hasmukh Shah',                       description: 'Industrialist', imageUrl: '/images/About Us/governing Council/Sri. Hasmukh Shah/Sri._Hasmukh_Shah_.jpg' },
+  { id: 5,  role: 'Member',           name: 'Sri. Madhurkar B. Parekh',                description: 'Industrialist, Chairman of Pidilite Industries', imageUrl: '/images/About Us/governing Council/Sri. Madhurkar B. Parekh/Sri.Madhukar_Parekh.jpg' },
   { id: 6,  role: 'Member',           name: 'Director of Technical Education (M.S.)', description: 'Ex-Officio' },
   { id: 7,  role: 'Member',           name: 'Nominee of the University',              description: 'Ex-Officio' },
   { id: 8,  role: 'Member',           name: 'Director, WRO AICTE',                   description: 'Ex-Officio' },
   { id: 9,  role: 'Member',           name: 'Educationalist / Industrialist',         description: 'Nominated by AICTE' },
-  { id: 10, role: 'Member Secretary', name: 'Dr. Rakesh Himte',                       description: 'Principal' },
-  { id: 11, role: 'Member',           name: 'Dr. Uday Aswalekar',                     description: 'Staff Representative, Professor - Mechanical Engg.' },
-  { id: 12, role: 'Member',           name: 'Dr. Archana Ekbote',                     description: 'Staff Representative, Assistant Professor - IT' },
+  { id: 10, role: 'Member Secretary', name: 'Dr. Rakesh Himte',                       description: 'Principal', imageUrl: '/images/About Us/governing Council/Dr. Rakesh Himte/Dr.Rakesh_Himte.jpg' },
+  { id: 11, role: 'Member',           name: 'Dr. Uday Aswalekar',                     description: 'Staff Representative, Professor - Mechanical Engg.', imageUrl: '/images/About Us/governing Council/Dr. Uday Aswalekar/Dr.-UDAY-ASWALEKAR.jpg' },
+  { id: 12, role: 'Member',           name: 'Dr. Archana Ekbote',                     description: 'Staff Representative, Assistant Professor - IT', imageUrl: '/images/About Us/governing Council/Dr. Archana Ekbote/Dr_.Archana_Ekbote.jpg' },
 ];
 
 export default function GoverningCouncil() {
@@ -46,7 +47,11 @@ export default function GoverningCouncil() {
               {/* Photo with Crown badge */}
               <div className="relative shrink-0">
                 <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-[#fdb813] shadow-lg bg-gray-200 flex items-center justify-center">
-                   <User className="w-20 h-20 text-gray-400" />
+                   {chairman.imageUrl ? (
+                     <img src={chairman.imageUrl} alt={chairman.name} className="w-full h-full object-cover" />
+                   ) : (
+                     <User className="w-20 h-20 text-gray-400" />
+                   )}
                 </div>
                 <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-[#1a4b7c] rounded-full flex items-center justify-center shadow-md border-2 border-white">
                   <Crown className="w-5 h-5 text-[#fdb813]" />
@@ -84,7 +89,11 @@ export default function GoverningCouncil() {
                   <div key={member.id} className="flex items-center gap-5 group">
                     {/* Circular photo */}
                     <div className="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-transparent group-hover:border-[#fdb813] transition-all duration-300 shadow-sm bg-gray-200 flex items-center justify-center">
-                       <User className="w-10 h-10 text-gray-400" />
+                       {member.imageUrl ? (
+                         <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover" />
+                       ) : (
+                         <User className="w-10 h-10 text-gray-400" />
+                       )}
                     </div>
 
                     {/* Text */}

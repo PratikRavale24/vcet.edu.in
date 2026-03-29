@@ -54,14 +54,8 @@ const stakeholderItems = [
 ];
 
 const achievementHolders = [
-  'IIC Achievement Frame 01',
-  'IIC Achievement Frame 02',
-  'IIC Achievement Frame 03',
-  'IIC Achievement Frame 04',
-  'IIC Achievement Frame 05',
-  'IIC Achievement Frame 06',
-  'IIC Achievement Frame 07',
-  'IIC Achievement Frame 08',
+  { title: 'IIC Achievement 1', image: '/Images/Research/IIC/IIC-achievement1-1024x576.jpg' },
+  { title: 'IIC Achievement 2', image: '/Images/Research/IIC/IIC-achievement2-1024x576.jpg' },
 ];
 
 const galleryHolders = Array.from({ length: 10 }, (_, index) => `IIC Gallery ${String(index + 1).padStart(2, '0')}`);
@@ -341,12 +335,18 @@ const ResearchIIC: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
             {achievementHolders.map((holder, index) => (
-              <article key={holder} className="reveal group" style={{ transitionDelay: `${index * 0.04}s` }}>
+              <article key={holder.title} className="reveal group" style={{ transitionDelay: `${index * 0.04}s` }}>
                 <div className="relative p-[2px] bg-gradient-to-br from-[#D8A215] via-[#F4C84C] to-[#9E7215] shadow-[0_8px_20px_rgba(23,42,79,0.18)]">
-                  <div className="bg-[#0E355C] border border-[#CFB46C]/35 aspect-[4/3] flex flex-col items-center justify-center text-center px-4">
-                    <Crown className="w-7 h-7 text-[#F4C84C] mb-2" />
-                    <p className="text-[13px] uppercase tracking-[0.12em] text-[#F7D982] font-bold">Image Holder</p>
-                    <p className="text-[14px] text-white/85 mt-1">{holder}</p>
+                  <div className="bg-[#0E355C] border border-[#CFB46C]/35 aspect-[4/3] flex flex-col items-center justify-center text-center overflow-hidden">
+                    {holder.image ? (
+                      <img src={holder.image} alt={holder.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <>
+                        <Crown className="w-7 h-7 text-[#F4C84C] mb-2" />
+                        <p className="text-[13px] uppercase tracking-[0.12em] text-[#F7D982] font-bold">Image Holder</p>
+                        <p className="text-[14px] text-white/85 mt-1">{holder.title}</p>
+                      </>
+                    )}
                   </div>
                 </div>
               </article>

@@ -10,9 +10,9 @@ const excelObjectives = [
 ];
 
 const excelDescriptions = [
-  'Faculty addressing students during a hands-on training session.',
-  'Students actively participating in a classroom-based practical session.',
-  'Focused learning environment with students engaged in technical exercises.',
+  { text: 'Faculty addressing students during a hands-on training session.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-addoncoursesexcel-1.jpeg' },
+  { text: 'Students actively participating in a classroom-based practical session.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-addoncoursesexcel-2.jpeg' },
+  { text: 'Focused learning environment with students engaged in technical exercises.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-addoncoursesexcel-3.jpeg' },
 ];
 
 export default function MMSStudentsLifeAdavanceExcel() {
@@ -42,10 +42,10 @@ export default function MMSStudentsLifeAdavanceExcel() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {excelDescriptions.map((description, index) => (
-            <article key={description} className="space-y-3">
-              <StudentsLifeImageHolder label={`Advance Excel ${index + 1}`} />
-              <p className="border-l-2 border-brand-gold pl-3 text-sm leading-6 text-slate-700">{description}</p>
+          {excelDescriptions.map(({ text, src }, index) => (
+            <article key={text} className="space-y-3">
+              <StudentsLifeImageHolder label={`Advance Excel ${index + 1}`} src={src} />
+              <p className="border-l-2 border-brand-gold pl-3 text-sm leading-6 text-slate-700">{text}</p>
             </article>
           ))}
         </div>

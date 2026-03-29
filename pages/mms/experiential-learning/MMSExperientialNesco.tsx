@@ -15,8 +15,14 @@ export default function MMSExperientialNesco() {
           </p>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <ExperientialImageHolder label="NESCO Visit 01" />
-            <ExperientialImageHolder label="NESCO Visit 02" />
+            <ExperientialImageHolder 
+              label="NESCO Visit 01" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/NESCO Bombay Exhibition Centre/Experential_Learning_-_NESCO_Bombay_Exhibition_Centre_IMG1.jpeg"
+            />
+            <ExperientialImageHolder 
+              label="NESCO Visit 02" 
+              imageSrc="/images/Departments/MMS(MBA)/Experential Learning/NESCO Bombay Exhibition Centre/Experential_Learning_-_NESCO_Bombay_Exhibition_Centre_IMG2.jpeg"
+            />
           </div>
         </ExperientialSectionCard>
       </div>

@@ -5,6 +5,7 @@ import { PlacementImageHolder, PlacementSectionCard } from './MMSPlacementShared
 const placementCellMembers = [
   {
     imageLabel: 'Placement Cell Member 1',
+    src: '/images/Departments/MMS(MBA)/Training And Placement/Placement/Placement Cell/Placement_Placement_Cell_-_Mr.Prafulla_Patil.jpeg',
     name: 'Mr. Prafulla Patil',
     role: 'Placement Manager',
     email: 'placements@vcet.edu.in',
@@ -13,6 +14,7 @@ const placementCellMembers = [
   },
   {
     imageLabel: 'Placement Cell Member 2',
+    src: '/images/Departments/MMS(MBA)/Training And Placement/Placement/Placement Cell/Placement_Placement_Cell_-_Mr.Sanket_Patil.jpg',
     name: 'Mr. Sanket Patil',
     role: 'Training And Placement Officer',
     email: 'placements@vcet.edu.in',
@@ -34,7 +36,7 @@ export default function MMSPlacementCell() {
               key={member.name}
               className="rounded-none border border-brand-navy/25 bg-gradient-to-b from-white to-brand-light/25 p-4 shadow-[0_14px_28px_-22px_rgba(11,61,145,0.75)] sm:p-5"
             >
-              <PlacementImageHolder label={member.imageLabel} />
+              <PlacementImageHolder label={member.imageLabel} src={member.src} />
 
               <div className="mt-4 space-y-2 border-l-2 border-brand-gold pl-4 text-slate-700">
                 <h4 className="text-xl font-bold text-brand-navy">{member.name}</h4>

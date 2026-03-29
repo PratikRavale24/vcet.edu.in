@@ -54,8 +54,8 @@ export default function MMSTrainingCareerGuidance() {
                   <td className="border border-slate-700/80 px-3 py-3 text-lg leading-[1.5] text-slate-900">Seminar on Business Processes</td>
                   <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                     <div className="space-y-2">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-blue/70">Image Holder</p>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                        <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Career Guidance/Training_Career_Guidance_-_Mr.Swapnil_kondle.jpg" alt="Mr. Swapnil Kondle" className="h-full w-full object-cover" />
                       </div>
                       <p className="text-base leading-7">Mr. Swapnil Kondle</p>
                       <p className="text-sm leading-6 text-slate-700">CEO, SS Dies Works. Experience of 10 Years in Product Management and Service Delivery across Banking, Telecom and Manufacturing. Experience - 15 Years</p>
@@ -68,8 +68,8 @@ export default function MMSTrainingCareerGuidance() {
                   <td className="border border-slate-700/80 px-3 py-3 text-lg leading-[1.5] text-slate-900">Seminar on Financial Management</td>
                   <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                     <div className="space-y-2">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-blue/70">Image Holder</p>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                        <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Career Guidance/Training_Career_Guidance_-_Ms.Aishwarya_Mohol.jpg" alt="Ms. Aishwarya Mohol" className="h-full w-full object-cover" />
                       </div>
                       <p className="text-base leading-7">Ms. Aishwarya Mohol</p>
                       <p className="text-sm leading-6 text-slate-700">Treasury Deputy Manager in Forex at Axis Bank Mumbai. Experience - 10 Years</p>
@@ -82,8 +82,8 @@ export default function MMSTrainingCareerGuidance() {
                   <td className="border border-slate-700/80 px-3 py-3 text-lg leading-[1.5] text-slate-900">Seminar on AI &amp; Machine Learning</td>
                   <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                     <div className="space-y-2">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-blue/70">Image Holder</p>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                        <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Career Guidance/Training_Career_Guidance_-_Mr.Hemant_Tendolkar.jpg" alt="Mr. Hemant Tendulkar" className="h-full w-full object-cover" />
                       </div>
                       <p className="text-base leading-7">Mr. Hemant Tendulkar</p>
                       <p className="text-sm leading-6 text-slate-700">Oracle ERP and CRM Specialist. Tech Lead and AI in CRM-CX domain. Experience - 16 Years.</p>
@@ -96,8 +96,8 @@ export default function MMSTrainingCareerGuidance() {
                   <td className="border border-slate-700/80 px-3 py-3 text-lg leading-[1.5] text-slate-900">Seminar on Higher Education</td>
                   <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                     <div className="space-y-2">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-blue/70">Image Holder</p>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                        <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Career Guidance/Training_Career_Guidance_-_Dr.Ben_Baliga.jpg" alt="Dr. Ron Boley" className="h-full w-full object-cover" />
                       </div>
                       <p className="text-base leading-7">Dr. Ron Boley</p>
                       <p className="text-sm leading-6 text-slate-700">Treasury Deputy Manager in Forex at Axis Bank Mumbai. Experience - 22 Years</p>
@@ -110,8 +110,8 @@ export default function MMSTrainingCareerGuidance() {
                   <td className="border border-slate-700/80 px-3 py-3 text-lg leading-[1.5] text-slate-900">Seminar on Learning and Development</td>
                   <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                     <div className="space-y-2">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-blue/70">Image Holder</p>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                        <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Career Guidance/Training_Career_Guidance_-_Mr._Gejo_Sreenivasan.jpg" alt="Mr. Gejo Sreenivasan" className="h-full w-full object-cover" />
                       </div>
                       <p className="text-base leading-7">Mr. Gejo Sreenivasan</p>
                       <p className="text-sm leading-6 text-slate-700">Director, Career Launcher Mumbai. Experience - 20 Years in Education Space.</p>
@@ -124,8 +124,8 @@ export default function MMSTrainingCareerGuidance() {
                   <td className="border border-slate-700/80 px-3 py-3 text-lg leading-[1.5] text-slate-900">Seminar on Marketing</td>
                   <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                     <div className="space-y-2">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-blue/70">Image Holder</p>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                        <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Career Guidance/Training_Career_Guidance_-_Mr.Bhupesh_Daheria.jpg" alt="Mr. Bripeesh Dadaria" className="h-full w-full object-cover" />
                       </div>
                       <p className="text-base leading-7">Mr. Bripeesh Dadaria</p>
                       <p className="text-sm leading-6 text-slate-700">EdTech Futurist and Educator at Agies School of Data Sciences. Experience - 24 Years.</p>
@@ -138,8 +138,8 @@ export default function MMSTrainingCareerGuidance() {
                   <td className="border border-slate-700/80 px-3 py-3 text-lg leading-[1.5] text-slate-900">Shaping Young Minds</td>
                   <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                     <div className="space-y-2">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-blue/70">Image Holder</p>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                        <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Career Guidance/Training_Career_Guidance_-_Tanpour_Management_Association.jpg" alt="Trupson Management Association" className="h-full w-full object-cover" />
                       </div>
                       <p className="text-base leading-7">Trupson Management Association</p>
                     </div>
@@ -151,8 +151,8 @@ export default function MMSTrainingCareerGuidance() {
                   <td className="border border-slate-700/80 px-3 py-3 text-lg leading-[1.5] text-slate-900">Seminar on Career Guidance</td>
                   <td className="border border-slate-700/80 px-3 py-3 text-slate-900">
                     <div className="space-y-2">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-blue/70">Image Holder</p>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-none border border-brand-blue/25 bg-slate-50 overflow-hidden">
+                        <img src="/images/Departments/MMS(MBA)/Training And Placement/Training/Career Guidance/Training_Career_Guidance_-_Campus_Credential.png" alt="Campus Credential" className="h-full w-full object-cover" />
                       </div>
                       <p className="text-base leading-7">Campus Credential</p>
                       <p className="text-sm leading-6 text-slate-700">Campus Credential is a training institute and has established itself as forerunner in competitive exam training.</p>

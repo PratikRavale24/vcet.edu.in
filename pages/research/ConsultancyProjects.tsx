@@ -39,6 +39,7 @@ interface PortfolioItem {
   keywords: string[];
   iconBg: string;
   emoji: string;
+  imageUrl?: string;
 }
 
 const portfolio: PortfolioItem[] = [
@@ -49,6 +50,7 @@ const portfolio: PortfolioItem[] = [
     keywords: ['Playground', 'Water Park', 'Equipment'],
     iconBg: 'from-sky-400 to-cyan-500',
     emoji: '🎠',
+    imageUrl: '/images/Research/Consultancy Projects/Arihant - Playtime/Arihant_Playtime_.jpg',
   },
   {
     name: 'Synergy',
@@ -65,6 +67,7 @@ const portfolio: PortfolioItem[] = [
     keywords: ['Cancer Research', 'Healthcare', 'Biomedical'],
     iconBg: 'from-red-500 to-rose-600',
     emoji: '🏥',
+    imageUrl: '/images/Research/Consultancy Projects/Tata Memorial Hospital/Tata_Memorial_Hospital.png',
   },
   {
     name: 'Achievo',
@@ -73,6 +76,7 @@ const portfolio: PortfolioItem[] = [
     keywords: ['Innovation', 'Product Design', 'Technology'],
     iconBg: 'from-amber-400 to-orange-500',
     emoji: '💡',
+    imageUrl: '/images/Research/Consultancy Projects/Achievo/Achievo.jpg',
   },
   {
     name: 'Funplay',
@@ -81,6 +85,7 @@ const portfolio: PortfolioItem[] = [
     keywords: ['Innovation', 'Safety', 'Speed'],
     iconBg: 'from-green-400 to-emerald-600',
     emoji: '🎮',
+    imageUrl: '/images/Research/Consultancy Projects/Funplay/Funplay.jpg',
   },
   {
     name: 'Abhinandan Industries',
@@ -89,6 +94,7 @@ const portfolio: PortfolioItem[] = [
     keywords: ['Industrial', 'Engineering', 'Manufacturing'],
     iconBg: 'from-orange-400 to-slate-500',
     emoji: '⚙️',
+    imageUrl: '/images/Research/Consultancy Projects/Abhinandan Industries/Abhinandan_Industries.jpg',
   },
   {
     name: 'ARS Energy Auditors',
@@ -97,6 +103,7 @@ const portfolio: PortfolioItem[] = [
     keywords: ['Energy Audit', 'Efficiency', 'Sustainability'],
     iconBg: 'from-yellow-400 to-amber-500',
     emoji: '⚡',
+    imageUrl: '/images/Research/Consultancy Projects/ARS Energy Auditors/ARS_Energy_Auditors.jpg',
   },
   {
     name: 'Sridevi',
@@ -113,6 +120,7 @@ const portfolio: PortfolioItem[] = [
     keywords: ['Pharma', 'Food & Beverages', 'Cosmetics'],
     iconBg: 'from-pink-500 to-fuchsia-600',
     emoji: '🏭',
+    imageUrl: '/images/Research/Consultancy Projects/Parle - One Roof Solution/Parle_One_Roof.jpg',
   },
 ];
 
@@ -327,15 +335,23 @@ const ConsultancyProjects: React.FC = () => {
                   style={{ transitionDelay: `${idx * 0.07}s` }}
                 >
                   {/* Image Placeholder */}
-                  <div className="aspect-[16/9] bg-brand-light border-b border-gray-100 flex items-center justify-center">
-                    <div className="text-center px-4">
-                      <div className="w-14 h-14 mx-auto mb-3 rounded-xl border-2 border-dashed border-brand-blue/25 bg-white/70 flex items-center justify-center">
-                        <span className="text-[11px] font-bold tracking-wider text-brand-blue/35">IMG</span>
+                  <div className="aspect-[16/9] bg-white border-b border-gray-100 flex items-center justify-center overflow-hidden">
+                    {item.imageUrl ? (
+                      <img 
+                        src={item.imageUrl} 
+                        alt={item.name} 
+                        className="w-full h-full object-contain p-4 mix-blend-multiply" 
+                      />
+                    ) : (
+                      <div className="text-center px-4">
+                        <div className={`w-14 h-14 mx-auto mb-3 rounded-xl flex items-center justify-center text-3xl`}>
+                          {item.emoji}
+                        </div>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                          {item.name}
+                        </p>
                       </div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                        partner-logo.jpg
-                      </p>
-                    </div>
+                    )}
                   </div>
 
                   {/* Card Body */}

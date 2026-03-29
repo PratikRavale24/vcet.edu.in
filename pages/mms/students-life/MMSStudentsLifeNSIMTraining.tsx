@@ -19,9 +19,17 @@ export default function MMSStudentsLifeNSIMTraining() {
           received NISM and SEBI certifications, boosting their academic and professional credentials.
         </p>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <StudentsLifeImageHolder label="NSIM Training 01" size="large" />
-          <StudentsLifeImageHolder label="NSIM Training 02" size="large" />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            { id: 1, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-nsimtraining-1.jpeg' },
+            { id: 2, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-nsimtraining-2.jpeg' },
+            { id: 3, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-nsimtraining-3.jpeg' },
+            { id: 4, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-nsimtraining-4.jpeg' },
+            { id: 5, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-nsimtraining-5.jpeg' },
+            { id: 6, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-nsimtraining-6.jpeg' },
+          ].map(({ id, src }) => (
+            <StudentsLifeImageHolder key={id} label={`NSIM Training ${id.toString().padStart(2, '0')}`} size="large" src={src} />
+          ))}
         </div>
       </StudentsLifeSectionCard>
     </MMSLayout>

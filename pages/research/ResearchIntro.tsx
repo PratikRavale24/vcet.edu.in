@@ -109,12 +109,13 @@ const ResearchIntro: React.FC = () => {
                 {/* Top accent */}
                 <div className="h-[3px] bg-[#1a4b7c]" />
 
-                {/* Photo placeholder */}
-                <div className="aspect-[4/3] bg-[#F7F9FC] border-b border-[#E5E7EB] flex items-center justify-center">
-                  <div className="text-center">
-                    <User className="w-14 h-14 text-[#1a4b7c]/15 mx-auto mb-2" />
-                    <p className="text-[14px] text-[#6B7280] uppercase tracking-wider">Photo</p>
-                  </div>
+                {/* Photo */}
+                <div className="aspect-[4/3] bg-[#F7F9FC] border-b border-[#E5E7EB] flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/Research/Introduction/Dr.-ASHISH-CHAUDHARI.jpg" 
+                    alt="Dr. Ashish J. Chaudhari"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Info */}

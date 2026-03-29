@@ -3,9 +3,9 @@ import MMSLayout from '../../../components/mms/MMSLayout';
 import { StudentsLifeImageHolder, StudentsLifeSectionCard } from './MMSStudentsLifeShared';
 
 const addOnCourseTopics = [
-  'Communication Skills',
-  'Excel proficiency',
-  'Campus Recruitment Training',
+  { topic: 'Communication Skills', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-aboutaddoncourses-1.jpg' },
+  { topic: 'Excel proficiency', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-aboutaddoncourses-2.jpg' },
+  { topic: 'Campus Recruitment Training', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-aboutaddoncourses-3.jpg' },
 ];
 
 export default function MMSStudentsLifeAboutAddOnCourses() {
@@ -27,9 +27,9 @@ export default function MMSStudentsLifeAboutAddOnCourses() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {addOnCourseTopics.map((topic) => (
+          {addOnCourseTopics.map(({ topic, src }) => (
             <article key={topic} className="space-y-3">
-              <StudentsLifeImageHolder label={topic} />
+              <StudentsLifeImageHolder label={topic} src={src} />
               <p className="border-l-2 border-brand-gold pl-3 text-sm font-semibold uppercase tracking-[0.08em] text-brand-navy">{topic}</p>
             </article>
           ))}

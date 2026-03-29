@@ -22,8 +22,8 @@ export default function MMSPlacementPsycometricTest() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <PlacementImageHolder label="Psycometric Test 01" size="large" />
-          <PlacementImageHolder label="Psycometric Test 02" size="large" />
+          <PlacementImageHolder label="Psycometric Test 01" size="large" src="/images/Departments/MMS(MBA)/Training And Placement/Placement/Pscometric Test_MMS/Placement_-_Psycometric_Test_IMG1.png" />
+          <PlacementImageHolder label="Psycometric Test 02" size="large" src="/images/Departments/MMS(MBA)/Training And Placement/Placement/Pscometric Test_MMS/Placement_-_Psycometric_Test_IMG2.png" />
         </div>
       </PlacementSectionCard>
     </MMSLayout>

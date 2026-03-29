@@ -64,7 +64,7 @@ const PrincipalsDesk: React.FC = () => {
                         style={{ background: 'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.12) 52%, transparent 68%)' }}
                       />
                       <img
-                        src="/Images/principal-photo.jpg"
+                        src="/images/About Us/Principal_sDesk/Dr.Rakesh-Himte.jpg"
                         alt="Dr. Rakesh Himte – Principal, VCET"
                         className="w-full h-full object-cover object-top"
                       />

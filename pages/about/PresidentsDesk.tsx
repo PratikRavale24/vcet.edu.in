@@ -57,7 +57,7 @@ const PresidentsDesk: React.FC = () => {
                           style={{ background: 'linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.12) 52%, transparent 68%)' }}
                         />
                         <img
-                          src="/Images/president-photo.jpg"
+                          src="/images/About Us/President_s Desk/Mr._Vikas_Vartak.jpg"
                           alt="Mr. Vikas Vartak – President, Vidyavardhini Education Society"
                           className="w-full h-full object-cover object-top"
                         />

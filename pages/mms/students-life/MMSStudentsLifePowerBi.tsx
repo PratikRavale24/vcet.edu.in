@@ -10,11 +10,11 @@ const powerBiObjectives = [
 ];
 
 const powerBiHighlights = [
-  'Instructor guiding students through a practical Power BI session in the computer lab.',
-  'Student presenters showcasing their Power BI dashboards and insights to the class.',
-  'Trainer being felicitated as a token of appreciation for an impactful workshop.',
-  'Hands-on training session with students working on live Power BI projects.',
-  'Instructor revisiting key concepts during a recap session to strengthen student understanding.',
+  { text: 'Instructor guiding students through a practical Power BI session in the computer lab.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-addoncoursespowerbi-1.jpg' },
+  { text: 'Student presenters showcasing their Power BI dashboards and insights to the class.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-addoncoursespowerbi-2.jpg' },
+  { text: 'Trainer being felicitated as a token of appreciation for an impactful workshop.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-addoncoursespowerbi-3.jpg' },
+  { text: 'Hands-on training session with students working on live Power BI projects.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-addoncoursespowerbi-4.jpeg' },
+  { text: 'Instructor revisiting key concepts during a recap session to strengthen student understanding.', src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-addoncoursespowerbi-5.jpeg' },
 ];
 
 export default function MMSStudentsLifePowerBi() {
@@ -46,10 +46,10 @@ export default function MMSStudentsLifePowerBi() {
         <p className="text-base font-semibold uppercase tracking-[0.08em] text-brand-blue">Timing: Total 30hrs</p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {powerBiHighlights.map((description, index) => (
-            <article key={description} className="space-y-3">
-              <StudentsLifeImageHolder label={`PowerBI Session ${index + 1}`} size="large" />
-              <p className="border-l-2 border-brand-gold pl-3 text-sm leading-6 text-slate-700">{description}</p>
+          {powerBiHighlights.map(({ text, src }, index) => (
+            <article key={text} className="space-y-3">
+              <StudentsLifeImageHolder label={`PowerBI Session ${index + 1}`} size="large" src={src} />
+              <p className="border-l-2 border-brand-gold pl-3 text-sm leading-6 text-slate-700">{text}</p>
             </article>
           ))}
         </div>

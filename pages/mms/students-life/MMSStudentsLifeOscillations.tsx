@@ -20,8 +20,13 @@ export default function MMSStudentsLifeOscillations() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {[1, 2, 3, 4].map((index) => (
-            <StudentsLifeImageHolder key={index} label={`Oscillations ${index.toString().padStart(2, '0')}`} size="large" />
+          {[
+            { id: 1, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-oscilations-1.jpg' },
+            { id: 2, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-oscilations-2.jpeg' },
+            { id: 3, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-oscilations-3.jpeg' },
+            { id: 4, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-oscilations-4.jpeg' },
+          ].map(({ id, src }) => (
+            <StudentsLifeImageHolder key={id} label={`Oscillations ${id.toString().padStart(2, '0')}`} size="large" src={src} />
           ))}
         </div>
       </StudentsLifeSectionCard>

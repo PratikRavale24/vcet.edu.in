@@ -26,21 +26,21 @@ const fallbackItems: ResearchFacilityItem[] = [
     title: 'Computational Facility',
     description:
       'Licensed simulation and design platforms such as ANSYS, MATLAB, SolidWorks, and COMSOL are used for analysis, modeling, and problem-solving across engineering domains.',
-    image: null,
+    image: '/images/Research/Research Faculity/research-faculity3.jpg',
   },
   {
     id: 2,
     title: 'Experimental Research Setups',
     description:
       'The department supports hands-on experimentation through facilities including subsonic wind tunnel testing, bomb calorimeter, optical microscope, rotor bench, VCR bench, and CNG test bench.',
-    image: null,
+    image: '/images/Research/Research Faculity/research-faculity2.jpg',
   },
   {
     id: 3,
     title: 'Research and Innovation Outcomes',
     description:
       'Student and faculty teams regularly present project outcomes in competitions such as Avishkar, with participations, rankings, and award-winning prototypes demonstrating applied research impact.',
-    image: null,
+    image: '/images/Research/Research Faculity/research-facility1.png',
   },
 ];
 

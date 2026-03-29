@@ -28,24 +28,25 @@ export interface MmsFacultyMember {
   name: string;
   designation: string;
   email?: string;
+  imageUrl?: string;
 }
 
 export const mmsFacultyList: MmsFacultyMember[] = [
-  { name: 'Dr. Shital Nishank Patil', designation: 'Assistant Professor (Head of Department)', email: 'shital.patil@vcet.edu.in' },
-  { name: 'Mrs. Heleena Milton Alphanso', designation: 'Assistant Professor', email: 'helena.alphanso@vcet.edu.in' },
-  { name: 'Mrs. Candida Allan Gomes', designation: 'Assistant Professor', email: 'candida.gomes@vcet.edu.in' },
-  { name: 'Ms. Shruti Arekar', designation: 'Assistant Professor', email: 'shruti.arekar@vcet.edu.in' },
-  { name: 'Mrs. Manali Churi', designation: 'Assistant Professor', email: 'manali.churi@vcet.edu.in' },
-  { name: 'Mr. Rowland Lopes', designation: 'Assistant Professor', email: 'rowland.lopes@vcet.edu.in' },
-  { name: 'Dr. Chandrashekha Joshi', designation: 'Assistant Professor', email: 'dr.cvjoshi.vcet@gmail.com' },
-  { name: 'DR. Arvind Ubale', designation: 'Assistant Professor', email: 'arvind.ubale@avc.ac.in' },
-  { name: 'Mr. Vishal Gangan', designation: 'Assistant Professor', email: 'vishal.gangan@vcet.edu.in' },
-  { name: 'Dr. Thaksen parvat', designation: 'Professor and HOD - INFT', email: 'thaksen.parvat@vcet.edu.in' },
-  { name: "Ms. Dorin D'silva", designation: 'Assistant Professor' },
-  { name: 'Mr. Imran Siddique', designation: 'Assistant Professor' },
-  { name: 'Dr. Uday Aswalekar', designation: 'Professor and HOD - MECH', email: 'uday.aswalekar@vcet.edu.in' },
-  { name: 'Ms. Priti Vairagi', designation: 'Assistant Professor', email: 'priti.vairagi@vcet.edu.in' },
-  { name: 'Ms. Anahita Pereira', designation: 'Assistant Professor', email: 'anahita.pereira@vcet.edu.in' },
+  { name: 'Dr. Shital Nishank Patil', designation: 'Assistant Professor (Head of Department)', email: 'shital.patil@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Dr._Shital_Nishank_Patil.png' },
+  { name: 'Mrs. Heleena Milton Alphanso', designation: 'Assistant Professor', email: 'helena.alphanso@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Mrs._Heleena_Milton_Alphanso.jpg' },
+  { name: 'Mrs. Candida Allan Gomes', designation: 'Assistant Professor', email: 'candida.gomes@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Mrs._Candida_Allan_Gomes.jpg' },
+  { name: 'Ms. Shruti Arekar', designation: 'Assistant Professor', email: 'shruti.arekar@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Ms._Shruti_Arekar.jpg' },
+  { name: 'Mrs. Manali Churi', designation: 'Assistant Professor', email: 'manali.churi@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Mrs._Manali_Churi.jpg' },
+  { name: 'Mr. Rowland Lopes', designation: 'Assistant Professor', email: 'rowland.lopes@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Mr._Rowland_Lopes.png' },
+  { name: 'Dr. Chandrashekha Joshi', designation: 'Assistant Professor', email: 'dr.cvjoshi.vcet@gmail.com', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Dr.Chandrashekar_Joshi.jpg' },
+  { name: 'DR. Arvind Ubale', designation: 'Assistant Professor', email: 'arvind.ubale@avc.ac.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Dr._Arvind_Ubale.jpeg' },
+  { name: 'Mr. Vishal Gangan', designation: 'Assistant Professor', email: 'vishal.gangan@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Mr._Vishal_Gangan.png' },
+  { name: 'Dr. Thaksen parvat', designation: 'Professor and HOD - INFT', email: 'thaksen.parvat@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Dr._Thaksen_parvat.jpg' },
+  { name: "Ms. Dorin D'silva", designation: 'Assistant Professor', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Ms_Dorin_D_silva.jpeg' },
+  { name: 'Mr. Imran Siddique', designation: 'Assistant Professor', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Imran_Siddiqui_sir.jpg' },
+  { name: 'Dr. Uday Aswalekar', designation: 'Professor and HOD - MECH', email: 'uday.aswalekar@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Dr_UDAY_ASWALEKAR.jpg' },
+  { name: 'Ms. Priti Vairagi', designation: 'Assistant Professor', email: 'priti.vairagi@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Ms_PRITI_VAIRAGI.jpg' },
+  { name: 'Ms. Anahita Pereira', designation: 'Assistant Professor', email: 'anahita.pereira@vcet.edu.in', imageUrl: '/images/Departments/MMS(MBA)/About/MMS Faculty/Ms_Anahita_pereira.jpg' },
 ];
 
 export const mmsVision =

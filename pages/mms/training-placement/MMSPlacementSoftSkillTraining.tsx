@@ -37,8 +37,8 @@ export default function MMSPlacementSoftSkillTraining() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <PlacementImageHolder label="Soft Skill Session 01" size="large" />
-          <PlacementImageHolder label="Soft Skill Session 02" size="large" />
+          <PlacementImageHolder label="Soft Skill Session 01" size="large" src="/images/Departments/MMS(MBA)/Training And Placement/Placement/Soft_Skill_Training/Placement_-_Soft_Skill_Training_IMG1.png" />
+          <PlacementImageHolder label="Soft Skill Session 02" size="large" src="/images/Departments/MMS(MBA)/Training And Placement/Placement/Soft_Skill_Training/Placement_-_Soft_Skill_Training_IMG2.png" />
         </div>
       </PlacementSectionCard>
     </MMSLayout>

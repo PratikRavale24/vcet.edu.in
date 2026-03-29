@@ -20,8 +20,13 @@ export default function MMSStudentsLifeIdeathon() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {[1, 2, 3, 4].map((index) => (
-            <StudentsLifeImageHolder key={index} label={`IDEATHON ${index.toString().padStart(2, '0')}`} size="large" />
+          {[
+            { id: 1, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-ideathon1.0-2.jpg' },
+            { id: 2, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-ideathon1.0-3.jpg' },
+            { id: 3, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-ideathon1.0-4.jpg' },
+            { id: 4, src: '/images/Departments/MMS(MBA)/Students life/mms-studentlife-ideathon1.0-5.jpg' },
+          ].map(({ id, src }) => (
+            <StudentsLifeImageHolder key={id} label={`IDEATHON ${id.toString().padStart(2, '0')}`} size="large" src={src} />
           ))}
         </div>
       </StudentsLifeSectionCard>

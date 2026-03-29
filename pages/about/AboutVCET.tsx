@@ -97,13 +97,7 @@ const AboutVCET: React.FC = () => {
               </div>
 
               <div className="reveal flex h-[300px] items-center justify-center overflow-hidden rounded-2xl border border-brand-blue/10 bg-brand-light shadow-sm md:h-[430px] lg:h-[430px]" style={{ transitionDelay: '0.16s' }}>
-                <div className="text-center">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-blue/10">
-                    <MapPin className="h-8 w-8 text-brand-blue/40" />
-                  </div>
-                  <p className="text-sm font-medium text-slate-500">VCET Campus Image Slot</p>
-                  <p className="mt-1 text-xs text-slate-400">about-vcet-campus.jpg</p>
-                </div>
+                <img src="/images/Main Page/Home background/VCET-Home-1-scaled.jpg" alt="VCET Campus" className="w-full h-full object-cover" />
               </div>  
             </div>
 
