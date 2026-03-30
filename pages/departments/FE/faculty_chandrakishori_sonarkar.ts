@@ -7,7 +7,7 @@ const faculty: FacultyData = {
   dateOfJoining: '02/01/2006',
   email: 'c.v.sonarkar@vcet.edu.in',
   experienceYears: '20',
-  photo: '/Images/departments/fe/faculty/chandrakishori-sonarkar.jpg',
+  photo: '/images/departments/fe/faculty/chandrakishori-sonarkar.jpg',
   qualifications: ['M.Sc. (Organic Chemistry) - First Class'],
   specialization: ['Organic Chemistry'],
   memberships: [{ label: 'ISTE' }],

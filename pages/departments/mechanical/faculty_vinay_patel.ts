@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'vinay.patel@vcet.edu.in',
   experienceYears: '17',
   papersPublished: '08',
-  photo: '/Images/departments/mech/faculty/vinay-patel.jpg',
+  photo: '/images/departments/mech/faculty/vinay-patel.jpg',
   qualifications: ['Ph.D. (Pursuing - SPCE, Andheri)', 'M.E. (Thermal Engineering)'],
   specialization: ['Solar Thermal Energy', 'CFD', 'Wind Energy'],
   awards: [{ title: 'Best Paper Award at NCAME, NIT Delhi' }, { title: 'Grants fetched: Rs. 32,000' }],

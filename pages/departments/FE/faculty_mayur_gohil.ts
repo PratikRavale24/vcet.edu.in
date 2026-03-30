@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'mayur.gohil@vcet.edu.in',
   experienceYears: '9',
   papersPublished: '0',
-  photo: '/Images/departments/fe/faculty/mayur-gohil.jpg',
+  photo: '/images/departments/fe/faculty/mayur-gohil.jpg',
   qualifications: ['M.A. (Mathematics)', 'MH-SET 2023'],
   specialization: ['Mathematics and Statistics'],
   books: [{ title: 'Linear Algebra using Python' }],

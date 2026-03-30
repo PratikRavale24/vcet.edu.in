@@ -1,4 +1,4 @@
-﻿import type { FacultyData } from '../csds/FacultyProfileView';
+import type { FacultyData } from '../csds/FacultyProfileView';
 
 const faculty: FacultyData = {
   name: "Mrs. Sneha Yadav",
@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: "sneha.yadav@vcet.edu.in",
   experienceYears: "9",
   papersPublished: "9",
-  photo: "/Images/departments/aids/faculty/sneha-yadav.jpg",
+  photo: "/images/departments/aids/faculty/sneha-yadav.jpg",
   qualifications: [
     "Ph.D. (Pursuing)",
     "M.E. (IT) - With Distinction",

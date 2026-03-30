@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'sunayana.jadhav@vcet.edu.in',
   experienceYears: '20',
   papersPublished: '10',
-  photo: '/Images/departments/extc/faculty/dr-sunayana-jadhav.jpg',
+  photo: '/images/departments/extc/faculty/dr-sunayana-jadhav.jpg',
   qualifications: ['Ph.D. (Electronics Engg.)', 'M.E.'],
   memberships: [{ label: 'IEEE' }, { label: 'IETE' }, { label: 'ISTE' }],
   websites: [{ href: 'https://sunayana940452915.wordpress.com/', name: 'Website', sub: 'sunayana940452915.wordpress.com' }],

@@ -7,7 +7,7 @@ const faculty: FacultyData = {
   dateOfJoining: '01/02/2021',
   email: 'ganesh.tilave@vcet.edu.in',
   experienceYears: '9.7',
-  photo: '/Images/departments/fe/faculty/ganesh-tilave.jpg',
+  photo: '/images/departments/fe/faculty/ganesh-tilave.jpg',
   qualifications: ['M.Sc. (Maths)', 'SET'],
   specialization: ['Pure Mathematics'],
   youtube: [{ href: 'https://www.youtube.com/channel/UC5S4U2v-K3YfnMk7io_4vCA', name: 'Mr. Ganesh Tilave', sub: 'YouTube Channel' }],

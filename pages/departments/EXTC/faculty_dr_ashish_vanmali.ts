@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'ashish.vanmali@vcet.edu.in',
   experienceYears: '19 Years 10 Months',
   papersPublished: '12',
-  photo: '/Images/departments/extc/faculty/dr-ashish-vanmali.jpg',
+  photo: '/images/departments/extc/faculty/dr-ashish-vanmali.jpg',
   qualifications: ['Ph.D. (IIT Bombay)', 'M.Tech. (IIT Bombay)', 'B.E. (University of Mumbai)'],
   books: [{ title: 'Digital Communications, Mahalaxmi Publishing House, Kolhapur, August 2002' }],
   awards: [

@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'trupti.shah@vcet.edu.in',
   experienceYears: '19',
   papersPublished: '05',
-  photo: '/Images/departments/extc/faculty/trupti-shah.jpg',
+  photo: '/images/departments/extc/faculty/trupti-shah.jpg',
   qualifications: ['M.E. (First Class)'],
   specialization: ['Embedded', 'DSP', 'Image Processing'],
   publications: [{ title: 'Conference papers presented: 05' }],

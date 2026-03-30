@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'dipak.choudhari@vcet.edu.in',
   experienceYears: '21',
   papersPublished: '02',
-  photo: '/Images/departments/mech/faculty/dipak-choudhari.jpg',
+  photo: '/images/departments/mech/faculty/dipak-choudhari.jpg',
   qualifications: ['Ph.D. (Pursuing)', 'M.E. (Machine Design)'],
   memberships: [{ label: 'ISTE' }],
   youtube: [

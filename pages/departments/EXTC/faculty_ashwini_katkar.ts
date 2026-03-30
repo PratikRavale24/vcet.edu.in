@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'ashwini.katkar@vcet.edu.in',
   experienceYears: '16 Years 9 Months',
   papersPublished: '07',
-  photo: '/Images/departments/extc/faculty/ashwini-katkar.jpg',
+  photo: '/images/departments/extc/faculty/ashwini-katkar.jpg',
   qualifications: ['Ph.D. (Pursuing)', 'M.E. (First Class with Distinction)'],
   specialization: ['EXTC'],
   publications: [{ title: 'Conference papers presented: 06' }],

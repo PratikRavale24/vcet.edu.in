@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'neha.gharat@vcet.edu.in',
   experienceYears: '16 Years 9 Months',
   papersPublished: '09',
-  photo: '/Images/departments/extc/faculty/neha-gharat.jpg',
+  photo: '/images/departments/extc/faculty/neha-gharat.jpg',
   qualifications: ['Ph.D. (Pursuing)', 'M.E. (First Class with Distinction)'],
   specialization: ['Network Security', 'Microwave Communication', 'Computer Communication Networks'],
   publications: [{ title: 'Conference papers presented: 09' }],

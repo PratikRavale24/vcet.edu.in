@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'bharati.gondhalekar@vcet.edu.in',
   experienceYears: '19',
   papersPublished: '05',
-  photo: '/Images/departments/extc/faculty/bharati-gondhalekar.jpg',
+  photo: '/images/departments/extc/faculty/bharati-gondhalekar.jpg',
   qualifications: ['M.E. (1st Class)'],
   roles: [{ label: 'Interaction with Professional Institution: YES' }],
   memberships: [

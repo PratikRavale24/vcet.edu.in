@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'ajay.radke@vcet.edu.in',
   experienceYears: '30',
   papersPublished: '07',
-  photo: '/Images/departments/civil/faculty/dr-ajay-radke.jpg',
+  photo: '/images/departments/civil/faculty/dr-ajay-radke.jpg',
   qualifications: ['Ph.D. (Civil)'],
   specialization: ['Structural Engineering'],
   publications: [{ title: 'Conference papers presented: 09' }],

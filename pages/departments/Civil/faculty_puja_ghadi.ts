@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'puja.ghadi@vcet.edu.in',
   experienceYears: '09',
   papersPublished: '10',
-  photo: '/Images/departments/civil/faculty/puja-ghadi.jpg',
+  photo: '/images/departments/civil/faculty/puja-ghadi.jpg',
   qualifications: ['M.E. (Civil and Environmental)'],
   specialization: ['Water and Sewage Treatment', 'Waste Management', 'Environmental Engineering'],
   publications: [{ title: 'Conference papers presented: 03' }],

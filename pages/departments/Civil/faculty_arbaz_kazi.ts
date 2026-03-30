@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'arbaz.kazi@vcet.edu.in',
   experienceYears: '10',
   papersPublished: '14',
-  photo: '/Images/departments/civil/faculty/arbaz-kazi.jpg',
+  photo: '/images/departments/civil/faculty/arbaz-kazi.jpg',
   qualifications: ['M.E.'],
   specialization: ['Construction Engineering and Management'],
   memberships: [{ label: 'ISTE' }, { label: 'IGBC' }],

@@ -7,7 +7,7 @@ const faculty: FacultyData = {
   dateOfJoining: '03/07/2025',
   email: 'rojal.rodrigues@vcet.edu.in',
   papersPublished: '7.5',
-  photo: '/Images/departments/fe/faculty/rojal-rodrigues.jpg',
+  photo: '/images/departments/fe/faculty/rojal-rodrigues.jpg',
   qualifications: ['M.E. (EXTC)'],
   specialization: ['Electronics and Telecommunication Engineering'],
   publications: [{ title: 'Conference papers presented: 02' }],

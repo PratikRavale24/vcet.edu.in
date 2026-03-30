@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'kamlesh.bachkar@vcet.edu.in',
   experienceYears: '6',
   papersPublished: '03',
-  photo: '/Images/departments/mech/faculty/kamlesh-bachkar.jpg',
+  photo: '/images/departments/mech/faculty/kamlesh-bachkar.jpg',
   qualifications: ['M.Tech. (Automobile)'],
   specialization: ['Heat Transfer', 'Automation', 'AI & Machine Learning'],
   memberships: [{ label: 'ISTE' }],

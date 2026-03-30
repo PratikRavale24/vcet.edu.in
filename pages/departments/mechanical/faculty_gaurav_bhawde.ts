@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'gaurav.bhawde@vcet.edu.in',
   experienceYears: '10.6',
   papersPublished: '03',
-  photo: '/Images/departments/mech/faculty/gaurav-bhawde.jpg',
+  photo: '/images/departments/mech/faculty/gaurav-bhawde.jpg',
   qualifications: ['M.E. (Thermal Engineering)'],
   specialization: ['Refrigeration and Air Conditioning', 'Heat Exchangers'],
   memberships: [

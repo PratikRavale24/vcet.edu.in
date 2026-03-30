@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'aashi.cynth@vcet.edu.in',
   experienceYears: '2',
   papersPublished: '14',
-  photo: '/Images/departments/fe/faculty/dr-aashi-cynth.jpg',
+  photo: '/images/departments/fe/faculty/dr-aashi-cynth.jpg',
   qualifications: ['Ph.D. (English)'],
   specialization: ['English'],
   books: [{ title: 'Published Book Chapter - 1' }],

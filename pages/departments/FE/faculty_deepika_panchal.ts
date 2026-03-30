@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'deepika.panchal@vcet.edu.in',
   experienceYears: '14',
   papersPublished: '02',
-  photo: '/Images/departments/fe/faculty/deepika-panchal.jpg',
+  photo: '/images/departments/fe/faculty/deepika-panchal.jpg',
   qualifications: ['M.Sc. (Mathematics)', 'B.Ed.'],
   specialization: ['Mathematics'],
   awards: [{ title: 'Rank holder at B.Sc. (Mathematics) Exam' }],

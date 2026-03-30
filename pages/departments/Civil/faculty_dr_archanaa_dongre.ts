@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'archanaa.dongre@vcet.edu.in',
   experienceYears: '19',
   papersPublished: '45',
-  photo: '/Images/departments/civil/faculty/dr-archanaa-dongre.jpg',
+  photo: '/images/departments/civil/faculty/dr-archanaa-dongre.jpg',
   qualifications: ['Ph.D. in Civil Engineering', 'MS from IIIT Hyderabad'],
   specialization: ['Structural Engineering', 'Earthquake Engineering', 'Building Materials'],
   publications: [

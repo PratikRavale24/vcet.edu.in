@@ -1,4 +1,4 @@
-﻿import type { FacultyData } from '../csds/FacultyProfileView';
+import type { FacultyData } from '../csds/FacultyProfileView';
 
 const faculty: FacultyData = {
   name: "Ms. Sejal D'mello",
@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: "sejal.dmelo@vcet.edu.in",
   experienceYears: "13",
   papersPublished: "10",
-  photo: "/Images/departments/aids/faculty/sejal-dmello.jpg",
+  photo: "/images/departments/aids/faculty/sejal-dmello.jpg",
   qualifications: [
     "M.E. (Information Technology) - First Class",
   ],

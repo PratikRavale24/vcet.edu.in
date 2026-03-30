@@ -7,7 +7,7 @@ const faculty: FacultyData = {
   dateOfJoining: '08/10/2024',
   email: 'vikas.bhagat@vcet.edu.in',
   experienceYears: '1',
-  photo: '/Images/departments/fe/faculty/vikas-bhagat.jpg',
+  photo: '/images/departments/fe/faculty/vikas-bhagat.jpg',
   qualifications: ['Ph.D. (Physics)'],
   specialization: ['Physics'],
 };

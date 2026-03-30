@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'hod_extc@vcet.edu.in / vikas.gupta@vcet.edu.in',
   experienceYears: '27',
   papersPublished: '11',
-  photo: '/Images/departments/extc/faculty/dr-vikas-gupta.jpg',
+  photo: '/images/departments/extc/faculty/dr-vikas-gupta.jpg',
   qualifications: ['Ph.D. (EXTC)', 'M.Tech. (Digital Comm)'],
   publications: [{ title: 'Conference papers presented: 07' }],
   books: [{ title: 'Circuit and Transmission Line (Technical Publication)' }],

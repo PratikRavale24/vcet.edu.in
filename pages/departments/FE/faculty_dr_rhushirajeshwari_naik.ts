@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'rhushirajeshwari.naik@vcet.edu.in',
   experienceYears: '3.6',
   papersPublished: '02',
-  photo: '/Images/departments/fe/faculty/dr-rhushirajeshwari-naik.jpg',
+  photo: '/images/departments/fe/faculty/dr-rhushirajeshwari-naik.jpg',
   qualifications: ['M.Sc. (Chemistry)', 'Ph.D.'],
   specialization: ['Organic Chemistry'],
   awards: [{ title: 'Awarded JRF and SRF by UGC under UGC-BSR Scheme (March 2013 - March 2018)' }],

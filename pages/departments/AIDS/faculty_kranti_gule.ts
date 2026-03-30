@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'kranti.gule@vcet.edu.in',
   experienceYears: '5',
   papersPublished: '6',
-  photo: '/Images/departments/aids/faculty/kranti-gule.jpg',
+  photo: '/images/departments/aids/faculty/kranti-gule.jpg',
   qualifications: [
     'M.E. (Information Technology)',
   ],

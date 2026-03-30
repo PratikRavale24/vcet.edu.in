@@ -45,6 +45,15 @@ const competitionsList = [
   'Men\u2019s Kabaddi Team', 'IISM',
 ];
 
+const competitionImages = [
+  'public/images/Faculities/Sports & Gymkhana/Sports & Gymkhana/Sports-Achievement1.jpg',
+  'public/images/Faculities/Sports & Gymkhana/Sports & Gymkhana/Sports-Achievement2.jpg',
+  'public/images/Faculities/Sports & Gymkhana/Sports & Gymkhana/Sports-Achievement3.jpg',
+  'public/images/Faculities/Sports & Gymkhana/Sports & Gymkhana/Sports-Achievement4.jpg',
+  'public/images/Faculities/Sports & Gymkhana/Sports & Gymkhana/Sports-Achievement5-e1752912401447.jpg',
+  'public/images/Faculities/Sports & Gymkhana/Sports & Gymkhana/Sports-Achievement6.jpg',
+];
+
 const studentAchievements = [
   { text: 'Mr. Kishor Madane \u2013 Silver Medal \u2013 Mumbai University Intercollegiate Wrestling Competition.', medal: 'silver' },
   { text: 'Ms. Palak Churi \u2013 Multiple medals in Mallakhamb competitions including Gold Medal at All India Inter University competition.', medal: 'gold' },
@@ -474,7 +483,13 @@ const SportsGymkhana: React.FC = () => (
                   <span className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: C.gold, fontFamily: SF }}>Competition</span>
                   <h4 className="text-[16.5px] font-bold leading-snug transition-colors duration-300 group-hover:text-[#F5CC5B]" style={{ fontFamily: H, color: '#fff' }}>{title}</h4>
                 </div>
-                <ImgPlaceholder caption="Event Photo" className="flex-1 min-h-[145px]" />
+                <div className="flex-1 min-h-[145px] overflow-hidden" style={{ borderRadius: '0px' }}>
+                  <img
+                    src={competitionImages[idx]}
+                    alt={title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </Reveal>
           ))}

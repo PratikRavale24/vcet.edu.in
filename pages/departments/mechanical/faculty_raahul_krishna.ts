@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'raahul.krishna@vcet.edu.in',
   experienceYears: '7',
   papersPublished: '05',
-  photo: '/Images/departments/mech/faculty/raahul-krishna.jpg',
+  photo: '/images/departments/mech/faculty/raahul-krishna.jpg',
   qualifications: ['M.E. (Heat Power)'],
   specialization: ['Heat Power'],
   awards: [{ title: 'S. Shavak Nanavati Medal for Best Paper in Tata Search 2014' }],

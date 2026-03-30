@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'prakash.panda@vcet.edu.in',
   experienceYears: '9',
   papersPublished: '04',
-  photo: '/Images/departments/civil/faculty/prakash-panda.jpg',
+  photo: '/images/departments/civil/faculty/prakash-panda.jpg',
   qualifications: ['M.Tech. (Construction Management)'],
   memberships: [{ label: 'ISTE' }],
   websites: [{ href: 'https://beingcfied.wordpress.com/', name: 'Website', sub: 'beingcfied.wordpress.com' }],

@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'viren.chandanshive@vcet.edu.in',
   experienceYears: '11',
   papersPublished: '22',
-  photo: '/Images/departments/civil/faculty/dr-viren-chandanshive.jpg',
+  photo: '/images/departments/civil/faculty/dr-viren-chandanshive.jpg',
   qualifications: ['Ph.D. in Civil Engg.', 'M.Tech. (Construction Management)'],
 };
 

@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'kavita.churi@vcet.edu.in',
   experienceYears: '5.5',
   papersPublished: '09',
-  photo: '/Images/departments/fe/faculty/dr-kavita-churi.jpg',
+  photo: '/images/departments/fe/faculty/dr-kavita-churi.jpg',
   qualifications: ['Ph.D. (Physics)'],
   specialization: ['Nuclear Physics'],
   memberships: [{ label: 'IAPT' }],

@@ -7,7 +7,7 @@ const faculty: FacultyData = {
   dateOfJoining: '06/07/2015',
   email: 'ankita.mane@vcet.edu.in',
   experienceYears: '8.5',
-  photo: '/Images/departments/fe/faculty/ankita-mane.jpg',
+  photo: '/images/departments/fe/faculty/ankita-mane.jpg',
   qualifications: ['M.Sc. (Maths)', 'SET'],
   eResources: [{ title: 'Study Material', url: 'https://drive.google.com/drive/folders/1Hd5uqu-igHrCE5EbztlzgOmf-2bnLqgq' }],
 };

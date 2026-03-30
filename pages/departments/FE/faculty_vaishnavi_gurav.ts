@@ -7,7 +7,7 @@ const faculty: FacultyData = {
   dateOfJoining: '31/08/2023',
   email: 'vaishnavi.gurav@vcet.edu.in',
   experienceYears: '2.6',
-  photo: '/Images/departments/fe/faculty/vaishnavi-gurav.jpg',
+  photo: '/images/departments/fe/faculty/vaishnavi-gurav.jpg',
   qualifications: ['M.Sc. (Physics)'],
   specialization: ['Physics'],
 };

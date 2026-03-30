@@ -7,7 +7,7 @@ const faculty: FacultyData = {
   dateOfJoining: '08/10/2018',
   email: 'praiza.gonsalves@vcet.edu.in',
   experienceYears: '6.5',
-  photo: '/Images/departments/fe/faculty/praiza-gonsalves.jpg',
+  photo: '/images/departments/fe/faculty/praiza-gonsalves.jpg',
   qualifications: ['M.Sc. (Mathematics) - First Class'],
   memberships: [{ label: 'ISTE (Life Member)' }],
   eResources: [

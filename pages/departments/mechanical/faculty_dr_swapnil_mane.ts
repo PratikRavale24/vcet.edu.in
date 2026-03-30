@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'swapnil.mane@vcet.edu.in',
   experienceYears: '11',
   papersPublished: '06',
-  photo: '/Images/departments/mech/faculty/dr-swapnil-mane.jpg',
+  photo: '/images/departments/mech/faculty/dr-swapnil-mane.jpg',
   qualifications: ['Ph.D.', 'M.Tech. (IIT Bombay) - Energy Science & Engineering'],
   specialization: ['Energy Audit', 'Renewable Energy Sources'],
   memberships: [{ label: 'ISTE', fullName: 'Life Member' }],

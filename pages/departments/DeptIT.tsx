@@ -488,8 +488,7 @@ const DeptIT: React.FC = () => {
 
           {/* ════ ACTIVITIES ═══════════════════════════════════════ */}
           {activeId === 'activities' && (() => {
-            const links = [
-              { label: 'Hackathon', url: 'https://vcet.edu.in/hackathon/' },
+            const externalLinks = [
               { label: 'Code Craze', url: 'https://vcet.edu.in/wp-content/uploads/2024/07/Code-Craze.pdf' },
               { label: 'Student Development Program', url: 'https://vcet.edu.in/wp-content/uploads/2024/07/student-development-program-1.pdf' },
               { label: 'Faculty Development Program', url: 'https://vcet.edu.in/wp-content/uploads/2024/07/faculty-development-program-1.pdf' },
@@ -502,7 +501,11 @@ const DeptIT: React.FC = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Activities<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
                 <div className="space-y-3">
-                  {links.map((item) => (
+                  <Link to="/hackathon" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
+                    <span>Hackathon</span>
+                    <i className="ph ph-arrow-up-right text-brand-gold" />
+                  </Link>
+                  {externalLinks.map((item) => (
                     <a key={item.label} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy hover:border-brand-gold hover:bg-brand-navylight transition-colors">
                       <span>{item.label}</span>
                       <i className="ph ph-arrow-up-right text-brand-gold" />

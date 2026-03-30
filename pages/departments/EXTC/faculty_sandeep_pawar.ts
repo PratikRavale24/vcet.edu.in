@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'sandeep.pawar@vcet.edu.in',
   experienceYears: '12',
   papersPublished: '04',
-  photo: '/Images/departments/extc/faculty/sandeep-pawar.jpg',
+  photo: '/images/departments/extc/faculty/sandeep-pawar.jpg',
   qualifications: ['M.Tech (Pass Class)'],
   specialization: ['Antenna Design'],
   publications: [{ title: 'Conference papers presented: 05' }],

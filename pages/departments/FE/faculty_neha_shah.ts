@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'neha.shah@vcet.edu.in',
   experienceYears: '14',
   papersPublished: '02',
-  photo: '/Images/departments/fe/faculty/neha-shah.jpg',
+  photo: '/images/departments/fe/faculty/neha-shah.jpg',
   qualifications: ['M.Sc.', 'B.Ed.'],
   specialization: ['Applied Physics'],
   memberships: [{ label: 'IAPT' }],

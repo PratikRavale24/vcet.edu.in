@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'mrunal.gosavi@vcet.edu.in',
   experienceYears: '2',
   papersPublished: '06',
-  photo: '/Images/departments/mech/faculty/mrunal-kshirsagar.jpg',
+  photo: '/images/departments/mech/faculty/mrunal-kshirsagar.jpg',
   qualifications: ['M.Tech (Automobile)', 'Pursuing Ph.D'],
   specialization: ['Design', 'Tribology', 'Vibration', 'Automotive Dynamic Systems'],
   awards: [

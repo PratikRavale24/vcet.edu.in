@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'tarranum.khan@vcet.edu.in',
   experienceYears: '20',
   papersPublished: '09',
-  photo: '/Images/departments/fe/faculty/tarranum-khan.jpg',
+  photo: '/images/departments/fe/faculty/tarranum-khan.jpg',
   qualifications: ['M.Tech. (Civil)'],
   specialization: ['Construction Management'],
   memberships: [{ label: 'ISTE' }],

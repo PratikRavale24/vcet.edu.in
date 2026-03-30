@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'amrita.ruperee@vcet.edu.in',
   experienceYears: '30',
   papersPublished: '15',
-  photo: '/Images/departments/extc/faculty/dr-amrita-ruperee.jpg',
+  photo: '/images/departments/extc/faculty/dr-amrita-ruperee.jpg',
   qualifications: ['Ph.D. (Wireless Communication)'],
   specialization: ['Wireless Communication'],
   publications: [{ title: 'Conference papers presented: 13' }],

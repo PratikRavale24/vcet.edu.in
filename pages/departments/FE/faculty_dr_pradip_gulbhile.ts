@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'pradip.gulbhile@vcet.edu.in',
   experienceYears: '12',
   papersPublished: '03',
-  photo: '/Images/departments/fe/faculty/dr-pradip-gulbhile.jpg',
+  photo: '/images/departments/fe/faculty/dr-pradip-gulbhile.jpg',
   qualifications: ['Ph.D. (Awarded)', 'M.Phil (B+)', 'M.A. (A)'],
   books: [
     { title: 'One book in publishing process (Fiction)' },

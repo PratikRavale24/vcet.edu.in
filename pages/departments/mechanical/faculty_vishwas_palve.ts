@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'vishwas.palve@vcet.edu.in',
   experienceYears: '9',
   papersPublished: '03',
-  photo: '/Images/departments/mech/faculty/vishwas-palve.jpg',
+  photo: '/images/departments/mech/faculty/vishwas-palve.jpg',
   qualifications: ['Ph.D. (Pursuing)', 'M.E. (Heat Power)'],
   specialization: ['Heat Transfer', 'CFD'],
   memberships: [{ label: 'ISTE' }, { label: 'ISHRAE' }],

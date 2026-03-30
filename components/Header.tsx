@@ -117,7 +117,6 @@ const menuGroups: MenuGroup[] = [
       { label: 'Swayam - NPTEL', href: 'https://nptel.ac.in/' },
       {
         label: 'Honours / Minor Degree Program',
-        href: '/honours-minor',
         subItems: [
           { label: 'Booklet Part 1', href: 'https://vcet.edu.in/wp-content/uploads/2022/08/Honours-Minor-Degree-Program-_Booklet_Part-1-Final.pdf' },
           { label: 'Booklet Part 2', href: 'https://vcet.edu.in/wp-content/uploads/2022/08/Honours-Minor-Degree-Program-Booklet-_Part-2_Detailed-Syllabus-Final.pdf' },
@@ -158,6 +157,7 @@ const menuGroups: MenuGroup[] = [
     ],
   },
 
+
   // 7. STUDENT & CAREER
   {
     label: 'Student & Career',
@@ -182,7 +182,17 @@ const menuGroups: MenuGroup[] = [
         label: 'Co Curricular',
         subItems: [
           { label: 'IEEE', href: '/ieee' },
-          { label: 'Students Club', href: '/students-club' },
+          {
+            label: 'Students Club',
+            href: '/students-club',
+            subItems: [
+              { label: 'ETHAN', href: 'https://vcet.edu.in/ethanracing24/Team_Ethan_Racing_Website-main/index.html' },
+              { label: 'SOLECTHON', href: 'https://vcet.edu.in/VcetSolecthon/' },
+              { label: 'CENTURION', href: '/centurion' },
+              { label: 'AIRNOVA', href: '/airnova' },
+              { label: 'EMECHTO', href: '/emechto' },
+            ],
+          },
           { label: 'CSI', href: '/csi' },
           { label: 'IETE', href: '/iete' },
           { label: 'ISHRAE', href: '/ishrae' },
@@ -194,6 +204,7 @@ const menuGroups: MenuGroup[] = [
       },
     ],
   },
+
 
   // 8. COMMITTEES
   {
@@ -394,6 +405,9 @@ const keywordMap: Record<string, string[]> = {
   '/iiic': ['iiic', 'industry interaction', 'mou'],
   '/exam': ['exam', 'examination', 'results', 'hall ticket', 'exam cell'],
   '/exam-cell': ['exam', 'examination', 'results', 'hall ticket', 'exam cell'],
+  '/centurion': ['centurion', 'atv', 'quad bike', 'student club'],
+  '/airnova': ['airnova', 'aeronautics', 'aerospace', 'uav', 'student club'],
+  '/emechto': ['emechto', 'e-bike', 'electric bike', 'sustainable mobility', 'student club'],
 };
 
 /** Homepage section entries */
@@ -529,13 +543,26 @@ const NestedFlyout: React.FC<{ sub: SubItem }> = ({ sub }) => {
   const closeSub = () => { timer.current = setTimeout(() => setOpen(false), 200); };
   const keepSub = () => { if (timer.current) clearTimeout(timer.current); };
 
+  const itemHasLink = Boolean(sub.href);
+  const linkContent = (
+    <div className="flex items-center gap-2.5 whitespace-nowrap">
+      <span className="w-1.5 h-1.5 rounded-full bg-brand-gold/40 flex-shrink-0" />
+      {sub.label}
+    </div>
+  );
+
   return (
     <div className="relative group/nested" onMouseEnter={openSub} onMouseLeave={closeSub}>
       <div className="flex items-center justify-between px-4 py-2.5 text-[11.5px] text-slate-600 hover:text-brand-blue hover:bg-brand-blue/5 transition-all duration-150 border-l-2 border-transparent hover:border-brand-gold cursor-pointer select-none">
-        <div className="flex items-center gap-2.5 whitespace-nowrap">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-gold/40 flex-shrink-0" />
-          {sub.label}
-        </div>
+        {itemHasLink ? (
+          sub.href!.startsWith('/') ? (
+            <Link to={sub.href!} className="flex-1">{linkContent}</Link>
+          ) : (
+            <a href={sub.href!} className="flex-1" target="_blank" rel="noopener noreferrer">{linkContent}</a>
+          )
+        ) : (
+          <div className="flex-1">{linkContent}</div>
+        )}
         <ChevronRight className={`w-3.5 h-3.5 transition-transform ${open ? 'text-brand-blue translate-x-1' : 'text-brand-gold/50'}`} />
       </div>
 
@@ -601,8 +628,8 @@ const DesktopDropdownItem: React.FC<DesktopDropdownItemProps> = ({ item, flipSub
     );
 
     const triggerClassName = `flex items-center justify-between px-4 py-2.5 cursor-pointer select-none transition-all duration-150 border-l-2 ${subOpen
-        ? 'bg-brand-blue/8 text-brand-blue border-brand-blue'
-        : 'text-slate-700 hover:text-brand-blue hover:bg-brand-blue/5 border-transparent hover:border-brand-gold'
+      ? 'bg-brand-blue/8 text-brand-blue border-brand-blue'
+      : 'text-slate-700 hover:text-brand-blue hover:bg-brand-blue/5 border-transparent hover:border-brand-gold'
       }`;
 
     return (
@@ -627,8 +654,8 @@ const DesktopDropdownItem: React.FC<DesktopDropdownItemProps> = ({ item, flipSub
           onMouseEnter={keepSub}
           onMouseLeave={closeSub}
           className={`absolute top-0 ${subSide} z-[400] transition-all duration-250 ease-[cubic-bezier(0.34,1.18,0.64,1)] origin-left ${subOpen
-              ? 'opacity-100 translate-x-0 pointer-events-auto'
-              : 'opacity-0 -translate-x-2 pointer-events-none'
+            ? 'opacity-100 translate-x-0 pointer-events-auto'
+            : 'opacity-0 -translate-x-2 pointer-events-none'
             }`}
         >
           <div className="bg-white rounded-xl shadow-2xl border border-gray-100 min-w-fit w-full py-2 ring-1 ring-black/5">
@@ -692,12 +719,30 @@ const DesktopDropdownItem: React.FC<DesktopDropdownItemProps> = ({ item, flipSub
 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const MobileNestedAccordionItem: React.FC<{ sub: SubItem, onClose: () => void }> = ({ sub, onClose }) => {
   const [open, setOpen] = useState(false);
+  const hasLink = Boolean(sub.href);
+
   return (
     <div>
-      <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-2 text-[12px] font-medium text-white/50 hover:text-brand-gold transition-colors">
-        <span>{sub.label}</span>
-        <ChevronDown className={`w-3 h-3 transition-transform ${open ? 'rotate-180' : ''}`} />
-      </button>
+      <div className="flex items-center justify-between py-2">
+        {hasLink ? (
+          sub.href!.startsWith('/') ? (
+            <Link to={sub.href!} onClick={onClose} className="text-[12px] font-medium text-white/70 hover:text-brand-gold transition-colors">
+              {sub.label}
+            </Link>
+          ) : (
+            <a href={sub.href!} onClick={onClose} target="_blank" rel="noopener noreferrer" className="text-[12px] font-medium text-white/70 hover:text-brand-gold transition-colors">
+              {sub.label}
+            </a>
+          )
+        ) : (
+          <span className="text-[12px] font-medium text-white/70">{sub.label}</span>
+        )}
+
+        <button onClick={() => setOpen(!open)} className="p-1 text-white/50 hover:text-brand-gold transition-colors">
+          <ChevronDown className={`w-3 h-3 transition-transform ${open ? 'rotate-180' : ''}`} />
+        </button>
+      </div>
+
       <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? `${sub.subItems!.length * 36}px` : '0px' }}>
         <div className="pl-3 border-l border-brand-gold/20 ml-1 space-y-0.5 mt-1">
           {sub.subItems!.map(child => {
@@ -733,17 +778,44 @@ const MobileAccordionItem: React.FC<MobileAccordionItemProps> = ({ item, onClose
   }
 
   if (item.subItems && item.subItems.length > 0) {
+    const hasHref = item.href && item.href.length > 0;
+    const title = hasHref ? (
+      item.href!.startsWith('/') ? (
+        <Link
+          to={item.href!}
+          onClick={onClose}
+          className="text-sm font-medium text-white/90 hover:text-brand-gold"
+        >
+          {item.label}
+        </Link>
+      ) : (
+        <a
+          href={item.href!}
+          onClick={onClose}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-white/90 hover:text-brand-gold"
+        >
+          {item.label}
+        </a>
+      )
+    ) : (
+      <span className="text-sm font-medium text-white/90">{item.label}</span>
+    );
+
     return (
       <div>
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="w-full flex items-center justify-between py-2.5 text-sm font-medium text-white/70 hover:text-white transition-colors"
-        >
-          <span>{item.label}</span>
-          <ChevronDown
-            className={`w-4 h-4 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
-          />
-        </button>
+        <div className="flex items-center justify-between py-2.5">
+          {title}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex items-center justify-center w-8 h-8 text-white/70 hover:text-white transition-colors"
+          >
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+            />
+          </button>
+        </div>
         <div
           className="overflow-hidden transition-all duration-300"
           style={{ maxHeight: open ? `${item.subItems.length * 44}px` : '0px' }}
@@ -1002,8 +1074,8 @@ const Header: React.FC = () => {
                       aria-haspopup="true"
                       aria-expanded={activeMenu === group.label}
                       className={`flex items-center gap-0.5 px-1 lg:px-2 xl:px-2.5 py-1.5 lg:py-2 text-[8.5px] md:text-[9px] lg:text-[10px] xl:text-[11px] 2xl:text-[12px] font-bold uppercase tracking-wide rounded-md transition-all duration-200 whitespace-nowrap select-none ${activeMenu === group.label
-                          ? 'bg-brand-blue text-white'
-                          : 'text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue'
+                        ? 'bg-brand-blue text-white'
+                        : 'text-slate-700 hover:bg-brand-blue/8 hover:text-brand-blue'
                         }`}
                     >
                       {group.label}
@@ -1092,8 +1164,8 @@ const Header: React.FC = () => {
       {/* â”€â”€â”€â”€â”€â”€â”€â”€ MOBILE FULL-SCREEN MENU â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div
         className={`fixed inset-0 bg-brand-dark/98 backdrop-blur-lg text-white z-[9999] flex flex-col transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] lg:hidden ${mobileOpen
-            ? 'opacity-100 visible translate-x-0'
-            : 'opacity-0 invisible translate-x-full pointer-events-none'
+          ? 'opacity-100 visible translate-x-0'
+          : 'opacity-0 invisible translate-x-full pointer-events-none'
           }`}
       >
         {/* Mobile top bar */}
@@ -1254,8 +1326,8 @@ const Header: React.FC = () => {
                             onClick={() => goToResult(entry)}
                             onMouseEnter={() => setSelectedResult(i)}
                             className={`w-full text-left flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group ${isSelected
-                                ? 'bg-brand-gold/15 border border-brand-gold/30'
-                                : 'bg-white/[0.03] border border-transparent hover:bg-white/[0.06]'
+                              ? 'bg-brand-gold/15 border border-brand-gold/30'
+                              : 'bg-white/[0.03] border border-transparent hover:bg-white/[0.06]'
                               }`}
                           >
                             <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isSelected ? 'bg-brand-gold/20' : 'bg-white/5 group-hover:bg-white/10'

@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: "neha.raut@vcet.edu.in",
   experienceYears: "3.5",
   papersPublished: "8",
-  photo: "/Images/departments/aids/faculty/neha-raut.jpg",
+  photo: "/images/departments/aids/faculty/neha-raut.jpg",
   qualifications: [
     "Ph.D. (Pursuing)",
     "M.E. (IT)",

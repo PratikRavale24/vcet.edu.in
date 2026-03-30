@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'tusharkumar.raut@vcet.edu.in',
   experienceYears: '7',
   papersPublished: '02',
-  photo: '/Images/departments/mech/faculty/tusharkumar-raut.jpg',
+  photo: '/images/departments/mech/faculty/tusharkumar-raut.jpg',
   qualifications: ['M.Tech. (CAD/CAM)'],
   memberships: [{ label: 'ISTE' }],
   eResources: [

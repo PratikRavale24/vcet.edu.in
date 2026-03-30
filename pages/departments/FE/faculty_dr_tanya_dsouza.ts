@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'tanya.dsouza@vcet.edu.in',
   experienceYears: '4.9',
   papersPublished: '04',
-  photo: '/Images/departments/fe/faculty/dr-tanya-dsouza.jpg',
+  photo: '/images/departments/fe/faculty/dr-tanya-dsouza.jpg',
   qualifications: ['Ph.D. (English)', 'M.A. (Honours with Research) in English', 'NET', 'MH-SET'],
   specialization: ['English Literature'],
   awards: [{ title: 'Name to be verified and updated after (1)' }],

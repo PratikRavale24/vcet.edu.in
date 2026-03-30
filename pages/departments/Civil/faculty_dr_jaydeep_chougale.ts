@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'jaydeep.chougale@vcet.edu.in',
   experienceYears: '15',
   papersPublished: '24',
-  photo: '/Images/departments/civil/faculty/dr-jaydeep-chougale.jpg',
+  photo: '/images/departments/civil/faculty/dr-jaydeep-chougale.jpg',
   qualifications: ['Ph.D. (Civil Engg.)', 'M.E. (Structures)'],
   publications: [{ title: 'Journal publications: 17' }],
   memberships: [{ label: 'ISTE (LM2071)' }, { label: 'ISSE' }],

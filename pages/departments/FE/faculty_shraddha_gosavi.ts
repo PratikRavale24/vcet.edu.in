@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'shraddha.gosavi@vcet.edu.in',
   experienceYears: '17',
   papersPublished: '05',
-  photo: '/Images/departments/fe/faculty/shraddha-gosavi.jpg',
+  photo: '/images/departments/fe/faculty/shraddha-gosavi.jpg',
   qualifications: ['M.E. (Electronics and Telecommunication)'],
   specialization: ['Networking', 'Cryptography', 'Robotics', 'Database Management'],
   publications: [{ title: 'Conference papers presented: 02' }],

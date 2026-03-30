@@ -7,7 +7,7 @@ const faculty: FacultyData = {
   dateOfJoining: '12/09/2023',
   email: 'anahita.pereira@vcet.edu.in',
   experienceYears: '10',
-  photo: '/Images/departments/fe/faculty/anahita-pereira.jpg',
+  photo: '/images/departments/fe/faculty/anahita-pereira.jpg',
   qualifications: ['M.Sc. (Maths)'],
   specialization: ['Mathematics'],
 };

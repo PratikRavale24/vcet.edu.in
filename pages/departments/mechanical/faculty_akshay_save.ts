@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'akshay.save@vcet.edu.in',
   experienceYears: '1.8',
   papersPublished: '01',
-  photo: '/Images/departments/mech/faculty/akshay-save.jpg',
+  photo: '/images/departments/mech/faculty/akshay-save.jpg',
   qualifications: ['M.Tech (Energy)', 'Ph.D. Pursuing'],
   specialization: ['Air Pollution', 'HVAC', 'Heat Exchanger Design'],
   websites: [

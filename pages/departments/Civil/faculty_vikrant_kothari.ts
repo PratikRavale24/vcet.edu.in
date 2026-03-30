@@ -5,7 +5,7 @@ const faculty: FacultyData = {
   designation: 'Asst. Prof. (Ph.D. pursuing)',
   department: 'Civil Engineering',
   email: 'vikrant.kothari@vcet.edu.in',
-  photo: '/Images/departments/civil/faculty/vikrant-kothari.jpg',
+  photo: '/images/departments/civil/faculty/vikrant-kothari.jpg',
 };
 
 export default faculty;

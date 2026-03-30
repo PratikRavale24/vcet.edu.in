@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'sandhya.supalkar@vcet.edu.in',
   experienceYears: '21',
   papersPublished: '04',
-  photo: '/Images/departments/extc/faculty/sandhya-supalkar.jpg',
+  photo: '/images/departments/extc/faculty/sandhya-supalkar.jpg',
   qualifications: ['M.Tech (First Class)'],
   specialization: ['Electronics Engineering'],
   publications: [{ title: 'Conference papers presented: 04' }],

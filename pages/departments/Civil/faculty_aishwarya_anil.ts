@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'aishwarya.anil@vcet.edu.in',
   experienceYears: '5',
   papersPublished: '03',
-  photo: '/Images/departments/civil/faculty/aishwarya-anil.jpg',
+  photo: '/images/departments/civil/faculty/aishwarya-anil.jpg',
   qualifications: ['M.Tech.'],
   specialization: ['Structural Engineering'],
 };

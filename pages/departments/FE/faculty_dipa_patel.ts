@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'dipa.patel@vcet.edu.in',
   experienceYears: '12.6',
   papersPublished: '06',
-  photo: '/Images/departments/fe/faculty/dipa-patel.jpg',
+  photo: '/images/departments/fe/faculty/dipa-patel.jpg',
   qualifications: ['M.Sc.', 'B.Ed.', 'Ph.D. (Pursuing)'],
   specialization: ['Organic Chemistry'],
 };

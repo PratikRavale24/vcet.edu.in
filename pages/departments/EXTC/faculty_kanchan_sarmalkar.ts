@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'kanchan.sarmalkar@vcet.edu.in',
   experienceYears: '23',
   papersPublished: '02',
-  photo: '/Images/departments/extc/faculty/kanchan-sarmalkar.jpg',
+  photo: '/images/departments/extc/faculty/kanchan-sarmalkar.jpg',
   qualifications: ['M.E. (Instrumentation and Control)'],
   specialization: ['Embedded Systems', 'Automation'],
   memberships: [{ label: 'ISTE' }, { label: 'ISOI' }],

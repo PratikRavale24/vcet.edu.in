@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'javed.shaikh@vcet.edu.in',
   experienceYears: '2',
   papersPublished: '06',
-  photo: '/Images/departments/mech/faculty/javed-shaikh.jpg',
+  photo: '/images/departments/mech/faculty/javed-shaikh.jpg',
   qualifications: ['M.Tech.', 'Ph.D. (NIT Calicut, Kerala) Pursuing'],
   specialization: ['Water-energy nexus', 'Solar energy', 'Desalination', 'Distillation', 'Wastewater treatment', 'Multigeneration', 'ZLD'],
   websites: [

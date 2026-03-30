@@ -1,4 +1,4 @@
-﻿import type { FacultyData } from '../csds/FacultyProfileView';
+import type { FacultyData } from '../csds/FacultyProfileView';
 
 const faculty: FacultyData = {
   name: "Dr. Vaishali A. Shirsath",

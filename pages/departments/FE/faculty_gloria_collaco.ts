@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'gloria.collaco@vcet.edu.in',
   experienceYears: '4',
   papersPublished: '02',
-  photo: '/Images/departments/fe/faculty/gloria-collaco.jpg',
+  photo: '/images/departments/fe/faculty/gloria-collaco.jpg',
   qualifications: ['M.A. (English)', 'MH-SET', 'M.Phil. in English'],
   specialization: ['English Literature'],
 };

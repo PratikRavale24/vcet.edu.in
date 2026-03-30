@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'hod_mech@vcet.edu.in, uday.aswalekar@vcet.edu.in',
   experienceYears: '21',
   papersPublished: '04',
-  photo: '/Images/departments/mech/faculty/dr-uday-aswalekar.jpg',
+  photo: '/images/departments/mech/faculty/dr-uday-aswalekar.jpg',
   qualifications: ['Ph.D. (Mechanical)', 'M.E. (Machine Design)'],
   publications: [{ title: 'Conference papers presented: 09' }],
   books: [{ title: 'Books published: 01' }],

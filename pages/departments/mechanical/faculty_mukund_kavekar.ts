@@ -10,7 +10,7 @@ const faculty: FacultyData = {
   experienceYears: '8',
   industryYears: '8',
   papersPublished: '04',
-  photo: '/Images/departments/mech/faculty/mukund-kavekar.jpg',
+  photo: '/images/departments/mech/faculty/mukund-kavekar.jpg',
   qualifications: ['Ph.D. (Pursuing - Pillai College, Panvel)', 'M.E. (CAD/CAM / Robotics)'],
   specialization: ['Machine Design', 'CAE', 'Automobile Engineering'],
   memberships: [{ label: 'ISTE' }],

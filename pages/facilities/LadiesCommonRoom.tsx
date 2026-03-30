@@ -803,15 +803,12 @@ const LadiesCommonRoom: React.FC = () => {
               <div className="pro-card overview-side panel-soft p-5 gold-top overview-shell">
                 <div className="keyfocus-split">
                   <div>
-                    <div className="aspect-[16/10] border border-dashed border-[#fdb813]/50 bg-white/10 rounded-lg flex items-center justify-center">
-                      <div className="text-center px-4">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#1a4b7c]">
-                          Room Photo Placeholder
-                        </p>
-                        <p className="text-[12px] text-[#5b6f87] mt-1" style={{ fontFamily: '"Merriweather", Georgia, serif' }}>
-                          ladies-common-room.jpg
-                        </p>
-                      </div>
+                    <div className="aspect-[16/10] border border-[#fdb813]/50 bg-white/10 rounded-lg overflow-hidden">
+                      <img
+                        src="/images/Faculities/Ladies Common Room/Ladies Common Room/Ladies Common Room/WhatsApp-Image-2021-12-07-at-3.07.24-PM.jpeg"
+                        alt="Ladies Common Room"
+                        className="object-cover w-full h-full"
+                      />
                     </div>
                   </div>
                   <div className="keyfocus-column" style={{ fontFamily: '"Merriweather", Georgia, serif' }}>

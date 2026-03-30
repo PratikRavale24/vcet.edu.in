@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'ashish.chaudhari@vcet.edu.in',
   experienceYears: '17 Years 3 Months',
   papersPublished: '12',
-  photo: '/Images/departments/mech/faculty/dr-ashish-chaudhari.jpg',
+  photo: '/images/departments/mech/faculty/dr-ashish-chaudhari.jpg',
   qualifications: ['Ph.D. (IIT Guwahati)', 'M.E. (Machine Design)'],
   specialization: ['Mechanical Design', 'CFD', 'Renewable Fuels', 'Solar Energy Extraction'],
   consultancy: [

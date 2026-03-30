@@ -1,4 +1,4 @@
-﻿import type { FacultyData } from '../csds/FacultyProfileView';
+import type { FacultyData } from '../csds/FacultyProfileView';
 
 const faculty: FacultyData = {
   name: "Dr. Tatwadarshi Nagarhalli",
@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: "tatwadarshi.nagarhalli@vcet.edu.in",
   experienceYears: "12",
   papersPublished: "55",
-  photo: "/Images/departments/aids/faculty/dr-tatwadarshi-nagarhalli.jpg",
+  photo: "/images/departments/aids/faculty/dr-tatwadarshi-nagarhalli.jpg",
   qualifications: [
     "Ph.D. (Computer Engineering)",
     "Ph.D. (Sanskrit)",

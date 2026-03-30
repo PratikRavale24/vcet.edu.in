@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'shaista.khan@vcet.edu.in',
   experienceYears: '19',
   papersPublished: '13',
-  photo: '/Images/departments/extc/faculty/shaista-khan.jpg',
+  photo: '/images/departments/extc/faculty/shaista-khan.jpg',
   qualifications: ['M.E. Electronics - First class with distinction', 'Ph.D. pursuing (Mumbai University)'],
   specialization: ['Embedded System', 'IoT and VLSI', 'Machine Vision'],
   publications: [{ title: 'Conference papers presented: 13' }],

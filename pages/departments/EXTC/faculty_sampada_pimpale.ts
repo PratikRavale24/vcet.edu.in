@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'sampada.pimpale@vcet.edu.in',
   experienceYears: '24',
   papersPublished: '03',
-  photo: '/Images/departments/extc/faculty/sampada-pimpale.jpg',
+  photo: '/images/departments/extc/faculty/sampada-pimpale.jpg',
   qualifications: ['M.E. (EXTC)'],
   specialization: ['VLSI', 'Embedded', 'Signal Processing', 'Control System', 'Biomedical Instrumentation', 'BEE', 'Data Analysis'],
   publications: [{ title: 'Conference papers presented: 01' }],

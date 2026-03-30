@@ -1,4 +1,4 @@
-﻿import type { FacultyData } from '../csds/FacultyProfileView';
+import type { FacultyData } from '../csds/FacultyProfileView';
 
 const faculty: FacultyData = {
   name: "Ms. Rujuta Vartak",
@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: "rujuta.vartak@vcet.edu.in",
   experienceYears: "12",
   papersPublished: "3",
-  photo: "/Images/departments/aids/faculty/rujuta-vartak.jpg",
+  photo: "/images/departments/aids/faculty/rujuta-vartak.jpg",
   qualifications: [
     "M.E. (Computer)",
   ],

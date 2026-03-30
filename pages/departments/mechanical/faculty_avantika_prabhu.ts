@@ -8,7 +8,7 @@ const faculty: FacultyData = {
   email: 'avantika.prabhu@vcet.edu.in',
   experienceYears: '3',
   papersPublished: '02',
-  photo: '/Images/departments/mech/faculty/avantika-prabhu.jpg',
+  photo: '/images/departments/mech/faculty/avantika-prabhu.jpg',
   qualifications: ['M.E. (Mechanical Engineering)'],
   specialization: ['Manufacturing Systems Engineering'],
   youtube: [

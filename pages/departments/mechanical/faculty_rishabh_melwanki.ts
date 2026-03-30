@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'rishabh.melwanki@vcet.edu.in',
   experienceYears: '8',
   papersPublished: '05',
-  photo: '/Images/departments/mech/faculty/rishabh-melwanki.jpg',
+  photo: '/images/departments/mech/faculty/rishabh-melwanki.jpg',
   qualifications: ['M.Tech. (Thermal Engineering)'],
   specialization: ['Refrigeration and Air Conditioning', 'Heat Exchangers'],
   awards: [{ title: 'First Position in Vaigyaniki (Thermal and Fluid) 2013, IIT Bombay' }],

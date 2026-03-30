@@ -9,7 +9,7 @@ const faculty: FacultyData = {
   email: 'priti.vairagi@vcet.edu.in',
   experienceYears: '9',
   papersPublished: '03',
-  photo: '/Images/departments/mech/faculty/priti-vairagi.jpg',
+  photo: '/images/departments/mech/faculty/priti-vairagi.jpg',
   qualifications: ['M.E. (Machine Design)'],
   memberships: [{ label: 'ISTE' }],
   websites: [{ href: 'https://pvairagi.wordpress.com/', name: 'ICT Link', sub: 'pvairagi.wordpress.com' }],
