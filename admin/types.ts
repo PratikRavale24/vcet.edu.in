@@ -751,6 +751,24 @@ export interface BestPracticeUploadPayload {
   pdf?: File | null;
 }
 
+/* ── NAAC Score Uploads ────────────────────────────────────────────────────── */
+
+export interface NaacScoreUpload {
+  id: number;
+  title: string;
+  pdf_name: string;
+  pdf_mime_type: string | null;
+  pdf_size: number | null;
+  pdf_url: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface NaacScoreUploadPayload {
+  title: string;
+  pdf?: File | null;
+}
+
 /* ── Facilities Module ─────────────────────────────────────────────────────── */
 
 export interface FacilityData {
