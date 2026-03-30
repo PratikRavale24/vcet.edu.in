@@ -375,9 +375,7 @@ const ECell: React.FC = () => {
                   <h3 className="text-2xl font-bold text-[#1a4b7c] border-b border-slate-100 pb-3 mb-6">Faculty In Charge</h3>
                   
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-slate-50 p-6 rounded-xl border border-slate-100">
-                    <div className="w-20 h-20 rounded-full bg-brand-navylight flex flex-shrink-0 items-center justify-center text-[#1a4b7c]">
-                      <i className="ph ph-user text-4xl"></i>
-                    </div>
+                    <img src="/images/Trainging & Placement/e-cell/ecell-cordinator.jpg" alt="E-Cell Coordinator" className="w-20 h-20 rounded-full object-cover flex-shrink-0 border border-slate-200" />
                     <div>
                       <h4 className="text-xl font-bold text-[#1a4b7c] mb-1">Mr. Vikrant Agaskar</h4>
                       <p className="flex items-center gap-2 mb-1">
