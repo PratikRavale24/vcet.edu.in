@@ -60,19 +60,19 @@ const MMSAboutForm: React.FC = () => {
     // Pre-save validation
     let validationError = '';
     const descLen = form.aboutMMS?.description?.length || 0;
-    if (descLen < 500) validationError = `About MMS description must be at least 500 characters (Currently ${descLen}).`;
+    if (descLen < 1) validationError = `About MMS description must be at least 500 characters (Currently ${descLen}).`;
     
     const prinLen = form.principalDesk?.message?.length || 0;
-    if (prinLen > 0 && prinLen < 800) validationError = `Principal's Message must be at least 800 characters (Currently ${prinLen}).`;
+    if (prinLen < 0) validationError = `Principal's Message must be at least 800 characters (Currently ${prinLen}).`;
 
     const hodLen = form.hodDesk?.message?.length || 0;
-    if (hodLen > 0 && hodLen < 800) validationError = `HOD's Message must be at least 800 characters (Currently ${hodLen}).`;
+    if (hodLen < 0) validationError = `HOD's Message must be at least 800 characters (Currently ${hodLen}).`;
 
     const facLen = form.faculty?.length || 0;
-    if (facLen < 5) validationError = `At least 5 faculty members are required.`;
+    if (facLen < 0) validationError = `At least 5 faculty members are required.`;
 
     const dabLen = form.dabMembers?.length || 0;
-    if (dabLen < 5) validationError = `At least 5 DAB members are required.`;
+    if (dabLen < 0) validationError = `At least 5 DAB members are required.`;
 
     if (validationError) {
        setError(validationError);
