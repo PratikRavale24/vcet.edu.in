@@ -781,7 +781,7 @@ const MobileNestedAccordionItem: React.FC<{ sub: SubItem, onClose: () => void }>
         </button>
       </div>
 
-      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? `${sub.subItems!.length * 36}px` : '0px' }}>
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '1000px' : '0px' }}>
         <div className="pl-3 border-l border-brand-gold/20 ml-1 space-y-0.5 mt-1">
           {sub.subItems!.map(child => {
             const isInternal = child.href?.startsWith('/');
@@ -856,7 +856,7 @@ const MobileAccordionItem: React.FC<MobileAccordionItemProps> = ({ item, onClose
         </div>
         <div
           className="overflow-hidden transition-all duration-300"
-          style={{ maxHeight: open ? `${item.subItems.length * 44}px` : '0px' }}
+          style={{ maxHeight: open ? '1000px' : '0px' }}
         >
           <div className="pl-4 border-l border-brand-gold/30 ml-2 space-y-0.5">
             {item.subItems.map((sub) => {

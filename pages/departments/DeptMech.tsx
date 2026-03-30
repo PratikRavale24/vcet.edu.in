@@ -469,23 +469,163 @@ const DeptMech: React.FC = () => {
           )}
 
           {/* ════ INFRASTRUCTURE ═════════════════════════════════ */}
-          {activeId === 'infrastructure' && (
-            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-8 h-px bg-brand-gold" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Mechanical Engineering</span>
-              </div>
-              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
-              <div className="space-y-4 text-slate-600 leading-8">
-                <p>
-                  The Department features the state-of-the-art infrastructure including well developed laboratories, and is armed with the recent software&apos;s.
-                </p>
-                <p>
-                  The Department imparts the skills and expertise in the areas of Design, Thermal sciences, Manufacturing and Renewable energy that are the backbone of Industries.
-                </p>
-              </div>
-            </section>
-          )}
+          {activeId === 'infrastructure' && (() => {
+            const infrastructureLabs = [
+              {
+                title: 'BASIC WORKSHOP',
+                incharge: 'Mr.Dipak Chaudhari.',
+                hardware: 'Hardware. Carpentry. Fitting. Plumbing. Welding. Smithy.',
+              },
+              {
+                title: 'MACHINE SHOP',
+                incharge: 'Mr.Dipak Chaudhari.',
+                hardware: 'Carpentry Lathe Machine. Universal Milling Machine Shaping Machine Radial drilling Machine.',
+              },
+              {
+                title: 'ENGINEERING DRAWING',
+                incharge: 'Mr. Swapnil Mane',
+                software: 'AUTOCAD',
+                hardware: 'Models of Projection of Solids, Prisms – Triangular, Square, Prisms-Pentagonal, Pyramids- Triangular, Square, Pentagonal, Hexagonal, Cylinder, Frustum of Pyramid, Models of Section of Solids & Intersection of solids Prisms – Triangular, Square, Pentagonal, Hexagonal Pyramids- Triangular, Square, Pentagonal, Hexagonal, Cylinder, Frustum Of pyramid',
+              },
+              {
+                title: 'STRENGTH OF MATERIAL',
+                incharge: 'Mr. Dipak Chaudhari',
+                hardware: 'Universal Testing Machine, Torsion Testing Machine, Vickers Hardness Testing Machine, Impact Testing Machine, Rockwell cum Brinell Hardness Testing Machine',
+                features: 'Material Testing Facility',
+              },
+              {
+                title: 'FLUID MECHANICS',
+                incharge: 'Dr.Ashish Chaudhari',
+                hardware: 'mpact of jet on vanes, Buoyance & Metacentric height apparatus Bernoulli’s theorem apparatus Close circuit calibration rig for measuring discharge through venturi meter and orifice meter Close circuit apparatus for determination of co efficient of discharge of orifice and mouthpiece Flow through nozzles Calibration of rotameter Pipe friction apparatus Pipes in series and parallel Vortex flow apparatus Reynolds Apparatus.',
+              },
+              {
+                title: 'COMPUTER CENTER',
+                incharge: 'Mr. VishwasPalve',
+                software: 'Solidworks 23, AutoCad-24, Ansys 15',
+                hardware: 'Computers-51. A3 Printer& Scanner -01 A4 Printer-03',
+                features: 'Modelling & Simulation. Drafting',
+              },
+              {
+                title: 'HEAT TRANFER',
+                incharge: 'Mr. Vinay Patel',
+                hardware: 'Thermal conductivity of metal rod Heat transfer by natural convection apparatus Thermal conductivity of liquids Thermal conductivity of insulating powder apparatus Thermal conductivity of two slab guarded hot plate apparatus Heat transfer by forced convection apparatus Heat transfer in pin fin apparatus Heat transfer through lagged pipe apparatus Stefan- Boltzmann apparatus Emissivity measurement apparatus Parallel flow Counter flow apparatus',
+              },
+              {
+                title: 'INTERNAL COMBUSTION ENGINES',
+                incharge: 'Mr.Sanjay Lohar',
+                hardware: 'Twin cylinder 4-stroke vertical Diesel Engine Four-cylinder four-stroke vertical petrol engine Sectional working Model of 2 Stroke Petrol engine Sectional working Model of 4 Stroke Petrol engine Sectional working Model of 2 Stroke Diesel engine Sectional working Model of 4 Stroke Diesel engine',
+              },
+              {
+                title: 'MECHANICAL MEASUREMENTS AND CONTROL',
+                incharge: 'Mr. Vinay D. Patel',
+                hardware: 'Optical flats, Gear tooth Vernier Gear tooth comparator, Sine bar, Snap gauge and stand, Sleeve mt-3&4,',
+              },
+              {
+                title: 'METROLOGY AND QUALITY ENGINEERING',
+                incharge: 'Mr. Mukund Kavekar',
+                hardware: 'Comparators ElectronicsComparators Screw thread micrometre Use of Profile Projector Gear Tooth Measurement Micrometre',
+              },
+              {
+                title: 'KINAMATICS/DYNAMICS OF MACHINERY',
+                incharge: 'Dr.Uday Aswaleker',
+                hardware: 'Bar Link Watt Mechanism Pantograph Mechanism Model of Belt Pulley Shafting General Bearing Ball Bearing, Claw Clutch Kinematics Pair (All Types) Cam & Followers Gear Models Joint & Coupling Motorized Gyroscope Whirling of shaft Apparatus Static & Dynamic Balancing Machine Cam Analysis Machine Universal Governor App',
+              },
+              {
+                title: 'AUTOMOBILE ENGINEERING',
+                incharge: 'Mr. Mukund Kavekar',
+                hardware: 'Mechanical Comparators Constant Mesh Gear Box Sliding Mesh Gear Box Epicyclic industrial gear box Pneumatic Braking system Disc Braking system Worm & Recirculating Ball steering gear',
+              },
+              {
+                title: 'REFRIGERATION AND AIR CONDITIONING',
+                incharge: 'Mr. Rishabh Melwanki',
+                hardware: 'Experimental refrigeration Trainer Kit, Air conditioning Trainer Kit, Cooling Tower, Domestic refrigerator test setup, Water cooler test setup, Window AC test setup.',
+              },
+              {
+                title: 'MECHATRONICS LAB',
+                incharge: 'Mr.Parag Sarode.',
+                hardware: 'Electro Pneumatic Trainer Package &Robo Software X- Y position Table Sensor Technology kit LMS Controller Package P Simulator H Simulator',
+              },
+              {
+                title: 'THERMAL AND FLUID POWER',
+                incharge: 'Mr. Vinay D. Patel',
+                hardware: 'Model of Babcock & Wilcox Boiler Model of Cochran Boiler Model of Benson Boiler Model of Gas Turbine plant Model of Lever Safety Valve Model of Water Gauge Model of Feed Check Valve Model of Fusion Plugs Model of Green Economizer Model of Super Heater',
+              },
+              {
+                title: 'MATERIAL TECHNOLOGY',
+                incharge: 'Mr. Vishwas Palve',
+                hardware: 'Inverted Metallurgical Microscope with Eyepiece WF-10 X118 and CCTV camera 700TVL, Metallurgical microscopes, Inverted metallurgical microscope, Double disc polishing machine',
+                features: 'Metallurgical Micro-structure',
+              },
+              {
+                title: 'MECHANICAL UTILITY SYSTEM',
+                incharge: 'Mr. V.D. Patel',
+                hardware: 'Single Stage Reciprocating Air Compressor Test Rig with Constant speed. Two stroke reciprocating air compressor test rig with constant speed. Centrifugal type blower test rig.',
+                features: 'Modelling & Simulation. Drafting',
+              },
+              {
+                title: 'MAINTENANCE ENGINEERING',
+                incharge: 'Mr. Sanjay Lohar',
+                hardware: 'Multi-function Rotor Bench, 6 Channel data acquisition system, Proximity probe, rpm sensor, Accelerometer, Motor controller, Analysis software, Sliding Mesh Gear Box, Constant Mesh Gear Box, Epicyclic gear box.',
+                features: 'Sliding Mesh Gear Box, Constant Mesh Gear Box, Epicyclic gear box.',
+              },
+            ];
+
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Mechanical Engineering</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <div className="space-y-4 text-slate-600 leading-8">
+                  <p>
+                    The Department features the state-of-the-art infrastructure including well developed laboratories, and is armed with the recent software&apos;s.
+                  </p>
+                  <p>
+                    The Department imparts the skills and expertise in the areas of Design, Thermal sciences, Manufacturing and Renewable energy that are the backbone of Industries.
+                  </p>
+                </div>
+
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {infrastructureLabs.map((lab, idx) => (
+                    <article key={`${lab.title}-${idx}`} className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                      <div className="aspect-[16/10] bg-slate-100 border-b border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                        <i className="ph ph-image text-4xl mb-2" />
+                        <p className="text-xs font-semibold uppercase tracking-wide">Image Holder {idx + 1}</p>
+                      </div>
+                      <div className="p-5 space-y-3">
+                        <h4 className="text-base font-bold text-brand-navy leading-snug">{`Slide ${idx + 1} - ${lab.title}`}</h4>
+
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-wide text-brand-gold">Lab In-Charge</p>
+                          <p className="text-sm text-slate-700 mt-1">{lab.incharge}</p>
+                        </div>
+
+                        {lab.software && (
+                          <div>
+                            <p className="text-[11px] font-bold uppercase tracking-wide text-brand-gold">Software Installed</p>
+                            <p className="text-sm text-slate-700 mt-1">{lab.software}</p>
+                          </div>
+                        )}
+
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-wide text-brand-gold">Hardware</p>
+                          <p className="text-sm text-slate-700 mt-1">{lab.hardware}</p>
+                        </div>
+
+                        {lab.features && (
+                          <div>
+                            <p className="text-[11px] font-bold uppercase tracking-wide text-brand-gold">Features</p>
+                            <p className="text-sm text-slate-700 mt-1">{lab.features}</p>
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
 
           {/* ════ TOPPERS ════════════════════════════════════════ */}
           {activeId === 'toppers' && (() => {

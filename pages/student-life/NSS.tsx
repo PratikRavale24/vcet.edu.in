@@ -91,15 +91,25 @@ const events = [
 ];
 
 const gallery = [
-  { src: '/images/student-life/nss/gallery-01.jpg', alt: 'NSS gallery image 1', placeholder: true },
-  { src: '/images/student-life/nss/gallery-02.jpg', alt: 'NSS gallery image 2', placeholder: true },
-  { src: '/images/student-life/nss/gallery-03.jpg', alt: 'NSS gallery image 3', placeholder: true },
-  { src: '/images/student-life/nss/gallery-04.jpg', alt: 'NSS gallery image 4', placeholder: true },
-  { src: '/images/student-life/nss/gallery-05.jpg', alt: 'NSS gallery image 5', placeholder: true },
-  { src: '/images/student-life/nss/gallery-06.jpg', alt: 'NSS gallery image 6', placeholder: true },
-  { src: '/images/student-life/nss/gallery-07.jpg', alt: 'NSS gallery image 7', placeholder: true },
-  { src: '/images/student-life/nss/gallery-08.jpg', alt: 'NSS gallery image 8', placeholder: true },
-  { src: '/images/student-life/nss/gallery-09.jpg', alt: 'NSS gallery image 9', placeholder: true },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS1.PNG', alt: 'NSS gallery image 1', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS2.PNG', alt: 'NSS gallery image 2', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS3.PNG', alt: 'NSS gallery image 3', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS4.PNG', alt: 'NSS gallery image 4', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS5.PNG', alt: 'NSS gallery image 5', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS6.PNG', alt: 'NSS gallery image 6', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS7.PNG', alt: 'NSS gallery image 7', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS8.PNG', alt: 'NSS gallery image 8', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS9.PNG', alt: 'NSS gallery image 9', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS10.PNG', alt: 'NSS gallery image 10', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS11.PNG', alt: 'NSS gallery image 11', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS12.PNG', alt: 'NSS gallery image 12', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS13.PNG', alt: 'NSS gallery image 13', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS14.PNG', alt: 'NSS gallery image 14', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS15.PNG', alt: 'NSS gallery image 15', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS16.PNG', alt: 'NSS gallery image 16', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS17.PNG', alt: 'NSS gallery image 17', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS18.PNG', alt: 'NSS gallery image 18', placeholder: false },
+  { src: '/images/StudentLife/Extra-curricular-activities/Student_council/NSS/Gallery/NSS19.PNG', alt: 'NSS gallery image 19', placeholder: false },
 ];
 
 const staffRows: string[][] = [
@@ -201,7 +211,7 @@ const NSS: React.FC = () => {
 
             <div className="relative mb-6 w-48 h-56 rounded-2xl overflow-hidden shadow-lg border border-brand-blue/10">
               <img
-                src="/images/student-life/nss/pradip-gulbhile.jpg"
+                src="\images\StudentLife\Extra-curricular-activities\Student_council\NSS\Team\Pradip_Gulbhile.jpg "
                 alt="Dr. Pradip Gulbhile"
                 className="w-full h-full object-cover"
                 loading="lazy"

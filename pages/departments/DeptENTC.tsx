@@ -427,13 +427,61 @@ const DeptENTC: React.FC = () => {
                 <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Electronics &amp; Telecommunication Engineering</span>
               </div>
               <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
-              <div className="space-y-4 text-slate-600 leading-8">
-                <p>
-                  The department is equipped with the state-of-the-art laboratories with advance equipment and recent software for academic studies and research along with industry labs set up by Texas Instruments.
-                </p>
-                <p>
-                  Highly qualified and experienced faculty members (more than 15 years) and interactive teaching-learning methodologies support students in academics, practical learning, and research.
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: 'Microwave And Antenna Laboratory',
+                    details: [],
+                  },
+                  {
+                    title: 'Signal Processing Laboratory',
+                    details: [],
+                  },
+                  {
+                    title: 'Project Laboratory',
+                    details: [
+                      'Basic Electrical Laboratory',
+                      'Basic Electrical Laboratory',
+                      'Basic Electrical Laboratory',
+                      'Basic Electrical Laboratory',
+                      'Basic',
+                      'Basic Electrical Laboratory',
+                    ],
+                  },
+                  {
+                    title: 'Embedded System and VLSI Laboratory',
+                    details: [],
+                  },
+                  {
+                    title: 'Software Simulation Laboratory',
+                    details: [],
+                  },
+                  {
+                    title: 'Communication Laboratory',
+                    details: [
+                      'ecl',
+                      'Signal Processing Laboratory',
+                      'Electronics Circuit Laboratory',
+                    ],
+                  },
+                ].map((lab, idx) => (
+                  <article key={`${lab.title}-${idx}`} className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                    <div className="aspect-[16/10] w-full border-b border-slate-200 bg-slate-100 flex flex-col items-center justify-center text-slate-400">
+                      <i className="ph ph-image text-4xl" />
+                      <p className="mt-2 text-sm font-semibold">Image Holder {idx + 1}</p>
+                    </div>
+                    <div className="p-4">
+                      <h4 className="text-base font-bold text-brand-navy leading-6">{lab.title}</h4>
+                      {lab.details.length > 0 && (
+                        <div className="mt-3 space-y-1 text-sm text-slate-600">
+                          {lab.details.map((line, lineIdx) => (
+                            <p key={`${lab.title}-line-${lineIdx}`}>{line}</p>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                ))}
               </div>
             </section>
           )}

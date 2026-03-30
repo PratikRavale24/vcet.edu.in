@@ -412,13 +412,90 @@ const DeptCivil: React.FC = () => {
           )}
 
           {/* ════ INFRASTRUCTURE ═════════════════════════════════ */}
-          {activeId === 'infrastructure' && (
-            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
-              <div className="flex items-center gap-3 mb-4"><span className="w-8 h-px bg-brand-gold" /><span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Civil Engineering</span></div>
-              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
-              <p className="text-slate-600 leading-8">The department supports teaching-learning with civil engineering laboratories, practical project exposure, and collaborative activities aligned with academic and professional development.</p>
-            </section>
-          )}
+          {activeId === 'infrastructure' && (() => {
+            const labs = [
+              {
+                title: 'Applied Hydraulics Laboratory',
+                inCharge: 'Dr. Ashutosh Dabli',
+                hardware: 'Impact of jet on vanes, Francis Turbine, Pelton Wheel Turbine, Tilting Flume, Three Phase Centrifugal & Reciprocating Pump.',
+                features: 'This laboratory deals with the experiments based on hydraulics and various water resources applications. This Laboratory is designed to educate the students of T.E. Civil.',
+              },
+              {
+                title: 'Research Laboratory',
+                inCharge: 'Mr. Nikhil Gavad',
+                hardware: 'HP 280 G5 SFF desktop with i5 /10 th gen/ 8Gb/512SSD, 19.5″ Monitor (20 Unit)',
+                features: 'This lab desktops are equipped with softwares like ETABS Version-20 Ultimate, Auto CAAD 2023 (Student Version), Microsoft Office (Campus License). It is used by all Civil Engineering students for SBLC Labs & project research.',
+              },
+              {
+                title: 'Fluid Mechanics Laboratory',
+                inCharge: 'Mr. Prakash Panda',
+                hardware: 'Buoyance & Metacentric height apparatus Bernoulli’s theorem apparatus Close circuit calibration rig for measuring discharge through venturi meter and orifice meter Close circuit apparatus for determination of co efficient of discharge of orifice and mouthpiece Flow through nozzles Reynolds Apparatus. Wind Tunnel.',
+                features: 'This laboratory deals with the experiments based on Fluid Mechanics and various water resources applications. This Laboratory is designed to educate the students of S.E. Civil.',
+              },
+              {
+                title: 'Project Laboratory',
+                inCharge: 'Mr. Vikrant Kothari',
+                hardware: 'Total Station, GPS, Transit Theodolite, Dumpy Level, Auto Level, Equipments necessary for linear measurements.',
+                features: 'This laboratory is equipped with high quality & advanced Surveying equipments. It is designed to educate students of SE Civil in IVth Semester in different areas of engineering survey. Also Project lab is used for SE, TE & BE students for Minor & Major Project research work.',
+              },
+              {
+                title: 'Transportation Engineering Laboratory',
+                inCharge: 'Dr. Viren Chandanshive',
+                hardware: 'Marshal Stability Test, Aggregate Impact Value, Crushing Strength, Ductility Test Apparatus, etc.',
+                features: 'The transportation Laboratory is well equipped with advanced equipment’s to carry out various test on aggregate and bitumen. Tis laboratory is designed to students of TE Civil. Also this laboratory is used to carried out the research work of BE Civil students',
+              },
+              {
+                title: 'Geotechnics Laboratory',
+                inCharge: 'Mr. Arbaz KaziI',
+                hardware: 'Consolidation Test Apparatus, C.B.R. Test Apparatus, Triaxial Testing Machine. Different Types of stones',
+                features: 'Lab is well furnished and equipped with advanced Soil and Material testing equipment. Lab also deals with the identification of various types of minerals & rocks like igneous, sedimentary, metamorphic etc. This laboratory is designed to educate S.E. Civil students.',
+              },
+              {
+                title: 'Building Materials and Construction Technology Laboratory',
+                inCharge: 'Mr. jaydeep Chougale',
+                hardware: 'Tile Flexure Strength Testing Machine +Accessories, Compression Testing Machine, Hot Air Oven, Electronic Balance, Needle Vibrating Machine, Vibrating Table, Concrete Mixer, Slump Test Apparatus, etc',
+                features: 'Lab is well furnished and equipped with advanced Material testing equipment’s like CTM, ultrasonic pulse velocity meter (UPV), Rebound hammer, Bar Detector, Carbonation Kit etc. This laboratory is design to educate student of SE, TE, and BE Civil. Final year research work is also carried out in this laboratory.',
+              },
+              {
+                title: 'Environmental Engineering Laboratory',
+                inCharge: 'Ms Puja Kadam',
+                hardware: 'BOD incubator, COD Apparatus, Jar Test Apparatus, etc.',
+                features: 'This Laboratory is equipped with Hot air Oven, BOD Incubator, COD Digester, Digital Ph meter, Turbidity meter and DO meter, Sound Level meter and glassware’s for performing experiments on quality of water and wastewater. This laboratory is designed to educate students of 6 th semester in different areas of Environmental Engineering.',
+              },
+            ];
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100 space-y-6">
+                <div className="flex items-center gap-3"><span className="w-8 h-px bg-brand-gold" /><span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Civil Engineering</span></div>
+                <h3 className="text-2xl font-bold text-brand-navy relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                  {labs.map((lab, idx) => (
+                    <article key={lab.title} className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                      <div className="w-full h-52 bg-slate-100 border-b border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                        <i className="ph ph-image text-4xl mb-2" />
+                        <p className="text-sm font-semibold">Image Holder {idx + 1}</p>
+                      </div>
+                      <div className="p-5 space-y-3">
+                        <h4 className="text-lg font-bold text-brand-navy">{lab.title}</h4>
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold">Lab In-Charge</p>
+                          <p className="text-slate-700 mt-1">{lab.inCharge}</p>
+                        </div>
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold">Hardware</p>
+                          <p className="text-slate-600 leading-7 mt-1">{lab.hardware}</p>
+                        </div>
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold">Features</p>
+                          <p className="text-slate-600 leading-7 mt-1">{lab.features}</p>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
 
           {/* ════ TOPPERS ════════════════════════════════════════ */}
           {activeId === 'toppers' && (() => {

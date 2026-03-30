@@ -517,16 +517,98 @@ const DeptIT: React.FC = () => {
           })()}
 
           {/* ════ INFRASTRUCTURE ═══════════════════════════════════ */}
-          {activeId === 'infrastructure' && (
-            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-8 h-px bg-brand-gold" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Information Technology</span>
-              </div>
-              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
-              <p className="text-slate-600 leading-7">The department has laboratories which are well equipped with latest configuration machines, high speed internet, Wi-Fi and legal licensed software. Modern aids such as LCD, Educational CDs make classroom teaching more interesting.</p>
-            </section>
-          )}
+          {activeId === 'infrastructure' && (() => {
+            const labs = [
+              {
+                title: 'Network Communication Laboratory',
+                incharge: 'Mr. Chandan Kolvankar',
+                software: 'License: Windows 11,Ubuntu 22.04, Node JS, Visual Studio 20-22 Pro, PYTHON , Android Studio',
+                hardware: 'HP 280 PRO G6, I7 10th gen./ 8gb/256SSD/ 1TB HDD, 4 gb graphics Card (20 PC)',
+                features: 'Dual boot configuration, UPS Backup, Internet connectivity to every computer.',
+              },
+              {
+                title: 'Programming Laboratory',
+                incharge: 'Ms. Anagha Patil',
+                software: 'License: Windows 11,Ubuntu 22.04, Ms. Project, Java & Turbou C, TASM, R & R Studio',
+                hardware: 'HP 280 PRO G6 , I5 10500, 3.1 GHZ/ 8 gb RAM/ 1 TB+256M2 SSD (20 PC)',
+                features: 'Dual boot configuration, UPS Backup, Internet connectivity to every computer.',
+              },
+              {
+                title: 'Data Science Laboratory',
+                incharge: 'Ms. Vaishali Shirsath',
+                software: 'License: Windows 11, ubuntu 22.04,Java , PYTHON , My SQL Workbench, Weka , Visual Studio 20-22 pro',
+                hardware: 'HP 280 PRO G6 , I5 10500, 3.1 GHZ/ 8 gb RAM/ 1 TB+256M2 SSD (20 PC)',
+                features: 'Dual boot configuration, UPS Backup, Internet connectivity to every computer.',
+              },
+              {
+                title: 'IOT Laboratory',
+                incharge: 'Ms. Bharti Gondhalekar',
+                software: 'License: Windows 11,ubuntu 22.04, NS2, Wireshark, Cisco Packet Tracer',
+                hardware: 'HP 280 PRO G6 , I5 10500, 3.1 GHZ/ 8 gb RAM/ 1 TB+256M2 SSD (20 PC)',
+                features: 'Dual boot configuration, UPS Backup, Internet connectivity to every computer.',
+              },
+              {
+                title: 'Devops Laboratoy',
+                incharge: 'Ms. Pragati Patil',
+                software: 'License: Windows 11,ubuntu 22.04,,AnyDesk, Android Studio, PYTHON, Java, SWI Prolog and Haskell',
+                hardware: 'HP 280 PRO G6 , I5 10500, 3.1 GHZ/ 8 gb RAM/ 1 TB+256M2 SSD (20 PC)',
+                features: 'Dual boot configuration, UPS Backup, Internet connectivity to every computer.',
+              },
+              {
+                title: 'Project Laboratory',
+                incharge: 'Mr. Sainath Patil',
+                software: 'License: Windows 11,Ubuntu 22.04, Rational Rose, Visual Studio,.NET Open Source: Java, Python, Android Studio',
+                hardware: 'HP 280 PRO G6 , I5 10500, 3.1 GHZ/ 8 gb RAM/ 1 TB+256M2 SSD (14 PC) | HP 280 PRO G6, I7 10th gen./ 8gb/256SSD/ 1TB HDD, 4 gb graphics Card (20 PC',
+                features: 'Dual boot configuration, UPS Backup, Internet connectivity to every computer.',
+              },
+            ];
+
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100 space-y-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-px bg-brand-gold" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">Information Technology</span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+                <p className="text-slate-600 leading-7">The department has laboratories which are well equipped with latest configuration machines, high speed internet, Wi-Fi and legal licensed software. Modern aids such as LCD, Educational CDs make classroom teaching more interesting.</p>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {labs.map((lab, idx) => (
+                    <article key={lab.title} className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+                      <div className="w-full aspect-[16/9] bg-slate-100 border-b border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                        <i className="ph ph-image text-4xl mb-2" />
+                        <span className="text-sm font-medium">Image Holder {idx + 1}</span>
+                      </div>
+
+                      <div className="p-5 space-y-4">
+                        <h4 className="text-lg font-bold text-brand-navy">{lab.title}</h4>
+
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold mb-1">Lab In-Charge</p>
+                          <p className="text-slate-700">{lab.incharge}</p>
+                        </div>
+
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold mb-1">Software Installed</p>
+                          <p className="text-slate-600 leading-7">{lab.software}</p>
+                        </div>
+
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold mb-1">Hardware</p>
+                          <p className="text-slate-600 leading-7">{lab.hardware}</p>
+                        </div>
+
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold mb-1">Features</p>
+                          <p className="text-slate-600 leading-7">{lab.features}</p>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
 
           {/* ════ TOPPERS ══════════════════════════════════════════ */}
           {activeId === 'toppers' && (() => {

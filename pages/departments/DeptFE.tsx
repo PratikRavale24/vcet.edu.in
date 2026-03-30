@@ -189,15 +189,97 @@ const DeptFE: React.FC = () => {
           {activeId === 'faculty' && <DepartmentFacultySection departmentName="First Year Engineering" />}
 
           {/* ════ INFRASTRUCTURE ═════════════════════════════════ */}
-          {activeId === 'infrastructure' && (
-            <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100">
-              <div className="flex items-center gap-3 mb-4"><span className="w-8 h-px bg-brand-gold" /><span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">First Year Engineering</span></div>
-              <h3 className="text-2xl font-bold text-brand-navy mb-5 relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
-              <p className="text-slate-600 leading-8">
-                Recognized for its pivotal role, the department is equipped with state-of-the-art laboratories and continues to spearhead various curricular and extracurricular initiatives.
-              </p>
-            </section>
-          )}
+          {activeId === 'infrastructure' && (() => {
+            const labs = [
+              {
+                title: 'Chemistry Lab',
+                inCharge: 'Ms. c.v.Sonarkar',
+                majorEquipments: 'Contech Electronic Balance, Portable DM Plant, Hot Air Oven, Redwood Viscometer, Pensky Martin’s Apparatus, Vicat’s Apparatus.',
+              },
+              {
+                title: 'Physics Lab',
+                inCharge: 'Dr. Suraj Vishwakarma',
+                majorEquipments: 'Cathode Ray Oscilloscope, Laser Apparatus, RF Oscillator Spectrometer Travelling Microscope, Hall Effect Apparatus, Hysteresis Apparatus',
+              },
+              {
+                title: 'Basic Electrical & Electronics',
+                inCharge: 'Ms.Shraddha Gosavi',
+              },
+              {
+                title: 'Basic Workshop',
+                inCharge: 'Mr. Dipak Chaudhari',
+                hardware: 'Carpentry. Fitting. Plumbing. Welding. Smithy',
+              },
+              {
+                title: 'Machine Shop',
+                inCharge: 'Mr. Dipak Chaudhari',
+                hardware: 'Carpentry Lathe Machine. Universal Milling Machine Shaping Machine Radial drilling Machine.',
+              },
+              {
+                title: 'Computer Lab',
+                inCharge: 'Ms. Shraddha Gosavi',
+                software: 'OS – Windows 11. SW – TC, JAVA, MS Office. Browser – IE 8, Google Chrome, Mozilla.',
+                hardware: 'PC – HP Corei3 – No.25. Printer – HP laser Jet.',
+              },
+              {
+                title: 'Language Lab',
+                inCharge: 'Dr. Pradip Gulbhile',
+                software: 'Orell Talk Smart Version , 1 Teacher,50 student Consoles ,OS – Windows 10. SW – TC, JAVA, MS Office. Browser – IE 8, Google Chrome, Mozilla.',
+                hardware: 'PC – HP Core i3 – No.25. Printer – HP Laser Jet.',
+              },
+              {
+                title: 'Engineering Mechanics',
+                inCharge: 'Mr. Vikrant Kothari',
+                hardware: 'Bell Crank Lever, Force Table & Simple Beam.',
+              },
+            ];
+
+            return (
+              <section className="reveal bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-slate-100 space-y-6">
+                <div className="flex items-center gap-3"><span className="w-8 h-px bg-brand-gold" /><span className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-gold">First Year Engineering</span></div>
+                <h3 className="text-2xl font-bold text-brand-navy relative inline-block">Infrastructure<span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-gold rounded-full" /></h3>
+
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                  {labs.map((lab, idx) => (
+                    <article key={lab.title} className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                      <div className="w-full h-52 bg-slate-100 border-b border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                        <i className="ph ph-image text-4xl mb-2" />
+                        <p className="text-sm font-semibold">Image Holder {idx + 1}</p>
+                      </div>
+                      <div className="p-5 space-y-3">
+                        <h4 className="text-lg font-bold text-brand-navy">{lab.title}</h4>
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold">Lab In-Charge</p>
+                          <p className="text-slate-700 mt-1">{lab.inCharge}</p>
+                        </div>
+
+                        {lab.majorEquipments && (
+                          <div>
+                            <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold">Major Equipments</p>
+                            <p className="text-slate-600 leading-7 mt-1">{lab.majorEquipments}</p>
+                          </div>
+                        )}
+
+                        {lab.software && (
+                          <div>
+                            <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold">Software Installed</p>
+                            <p className="text-slate-600 leading-7 mt-1">{lab.software}</p>
+                          </div>
+                        )}
+
+                        {lab.hardware && (
+                          <div>
+                            <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gold">Hardware</p>
+                            <p className="text-slate-600 leading-7 mt-1">{lab.hardware}</p>
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
 
           {/* ════ SYLLABUS ═══════════════════════════════════════ */}
           {activeId === 'syllabus' && (() => {
