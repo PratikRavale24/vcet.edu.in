@@ -35,7 +35,7 @@ const MMSAboutForm: React.FC = () => {
         // Pre-fill min limits for arrays if empty API response
         setForm({
           ...emptyForm,
-          faculty: Array(5).fill({ name: '', designation: '', photo: null }),
+          faculty: Array(5).fill({ name: '', designation: '', email: '', photo: null }),
           dabMembers: Array(5).fill({ srNo: 0, name: '', designation: '', organization: '', role: '' }).map((v, i) => ({...v, srNo: i + 1}))
         });
       }
@@ -44,7 +44,7 @@ const MMSAboutForm: React.FC = () => {
       // Fallback with min forms
       setForm({
         ...emptyForm,
-        faculty: Array(5).fill({ name: '', designation: '', photo: null }),
+        faculty: Array(5).fill({ name: '', designation: '', email: '', photo: null }),
         dabMembers: Array(5).fill({ srNo: 0, name: '', designation: '', organization: '', role: '' }).map((v, i) => ({...v, srNo: i + 1}))
       });
     } finally {
@@ -263,11 +263,18 @@ const MMSAboutForm: React.FC = () => {
                          const c = [...form.faculty!]; c[i].designation = val; setForm({...form, faculty: c});
                      })}/>
                   </div>
+                  <div className="relative">
+                     <label className="admin-label">Email <span className="text-slate-400 normal-case">({member.email?.length || 0}/50)</span></label>
+                     <input className="admin-input-small text-[#2563EB] font-medium" type="email" value={member.email || ''} onChange={e => handleTextChange(e.target.value, 50, val => {
+                         const c = [...form.faculty!]; c[i].email = val; setForm({...form, faculty: c});
+                     })}/>
+                  </div>
+
                 </div>
               </div>
             ))}
             {(form.faculty?.length || 0) < 15 && (
-              <button type="button" onClick={() => setForm({...form, faculty: [...(form.faculty||[]), {name: '', designation: '', photo: null}]})} className="btn-add min-h-[120px]">
+              <button type="button" onClick={() => setForm({...form, faculty: [...(form.faculty||[]), {name: '', designation: '', email: '', photo: null}]})} className="btn-add min-h-[120px]">
                 <Plus className="w-5 h-5 mx-auto mb-1" /> Add Faculty Member
               </button>
             )}

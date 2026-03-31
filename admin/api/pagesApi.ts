@@ -109,8 +109,21 @@ export const pagesApi = {
         });
       }
 
+      if (payload.dean) {
+        const { image, ...deanData } = payload.dean;
+        formData.append('dean', JSON.stringify(deanData));
+        if (image) formData.append('deanImage', image);
+      }
+
+      if (payload.obe) {
+        const { image, ...obeData } = payload.obe;
+        formData.append('obe', JSON.stringify(obeData));
+        if (image) formData.append('obeImage', image);
+      }
+
       return client.requestForm<ItemResponse<AcademicsData>>('/pages/academics', formData);
     }
+
   },
 
   exam: {

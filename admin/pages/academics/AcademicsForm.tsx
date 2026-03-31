@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { pagesApi } from '../../api/pagesApi';
 import type { AcademicsData, AcademicsPayload, AdmissionDocument } from '../../types';
 
@@ -30,6 +31,52 @@ const SectionCard: React.FC<{ title: string; icon: React.ReactNode; children: Re
 
 const inputBase = 'w-full bg-slate-50 border-0 ring-1 ring-slate-200 focus:ring-2 focus:ring-[#2563EB] rounded-2xl px-5 py-4 text-sm font-bold transition-all outline-none';
 const labelBase = 'block text-xs font-black text-slate-400 uppercase tracking-widest mb-2.5 ml-1';
+
+/* ── Image Upload Component ────────────────────────────────────────────────── */
+const ImageUpload: React.FC<{
+  label: string;
+  imageUrl: string | null;
+  onFileSelect: (file: File) => void;
+  aspectRatio?: string;
+}> = ({ label, imageUrl, onFileSelect, aspectRatio = 'aspect-square' }) => {
+  const [preview, setPreview] = useState<string | null>(imageUrl);
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      onFileSelect(file);
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      <label className={labelBase}>{label}</label>
+      <div className={`relative group ${aspectRatio} w-full max-w-sm mx-auto bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl overflow-hidden transition-all hover:border-[#2563EB]`}>
+        {preview ? (
+          <img src={preview} alt="Preview" className="w-full h-full object-cover" />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 gap-2">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-center px-4">Click to upload image</span>
+          </div>
+        )}
+        <input 
+          type="file" 
+          accept="image/*" 
+          onChange={handleFileChange}
+          className="absolute inset-0 opacity-0 cursor-pointer z-10" 
+        />
+        {preview && (
+          <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <span className="text-white text-xs font-bold uppercase tracking-widest">Change Image</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 
 /* ── Document List Manager ─────────────────────────────────────────────────── */
 interface DocItem extends AdmissionDocument {
@@ -158,6 +205,8 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
         setPayload({
           programBooklets: Array.isArray(res.data?.programBooklets) ? res.data.programBooklets : [],
           academicCalendars: Array.isArray(res.data?.academicCalendars) ? res.data.academicCalendars : [],
+          dean: res.data?.dean || { name: '', qualification: '', designation: '', institution: '', message: '', imageUrl: null },
+          obe: res.data?.obe || { title: '', description: '', imageUrl: null }
         });
       })
       .finally(() => setLoading(false));
@@ -234,6 +283,101 @@ const AcademicsForm: React.FC<AcademicsFormProps> = ({ activeSection, onBack }) 
             />
           </SectionCard>
         )}
+
+        {/* Dean Academics Section */}
+        {(!activeSection || activeSection === 'dean') && (
+          <SectionCard title="Dean Academics" icon={<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <ImageUpload 
+                  label="Dean's Profile Picture"
+                  imageUrl={payload.dean?.imageUrl || null}
+                  onFileSelect={file => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, image: file } }))}
+                />
+              </div>
+              <div className="space-y-6">
+                <div>
+                  <label className={labelBase}>Full Name</label>
+                  <input 
+                    value={payload.dean?.name || ''} 
+                    onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, name: e.target.value } }))}
+                    className={inputBase}
+                    placeholder="e.g. Dr. Vikas Gupta"
+                  />
+                </div>
+                <div>
+                  <label className={labelBase}>Qualification</label>
+                  <input 
+                    value={payload.dean?.qualification || ''} 
+                    onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, qualification: e.target.value } }))}
+                    className={inputBase}
+                    placeholder="e.g. Ph D (Electronics...)"
+                  />
+                </div>
+                <div>
+                  <label className={labelBase}>Designation</label>
+                  <input 
+                    value={payload.dean?.designation || ''} 
+                    onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, designation: e.target.value } }))}
+                    className={inputBase}
+                    placeholder="e.g. Dean, Academics"
+                  />
+                </div>
+                <div>
+                  <label className={labelBase}>Institution / College</label>
+                  <input 
+                    value={payload.dean?.institution || ''} 
+                    onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, institution: e.target.value } }))}
+                    className={inputBase}
+                    placeholder="e.g. VCET, Vasai"
+                  />
+                </div>
+              </div>
+              <div className="md:col-span-2">
+                <label className={labelBase}>Dean's Message (Quote)</label>
+                <textarea 
+                  value={payload.dean?.message || ''} 
+                  onChange={e => setPayload(prev => ({ ...prev, dean: { ...prev.dean!, message: e.target.value } }))}
+                  className={`${inputBase} min-h-[200px] resize-none py-4 leading-relaxed`}
+                  placeholder="It is my pleasure to welcome you to..."
+                />
+              </div>
+            </div>
+          </SectionCard>
+        )}
+
+        {/* OBE Section */}
+        {(!activeSection || activeSection === 'obe') && (
+          <SectionCard title="Outcome Based Education" icon={<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>}>
+            <div className="grid grid-cols-1 gap-8">
+               <div>
+                  <label className={labelBase}>Framework Title</label>
+                  <input 
+                    value={payload.obe?.title || ''} 
+                    onChange={e => setPayload(prev => ({ ...prev, obe: { ...prev.obe!, title: e.target.value } }))}
+                    className={inputBase}
+                    placeholder="Outcome Based Education Framework"
+                  />
+                </div>
+                <div>
+                  <label className={labelBase}>Description</label>
+                  <textarea 
+                    value={payload.obe?.description || ''} 
+                    onChange={e => setPayload(prev => ({ ...prev, obe: { ...prev.obe!, description: e.target.value } }))}
+                    className={`${inputBase} min-h-[100px] resize-none py-4 leading-relaxed`}
+                    placeholder="Our OBE model centers on defined Graduate Attributes (POs)..."
+                  />
+                </div>
+                <ImageUpload 
+                  label="OBE Framework Diagram (16:9 recommended)"
+                  aspectRatio="aspect-video"
+                  imageUrl={payload.obe?.imageUrl || null}
+                  onFileSelect={file => setPayload(prev => ({ ...prev, obe: { ...prev.obe!, image: file } }))}
+                />
+            </div>
+          </SectionCard>
+        )}
+
 
         {/* Footer Actions */}
         <div className="bg-white rounded-[2rem] shadow-lg shadow-slate-200/40 border border-slate-100 px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">

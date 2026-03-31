@@ -707,13 +707,42 @@ export interface ExamPayload {
 export interface AcademicsData {
   programBooklets: AdmissionDocument[];
   academicCalendars: AdmissionDocument[];
+  dean?: {
+    name: string;
+    qualification: string;
+    designation: string;
+    institution: string;
+    message: string;
+    imageUrl: string | null;
+  };
+  obe?: {
+    title: string;
+    description: string;
+    imageUrl: string | null;
+  };
   updatedAt: string;
 }
 
 export interface AcademicsPayload {
   programBooklets?: (AdmissionDocument & { file?: File | null })[];
   academicCalendars?: (AdmissionDocument & { file?: File | null })[];
+  dean?: {
+    name: string;
+    qualification: string;
+    designation: string;
+    institution: string;
+    message: string;
+    imageUrl: string | null;
+    image?: File | null;
+  };
+  obe?: {
+    title: string;
+    description: string;
+    imageUrl: string | null;
+    image?: File | null;
+  };
 }
+
 
 /* ── SSS Report Uploads ─────────────────────────────────────────────────────── */
 
@@ -877,7 +906,7 @@ export interface MMSAboutData {
   aboutMMS: { description: string; image: string | File | null; };
   principalDesk: { message: string; photo: string | File | null; };
   hodDesk: { message: string; photo: string | File | null; };
-  faculty: { name: string; designation: string; photo: string | File | null; }[];
+  faculty: { name: string; designation: string; email: string; photo: string | File | null; }[];
   dabMembers: { srNo: number; name: string; designation: string; organization: string; role: string; }[];
   updatedAt?: string;
 }

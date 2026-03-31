@@ -79,7 +79,18 @@ const academicsEditables = [
     description: 'Update institutional booklets for various degree programs and syllabus.',
     links: [{ label: 'Edit Booklets', section: 'booklets' }],
   },
+  {
+    title: 'Dean Academics',
+    description: "Manage the Dean's profile, qualifications, and welcome message.",
+    links: [{ label: 'Edit Dean Profile', section: 'dean' }],
+  },
+  {
+    title: 'Outcome Based Education',
+    description: 'Update the OBE framework title, description, and diagram.',
+    links: [{ label: 'Edit OBE Framework', section: 'obe' }],
+  },
 ];
+
 
 const examEditables = [
   {
@@ -361,9 +372,9 @@ const SitePages: React.FC = () => {
           <h1 className="text-2xl font-bold text-slate-900">Academics Module</h1>
           <p className="text-sm text-slate-500 mt-1">Choose a section below to manage academic content.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {academicsEditables.map((item) => (
-            <div key={item.title} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm max-w-2xl">
+            <div key={item.title} className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm">
               <h2 className="text-lg font-semibold text-slate-900">{item.title}</h2>
               <p className="text-sm text-slate-500 mt-2">{item.description}</p>
               <div className="flex flex-wrap gap-2 mt-4">
